@@ -1,0 +1,26 @@
+name: google_maps_apis
+description: Google Maps Web Services [API](https://developers.google.com/maps/web-services)
+version: 1.0.0+1
+repository: https://github.com/luis901101/google_maps_apis
+issue_tracker: https://github.com/luis901101/google_maps_apis/issues
+topics:
+  - google-maps
+  - google-apis
+  - google-place
+  - google-directions
+  - google-geocoding
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  http: '>=0.13.0 <2.0.0'
+  meta: ^1.3.0
+  json_annotation: ^4.8.1
+
+dev_dependencies:
+  test: ^1.16.0
+  pedantic: ^1.10.0
+  build_runner: ^2.4.6
+  json_serializable: ^6.7.1
+  coverage: ^1.0.0

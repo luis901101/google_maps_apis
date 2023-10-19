@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo Running code generation
+echo ...
+if [ -z "$1" ]; then
+  dart run build_runner build --delete-conflicting-outputs;
+else
+  dart run build_runner build --build-filter $1;
+fi
