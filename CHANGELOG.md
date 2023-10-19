@@ -9,6 +9,13 @@ Types of changes
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## 1.0.1+1
+### Removed
+- Removed deprecated code.
+
+### Fixed
+- Fixed tests.
+
 ## 1.0.0+1
 ### Added
 - Added missing fields to `PlaceDetails`.

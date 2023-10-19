@@ -126,22 +126,6 @@ class GoogleMapsPlaces extends GoogleWebService {
     return _decodeDetailsResponse(await doGet(url, headers: apiHeaders));
   }
 
-  @deprecated
-  Future<PlacesDetailsResponse> getDetailsByReference(
-    String reference, {
-    String? sessionToken,
-    List<String> fields = const [],
-    String? language,
-  }) async {
-    final url = buildDetailsUrl(
-      reference: reference,
-      sessionToken: sessionToken,
-      fields: fields,
-      language: language,
-    );
-    return _decodeDetailsResponse(await doGet(url, headers: apiHeaders));
-  }
-
   Future<PlacesAutocompleteResponse> autocomplete(
     String input, {
     String? sessionToken,
@@ -853,12 +837,10 @@ enum PriceLevel {
   veryExpensive,
 }
 
+@JsonEnum(fieldRename: FieldRename.screamingSnake)
 enum BusinessStatus {
-  @JsonValue('OPERATIONAL')
   operational,
-  @JsonValue('CLOSED_TEMPORARILY')
   closedTemporarily,
-  @JsonValue('CLOSED_PERMANENTLY')
   closedPermanently,
   ;
 }

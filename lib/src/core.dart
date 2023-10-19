@@ -166,10 +166,13 @@ enum Unit {
 }
 
 enum TrafficModel {
-  @JsonValue('best_guess')
-  bestGuess,
-  pessimistic,
-  optimistic,
+  bestGuess('best_guess'),
+  pessimistic('pessimistic'),
+  optimistic('optimistic'),
+  ;
+
+  final String name;
+  const TrafficModel(this.name);
 }
 
 enum TransitMode {
@@ -181,8 +184,10 @@ enum TransitMode {
 }
 
 enum TransitRoutingPreferences {
-  @JsonValue('less_walking')
-  lessWalking,
-  @JsonValue('fewer_transfers')
-  fewerTransfers,
+  lessWalking('less_walking'),
+  fewerTransfers('fewer_transfers'),
+  ;
+
+  final String name;
+  const TransitRoutingPreferences(this.name);
 }

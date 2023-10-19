@@ -692,7 +692,7 @@ Future<void> main() async {
       expect(response.results?.first.placeId,
           equals('ChIJ90260rVG1moRkM2MIXVWBAQ'));
       expect(response.results?.first.scope, isNull);
-      expect(response.results?.first.altIds, isEmpty);
+      expect(response.results?.first.altIds ?? [], isEmpty);
       expect(response.results?.first.reference,
           equals('ChIJ90260rVG1moRkM2MIXVWBAQ'));
       expect(response.results?.first.types,
