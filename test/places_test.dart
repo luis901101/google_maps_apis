@@ -436,6 +436,94 @@ Future<void> main() async {
         );
       });
 
+      test('with circle locationbias', () {
+        expect(
+          places.buildAutocompleteUrl(
+            input: 'Amoeba Test',
+            locationBias: CircleLocation(
+              radius: 500,
+              center: Location(
+                lat: -33.8670522,
+                lng: 151.195736,
+              ),
+            ),
+          ),
+          _uri.replace(queryParameters: {
+            'input': 'Amoeba Test',
+            'locationbias': 'circle:500@-33.8670522,151.195736',
+            'key': apiKey,
+          }).toString(),
+        );
+      });
+
+      test('with rectangle locationbias', () {
+        expect(
+          places.buildAutocompleteUrl(
+            input: 'Amoeba Test',
+            locationBias: RectangleLocation(
+              northEast: Location(
+                lat: -33.8670522,
+                lng: 151.195736,
+              ),
+              southWest: Location(
+                lat: -43.8670522,
+                lng: 161.195736,
+              ),
+            ),
+          ),
+          _uri.replace(queryParameters: {
+            'input': 'Amoeba Test',
+            'locationbias':
+                'rectangle:-43.8670522,161.195736|-33.8670522,151.195736',
+            'key': apiKey,
+          }).toString(),
+        );
+      });
+
+      test('with circle locationrestriction', () {
+        expect(
+          places.buildAutocompleteUrl(
+            input: 'Amoeba Test',
+            locationRestriction: CircleLocation(
+              radius: 500,
+              center: Location(
+                lat: -33.8670522,
+                lng: 151.195736,
+              ),
+            ),
+          ),
+          _uri.replace(queryParameters: {
+            'input': 'Amoeba Test',
+            'locationrestriction': 'circle:500@-33.8670522,151.195736',
+            'key': apiKey,
+          }).toString(),
+        );
+      });
+
+      test('with rectangle locationrestriction', () {
+        expect(
+          places.buildAutocompleteUrl(
+            input: 'Amoeba Test',
+            locationRestriction: RectangleLocation(
+              northEast: Location(
+                lat: -33.8670522,
+                lng: 151.195736,
+              ),
+              southWest: Location(
+                lat: -43.8670522,
+                lng: 161.195736,
+              ),
+            ),
+          ),
+          _uri.replace(queryParameters: {
+            'input': 'Amoeba Test',
+            'locationrestriction':
+                'rectangle:-43.8670522,161.195736|-33.8670522,151.195736',
+            'key': apiKey,
+          }).toString(),
+        );
+      });
+
       test('with origin', () {
         expect(
           places.buildAutocompleteUrl(

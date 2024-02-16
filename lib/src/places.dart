@@ -132,6 +132,8 @@ class GoogleMapsPlaces extends GoogleWebService {
     num? offset,
     Location? origin,
     Location? location,
+    LocationShape? locationBias,
+    LocationShape? locationRestriction,
     num? radius,
     String? language,
     List<String> types = const [],
@@ -144,6 +146,8 @@ class GoogleMapsPlaces extends GoogleWebService {
       input: input,
       origin: origin,
       location: location,
+      locationBias: locationBias,
+      locationRestriction: locationRestriction,
       offset: offset,
       radius: radius,
       language: language,
@@ -370,6 +374,8 @@ class GoogleMapsPlaces extends GoogleWebService {
     num? offset,
     Location? origin,
     Location? location,
+    LocationShape? locationBias,
+    LocationShape? locationRestriction,
     num? radius,
     String? language,
     List<String> types = const [],
@@ -391,6 +397,14 @@ class GoogleMapsPlaces extends GoogleWebService {
 
     if (location != null) {
       params['location'] = location.toString();
+    }
+
+    if (locationBias != null) {
+      params['locationbias'] = locationBias.toString();
+    }
+
+    if (locationRestriction != null) {
+      params['locationrestriction'] = locationRestriction.toString();
     }
 
     if (radius != null) {
