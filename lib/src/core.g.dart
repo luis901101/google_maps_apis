@@ -34,6 +34,30 @@ Map<String, dynamic> _$GeometryToJson(Geometry instance) => <String, dynamic>{
       'bounds': instance.bounds,
     };
 
+CircleLocation _$CircleLocationFromJson(Map<String, dynamic> json) =>
+    CircleLocation(
+      center: Location.fromJson(json['center'] as Map<String, dynamic>),
+      radius: json['radius'] as int,
+    );
+
+Map<String, dynamic> _$CircleLocationToJson(CircleLocation instance) =>
+    <String, dynamic>{
+      'center': instance.center,
+      'radius': instance.radius,
+    };
+
+RectangleLocation _$RectangleLocationFromJson(Map<String, dynamic> json) =>
+    RectangleLocation(
+      northEast: Location.fromJson(json['north_east'] as Map<String, dynamic>),
+      southWest: Location.fromJson(json['south_west'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$RectangleLocationToJson(RectangleLocation instance) =>
+    <String, dynamic>{
+      'north_east': instance.northEast,
+      'south_west': instance.southWest,
+    };
+
 Bounds _$BoundsFromJson(Map<String, dynamic> json) => Bounds(
       northeast: Location.fromJson(json['northeast'] as Map<String, dynamic>),
       southwest: Location.fromJson(json['southwest'] as Map<String, dynamic>),

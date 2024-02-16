@@ -44,6 +44,45 @@ class Geometry {
   Map<String, dynamic> toJson() => _$GeometryToJson(this);
 }
 
+abstract class LocationShape {}
+
+@JsonSerializable()
+class CircleLocation extends LocationShape {
+  final Location center;
+  final int radius;
+
+  CircleLocation({
+    required this.center,
+    required this.radius,
+  });
+
+  @override
+  String toString() => 'circle:$radius@${center.lat},${center.lng}';
+
+  factory CircleLocation.fromJson(Map<String, dynamic> json) =>
+      _$CircleLocationFromJson(json);
+  Map<String, dynamic> toJson() => _$CircleLocationToJson(this);
+}
+
+@JsonSerializable()
+class RectangleLocation extends LocationShape {
+  final Location northEast;
+  final Location southWest;
+
+  RectangleLocation({
+    required this.northEast,
+    required this.southWest,
+  });
+
+  @override
+  String toString() =>
+      'rectangle:${southWest.lat},${southWest.lng}|${northEast.lat},${northEast.lng}';
+
+  factory RectangleLocation.fromJson(Map<String, dynamic> json) =>
+      _$RectangleLocationFromJson(json);
+  Map<String, dynamic> toJson() => _$RectangleLocationToJson(this);
+}
+
 @JsonSerializable()
 class Bounds {
   final Location northeast;
