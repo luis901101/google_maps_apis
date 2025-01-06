@@ -162,8 +162,8 @@ PlaceDetails _$PlaceDetailsFromJson(Map<String, dynamic> json) => PlaceDetails(
       types:
           (json['types'] as List<dynamic>?)?.map((e) => e as String).toList(),
       url: json['url'] as String?,
-      userRatingsTotal: json['user_ratings_total'] as int?,
-      utcOffset: json['utc_offset'] as int?,
+      userRatingsTotal: (json['user_ratings_total'] as num?)?.toInt(),
+      utcOffset: (json['utc_offset'] as num?)?.toInt(),
       vicinity: json['vicinity'] as String?,
       website: json['website'] as String?,
       wheelchairAccessibleEntrance:
@@ -249,7 +249,7 @@ Map<String, dynamic> _$PlaceOpeningHoursToJson(PlaceOpeningHours instance) =>
 PlaceOpeningHoursPeriodDetail _$PlaceOpeningHoursPeriodDetailFromJson(
         Map<String, dynamic> json) =>
     PlaceOpeningHoursPeriodDetail(
-      day: json['day'] as int,
+      day: (json['day'] as num).toInt(),
       time: json['time'] as String,
       date: json['date'] as String?,
       truncated: json['truncated'] as bool?,
@@ -418,7 +418,7 @@ Prediction _$PredictionFromJson(Map<String, dynamic> json) => Prediction(
       terms: (json['terms'] as List<dynamic>?)
           ?.map((e) => Term.fromJson(e as Map<String, dynamic>))
           .toList(),
-      distanceMeters: json['distance_meters'] as int?,
+      distanceMeters: (json['distance_meters'] as num?)?.toInt(),
       placeId: json['place_id'] as String?,
       reference: json['reference'] as String?,
       types:

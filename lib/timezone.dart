@@ -1,4 +1,4 @@
-library google_maps_apis.timezone;
+library;
 
 export './src/core.dart';
 export './src/timezone.dart';

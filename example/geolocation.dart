@@ -1,4 +1,4 @@
-library google_maps_apis.gelocation.example;
+library;
 
 import 'dart:async';
 import 'dart:io';

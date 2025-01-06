@@ -1,4 +1,4 @@
-library google_maps_apis.places;
+library;
 
 export './src/core.dart';
 export './src/places.dart';

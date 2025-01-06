@@ -13,7 +13,7 @@ Future<void> main() async {
 
   group('Google Maps Places', () {
     group('nearbysearch build url', () {
-      final _uri = Uri(
+      final uri = Uri(
         scheme: 'https',
         host: 'maps.googleapis.com',
         path: 'maps/api/place/nearbysearch/json',
@@ -26,7 +26,7 @@ Future<void> main() async {
 
         expect(
           url,
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'location': '-33.8670522,151.1957362',
             'radius': '500',
             'key': apiKey,
@@ -44,7 +44,7 @@ Future<void> main() async {
 
         expect(
           url,
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'location': '-33.8670522,151.1957362',
             'keyword': 'cruise',
             'type': 'restaurant',
@@ -63,7 +63,7 @@ Future<void> main() async {
 
         expect(
           url,
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'location': '-33.8670522,151.1957362',
             'language': 'fr',
             'radius': '500',
@@ -82,7 +82,7 @@ Future<void> main() async {
 
         expect(
           url,
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'location': '-33.8670522,151.1957362',
             'minprice': '0',
             'maxprice': '4',
@@ -101,7 +101,7 @@ Future<void> main() async {
 
         expect(
           url,
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'location': '-33.8670522,151.1957362',
             'name': 'cruise',
             'radius': '500',
@@ -119,7 +119,7 @@ Future<void> main() async {
 
         expect(
           url,
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'location': '-33.8670522,151.1957362',
             'name': 'cruise',
             'rankby': 'distance',
@@ -162,7 +162,7 @@ Future<void> main() async {
     });
 
     group('textsearch build url', () {
-      final _uri = Uri(
+      final uri = Uri(
         scheme: 'https',
         host: 'maps.googleapis.com',
         path: 'maps/api/place/textsearch/json',
@@ -171,7 +171,7 @@ Future<void> main() async {
       test('basic', () {
         expect(
           places.buildTextSearchUrl(query: '123 Main Street'),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'query': '123 Main Street',
             'key': apiKey,
           }).toString(),
@@ -184,7 +184,7 @@ Future<void> main() async {
             query: '123 Main Street',
             location: Location(lat: -33.8670522, lng: 151.1957362),
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'query': '123 Main Street',
             'location': '-33.8670522,151.1957362',
             'key': apiKey,
@@ -198,7 +198,7 @@ Future<void> main() async {
             query: '123 Main Street',
             radius: 500,
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'query': '123 Main Street',
             'radius': '500',
             'key': apiKey,
@@ -212,7 +212,7 @@ Future<void> main() async {
             query: '123 Main Street',
             language: 'fr',
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'query': '123 Main Street',
             'language': 'fr',
             'key': apiKey,
@@ -227,7 +227,7 @@ Future<void> main() async {
             minprice: PriceLevel.free,
             maxprice: PriceLevel.veryExpensive,
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'query': '123 Main Street',
             'minprice': '0',
             'maxprice': '4',
@@ -242,7 +242,7 @@ Future<void> main() async {
             query: '123 Main Street',
             opennow: true,
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'query': '123 Main Street',
             'opennow': 'true',
             'key': apiKey,
@@ -256,7 +256,7 @@ Future<void> main() async {
             query: '123 Main Street',
             pagetoken: 'egdsfdsfdsf',
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'query': '123 Main Street',
             'pagetoken': 'egdsfdsfdsf',
             'key': apiKey,
@@ -270,7 +270,7 @@ Future<void> main() async {
             query: '123 Main Street',
             type: 'hospital',
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'query': '123 Main Street',
             'type': 'hospital',
             'key': apiKey,
@@ -280,7 +280,7 @@ Future<void> main() async {
     });
 
     group('details build url', () {
-      final _uri = Uri(
+      final uri = Uri(
         scheme: 'https',
         host: 'maps.googleapis.com',
         path: 'maps/api/place/details/json',
@@ -289,7 +289,7 @@ Future<void> main() async {
       test('with place_id', () {
         expect(
           places.buildDetailsUrl(placeId: 'PLACE_ID'),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'placeid': 'PLACE_ID',
             'key': apiKey,
           }).toString(),
@@ -299,7 +299,7 @@ Future<void> main() async {
       test('with reference', () {
         expect(
           places.buildDetailsUrl(reference: 'REF'),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'reference': 'REF',
             'key': apiKey,
           }).toString(),
@@ -316,7 +316,7 @@ Future<void> main() async {
               'geometry',
             ],
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'placeid': 'PLACE_ID',
             'fields': 'address_component,opening_hours,geometry',
             'key': apiKey,
@@ -330,7 +330,7 @@ Future<void> main() async {
             placeId: 'PLACE_ID',
             language: 'fr',
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'placeid': 'PLACE_ID',
             'language': 'fr',
             'key': apiKey,
@@ -349,7 +349,7 @@ Future<void> main() async {
     });
 
     group('photo build url', () {
-      final _uri = Uri(
+      final uri = Uri(
         scheme: 'https',
         host: 'maps.googleapis.com',
         path: 'maps/api/place/photo',
@@ -369,7 +369,7 @@ Future<void> main() async {
             photoReference: 'PHOTO_REFERENCE',
             maxHeight: 100,
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'photoreference': 'PHOTO_REFERENCE',
             'maxheight': '100',
             'key': apiKey,
@@ -382,7 +382,7 @@ Future<void> main() async {
             photoReference: 'PHOTO_REFERENCE',
             maxWidth: 100,
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'photoreference': 'PHOTO_REFERENCE',
             'maxwidth': '100',
             'key': apiKey,
@@ -392,7 +392,7 @@ Future<void> main() async {
     });
 
     group('autocomplete build url', () {
-      final _uri = Uri(
+      final uri = Uri(
         scheme: 'https',
         host: 'maps.googleapis.com',
         path: 'maps/api/place/autocomplete/json',
@@ -401,7 +401,7 @@ Future<void> main() async {
       test('basic', () {
         expect(
           places.buildAutocompleteUrl(input: 'Amoeba Test'),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'input': 'Amoeba Test',
             'key': apiKey,
           }).toString(),
@@ -414,7 +414,7 @@ Future<void> main() async {
             input: 'Amoeba Test',
             offset: 3,
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'input': 'Amoeba Test',
             'offset': '3',
             'key': apiKey,
@@ -428,7 +428,7 @@ Future<void> main() async {
             input: 'Amoeba Test',
             location: Location(lat: -33.8670522, lng: 151.195736),
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'input': 'Amoeba Test',
             'location': '-33.8670522,151.195736',
             'key': apiKey,
@@ -442,7 +442,7 @@ Future<void> main() async {
             input: 'Amoeba Test',
             origin: Location(lat: -33.8670522, lng: 151.1957362),
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'input': 'Amoeba Test',
             'origin': '-33.8670522,151.1957362',
             'key': apiKey,
@@ -456,7 +456,7 @@ Future<void> main() async {
             input: 'Amoeba Test',
             radius: 500,
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'input': 'Amoeba Test',
             'radius': '500',
             'key': apiKey,
@@ -470,7 +470,7 @@ Future<void> main() async {
             input: 'Amoeba Test',
             language: 'fr',
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'input': 'Amoeba Test',
             'language': 'fr',
             'key': apiKey,
@@ -484,7 +484,7 @@ Future<void> main() async {
             input: 'Amoeba Test',
             types: ['geocode', 'establishment'],
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'input': 'Amoeba Test',
             'types': 'geocode|establishment',
             'key': apiKey,
@@ -501,7 +501,7 @@ Future<void> main() async {
               Component(Component.locality, 'Paris'),
             ],
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'input': 'Amoeba Test',
             'components': 'country:fr|locality:Paris',
             'key': apiKey,
@@ -515,7 +515,7 @@ Future<void> main() async {
             input: 'Amoeba Test',
             strictbounds: true,
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'input': 'Amoeba Test',
             'strictbounds': 'true',
             'key': apiKey,
@@ -525,7 +525,7 @@ Future<void> main() async {
     });
 
     group('queryautocomplete', () {
-      final _uri = Uri(
+      final uri = Uri(
         scheme: 'https',
         host: 'maps.googleapis.com',
         path: 'maps/api/place/queryautocomplete/json',
@@ -534,7 +534,7 @@ Future<void> main() async {
       test('basic', () {
         expect(
           places.buildQueryAutocompleteUrl(input: 'Amoeba Test'),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'input': 'Amoeba Test',
             'key': apiKey,
           }).toString(),
@@ -547,7 +547,7 @@ Future<void> main() async {
             input: 'Amoeba Test',
             offset: 3,
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'input': 'Amoeba Test',
             'offset': '3',
             'key': apiKey,
@@ -561,7 +561,7 @@ Future<void> main() async {
             input: 'Amoeba Test',
             location: Location(lat: -33.8670522, lng: 151.1957362),
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'input': 'Amoeba Test',
             'location': '-33.8670522,151.1957362',
             'key': apiKey,
@@ -575,7 +575,7 @@ Future<void> main() async {
             input: 'Amoeba Test',
             radius: 500,
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'input': 'Amoeba Test',
             'radius': '500',
             'key': apiKey,
@@ -589,7 +589,7 @@ Future<void> main() async {
             input: 'Amoeba Test',
             language: 'fr',
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'input': 'Amoeba Test',
             'language': 'fr',
             'key': apiKey,
@@ -928,7 +928,7 @@ const _textSearchResponseExample = {
         {
           'height': 810,
           'html_attributions': [
-            '\u003ca href=\"https://maps.google.com/maps/contrib/107196947767897770095\"\u003eUwe Delau\u003c/a\u003e'
+            '\u003ca href="https://maps.google.com/maps/contrib/107196947767897770095"\u003eUwe Delau\u003c/a\u003e'
           ],
           'photo_reference':
               'ATtYBwK5nQr4pKVwk0xnAaIV2hj-I4710I5sdXh7eGGBQWFrOD1N7AJgXy7ZnHwsE0Lbk9yNlj42REQM8ZWKm-7HIDj1mrNXEh6lWoNPc9JVywROmrHVCqnOuER3bmbrGQR7JRsF3n2uBilksqdJoSNuvr8BH4S4KJpyD_CiIUhed1JAvoEo',
@@ -977,7 +977,7 @@ const _placeDetailsExample = {
     }
   ],
   'adr_address':
-      '<span class=\"street-address\">Filigudi Ct</span>, <span class=\"locality\">Frankston South</span> <span class=\"region\">VIC</span> <span class=\"postal-code\">3199</span>, <span class=\"country-name\">Australia</span>',
+      '<span class="street-address">Filigudi Ct</span>, <span class="locality">Frankston South</span> <span class="region">VIC</span> <span class="postal-code">3199</span>, <span class="country-name">Australia</span>',
   'business_status': 'OPERATIONAL',
   'formatted_address': 'Filigudi Ct, Frankston South VIC 3199, Australia',
   'formatted_phone_number': '0431 887 848',
@@ -996,7 +996,7 @@ const _placeDetailsExample = {
     {
       'height': 4032,
       'html_attributions': [
-        '<a href=\"https://maps.google.com/maps/contrib/101246297873069804005\">Habitat Surf</a>'
+        '<a href="https://maps.google.com/maps/contrib/101246297873069804005">Habitat Surf</a>'
       ],
       'photo_reference':
           'ATtYBwLH_-MyoefQNFeI_G3WoFTdjI-zTcK6-KhRS2qYdaHvvHPW-80408rIrTOCCV1SAiYNp40x-Ut7hBGrzP6PM0I4c0WrFPGybaF_ftyNOdAD2l7D6LhfXbgqfbv7hMXTZkP-bdEK24i2_SF5Y7tkHErPRzD3Z1EAfz4wKwQ1mmbxLCV1',
@@ -1005,7 +1005,7 @@ const _placeDetailsExample = {
     {
       'height': 3557,
       'html_attributions': [
-        '<a href=\"https://maps.google.com/maps/contrib/101246297873069804005\">Habitat Surf</a>'
+        '<a href="https://maps.google.com/maps/contrib/101246297873069804005">Habitat Surf</a>'
       ],
       'photo_reference':
           'ATtYBwJ9LhX8MhRj8lnJnlqmv-6uraUb_5_ozvQxuzRGRyTniZjo0_bzyh-Mi7SXvH9OSyqB8qwIk2EdnBOuHoU6tlsEGs7wCSNUFeWiI20AKGjrYgeu073sTvwVr_Of0Ka7258NKdf1qEdiQx2ZY8P4wcRb9TkyRjaEXZi2-aCGmLEulHke',
@@ -1014,7 +1014,7 @@ const _placeDetailsExample = {
     {
       'height': 1024,
       'html_attributions': [
-        '<a href=\"https://maps.google.com/maps/contrib/101246297873069804005\">Habitat Surf</a>'
+        '<a href="https://maps.google.com/maps/contrib/101246297873069804005">Habitat Surf</a>'
       ],
       'photo_reference':
           'ATtYBwIcWzamoiCsqsBSVTYlF4TujnnfK2C8sBSk0fwyrB-tw5D-6KKg7uuRL2l_Ndi-7RnrcYV9otV0l41pu5lEus2tkTyVxkyFWOj_cN-zJiOkyBSleC3II2ozocDsxXiEsWzUhxKiMJjYI1Bsi186kIbzsBMYjLoD64dgBoSfrBQVhG8h',
@@ -1023,7 +1023,7 @@ const _placeDetailsExample = {
     {
       'height': 2268,
       'html_attributions': [
-        '<a href=\"https://maps.google.com/maps/contrib/101246297873069804005\">Habitat Surf</a>'
+        '<a href="https://maps.google.com/maps/contrib/101246297873069804005">Habitat Surf</a>'
       ],
       'photo_reference':
           'ATtYBwJiDjV_qKQoxeTMie8lpIatwAGpjpx2oOB_0iQSO5Z87NP5OgPBncLA6ti--yYgXAll17RynG89FlQNSfm7_eua-Qbd7Fyu2-FxIecp60lqIgI9gt-SXSFMRrH_pYxj2SgXVpcIN5ObRFm6-E8V8hARy78dBBBuNAzLKegylJoypikp',
@@ -1032,7 +1032,7 @@ const _placeDetailsExample = {
     {
       'height': 2268,
       'html_attributions': [
-        '<a href=\"https://maps.google.com/maps/contrib/101246297873069804005\">Habitat Surf</a>'
+        '<a href="https://maps.google.com/maps/contrib/101246297873069804005">Habitat Surf</a>'
       ],
       'photo_reference':
           'ATtYBwI3Plt0GnRqnTpBil97Ggn7p4Da6-x6RP3My8Mldd0qJFK-gm0khac0VTe4bLIjkbq4dVeqYtnJq9__GQTGjGoO9s1iPI8bjmnwPUXUTRXf_gtU7AGrwPBUfqL5KsmCMq4SUtOWRKVCIZ1IwQclziSg9UCy3ZfJWazI--Be4IYV88PY',

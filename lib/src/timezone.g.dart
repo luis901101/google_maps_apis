@@ -10,8 +10,8 @@ TimezoneResponse _$TimezoneResponseFromJson(Map<String, dynamic> json) =>
     TimezoneResponse(
       status: $enumDecodeNullable(_$ResponseStatusEnumMap, json['status']),
       errorMessage: json['errorMessage'] as String?,
-      dstOffset: json['dstOffset'] as int,
-      rawOffset: json['rawOffset'] as int,
+      dstOffset: (json['dstOffset'] as num).toInt(),
+      rawOffset: (json['rawOffset'] as num).toInt(),
       timeZoneId: json['timeZoneId'] as String,
       timeZoneName: json['timeZoneName'] as String,
     );

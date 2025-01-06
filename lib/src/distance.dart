@@ -14,16 +14,12 @@ const _distanceUrl = '/distancematrix/json';
 ///https://developers.google.com/maps/documentation/distance-matrix/intro
 class GoogleDistanceMatrix extends GoogleWebService {
   GoogleDistanceMatrix({
-    String? apiKey,
-    String? baseUrl,
-    Client? httpClient,
-    Map<String, String>? apiHeaders,
+    super.apiKey,
+    super.baseUrl,
+    super.httpClient,
+    super.apiHeaders,
   }) : super(
-          apiKey: apiKey,
-          baseUrl: baseUrl,
           apiPath: _distanceUrl,
-          httpClient: httpClient,
-          apiHeaders: apiHeaders,
         );
 
   Future<DistanceResponse> _distance(
@@ -229,7 +225,7 @@ class GoogleDistanceMatrix extends GoogleWebService {
       params['key'] = apiKey!;
     }
 
-    return url.replace(queryParameters: params).toString();
+    return url.replace(queryParameters: UriUtils.encodeQueryParameters(params)).toString();
   }
 
   DistanceResponse _decode(Response res) =>

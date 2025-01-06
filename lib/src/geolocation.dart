@@ -16,15 +16,13 @@ const _geolocationUrl = '/geolocation/v1/geolocate';
 /// https://developers.google.com/maps/documentation/geolocation/intro
 class GoogleMapsGeolocation extends GoogleWebService {
   GoogleMapsGeolocation({
-    String? apiKey,
+    super.apiKey,
     String? baseUrl,
-    Client? httpClient,
+    super.httpClient,
     Map<String, String>? apiHeaders,
   }) : super(
-          apiKey: apiKey,
           baseUrl: baseUrl ?? _baseUrl,
           apiPath: _geolocationUrl,
-          httpClient: httpClient,
         );
 
   Future<GeolocationResponse> getGeolocation({
@@ -70,7 +68,7 @@ class GoogleMapsGeolocation extends GoogleWebService {
       params['key'] = apiKey!;
     }
 
-    return url.replace(queryParameters: params).toString();
+    return url.replace(queryParameters: UriUtils.encodeQueryParameters(params)).toString();
   }
 
   Map<String, dynamic> buildBody({
@@ -197,9 +195,9 @@ class CellTower extends _AccessObject {
     required this.mobileCountryCode,
     required this.mobileNetworkCode,
     this.timingAdvance,
-    num? age,
-    num? signalStrength,
-  }) : super(age: age, signalStrength: signalStrength);
+    super.age,
+    super.signalStrength,
+  });
 
   factory CellTower.fromJson(Map<String, dynamic> json) =>
       _$CellTowerFromJson(json);
@@ -213,15 +211,12 @@ class WifiAccessPoint extends _AccessObject {
   final num? signalToNoiseRatio;
 
   WifiAccessPoint({
-    num? age,
-    num? signalStrength,
+    super.age,
+    super.signalStrength,
     this.macAddress,
     this.channel,
     this.signalToNoiseRatio,
-  }) : super(
-          age: age,
-          signalStrength: signalStrength,
-        );
+  });
 
   factory WifiAccessPoint.fromJson(Map<String, dynamic> json) =>
       _$WifiAccessPointFromJson(json);

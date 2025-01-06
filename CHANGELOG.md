@@ -9,6 +9,10 @@ Types of changes
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## 1.1.0
+### Changed
+- Changed the query params encoding. Now it uses the `Uri.encodeFull` to encode the query params.
+
 ## 1.0.1+1
 ### Removed
 - Removed deprecated code.

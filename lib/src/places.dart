@@ -20,16 +20,12 @@ const _queryAutocompleteUrl = '/queryautocomplete/json';
 /// https://developers.google.com/places/web-service/
 class GoogleMapsPlaces extends GoogleWebService {
   GoogleMapsPlaces({
-    String? apiKey,
-    String? baseUrl,
-    Client? httpClient,
-    Map<String, String>? apiHeaders,
+    super.apiKey,
+    super.baseUrl,
+    super.httpClient,
+    super.apiHeaders,
   }) : super(
-          apiKey: apiKey,
-          baseUrl: baseUrl,
           apiPath: _placesUrl,
-          httpClient: httpClient,
-          apiHeaders: apiHeaders,
         );
 
   Future<PlacesSearchResponse> searchNearbyWithRadius(
@@ -245,7 +241,7 @@ class GoogleMapsPlaces extends GoogleWebService {
     return url
         .replace(
           path: '${url.path}$_nearbySearchUrl',
-          queryParameters: params,
+          queryParameters: UriUtils.encodeQueryParameters(params),
         )
         .toString();
   }
@@ -309,7 +305,7 @@ class GoogleMapsPlaces extends GoogleWebService {
     return url
         .replace(
           path: '${url.path}$_textSearchUrl',
-          queryParameters: params,
+          queryParameters: UriUtils.encodeQueryParameters(params),
         )
         .toString();
   }
@@ -359,7 +355,7 @@ class GoogleMapsPlaces extends GoogleWebService {
     return url
         .replace(
           path: '${url.path}$_detailsSearchUrl',
-          queryParameters: params,
+          queryParameters: UriUtils.encodeQueryParameters(params),
         )
         .toString();
   }
@@ -428,7 +424,7 @@ class GoogleMapsPlaces extends GoogleWebService {
     return url
         .replace(
           path: '${url.path}$_autocompleteUrl',
-          queryParameters: params,
+          queryParameters: UriUtils.encodeQueryParameters(params),
         )
         .toString();
   }
@@ -467,7 +463,7 @@ class GoogleMapsPlaces extends GoogleWebService {
     return url
         .replace(
           path: '${url.path}$_queryAutocompleteUrl',
-          queryParameters: params,
+          queryParameters: UriUtils.encodeQueryParameters(params),
         )
         .toString();
   }
@@ -500,7 +496,7 @@ class GoogleMapsPlaces extends GoogleWebService {
     return url
         .replace(
           path: '${url.path}$_photoUrl',
-          queryParameters: params,
+          queryParameters: UriUtils.encodeQueryParameters(params),
         )
         .toString();
   }

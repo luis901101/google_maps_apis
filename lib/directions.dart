@@ -1,4 +1,4 @@
-library google_maps_apis.directions;
+library;
 
 export './src/core.dart';
 export './src/directions.dart';

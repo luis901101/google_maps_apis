@@ -14,16 +14,12 @@ const _directionsUrl = '/directions/json';
 /// https://developers.google.com/maps/documentation/directions/start
 class GoogleMapsDirections extends GoogleWebService {
   GoogleMapsDirections({
-    String? apiKey,
-    String? baseUrl,
-    Client? httpClient,
-    Map<String, String>? apiHeaders,
+    super.apiKey,
+    super.baseUrl,
+    super.httpClient,
+    super.apiHeaders,
   }) : super(
-          apiKey: apiKey,
-          baseUrl: baseUrl,
           apiPath: _directionsUrl,
-          httpClient: httpClient,
-          apiHeaders: apiHeaders,
         );
 
   Future<DirectionsResponse> directions(
@@ -230,7 +226,7 @@ class GoogleMapsDirections extends GoogleWebService {
       params['key'] = apiKey!;
     }
 
-    return url.replace(queryParameters: params).toString();
+    return url.replace(queryParameters: UriUtils.encodeQueryParameters(params)).toString();
   }
 
   DirectionsResponse _decode(Response res) =>
@@ -458,8 +454,7 @@ class Value {
 class Fare extends Value {
   final String currency;
 
-  Fare({required this.currency, required num value, required String text})
-      : super(value: value, text: text);
+  Fare({required this.currency, required super.value, required super.text});
 
   factory Fare.fromJson(Map<String, dynamic> json) => _$FareFromJson(json);
   @override
@@ -471,8 +466,7 @@ class Time extends Value {
   /// JSON time_zone
   final String timeZone;
 
-  Time({required this.timeZone, required num value, required String text})
-      : super(value: value, text: text);
+  Time({required this.timeZone, required super.value, required super.text});
 
   factory Time.fromJson(Map<String, dynamic> json) => _$TimeFromJson(json);
   @override

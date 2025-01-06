@@ -1,4 +1,4 @@
-library google_maps_apis.geocoding;
+library;
 
 export './src/core.dart';
 export './src/geocoding.dart';

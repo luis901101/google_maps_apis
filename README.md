@@ -19,7 +19,7 @@ These keys are not to be used individually as Android or iOS API keys, but they 
 ## Availables API
 
 - [x] [Geocoding](https://developers.google.com/maps/documentation/geocoding/start)
-- [ ] [Places](https://developers.google.com/places/web-service/)
+- [x] [Places](https://developers.google.com/places/web-service/)
   - [x] nearby search
   - [x] text search
   - [x] details
