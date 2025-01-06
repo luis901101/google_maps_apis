@@ -225,7 +225,7 @@ class GoogleDistanceMatrix extends GoogleWebService {
       params['key'] = apiKey!;
     }
 
-    return url.replace(queryParameters: UriUtils.encodeQueryParameters(params)).toString();
+    return url.replace(queryParameters: params).toString();
   }
 
   DistanceResponse _decode(Response res) =>

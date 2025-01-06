@@ -1,5 +1,3 @@
-import 'package:google_maps_apis/src/utils.dart';
-
 import 'core.dart';
 
 class Path {
@@ -78,7 +76,7 @@ class StaticMap {
       scheme: 'https',
       host: 'maps.googleapis.com',
       path: 'maps/api/staticmap',
-      queryParameters: UriUtils.encodeQueryParameters(params),
+      queryParameters: params,
     ).toString();
   }
 }

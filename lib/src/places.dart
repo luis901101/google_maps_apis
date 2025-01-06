@@ -241,7 +241,7 @@ class GoogleMapsPlaces extends GoogleWebService {
     return url
         .replace(
           path: '${url.path}$_nearbySearchUrl',
-          queryParameters: UriUtils.encodeQueryParameters(params),
+          queryParameters: params,
         )
         .toString();
   }
@@ -305,7 +305,7 @@ class GoogleMapsPlaces extends GoogleWebService {
     return url
         .replace(
           path: '${url.path}$_textSearchUrl',
-          queryParameters: UriUtils.encodeQueryParameters(params),
+          queryParameters: params,
         )
         .toString();
   }
@@ -355,7 +355,7 @@ class GoogleMapsPlaces extends GoogleWebService {
     return url
         .replace(
           path: '${url.path}$_detailsSearchUrl',
-          queryParameters: UriUtils.encodeQueryParameters(params),
+          queryParameters: params,
         )
         .toString();
   }
@@ -424,7 +424,7 @@ class GoogleMapsPlaces extends GoogleWebService {
     return url
         .replace(
           path: '${url.path}$_autocompleteUrl',
-          queryParameters: UriUtils.encodeQueryParameters(params),
+          queryParameters: params,
         )
         .toString();
   }
@@ -463,7 +463,7 @@ class GoogleMapsPlaces extends GoogleWebService {
     return url
         .replace(
           path: '${url.path}$_queryAutocompleteUrl',
-          queryParameters: UriUtils.encodeQueryParameters(params),
+          queryParameters: params,
         )
         .toString();
   }
@@ -496,7 +496,7 @@ class GoogleMapsPlaces extends GoogleWebService {
     return url
         .replace(
           path: '${url.path}$_photoUrl',
-          queryParameters: UriUtils.encodeQueryParameters(params),
+          queryParameters: params,
         )
         .toString();
   }

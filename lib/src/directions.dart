@@ -226,7 +226,7 @@ class GoogleMapsDirections extends GoogleWebService {
       params['key'] = apiKey!;
     }
 
-    return url.replace(queryParameters: UriUtils.encodeQueryParameters(params)).toString();
+    return url.replace(queryParameters: params).toString();
   }
 
   DirectionsResponse _decode(Response res) =>

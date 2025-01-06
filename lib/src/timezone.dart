@@ -58,7 +58,7 @@ class GoogleMapsTimezone extends GoogleWebService {
       params.putIfAbsent('key', () => apiKey!);
     }
 
-    return url.replace(queryParameters: UriUtils.encodeQueryParameters(params)).toString();
+    return url.replace(queryParameters: params).toString();
   }
 
   TimezoneResponse _decode(Response res) =>

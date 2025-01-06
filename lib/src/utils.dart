@@ -99,23 +99,3 @@ DateTime dayTimeToDateTime(int day, String time) {
 
   return DateTime.utc(now.year, now.month, computedWeekday, hour, minute);
 }
-
-class UriUtils {
-  /// To ensure encoding of query parameters to use %20 instead of + for spaces
-  static Map<String, String> encodeQueryParameters(Map<String, dynamic> params) {
-    final encodedParams = <String, String>{};
-    for (final entry in params.entries) {
-      if (entry.value != null) {
-        String value = '';
-        if (entry.value is Iterable) {
-          value = (entry.value as Iterable).join(',');
-        } else {
-          value = entry.value.toString();
-        }
-        encodedParams[Uri.encodeFull(entry.key)] = Uri.encodeFull(value);
-        // encodedParams[entry.key] = entry.value;
-      }
-    }
-    return encodedParams;
-  }
-}
