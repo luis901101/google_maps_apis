@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:google_maps_apis/src/core.dart';
 import 'package:google_maps_apis/src/directions.dart';
@@ -11,7 +12,7 @@ final _uri = Uri(
 );
 
 Future<void> main() async {
-  final apiKey = 'MY_API_KEY';
+  final apiKey = Platform.environment['MY_API_KEY'];
   var directions = GoogleMapsDirections(apiKey: apiKey);
 
   tearDownAll(() {

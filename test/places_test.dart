@@ -1,10 +1,11 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:google_maps_apis/places.dart';
 import 'package:test/test.dart';
 
 Future<void> main() async {
-  final apiKey = 'MY_API_KEY';
+  final apiKey = Platform.environment['MY_API_KEY'];
   var places = GoogleMapsPlaces(apiKey: apiKey);
 
   tearDownAll(() {
@@ -448,7 +449,7 @@ Future<void> main() async {
               ),
             ),
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'input': 'Amoeba Test',
             'locationbias': 'circle:500@-33.8670522,151.195736',
             'key': apiKey,
@@ -471,7 +472,7 @@ Future<void> main() async {
               ),
             ),
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'input': 'Amoeba Test',
             'locationbias':
                 'rectangle:-43.8670522,161.195736|-33.8670522,151.195736',
@@ -492,7 +493,7 @@ Future<void> main() async {
               ),
             ),
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'input': 'Amoeba Test',
             'locationrestriction': 'circle:500@-33.8670522,151.195736',
             'key': apiKey,
@@ -515,7 +516,7 @@ Future<void> main() async {
               ),
             ),
           ),
-          _uri.replace(queryParameters: {
+          uri.replace(queryParameters: {
             'input': 'Amoeba Test',
             'locationrestriction':
                 'rectangle:-43.8670522,161.195736|-33.8670522,151.195736',

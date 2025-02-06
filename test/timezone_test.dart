@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:google_maps_apis/timezone.dart';
 import 'package:test/test.dart';
@@ -10,7 +11,7 @@ final _uri = Uri(
 );
 
 Future<void> main() async {
-  final apiKey = 'MY_API_KEY';
+  final apiKey = Platform.environment['MY_API_KEY'];
 
   var timeZone = GoogleMapsTimezone(apiKey: apiKey);
 
