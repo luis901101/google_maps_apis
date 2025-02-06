@@ -5,7 +5,7 @@ import 'package:google_maps_apis/geolocation.dart';
 import 'package:test/test.dart';
 
 Future<void> main() async {
-  final apiKey = Platform.environment['MY_API_KEY'];
+  final apiKey = Platform.environment['GOOGLE_API_KEY'];
 
   var geolocation = GoogleMapsGeolocation(apiKey: apiKey);
 
@@ -18,7 +18,7 @@ Future<void> main() async {
       test('default url building with api key', () {
         expect(
           geolocation.buildUrl(),
-          'https://www.googleapis.com/geolocation/v1/geolocate?key=MY_API_KEY',
+          'https://www.googleapis.com/geolocation/v1/geolocate?key=GOOGLE_API_KEY',
         );
       });
     });

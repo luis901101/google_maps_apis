@@ -24,10 +24,11 @@ DistanceResponse _$DistanceResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$DistanceResponseToJson(DistanceResponse instance) =>
     <String, dynamic>{
       'status': _$ResponseStatusEnumMap[instance.status]!,
-      'error_message': instance.errorMessage,
-      'origin_addresses': instance.originAddresses,
-      'destination_addresses': instance.destinationAddresses,
-      'rows': instance.rows,
+      if (instance.errorMessage case final value?) 'error_message': value,
+      if (instance.originAddresses case final value?) 'origin_addresses': value,
+      if (instance.destinationAddresses case final value?)
+        'destination_addresses': value,
+      if (instance.rows case final value?) 'rows': value,
     };
 
 const _$ResponseStatusEnumMap = {
@@ -49,7 +50,7 @@ Row _$RowFromJson(Map<String, dynamic> json) => Row(
     );
 
 Map<String, dynamic> _$RowToJson(Row instance) => <String, dynamic>{
-      'elements': instance.elements,
+      if (instance.elements case final value?) 'elements': value,
     };
 
 Element _$ElementFromJson(Map<String, dynamic> json) => Element(
@@ -61,7 +62,7 @@ Element _$ElementFromJson(Map<String, dynamic> json) => Element(
 Map<String, dynamic> _$ElementToJson(Element instance) => <String, dynamic>{
       'distance': instance.distance,
       'duration': instance.duration,
-      'element_status': instance.elementStatus,
+      if (instance.elementStatus case final value?) 'element_status': value,
     };
 
 Value _$ValueFromJson(Map<String, dynamic> json) => Value(

@@ -19,7 +19,7 @@ TimezoneResponse _$TimezoneResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$TimezoneResponseToJson(TimezoneResponse instance) =>
     <String, dynamic>{
       'status': _$ResponseStatusEnumMap[instance.status]!,
-      'errorMessage': instance.errorMessage,
+      if (instance.errorMessage case final value?) 'errorMessage': value,
       'dstOffset': instance.dstOffset,
       'rawOffset': instance.rawOffset,
       'timeZoneId': instance.timeZoneId,

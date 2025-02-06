@@ -33,9 +33,9 @@ GeolocationErrorResponse _$GeolocationErrorResponseFromJson(
 Map<String, dynamic> _$GeolocationErrorResponseToJson(
         GeolocationErrorResponse instance) =>
     <String, dynamic>{
-      'errors': instance.errors,
-      'code': instance.code,
-      'message': instance.message,
+      if (instance.errors case final value?) 'errors': value,
+      if (instance.code case final value?) 'code': value,
+      if (instance.message case final value?) 'message': value,
     };
 
 GeolocationResponse _$GeolocationResponseFromJson(Map<String, dynamic> json) =>
@@ -53,9 +53,9 @@ GeolocationResponse _$GeolocationResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$GeolocationResponseToJson(
         GeolocationResponse instance) =>
     <String, dynamic>{
-      'location': instance.location,
-      'accuracy': instance.accuracy,
-      'error': instance.error,
+      if (instance.location case final value?) 'location': value,
+      if (instance.accuracy case final value?) 'accuracy': value,
+      if (instance.error case final value?) 'error': value,
     };
 
 CellTower _$CellTowerFromJson(Map<String, dynamic> json) => CellTower(
@@ -69,13 +69,13 @@ CellTower _$CellTowerFromJson(Map<String, dynamic> json) => CellTower(
     );
 
 Map<String, dynamic> _$CellTowerToJson(CellTower instance) => <String, dynamic>{
-      'age': instance.age,
-      'signal_strength': instance.signalStrength,
+      if (instance.age case final value?) 'age': value,
+      if (instance.signalStrength case final value?) 'signal_strength': value,
       'cell_id': instance.cellId,
       'location_area_code': instance.locationAreaCode,
       'mobile_country_code': instance.mobileCountryCode,
       'mobile_network_code': instance.mobileNetworkCode,
-      'timing_advance': instance.timingAdvance,
+      if (instance.timingAdvance case final value?) 'timing_advance': value,
     };
 
 WifiAccessPoint _$WifiAccessPointFromJson(Map<String, dynamic> json) =>
@@ -89,9 +89,10 @@ WifiAccessPoint _$WifiAccessPointFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$WifiAccessPointToJson(WifiAccessPoint instance) =>
     <String, dynamic>{
-      'age': instance.age,
-      'signal_strength': instance.signalStrength,
-      'mac_address': instance.macAddress,
-      'channel': instance.channel,
-      'signal_to_noise_ratio': instance.signalToNoiseRatio,
+      if (instance.age case final value?) 'age': value,
+      if (instance.signalStrength case final value?) 'signal_strength': value,
+      if (instance.macAddress case final value?) 'mac_address': value,
+      if (instance.channel case final value?) 'channel': value,
+      if (instance.signalToNoiseRatio case final value?)
+        'signal_to_noise_ratio': value,
     };

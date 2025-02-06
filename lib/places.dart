@@ -1,4 +1,4 @@
 library;
 
-export './src/core.dart';
-export './src/places.dart';
+export 'package:google_maps_apis/src/legacy/core.dart';
+export 'package:google_maps_apis/src/legacy/places.dart';

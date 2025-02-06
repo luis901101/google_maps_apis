@@ -11,7 +11,7 @@ final _uri = Uri(
 );
 
 Future<void> main() async {
-  final apiKey = Platform.environment['MY_API_KEY'];
+  final apiKey = Platform.environment['GOOGLE_API_KEY'];
 
   var timeZone = GoogleMapsTimezone(apiKey: apiKey);
 

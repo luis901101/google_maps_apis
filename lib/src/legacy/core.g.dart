@@ -29,15 +29,15 @@ Geometry _$GeometryFromJson(Map<String, dynamic> json) => Geometry(
 
 Map<String, dynamic> _$GeometryToJson(Geometry instance) => <String, dynamic>{
       'location': instance.location,
-      'location_type': instance.locationType,
-      'viewport': instance.viewport,
-      'bounds': instance.bounds,
+      if (instance.locationType case final value?) 'location_type': value,
+      if (instance.viewport case final value?) 'viewport': value,
+      if (instance.bounds case final value?) 'bounds': value,
     };
 
 CircleLocation _$CircleLocationFromJson(Map<String, dynamic> json) =>
     CircleLocation(
       center: Location.fromJson(json['center'] as Map<String, dynamic>),
-      radius: json['radius'] as int,
+      radius: (json['radius'] as num).toInt(),
     );
 
 Map<String, dynamic> _$CircleLocationToJson(CircleLocation instance) =>
@@ -78,7 +78,7 @@ AddressComponent _$AddressComponentFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$AddressComponentToJson(AddressComponent instance) =>
     <String, dynamic>{
-      'long_name': instance.longName,
-      'short_name': instance.shortName,
-      'types': instance.types,
+      if (instance.longName case final value?) 'long_name': value,
+      if (instance.shortName case final value?) 'short_name': value,
+      if (instance.types case final value?) 'types': value,
     };

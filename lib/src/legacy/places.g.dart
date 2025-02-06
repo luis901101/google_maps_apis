@@ -24,10 +24,11 @@ Map<String, dynamic> _$PlacesSearchResponseToJson(
         PlacesSearchResponse instance) =>
     <String, dynamic>{
       'status': _$ResponseStatusEnumMap[instance.status]!,
-      'error_message': instance.errorMessage,
-      'results': instance.results,
-      'html_attributions': instance.htmlAttributions,
-      'next_page_token': instance.nextPageToken,
+      if (instance.errorMessage case final value?) 'error_message': value,
+      if (instance.results case final value?) 'results': value,
+      if (instance.htmlAttributions case final value?)
+        'html_attributions': value,
+      if (instance.nextPageToken case final value?) 'next_page_token': value,
     };
 
 const _$ResponseStatusEnumMap = {
@@ -74,22 +75,25 @@ PlacesSearchResult _$PlacesSearchResultFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$PlacesSearchResultToJson(PlacesSearchResult instance) =>
     <String, dynamic>{
-      'icon': instance.icon,
-      'geometry': instance.geometry,
-      'name': instance.name,
-      'opening_hours': instance.openingHours,
-      'photos': instance.photos,
-      'place_id': instance.placeId,
-      'scope': instance.scope,
-      'alt_ids': instance.altIds,
-      'price_level': _$PriceLevelEnumMap[instance.priceLevel],
-      'rating': instance.rating,
-      'types': instance.types,
-      'vicinity': instance.vicinity,
-      'formatted_address': instance.formattedAddress,
-      'permanently_closed': instance.permanentlyClosed,
-      'id': instance.id,
-      'reference': instance.reference,
+      if (instance.icon case final value?) 'icon': value,
+      if (instance.geometry case final value?) 'geometry': value,
+      if (instance.name case final value?) 'name': value,
+      if (instance.openingHours case final value?) 'opening_hours': value,
+      if (instance.photos case final value?) 'photos': value,
+      if (instance.placeId case final value?) 'place_id': value,
+      if (instance.scope case final value?) 'scope': value,
+      if (instance.altIds case final value?) 'alt_ids': value,
+      if (_$PriceLevelEnumMap[instance.priceLevel] case final value?)
+        'price_level': value,
+      if (instance.rating case final value?) 'rating': value,
+      if (instance.types case final value?) 'types': value,
+      if (instance.vicinity case final value?) 'vicinity': value,
+      if (instance.formattedAddress case final value?)
+        'formatted_address': value,
+      if (instance.permanentlyClosed case final value?)
+        'permanently_closed': value,
+      if (instance.id case final value?) 'id': value,
+      if (instance.reference case final value?) 'reference': value,
     };
 
 const _$PriceLevelEnumMap = {
@@ -172,47 +176,61 @@ PlaceDetails _$PlaceDetailsFromJson(Map<String, dynamic> json) => PlaceDetails(
 
 Map<String, dynamic> _$PlaceDetailsToJson(PlaceDetails instance) =>
     <String, dynamic>{
-      'address_components': instance.addressComponents,
-      'adr_address': instance.adrAddress,
-      'business_status': _$BusinessStatusEnumMap[instance.businessStatus],
-      'curbside_pickup': instance.curbsidePickup,
-      'current_opening_hours': instance.currentOpeningHours,
-      'delivery': instance.delivery,
-      'dine_in': instance.dineIn,
-      'editorial_summary': instance.editorialSummary,
-      'formatted_address': instance.formattedAddress,
-      'formatted_phone_number': instance.formattedPhoneNumber,
-      'geometry': instance.geometry,
-      'icon': instance.icon,
-      'icon_background_color': instance.iconBackgroundColor,
-      'icon_mask_base_uri': instance.iconMaskBaseUri,
-      'international_phone_number': instance.internationalPhoneNumber,
-      'name': instance.name,
-      'opening_hours': instance.openingHours,
-      'photos': instance.photos,
-      'id': instance.id,
-      'place_id': instance.placeId,
-      'plus_code': instance.plusCode,
-      'price_level': _$PriceLevelEnumMap[instance.priceLevel],
-      'rating': instance.rating,
-      'reservable': instance.reservable,
-      'reviews': instance.reviews,
-      'secondary_opening_hours': instance.secondaryOpeningHours,
-      'serves_beer': instance.servesBeer,
-      'serves_breakfast': instance.servesBreakfast,
-      'serves_brunch': instance.servesBrunch,
-      'serves_dinner': instance.servesDinner,
-      'serves_lunch': instance.servesLunch,
-      'serves_vegetarian_food': instance.servesVegetarianFood,
-      'serves_wine': instance.servesWine,
-      'takeout': instance.takeout,
-      'types': instance.types,
-      'url': instance.url,
-      'user_ratings_total': instance.userRatingsTotal,
-      'utc_offset': instance.utcOffset,
-      'vicinity': instance.vicinity,
-      'website': instance.website,
-      'wheelchair_accessible_entrance': instance.wheelchairAccessibleEntrance,
+      if (instance.addressComponents case final value?)
+        'address_components': value,
+      if (instance.adrAddress case final value?) 'adr_address': value,
+      if (_$BusinessStatusEnumMap[instance.businessStatus] case final value?)
+        'business_status': value,
+      if (instance.curbsidePickup case final value?) 'curbside_pickup': value,
+      if (instance.currentOpeningHours case final value?)
+        'current_opening_hours': value,
+      if (instance.delivery case final value?) 'delivery': value,
+      if (instance.dineIn case final value?) 'dine_in': value,
+      if (instance.editorialSummary case final value?)
+        'editorial_summary': value,
+      if (instance.formattedAddress case final value?)
+        'formatted_address': value,
+      if (instance.formattedPhoneNumber case final value?)
+        'formatted_phone_number': value,
+      if (instance.geometry case final value?) 'geometry': value,
+      if (instance.icon case final value?) 'icon': value,
+      if (instance.iconBackgroundColor case final value?)
+        'icon_background_color': value,
+      if (instance.iconMaskBaseUri case final value?)
+        'icon_mask_base_uri': value,
+      if (instance.internationalPhoneNumber case final value?)
+        'international_phone_number': value,
+      if (instance.name case final value?) 'name': value,
+      if (instance.openingHours case final value?) 'opening_hours': value,
+      if (instance.photos case final value?) 'photos': value,
+      if (instance.id case final value?) 'id': value,
+      if (instance.placeId case final value?) 'place_id': value,
+      if (instance.plusCode case final value?) 'plus_code': value,
+      if (_$PriceLevelEnumMap[instance.priceLevel] case final value?)
+        'price_level': value,
+      if (instance.rating case final value?) 'rating': value,
+      if (instance.reservable case final value?) 'reservable': value,
+      if (instance.reviews case final value?) 'reviews': value,
+      if (instance.secondaryOpeningHours case final value?)
+        'secondary_opening_hours': value,
+      if (instance.servesBeer case final value?) 'serves_beer': value,
+      if (instance.servesBreakfast case final value?) 'serves_breakfast': value,
+      if (instance.servesBrunch case final value?) 'serves_brunch': value,
+      if (instance.servesDinner case final value?) 'serves_dinner': value,
+      if (instance.servesLunch case final value?) 'serves_lunch': value,
+      if (instance.servesVegetarianFood case final value?)
+        'serves_vegetarian_food': value,
+      if (instance.servesWine case final value?) 'serves_wine': value,
+      if (instance.takeout case final value?) 'takeout': value,
+      if (instance.types case final value?) 'types': value,
+      if (instance.url case final value?) 'url': value,
+      if (instance.userRatingsTotal case final value?)
+        'user_ratings_total': value,
+      if (instance.utcOffset case final value?) 'utc_offset': value,
+      if (instance.vicinity case final value?) 'vicinity': value,
+      if (instance.website case final value?) 'website': value,
+      if (instance.wheelchairAccessibleEntrance case final value?)
+        'wheelchair_accessible_entrance': value,
     };
 
 const _$BusinessStatusEnumMap = {
@@ -239,11 +257,11 @@ PlaceOpeningHours _$PlaceOpeningHoursFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$PlaceOpeningHoursToJson(PlaceOpeningHours instance) =>
     <String, dynamic>{
-      'open_now': instance.openNow,
-      'periods': instance.periods,
-      'special_days': instance.specialDays,
-      'type': instance.type,
-      'weekday_text': instance.weekdayText,
+      if (instance.openNow case final value?) 'open_now': value,
+      if (instance.periods case final value?) 'periods': value,
+      if (instance.specialDays case final value?) 'special_days': value,
+      if (instance.type case final value?) 'type': value,
+      if (instance.weekdayText case final value?) 'weekday_text': value,
     };
 
 PlaceOpeningHoursPeriodDetail _$PlaceOpeningHoursPeriodDetailFromJson(
@@ -260,8 +278,8 @@ Map<String, dynamic> _$PlaceOpeningHoursPeriodDetailToJson(
     <String, dynamic>{
       'day': instance.day,
       'time': instance.time,
-      'date': instance.date,
-      'truncated': instance.truncated,
+      if (instance.date case final value?) 'date': value,
+      if (instance.truncated case final value?) 'truncated': value,
     };
 
 PlaceOpeningHoursPeriod _$PlaceOpeningHoursPeriodFromJson(
@@ -279,7 +297,7 @@ Map<String, dynamic> _$PlaceOpeningHoursPeriodToJson(
         PlaceOpeningHoursPeriod instance) =>
     <String, dynamic>{
       'open': instance.open,
-      'close': instance.close,
+      if (instance.close case final value?) 'close': value,
     };
 
 PlaceSpecialDay _$PlaceSpecialDayFromJson(Map<String, dynamic> json) =>
@@ -290,8 +308,9 @@ PlaceSpecialDay _$PlaceSpecialDayFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$PlaceSpecialDayToJson(PlaceSpecialDay instance) =>
     <String, dynamic>{
-      'date': instance.date,
-      'exceptional_hours': instance.exceptionalHours,
+      if (instance.date case final value?) 'date': value,
+      if (instance.exceptionalHours case final value?)
+        'exceptional_hours': value,
     };
 
 Photo _$PhotoFromJson(Map<String, dynamic> json) => Photo(
@@ -304,10 +323,11 @@ Photo _$PhotoFromJson(Map<String, dynamic> json) => Photo(
     );
 
 Map<String, dynamic> _$PhotoToJson(Photo instance) => <String, dynamic>{
-      'photo_reference': instance.photoReference,
-      'height': instance.height,
-      'width': instance.width,
-      'html_attributions': instance.htmlAttributions,
+      if (instance.photoReference case final value?) 'photo_reference': value,
+      if (instance.height case final value?) 'height': value,
+      if (instance.width case final value?) 'width': value,
+      if (instance.htmlAttributions case final value?)
+        'html_attributions': value,
     };
 
 AlternativeId _$AlternativeIdFromJson(Map<String, dynamic> json) =>
@@ -332,8 +352,8 @@ PlaceEditorialSummary _$PlaceEditorialSummaryFromJson(
 Map<String, dynamic> _$PlaceEditorialSummaryToJson(
         PlaceEditorialSummary instance) =>
     <String, dynamic>{
-      'language': instance.language,
-      'overview': instance.overview,
+      if (instance.language case final value?) 'language': value,
+      if (instance.overview case final value?) 'overview': value,
     };
 
 PlusCode _$PlusCodeFromJson(Map<String, dynamic> json) => PlusCode(
@@ -342,8 +362,8 @@ PlusCode _$PlusCodeFromJson(Map<String, dynamic> json) => PlusCode(
     );
 
 Map<String, dynamic> _$PlusCodeToJson(PlusCode instance) => <String, dynamic>{
-      'global_code': instance.globalCode,
-      'compound_code': instance.compoundCode,
+      if (instance.globalCode case final value?) 'global_code': value,
+      if (instance.compoundCode case final value?) 'compound_code': value,
     };
 
 PlacesDetailsResponse _$PlacesDetailsResponseFromJson(
@@ -363,9 +383,10 @@ Map<String, dynamic> _$PlacesDetailsResponseToJson(
         PlacesDetailsResponse instance) =>
     <String, dynamic>{
       'status': _$ResponseStatusEnumMap[instance.status]!,
-      'error_message': instance.errorMessage,
-      'result': instance.result,
-      'html_attributions': instance.htmlAttributions,
+      if (instance.errorMessage case final value?) 'error_message': value,
+      if (instance.result case final value?) 'result': value,
+      if (instance.htmlAttributions case final value?)
+        'html_attributions': value,
     };
 
 Review _$ReviewFromJson(Map<String, dynamic> json) => Review(
@@ -386,12 +407,14 @@ Map<String, dynamic> _$ReviewToJson(Review instance) => <String, dynamic>{
       'rating': instance.rating,
       'relative_time_description': instance.relativeTimeDescription,
       'time': instance.time,
-      'author_url': instance.authorUrl,
-      'language': instance.language,
-      'original_language': instance.originalLanguage,
-      'profile_photo_url': instance.profilePhotoUrl,
-      'text': instance.text,
-      'translated': instance.translated,
+      if (instance.authorUrl case final value?) 'author_url': value,
+      if (instance.language case final value?) 'language': value,
+      if (instance.originalLanguage case final value?)
+        'original_language': value,
+      if (instance.profilePhotoUrl case final value?)
+        'profile_photo_url': value,
+      if (instance.text case final value?) 'text': value,
+      if (instance.translated case final value?) 'translated': value,
     };
 
 PlacesAutocompleteResponse _$PlacesAutocompleteResponseFromJson(
@@ -408,8 +431,8 @@ Map<String, dynamic> _$PlacesAutocompleteResponseToJson(
         PlacesAutocompleteResponse instance) =>
     <String, dynamic>{
       'status': _$ResponseStatusEnumMap[instance.status]!,
-      'error_message': instance.errorMessage,
-      'predictions': instance.predictions,
+      if (instance.errorMessage case final value?) 'error_message': value,
+      if (instance.predictions case final value?) 'predictions': value,
     };
 
 Prediction _$PredictionFromJson(Map<String, dynamic> json) => Prediction(
@@ -434,15 +457,17 @@ Prediction _$PredictionFromJson(Map<String, dynamic> json) => Prediction(
 
 Map<String, dynamic> _$PredictionToJson(Prediction instance) =>
     <String, dynamic>{
-      'description': instance.description,
-      'id': instance.id,
-      'terms': instance.terms,
-      'distance_meters': instance.distanceMeters,
-      'place_id': instance.placeId,
-      'reference': instance.reference,
-      'types': instance.types,
-      'matched_substrings': instance.matchedSubstrings,
-      'structured_formatting': instance.structuredFormatting,
+      if (instance.description case final value?) 'description': value,
+      if (instance.id case final value?) 'id': value,
+      if (instance.terms case final value?) 'terms': value,
+      if (instance.distanceMeters case final value?) 'distance_meters': value,
+      if (instance.placeId case final value?) 'place_id': value,
+      if (instance.reference case final value?) 'reference': value,
+      if (instance.types case final value?) 'types': value,
+      if (instance.matchedSubstrings case final value?)
+        'matched_substrings': value,
+      if (instance.structuredFormatting case final value?)
+        'structured_formatting': value,
     };
 
 Term _$TermFromJson(Map<String, dynamic> json) => Term(
@@ -481,7 +506,8 @@ StructuredFormatting _$StructuredFormattingFromJson(
 Map<String, dynamic> _$StructuredFormattingToJson(
         StructuredFormatting instance) =>
     <String, dynamic>{
-      'main_text': instance.mainText,
-      'main_text_matched_substrings': instance.mainTextMatchedSubstrings,
-      'secondary_text': instance.secondaryText,
+      if (instance.mainText case final value?) 'main_text': value,
+      if (instance.mainTextMatchedSubstrings case final value?)
+        'main_text_matched_substrings': value,
+      if (instance.secondaryText case final value?) 'secondary_text': value,
     };

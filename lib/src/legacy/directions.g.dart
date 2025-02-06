@@ -21,9 +21,10 @@ DirectionsResponse _$DirectionsResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$DirectionsResponseToJson(DirectionsResponse instance) =>
     <String, dynamic>{
       'status': _$ResponseStatusEnumMap[instance.status]!,
-      'error_message': instance.errorMessage,
-      'geocoded_waypoints': instance.geocodedWaypoints,
-      'routes': instance.routes,
+      if (instance.errorMessage case final value?) 'error_message': value,
+      if (instance.geocodedWaypoints case final value?)
+        'geocoded_waypoints': value,
+      if (instance.routes case final value?) 'routes': value,
     };
 
 const _$ResponseStatusEnumMap = {
@@ -57,10 +58,10 @@ GeocodedWaypoint _$GeocodedWaypointFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$GeocodedWaypointToJson(GeocodedWaypoint instance) =>
     <String, dynamic>{
-      'geocoder_status': instance.geocoderStatus,
-      'place_id': instance.placeId,
-      'types': instance.types,
-      'partial_match': instance.partialMatch,
+      if (instance.geocoderStatus case final value?) 'geocoder_status': value,
+      if (instance.placeId case final value?) 'place_id': value,
+      if (instance.types case final value?) 'types': value,
+      if (instance.partialMatch case final value?) 'partial_match': value,
     };
 
 Route _$RouteFromJson(Map<String, dynamic> json) => Route(
@@ -86,14 +87,15 @@ Route _$RouteFromJson(Map<String, dynamic> json) => Route(
     );
 
 Map<String, dynamic> _$RouteToJson(Route instance) => <String, dynamic>{
-      'summary': instance.summary,
-      'legs': instance.legs,
-      'copyrights': instance.copyrights,
-      'overview_polyline': instance.overviewPolyline,
-      'warnings': instance.warnings,
-      'waypoint_order': instance.waypointOrder,
-      'bounds': instance.bounds,
-      'fare': instance.fare,
+      if (instance.summary case final value?) 'summary': value,
+      if (instance.legs case final value?) 'legs': value,
+      if (instance.copyrights case final value?) 'copyrights': value,
+      if (instance.overviewPolyline case final value?)
+        'overview_polyline': value,
+      if (instance.warnings case final value?) 'warnings': value,
+      if (instance.waypointOrder case final value?) 'waypoint_order': value,
+      if (instance.bounds case final value?) 'bounds': value,
+      if (instance.fare case final value?) 'fare': value,
     };
 
 Leg _$LegFromJson(Map<String, dynamic> json) => Leg(
@@ -126,16 +128,17 @@ Leg _$LegFromJson(Map<String, dynamic> json) => Leg(
     );
 
 Map<String, dynamic> _$LegToJson(Leg instance) => <String, dynamic>{
-      'start_location': instance.startLocation,
-      'end_location': instance.endLocation,
-      'duration': instance.duration,
-      'distance': instance.distance,
-      'steps': instance.steps,
-      'start_address': instance.startAddress,
-      'end_address': instance.endAddress,
-      'duration_in_traffic': instance.durationInTraffic,
-      'arrival_time': instance.arrivalTime,
-      'departure_time': instance.departureTime,
+      if (instance.startLocation case final value?) 'start_location': value,
+      if (instance.endLocation case final value?) 'end_location': value,
+      if (instance.duration case final value?) 'duration': value,
+      if (instance.distance case final value?) 'distance': value,
+      if (instance.steps case final value?) 'steps': value,
+      if (instance.startAddress case final value?) 'start_address': value,
+      if (instance.endAddress case final value?) 'end_address': value,
+      if (instance.durationInTraffic case final value?)
+        'duration_in_traffic': value,
+      if (instance.arrivalTime case final value?) 'arrival_time': value,
+      if (instance.departureTime case final value?) 'departure_time': value,
     };
 
 Step _$StepFromJson(Map<String, dynamic> json) => Step(
@@ -156,15 +159,15 @@ Step _$StepFromJson(Map<String, dynamic> json) => Step(
     );
 
 Map<String, dynamic> _$StepToJson(Step instance) => <String, dynamic>{
-      'start_location': instance.startLocation,
-      'end_location': instance.endLocation,
-      'duration': instance.duration,
-      'distance': instance.distance,
+      if (instance.startLocation case final value?) 'start_location': value,
+      if (instance.endLocation case final value?) 'end_location': value,
+      if (instance.duration case final value?) 'duration': value,
+      if (instance.distance case final value?) 'distance': value,
       'travel_mode': _$TravelModeEnumMap[instance.travelMode]!,
       'html_instructions': instance.htmlInstructions,
-      'maneuver': instance.maneuver,
+      if (instance.maneuver case final value?) 'maneuver': value,
       'polyline': instance.polyline,
-      'transit_details': instance.transitDetails,
+      if (instance.transitDetails case final value?) 'transit_details': value,
     };
 
 const _$TravelModeEnumMap = {

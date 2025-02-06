@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'core.dart';
+import 'package:google_maps_apis/src/legacy/core.dart';
 import 'utils.dart';
 
 part 'timezone.g.dart';
