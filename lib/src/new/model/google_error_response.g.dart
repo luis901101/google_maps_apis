@@ -14,8 +14,7 @@ abstract class _$GoogleErrorResponseCWProxy {
   /// GoogleErrorResponse(...).copyWith(id: 12, name: "My name")
   /// ````
   GoogleErrorResponse call({
-    List<ErrorInfo>? errors,
-    List<String>? messages,
+    ErrorInfo? error,
   });
 }
 
@@ -34,18 +33,13 @@ class _$GoogleErrorResponseCWProxyImpl implements _$GoogleErrorResponseCWProxy {
   /// GoogleErrorResponse(...).copyWith(id: 12, name: "My name")
   /// ````
   GoogleErrorResponse call({
-    Object? errors = const $CopyWithPlaceholder(),
-    Object? messages = const $CopyWithPlaceholder(),
+    Object? error = const $CopyWithPlaceholder(),
   }) {
     return GoogleErrorResponse(
-      errors: errors == const $CopyWithPlaceholder()
-          ? _value.errors
+      error: error == const $CopyWithPlaceholder()
+          ? _value.error
           // ignore: cast_nullable_to_non_nullable
-          : errors as List<ErrorInfo>?,
-      messages: messages == const $CopyWithPlaceholder()
-          ? _value.messages
-          // ignore: cast_nullable_to_non_nullable
-          : messages as List<String>?,
+          : error as ErrorInfo?,
     );
   }
 }
@@ -63,22 +57,17 @@ extension $GoogleErrorResponseCopyWith on GoogleErrorResponse {
 
 GoogleErrorResponse _$GoogleErrorResponseFromJson(Map<String, dynamic> json) =>
     GoogleErrorResponse(
-      errors: (json['errors'] as List<dynamic>?)
-          ?.map((e) => ErrorInfo.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      messages: (json['messages'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
+      error: json['error'] == null
+          ? null
+          : ErrorInfo.fromJson(json['error'] as Map<String, dynamic>),
     );
 
 abstract final class _$GoogleErrorResponseJsonKeys {
-  static const String errors = 'errors';
-  static const String messages = 'messages';
+  static const String error = 'error';
 }
 
 Map<String, dynamic> _$GoogleErrorResponseToJson(
         GoogleErrorResponse instance) =>
     <String, dynamic>{
-      'errors': instance.errors,
-      'messages': instance.messages,
+      if (instance.error case final value?) 'error': value,
     };

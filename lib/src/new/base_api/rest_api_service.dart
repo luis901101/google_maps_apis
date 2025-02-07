@@ -3,16 +3,16 @@ import 'dart:io';
 
 import 'package:dio/dio.dart' as dio;
 import 'package:google_maps_apis/src/new/base_api/rest_api.dart';
+import 'package:google_maps_apis/src/new/model/error_info.dart';
 import 'package:google_maps_apis/src/new/model/google_error_response.dart';
 import 'package:google_maps_apis/src/new/model/google_http_response.dart';
-import 'package:google_maps_apis/src/new/model/error_info.dart';
 import 'package:google_maps_apis/src/new/utils/callbacks.dart';
 import 'package:google_maps_apis/src/new/utils/jsonable.dart';
 import 'package:google_maps_apis/src/new/utils/map_utils.dart';
 import 'package:http/http.dart' as http;
 import 'package:retrofit/retrofit.dart';
 
-abstract class RestAPIService<DataType extends Jsonable, ErrorType> {
+abstract class RestAPIService<DataType extends Jsonable> {
   static const googleApiKeyKey = 'X-Goog-Api-Key';
   static const googleFieldMaskKey = 'X-Goog-FieldMask';
   static String bearer(String token) => 'Bearer $token';
@@ -24,9 +24,6 @@ abstract class RestAPIService<DataType extends Jsonable, ErrorType> {
 
   /// Generic Jsonable DataType to allow for parsing of JSON data
   final DataType? dataType;
-
-  /// Generic ErrorType to get error information
-  final ErrorType? errorType;
 
   /// RestAPI instance to be used by the service
   final RestAPI restAPI;
@@ -60,7 +57,6 @@ abstract class RestAPIService<DataType extends Jsonable, ErrorType> {
     this.onInit,
     required this.baseUrl,
     this.dataType,
-    this.errorType,
     this.token,
     TokenCallback? tokenCallback,
     this.apiKey,
@@ -100,7 +96,6 @@ abstract class RestAPIService<DataType extends Jsonable, ErrorType> {
 
   GoogleHTTPResponse httpResponseToCustomHttpResponse(HttpResponse response) {
     dynamic body = response.data;
-    GoogleErrorResponse? error;
     return GoogleHTTPResponse(
         http.Response(
           '',
@@ -113,30 +108,34 @@ abstract class RestAPIService<DataType extends Jsonable, ErrorType> {
           ),
         ),
         body,
-        error: error,
         extraData: response);
   }
 
-  GoogleHTTPResponse dioErrorToCustomHttpResponse(dio.DioException error) =>
-      GoogleHTTPResponse(
-          http.Response(
-            '',
-            error.response?.statusCode ?? HttpStatus.notFound,
-            headers: MapUtils.parseHeaders(error.response?.headers) ?? {},
-            isRedirect: error.response?.isRedirect ?? false,
-            request: http.Request(
-              error.response?.requestOptions.method ?? HttpMethod.GET,
-              error.response?.requestOptions.uri ?? Uri(),
-            ),
+  GoogleHTTPResponse dioErrorToCustomHttpResponse(dio.DioException error) {
+    GoogleErrorResponse? googleErrorResponse;
+    if (error.response?.data != null) {
+      if (error.response?.data is GoogleErrorResponse) {
+        googleErrorResponse = error.response?.data;
+      } else if (error.response?.data is Map<String, dynamic>) {
+        googleErrorResponse =
+            GoogleErrorResponse.fromJson(error.response?.data);
+      }
+    }
+    return GoogleHTTPResponse(
+        http.Response(
+          '',
+          error.response?.statusCode ?? HttpStatus.notFound,
+          headers: MapUtils.parseHeaders(error.response?.headers) ?? {},
+          isRedirect: error.response?.isRedirect ?? false,
+          request: http.Request(
+            error.response?.requestOptions.method ?? HttpMethod.GET,
+            error.response?.requestOptions.uri ?? Uri(),
           ),
-          null,
-          error: error.response?.data ??
-              GoogleErrorResponse(
-                errors: [
-                  ErrorInfo(message: error.message ?? error.error?.toString())
-                ],
-              ),
-          extraData: error);
+        ),
+        null,
+        error: googleErrorResponse,
+        extraData: error);
+  }
 
   Future<GoogleHTTPResponse> getSaveResponse<ContainerDataTypeGeneric>(
       Future futureResponse) async {
@@ -195,23 +194,32 @@ abstract class RestAPIService<DataType extends Jsonable, ErrorType> {
           dataTypeResult = dataType.fromJsonString(body) as DataTypeGeneric?;
         }
       }
-      return GoogleHTTPResponse<DataTypeGeneric>(response.base, dataTypeResult,
-          error: response.error);
+      return GoogleHTTPResponse<DataTypeGeneric>(
+        response.base,
+        dataTypeResult,
+        error: response.error,
+        extraData: response.extraData,
+      );
     } catch (e) {
       String message = e.toString();
       print(e);
       return GoogleHTTPResponse<DataTypeGeneric>(
-          http.Response(
-            response.body?.toString() ?? '',
-            Jsonable.jsonParserError,
-            headers: response.base.headers,
-            isRedirect: response.base.isRedirect,
-            persistentConnection: response.base.persistentConnection,
-            reasonPhrase: response.base.reasonPhrase,
-            request: response.base.request,
+        http.Response(
+          response.body?.toString() ?? '',
+          Jsonable.jsonParserError,
+          headers: response.base.headers,
+          isRedirect: response.base.isRedirect,
+          persistentConnection: response.base.persistentConnection,
+          reasonPhrase: response.base.reasonPhrase,
+          request: response.base.request,
+        ),
+        null,
+        error: GoogleErrorResponse(
+          error: ErrorInfo(
+            message: message,
           ),
-          null,
-          error: message);
+        ),
+      );
     }
   }
 
@@ -242,23 +250,32 @@ abstract class RestAPIService<DataType extends Jsonable, ErrorType> {
           dataList = dataType.fromJsonString(body) as List<DataTypeGeneric>?;
         }
       }
-      return GoogleHTTPResponse<List<DataTypeGeneric>>(response.base, dataList,
-          error: response.error);
+      return GoogleHTTPResponse<List<DataTypeGeneric>>(
+        response.base,
+        dataList,
+        error: response.error,
+        extraData: response.extraData,
+      );
     } catch (e) {
       String message = e.toString();
       print(e);
       return GoogleHTTPResponse<List<DataTypeGeneric>>(
-          http.Response(
-            response.body?.toString() ?? '',
-            Jsonable.jsonParserError,
-            headers: response.base.headers,
-            isRedirect: response.base.isRedirect,
-            persistentConnection: response.base.persistentConnection,
-            reasonPhrase: response.base.reasonPhrase,
-            request: response.base.request,
+        http.Response(
+          response.body?.toString() ?? '',
+          Jsonable.jsonParserError,
+          headers: response.base.headers,
+          isRedirect: response.base.isRedirect,
+          persistentConnection: response.base.persistentConnection,
+          reasonPhrase: response.base.reasonPhrase,
+          request: response.base.request,
+        ),
+        null,
+        error: GoogleErrorResponse(
+          error: ErrorInfo(
+            message: message,
           ),
-          null,
-          error: message);
+        ),
+      );
     }
   }
 

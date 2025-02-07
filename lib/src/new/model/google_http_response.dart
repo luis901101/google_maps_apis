@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:google_maps_apis/src/new/model/google_error_response.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 
@@ -27,7 +28,7 @@ class GoogleHTTPResponse<BodyType> {
   final BodyType? body;
 
   /// The body of the response if [isSuccessful] is false.
-  final Object? error;
+  final GoogleErrorResponse? error;
 
   final dynamic extraData;
 
@@ -38,12 +39,12 @@ class GoogleHTTPResponse<BodyType> {
   GoogleHTTPResponse<NewBodyType> copyWith<NewBodyType>({
     http.BaseResponse? base,
     NewBodyType? body,
-    Object? bodyError,
+    GoogleErrorResponse? error,
   }) =>
       GoogleHTTPResponse<NewBodyType>(
         base ?? this.base,
         body ?? (this.body as NewBodyType),
-        error: bodyError ?? error,
+        error: error ?? this.error,
       );
 
   /// The HTTP status code of the response.

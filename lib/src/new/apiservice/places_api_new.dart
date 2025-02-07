@@ -1,12 +1,11 @@
 import 'package:google_maps_apis/src/new/base_api/rest_api.dart';
 import 'package:google_maps_apis/src/new/base_api/rest_api_service.dart';
 import 'package:google_maps_apis/src/new/entity/place_details.dart';
-import 'package:google_maps_apis/src/new/model/google_error_response.dart';
 import 'package:google_maps_apis/src/new/model/google_http_response.dart';
 import 'package:google_maps_apis/src/new/service/places_service_new.dart';
 
 /// API service for the Places API (New): https://developers.google.com/maps/documentation/places/web-service/op-overview
-class PlacesAPINew extends RestAPIService<PlaceDetails, GoogleErrorResponse> {
+class PlacesAPINew extends RestAPIService<PlaceDetails> {
   late final PlacesServiceNew _service;
   PlacesAPINew({
     String? baseUrl,

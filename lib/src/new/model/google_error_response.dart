@@ -9,14 +9,11 @@ part 'google_error_response.g.dart';
 @JsonSerializable()
 @CopyWith()
 class GoogleErrorResponse extends Jsonable<GoogleErrorResponse> {
-  List<ErrorInfo> errors;
-  List<String> messages;
+  final ErrorInfo? error;
 
   GoogleErrorResponse({
-    List<ErrorInfo>? errors,
-    List<String>? messages,
-  })  : errors = errors ?? [],
-        messages = messages ?? [];
+    this.error,
+  });
 
   @override
   Map<String, dynamic> toJson() => _$GoogleErrorResponseToJson(this);

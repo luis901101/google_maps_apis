@@ -5,12 +5,14 @@ part 'error_info.g.dart';
 
 @JsonSerializable(includeIfNull: false)
 class ErrorInfo extends Jsonable<ErrorInfo> {
-  int? code;
-  String? message;
+  final int? code;
+  final String? message;
+  final String? status;
 
   ErrorInfo({
     this.code,
     this.message,
+    this.status,
   });
 
   @override

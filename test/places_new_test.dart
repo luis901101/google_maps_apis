@@ -18,7 +18,8 @@ Future<void> main() async {
     test('Get Place Details with all fields', () async {
       var response = await placesAPI.getDetails(
         id: placeId ?? '',
-        fields: ['*'],
+        fields: [],
+        // fields: ['*'],
       );
       expect(response.isSuccessful, true);
       expect(response.body, isNotNull);
