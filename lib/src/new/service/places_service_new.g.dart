@@ -23,9 +23,8 @@ class _PlacesServiceNew implements PlacesServiceNew {
     required List<String> fields,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'X-Goog-FieldMask': fields};
-    _headers.removeWhere((k, v) => v == null);
+    final queryParameters = <String, dynamic>{r'fields': fields};
+    final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<HttpResponse<PlaceDetails?>>(
       Options(method: 'GET', headers: _headers, extra: _extra)

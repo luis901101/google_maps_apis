@@ -42,6 +42,7 @@ class RestAPI {
       sendTimeout: sendTimeout,
       // headers: RestAPIService.contentTypeJson,
       contentType: Headers.jsonContentType,
+      listFormat: ListFormat.csv,
     ));
 
     // Adding auth token to each request

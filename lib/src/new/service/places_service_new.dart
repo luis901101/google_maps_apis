@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart' hide Headers;
-import 'package:google_maps_apis/src/new/base_api/rest_api_service.dart';
 import 'package:google_maps_apis/src/new/entity/place_details.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -14,6 +13,7 @@ abstract class PlacesServiceNew {
   @GET('/{id}')
   Future<HttpResponse<PlaceDetails?>> getDetails({
     @Path() required String id,
-    @Header(RestAPIService.googleFieldMaskKey) required List<String> fields,
+    // @Header(RestAPIService.googleFieldMaskKey) required List<String> fields,
+    @Query('fields') required List<String> fields,
   });
 }

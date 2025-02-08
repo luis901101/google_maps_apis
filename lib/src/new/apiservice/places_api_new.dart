@@ -36,12 +36,25 @@ class PlacesAPINew extends RestAPIService<PlaceDetails> {
     /// Place identifier
     required String id,
 
-    /// Fields to be included in the response by creating a response field mask: https://developers.google.com/maps/documentation/places/web-service/place-details#fieldmask
-    required List<String> fields,
+    /// If true, all fields will be included in the response. It's the same as using fields: ['*'].
+    bool allFields = false,
+
+    /// List of fields to be included in the response by creating a response field mask: https://developers.google.com/maps/documentation/places/web-service/place-details#fieldmask
+    List<String>? fields,
+
+    /// [Recommended] An instance of PlaceDetails where all fields that are not null will be used as the fields parameter.
+    PlaceDetails? placeFields,
   }) async {
+    assert(allFields || fields != null || placeFields != null,
+        'Ensure that allFields = true or fields != null, or placeFields != null with some field != null.');
+    if (allFields) {
+      fields = ['*'];
+    } else {
+      fields ??= placeFields?.toFieldsMask();
+    }
     final response = await parseResponse(_service.getDetails(
       id: id,
-      fields: fields,
+      fields: fields ?? [],
     ));
     return response;
   }

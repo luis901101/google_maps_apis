@@ -75,6 +75,65 @@ class PlaceDetails extends Jsonable<PlaceDetails> {
     this.googleMapsLinks,
   });
 
+  List<String> toFieldsMask({String? parentKey}) {
+    List<String> fields = [];
+    final map = toJson();
+    fields.addAll(_searchInMap(parentKey: parentKey, map: map));
+    return fields;
+  }
+
+  List<String> _searchInMap({String? parentKey, Map map = const {}}) {
+    parentKey = parentKey != null
+        ? !parentKey.endsWith('.')
+            ? '$parentKey.'
+            : parentKey
+        : '';
+    List<String> fields = [];
+    for (final MapEntry(key: key, value: value) in map.entries) {
+      fields.addAll(_checkValue(key: '$parentKey$key', value: value));
+    }
+    return fields;
+  }
+
+  List<String> _searchInList({String? parentKey, List list = const []}) {
+    parentKey = parentKey != null
+        ? !parentKey.endsWith('.')
+            ? '$parentKey.'
+            : parentKey
+        : '';
+    List<String> fields = [];
+    for (final value in list) {
+      fields.addAll(_checkValue(key: parentKey, value: value));
+    }
+    return fields;
+  }
+
+  List<String> _checkValue({required String key, dynamic value}) {
+    List<String> fields = [];
+    if (value != null) {
+      if (value is Jsonable) {
+        fields.addAll(_searchInMap(parentKey: key, map: value.toJson()));
+      } else if (value is Map) {
+        final results = _searchInMap(parentKey: key, map: value);
+        if (results.isNotEmpty) {
+          fields.addAll(results);
+        } else {
+          fields.add(key);
+        }
+      } else if (value is List) {
+        final results = _searchInList(parentKey: key, list: value);
+        if (results.isNotEmpty) {
+          fields.addAll(results);
+        } else {
+          fields.add(key);
+        }
+      } else {
+        fields.add(key);
+      }
+    }
+    return fields;
+  }
+
   factory PlaceDetails.fromJson(Map<String, dynamic> json) {
     return _$PlaceDetailsFromJson(json);
   }
@@ -91,7 +150,7 @@ class PlaceDetails extends Jsonable<PlaceDetails> {
 
 @JsonSerializable()
 @CopyWith()
-class AddressComponents {
+class AddressComponents extends Jsonable<AddressComponents> {
   final String? longText;
   final String? shortText;
   final List<String>? types;
@@ -108,6 +167,11 @@ class AddressComponents {
     return _$AddressComponentsFromJson(json);
   }
 
+  @override
+  AddressComponents? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? AddressComponents.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$AddressComponentsToJson(this);
   }
@@ -115,7 +179,7 @@ class AddressComponents {
 
 @JsonSerializable()
 @CopyWith()
-class PlusCode {
+class PlusCode extends Jsonable<PlusCode> {
   final String? globalCode;
   final String? compoundCode;
 
@@ -128,6 +192,11 @@ class PlusCode {
     return _$PlusCodeFromJson(json);
   }
 
+  @override
+  PlusCode? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? PlusCode.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$PlusCodeToJson(this);
   }
@@ -135,7 +204,7 @@ class PlusCode {
 
 @JsonSerializable()
 @CopyWith()
-class Location {
+class Location extends Jsonable<Location> {
   final double? latitude;
   final double? longitude;
 
@@ -148,6 +217,11 @@ class Location {
     return _$LocationFromJson(json);
   }
 
+  @override
+  Location? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? Location.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$LocationToJson(this);
   }
@@ -155,7 +229,7 @@ class Location {
 
 @JsonSerializable()
 @CopyWith()
-class Viewport {
+class Viewport extends Jsonable<Viewport> {
   final Low? low;
   final High? high;
 
@@ -168,6 +242,11 @@ class Viewport {
     return _$ViewportFromJson(json);
   }
 
+  @override
+  Viewport? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? Viewport.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$ViewportToJson(this);
   }
@@ -175,7 +254,7 @@ class Viewport {
 
 @JsonSerializable()
 @CopyWith()
-class Low {
+class Low extends Jsonable<Low> {
   final double? latitude;
   final double? longitude;
 
@@ -188,6 +267,11 @@ class Low {
     return _$LowFromJson(json);
   }
 
+  @override
+  Low? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? Low.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$LowToJson(this);
   }
@@ -195,7 +279,7 @@ class Low {
 
 @JsonSerializable()
 @CopyWith()
-class High {
+class High extends Jsonable<High> {
   final double? latitude;
   final double? longitude;
 
@@ -208,6 +292,11 @@ class High {
     return _$HighFromJson(json);
   }
 
+  @override
+  High? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? High.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$HighToJson(this);
   }
@@ -215,7 +304,7 @@ class High {
 
 @JsonSerializable()
 @CopyWith()
-class RegularOpeningHours {
+class RegularOpeningHours extends Jsonable<RegularOpeningHours> {
   final bool? openNow;
   final List<Periods>? periods;
   final List<String>? weekdayDescriptions;
@@ -232,6 +321,11 @@ class RegularOpeningHours {
     return _$RegularOpeningHoursFromJson(json);
   }
 
+  @override
+  RegularOpeningHours? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? RegularOpeningHours.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$RegularOpeningHoursToJson(this);
   }
@@ -239,7 +333,7 @@ class RegularOpeningHours {
 
 @JsonSerializable()
 @CopyWith()
-class Periods {
+class Periods extends Jsonable<Periods> {
   final Open? open;
   final Close? close;
 
@@ -252,6 +346,11 @@ class Periods {
     return _$PeriodsFromJson(json);
   }
 
+  @override
+  Periods? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? Periods.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$PeriodsToJson(this);
   }
@@ -259,7 +358,7 @@ class Periods {
 
 @JsonSerializable()
 @CopyWith()
-class Open {
+class Open extends Jsonable<Open> {
   final int? day;
   final int? hour;
   final int? minute;
@@ -274,6 +373,11 @@ class Open {
     return _$OpenFromJson(json);
   }
 
+  @override
+  Open? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? Open.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$OpenToJson(this);
   }
@@ -281,7 +385,7 @@ class Open {
 
 @JsonSerializable()
 @CopyWith()
-class Close {
+class Close extends Jsonable<Close> {
   final int? day;
   final int? hour;
   final int? minute;
@@ -296,6 +400,11 @@ class Close {
     return _$CloseFromJson(json);
   }
 
+  @override
+  Close? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? Close.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$CloseToJson(this);
   }
@@ -303,7 +412,7 @@ class Close {
 
 @JsonSerializable()
 @CopyWith()
-class DisplayName {
+class DisplayName extends Jsonable<DisplayName> {
   final String? text;
   final String? languageCode;
 
@@ -316,6 +425,11 @@ class DisplayName {
     return _$DisplayNameFromJson(json);
   }
 
+  @override
+  DisplayName? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? DisplayName.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$DisplayNameToJson(this);
   }
@@ -323,7 +437,7 @@ class DisplayName {
 
 @JsonSerializable()
 @CopyWith()
-class PrimaryTypeDisplayName {
+class PrimaryTypeDisplayName extends Jsonable<PrimaryTypeDisplayName> {
   final String? text;
   final String? languageCode;
 
@@ -336,6 +450,11 @@ class PrimaryTypeDisplayName {
     return _$PrimaryTypeDisplayNameFromJson(json);
   }
 
+  @override
+  PrimaryTypeDisplayName? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? PrimaryTypeDisplayName.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$PrimaryTypeDisplayNameToJson(this);
   }
@@ -343,7 +462,7 @@ class PrimaryTypeDisplayName {
 
 @JsonSerializable()
 @CopyWith()
-class CurrentOpeningHours {
+class CurrentOpeningHours extends Jsonable<CurrentOpeningHours> {
   final bool? openNow;
   final List<Periods>? periods;
   final List<String>? weekdayDescriptions;
@@ -360,6 +479,11 @@ class CurrentOpeningHours {
     return _$CurrentOpeningHoursFromJson(json);
   }
 
+  @override
+  CurrentOpeningHours? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? CurrentOpeningHours.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$CurrentOpeningHoursToJson(this);
   }
@@ -367,7 +491,7 @@ class CurrentOpeningHours {
 
 @JsonSerializable()
 @CopyWith()
-class Date {
+class Date extends Jsonable<Date> {
   final int? year;
   final int? month;
   final int? day;
@@ -382,6 +506,11 @@ class Date {
     return _$DateFromJson(json);
   }
 
+  @override
+  Date? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? Date.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$DateToJson(this);
   }
@@ -389,7 +518,7 @@ class Date {
 
 @JsonSerializable()
 @CopyWith()
-class EditorialSummary {
+class EditorialSummary extends Jsonable<EditorialSummary> {
   final String? text;
   final String? languageCode;
 
@@ -402,6 +531,11 @@ class EditorialSummary {
     return _$EditorialSummaryFromJson(json);
   }
 
+  @override
+  EditorialSummary? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? EditorialSummary.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$EditorialSummaryToJson(this);
   }
@@ -409,7 +543,7 @@ class EditorialSummary {
 
 @JsonSerializable()
 @CopyWith()
-class Reviews {
+class Reviews extends Jsonable<Reviews> {
   final String? name;
   final String? relativePublishTimeDescription;
   final int? rating;
@@ -436,6 +570,11 @@ class Reviews {
     return _$ReviewsFromJson(json);
   }
 
+  @override
+  Reviews? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? Reviews.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$ReviewsToJson(this);
   }
@@ -443,7 +582,7 @@ class Reviews {
 
 @JsonSerializable()
 @CopyWith()
-class Text {
+class Text extends Jsonable<Text> {
   final String? text;
   final String? languageCode;
 
@@ -456,6 +595,11 @@ class Text {
     return _$TextFromJson(json);
   }
 
+  @override
+  Text? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? Text.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$TextToJson(this);
   }
@@ -463,7 +607,7 @@ class Text {
 
 @JsonSerializable()
 @CopyWith()
-class OriginalText {
+class OriginalText extends Jsonable<OriginalText> {
   final String? text;
   final String? languageCode;
 
@@ -476,6 +620,11 @@ class OriginalText {
     return _$OriginalTextFromJson(json);
   }
 
+  @override
+  OriginalText? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? OriginalText.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$OriginalTextToJson(this);
   }
@@ -483,7 +632,7 @@ class OriginalText {
 
 @JsonSerializable()
 @CopyWith()
-class AuthorAttribution {
+class AuthorAttribution extends Jsonable<AuthorAttribution> {
   final String? displayName;
   final String? uri;
   final String? photoUri;
@@ -498,6 +647,11 @@ class AuthorAttribution {
     return _$AuthorAttributionFromJson(json);
   }
 
+  @override
+  AuthorAttribution? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? AuthorAttribution.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$AuthorAttributionToJson(this);
   }
@@ -505,7 +659,7 @@ class AuthorAttribution {
 
 @JsonSerializable()
 @CopyWith()
-class Photos {
+class Photos extends Jsonable<Photos> {
   final String? name;
   final int? widthPx;
   final int? heightPx;
@@ -526,6 +680,11 @@ class Photos {
     return _$PhotosFromJson(json);
   }
 
+  @override
+  Photos? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? Photos.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$PhotosToJson(this);
   }
@@ -533,7 +692,7 @@ class Photos {
 
 @JsonSerializable()
 @CopyWith()
-class AuthorAttributions {
+class AuthorAttributions extends Jsonable<AuthorAttributions> {
   final String? displayName;
   final String? uri;
   final String? photoUri;
@@ -548,6 +707,11 @@ class AuthorAttributions {
     return _$AuthorAttributionsFromJson(json);
   }
 
+  @override
+  AuthorAttributions? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? AuthorAttributions.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$AuthorAttributionsToJson(this);
   }
@@ -555,7 +719,7 @@ class AuthorAttributions {
 
 @JsonSerializable()
 @CopyWith()
-class AccessibilityOptions {
+class AccessibilityOptions extends Jsonable<AccessibilityOptions> {
   final bool? wheelchairAccessibleParking;
   final bool? wheelchairAccessibleEntrance;
 
@@ -568,6 +732,11 @@ class AccessibilityOptions {
     return _$AccessibilityOptionsFromJson(json);
   }
 
+  @override
+  AccessibilityOptions? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? AccessibilityOptions.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$AccessibilityOptionsToJson(this);
   }
@@ -575,7 +744,7 @@ class AccessibilityOptions {
 
 @JsonSerializable()
 @CopyWith()
-class AddressDescriptor {
+class AddressDescriptor extends Jsonable<AddressDescriptor> {
   final List<Landmarks>? landmarks;
 
   AddressDescriptor({
@@ -586,6 +755,11 @@ class AddressDescriptor {
     return _$AddressDescriptorFromJson(json);
   }
 
+  @override
+  AddressDescriptor? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? AddressDescriptor.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$AddressDescriptorToJson(this);
   }
@@ -593,7 +767,7 @@ class AddressDescriptor {
 
 @JsonSerializable()
 @CopyWith()
-class Landmarks {
+class Landmarks extends Jsonable<Landmarks> {
   final String? name;
   final String? placeId;
   final DisplayName? displayName;
@@ -614,6 +788,11 @@ class Landmarks {
     return _$LandmarksFromJson(json);
   }
 
+  @override
+  Landmarks? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? Landmarks.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$LandmarksToJson(this);
   }
@@ -621,7 +800,7 @@ class Landmarks {
 
 @JsonSerializable()
 @CopyWith()
-class GoogleMapsLinks {
+class GoogleMapsLinks extends Jsonable<GoogleMapsLinks> {
   final String? directionsUri;
   final String? placeUri;
   final String? writeAReviewUri;
@@ -640,6 +819,11 @@ class GoogleMapsLinks {
     return _$GoogleMapsLinksFromJson(json);
   }
 
+  @override
+  GoogleMapsLinks? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? GoogleMapsLinks.fromJson(json) : null;
+
+  @override
   Map<String, dynamic> toJson() {
     return _$GoogleMapsLinksToJson(this);
   }
