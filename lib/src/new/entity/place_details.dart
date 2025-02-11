@@ -13,7 +13,7 @@ class PlaceDetails extends Jsonable<PlaceDetails> {
   final String? nationalPhoneNumber;
   final String? internationalPhoneNumber;
   final String? formattedAddress;
-  final List<AddressComponents>? addressComponents;
+  final List<AddressComponent>? addressComponents;
   final PlusCode? plusCode;
   final Location? location;
   final Viewport? viewport;
@@ -33,8 +33,8 @@ class PlaceDetails extends Jsonable<PlaceDetails> {
   final String? primaryType;
   final String? shortFormattedAddress;
   final EditorialSummary? editorialSummary;
-  final List<Reviews>? reviews;
-  final List<Photos>? photos;
+  final List<Review>? reviews;
+  final List<Photo>? photos;
   final AccessibilityOptions? accessibilityOptions;
   final bool? pureServiceAreaBusiness;
   final AddressDescriptor? addressDescriptor;
@@ -150,30 +150,30 @@ class PlaceDetails extends Jsonable<PlaceDetails> {
 
 @JsonSerializable()
 @CopyWith()
-class AddressComponents extends Jsonable<AddressComponents> {
+class AddressComponent extends Jsonable<AddressComponent> {
   final String? longText;
   final String? shortText;
   final List<String>? types;
   final String? languageCode;
 
-  AddressComponents({
+  AddressComponent({
     this.longText,
     this.shortText,
     this.types,
     this.languageCode,
   });
 
-  factory AddressComponents.fromJson(Map<String, dynamic> json) {
-    return _$AddressComponentsFromJson(json);
+  factory AddressComponent.fromJson(Map<String, dynamic> json) {
+    return _$AddressComponentFromJson(json);
   }
 
   @override
-  AddressComponents? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? AddressComponents.fromJson(json) : null;
+  AddressComponent? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? AddressComponent.fromJson(json) : null;
 
   @override
   Map<String, dynamic> toJson() {
-    return _$AddressComponentsToJson(this);
+    return _$AddressComponentToJson(this);
   }
 }
 
@@ -306,7 +306,7 @@ class High extends Jsonable<High> {
 @CopyWith()
 class RegularOpeningHours extends Jsonable<RegularOpeningHours> {
   final bool? openNow;
-  final List<Periods>? periods;
+  final List<Period>? periods;
   final List<String>? weekdayDescriptions;
   final String? nextCloseTime;
 
@@ -333,26 +333,26 @@ class RegularOpeningHours extends Jsonable<RegularOpeningHours> {
 
 @JsonSerializable()
 @CopyWith()
-class Periods extends Jsonable<Periods> {
+class Period extends Jsonable<Period> {
   final Open? open;
   final Close? close;
 
-  Periods({
+  Period({
     this.open,
     this.close,
   });
 
-  factory Periods.fromJson(Map<String, dynamic> json) {
-    return _$PeriodsFromJson(json);
+  factory Period.fromJson(Map<String, dynamic> json) {
+    return _$PeriodFromJson(json);
   }
 
   @override
-  Periods? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? Periods.fromJson(json) : null;
+  Period? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? Period.fromJson(json) : null;
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PeriodsToJson(this);
+    return _$PeriodToJson(this);
   }
 }
 
@@ -464,7 +464,7 @@ class PrimaryTypeDisplayName extends Jsonable<PrimaryTypeDisplayName> {
 @CopyWith()
 class CurrentOpeningHours extends Jsonable<CurrentOpeningHours> {
   final bool? openNow;
-  final List<Periods>? periods;
+  final List<Period>? periods;
   final List<String>? weekdayDescriptions;
   final String? nextCloseTime;
 
@@ -543,7 +543,7 @@ class EditorialSummary extends Jsonable<EditorialSummary> {
 
 @JsonSerializable()
 @CopyWith()
-class Reviews extends Jsonable<Reviews> {
+class Review extends Jsonable<Review> {
   final String? name;
   final String? relativePublishTimeDescription;
   final int? rating;
@@ -554,7 +554,7 @@ class Reviews extends Jsonable<Reviews> {
   final String? flagContentUri;
   final String? googleMapsUri;
 
-  Reviews({
+  Review({
     this.name,
     this.relativePublishTimeDescription,
     this.rating,
@@ -566,17 +566,17 @@ class Reviews extends Jsonable<Reviews> {
     this.googleMapsUri,
   });
 
-  factory Reviews.fromJson(Map<String, dynamic> json) {
-    return _$ReviewsFromJson(json);
+  factory Review.fromJson(Map<String, dynamic> json) {
+    return _$ReviewFromJson(json);
   }
 
   @override
-  Reviews? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? Reviews.fromJson(json) : null;
+  Review? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? Review.fromJson(json) : null;
 
   @override
   Map<String, dynamic> toJson() {
-    return _$ReviewsToJson(this);
+    return _$ReviewToJson(this);
   }
 }
 
@@ -659,61 +659,36 @@ class AuthorAttribution extends Jsonable<AuthorAttribution> {
 
 @JsonSerializable()
 @CopyWith()
-class Photos extends Jsonable<Photos> {
+class Photo extends Jsonable<Photo> {
   final String? name;
   final int? widthPx;
   final int? heightPx;
-  final List<AuthorAttributions>? authorAttributions;
+  final List<AuthorAttribution>? authorAttributions;
   final String? flagContentUri;
   final String? googleMapsUri;
+  final String? photoUri;
 
-  Photos({
+  Photo({
     this.name,
     this.widthPx,
     this.heightPx,
     this.authorAttributions,
     this.flagContentUri,
     this.googleMapsUri,
-  });
-
-  factory Photos.fromJson(Map<String, dynamic> json) {
-    return _$PhotosFromJson(json);
-  }
-
-  @override
-  Photos? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? Photos.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$PhotosToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class AuthorAttributions extends Jsonable<AuthorAttributions> {
-  final String? displayName;
-  final String? uri;
-  final String? photoUri;
-
-  AuthorAttributions({
-    this.displayName,
-    this.uri,
     this.photoUri,
   });
 
-  factory AuthorAttributions.fromJson(Map<String, dynamic> json) {
-    return _$AuthorAttributionsFromJson(json);
+  factory Photo.fromJson(Map<String, dynamic> json) {
+    return _$PhotoFromJson(json);
   }
 
   @override
-  AuthorAttributions? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? AuthorAttributions.fromJson(json) : null;
+  Photo? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? Photo.fromJson(json) : null;
 
   @override
   Map<String, dynamic> toJson() {
-    return _$AuthorAttributionsToJson(this);
+    return _$PhotoToJson(this);
   }
 }
 
@@ -745,7 +720,7 @@ class AccessibilityOptions extends Jsonable<AccessibilityOptions> {
 @JsonSerializable()
 @CopyWith()
 class AddressDescriptor extends Jsonable<AddressDescriptor> {
-  final List<Landmarks>? landmarks;
+  final List<Landmark>? landmarks;
 
   AddressDescriptor({
     this.landmarks,
@@ -767,7 +742,7 @@ class AddressDescriptor extends Jsonable<AddressDescriptor> {
 
 @JsonSerializable()
 @CopyWith()
-class Landmarks extends Jsonable<Landmarks> {
+class Landmark extends Jsonable<Landmark> {
   final String? name;
   final String? placeId;
   final DisplayName? displayName;
@@ -775,7 +750,7 @@ class Landmarks extends Jsonable<Landmarks> {
   final double? straightLineDistanceMeters;
   final double? travelDistanceMeters;
 
-  Landmarks({
+  Landmark({
     this.name,
     this.placeId,
     this.displayName,
@@ -784,17 +759,17 @@ class Landmarks extends Jsonable<Landmarks> {
     this.travelDistanceMeters,
   });
 
-  factory Landmarks.fromJson(Map<String, dynamic> json) {
-    return _$LandmarksFromJson(json);
+  factory Landmark.fromJson(Map<String, dynamic> json) {
+    return _$LandmarkFromJson(json);
   }
 
   @override
-  Landmarks? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? Landmarks.fromJson(json) : null;
+  Landmark? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? Landmark.fromJson(json) : null;
 
   @override
   Map<String, dynamic> toJson() {
-    return _$LandmarksToJson(this);
+    return _$LandmarkToJson(this);
   }
 }
 

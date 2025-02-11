@@ -20,7 +20,7 @@ abstract class _$PlaceDetailsCWProxy {
     String? nationalPhoneNumber,
     String? internationalPhoneNumber,
     String? formattedAddress,
-    List<AddressComponents>? addressComponents,
+    List<AddressComponent>? addressComponents,
     PlusCode? plusCode,
     Location? location,
     Viewport? viewport,
@@ -40,8 +40,8 @@ abstract class _$PlaceDetailsCWProxy {
     String? primaryType,
     String? shortFormattedAddress,
     EditorialSummary? editorialSummary,
-    List<Reviews>? reviews,
-    List<Photos>? photos,
+    List<Review>? reviews,
+    List<Photo>? photos,
     AccessibilityOptions? accessibilityOptions,
     bool? pureServiceAreaBusiness,
     AddressDescriptor? addressDescriptor,
@@ -126,7 +126,7 @@ class _$PlaceDetailsCWProxyImpl implements _$PlaceDetailsCWProxy {
       addressComponents: addressComponents == const $CopyWithPlaceholder()
           ? _value.addressComponents
           // ignore: cast_nullable_to_non_nullable
-          : addressComponents as List<AddressComponents>?,
+          : addressComponents as List<AddressComponent>?,
       plusCode: plusCode == const $CopyWithPlaceholder()
           ? _value.plusCode
           // ignore: cast_nullable_to_non_nullable
@@ -208,11 +208,11 @@ class _$PlaceDetailsCWProxyImpl implements _$PlaceDetailsCWProxy {
       reviews: reviews == const $CopyWithPlaceholder()
           ? _value.reviews
           // ignore: cast_nullable_to_non_nullable
-          : reviews as List<Reviews>?,
+          : reviews as List<Review>?,
       photos: photos == const $CopyWithPlaceholder()
           ? _value.photos
           // ignore: cast_nullable_to_non_nullable
-          : photos as List<Photos>?,
+          : photos as List<Photo>?,
       accessibilityOptions: accessibilityOptions == const $CopyWithPlaceholder()
           ? _value.accessibilityOptions
           // ignore: cast_nullable_to_non_nullable
@@ -240,14 +240,14 @@ extension $PlaceDetailsCopyWith on PlaceDetails {
   _$PlaceDetailsCWProxy get copyWith => _$PlaceDetailsCWProxyImpl(this);
 }
 
-abstract class _$AddressComponentsCWProxy {
+abstract class _$AddressComponentCWProxy {
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
   ///
   /// Usage
   /// ```dart
-  /// AddressComponents(...).copyWith(id: 12, name: "My name")
+  /// AddressComponent(...).copyWith(id: 12, name: "My name")
   /// ````
-  AddressComponents call({
+  AddressComponent call({
     String? longText,
     String? shortText,
     List<String>? types,
@@ -255,11 +255,11 @@ abstract class _$AddressComponentsCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAddressComponents.copyWith(...)`.
-class _$AddressComponentsCWProxyImpl implements _$AddressComponentsCWProxy {
-  const _$AddressComponentsCWProxyImpl(this._value);
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAddressComponent.copyWith(...)`.
+class _$AddressComponentCWProxyImpl implements _$AddressComponentCWProxy {
+  const _$AddressComponentCWProxyImpl(this._value);
 
-  final AddressComponents _value;
+  final AddressComponent _value;
 
   @override
 
@@ -267,15 +267,15 @@ class _$AddressComponentsCWProxyImpl implements _$AddressComponentsCWProxy {
   ///
   /// Usage
   /// ```dart
-  /// AddressComponents(...).copyWith(id: 12, name: "My name")
+  /// AddressComponent(...).copyWith(id: 12, name: "My name")
   /// ````
-  AddressComponents call({
+  AddressComponent call({
     Object? longText = const $CopyWithPlaceholder(),
     Object? shortText = const $CopyWithPlaceholder(),
     Object? types = const $CopyWithPlaceholder(),
     Object? languageCode = const $CopyWithPlaceholder(),
   }) {
-    return AddressComponents(
+    return AddressComponent(
       longText: longText == const $CopyWithPlaceholder()
           ? _value.longText
           // ignore: cast_nullable_to_non_nullable
@@ -296,11 +296,10 @@ class _$AddressComponentsCWProxyImpl implements _$AddressComponentsCWProxy {
   }
 }
 
-extension $AddressComponentsCopyWith on AddressComponents {
-  /// Returns a callable class that can be used as follows: `instanceOfAddressComponents.copyWith(...)`.
+extension $AddressComponentCopyWith on AddressComponent {
+  /// Returns a callable class that can be used as follows: `instanceOfAddressComponent.copyWith(...)`.
   // ignore: library_private_types_in_public_api
-  _$AddressComponentsCWProxy get copyWith =>
-      _$AddressComponentsCWProxyImpl(this);
+  _$AddressComponentCWProxy get copyWith => _$AddressComponentCWProxyImpl(this);
 }
 
 abstract class _$PlusCodeCWProxy {
@@ -562,7 +561,7 @@ abstract class _$RegularOpeningHoursCWProxy {
   /// ````
   RegularOpeningHours call({
     bool? openNow,
-    List<Periods>? periods,
+    List<Period>? periods,
     List<String>? weekdayDescriptions,
     String? nextCloseTime,
   });
@@ -596,7 +595,7 @@ class _$RegularOpeningHoursCWProxyImpl implements _$RegularOpeningHoursCWProxy {
       periods: periods == const $CopyWithPlaceholder()
           ? _value.periods
           // ignore: cast_nullable_to_non_nullable
-          : periods as List<Periods>?,
+          : periods as List<Period>?,
       weekdayDescriptions: weekdayDescriptions == const $CopyWithPlaceholder()
           ? _value.weekdayDescriptions
           // ignore: cast_nullable_to_non_nullable
@@ -616,24 +615,24 @@ extension $RegularOpeningHoursCopyWith on RegularOpeningHours {
       _$RegularOpeningHoursCWProxyImpl(this);
 }
 
-abstract class _$PeriodsCWProxy {
+abstract class _$PeriodCWProxy {
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
   ///
   /// Usage
   /// ```dart
-  /// Periods(...).copyWith(id: 12, name: "My name")
+  /// Period(...).copyWith(id: 12, name: "My name")
   /// ````
-  Periods call({
+  Period call({
     Open? open,
     Close? close,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPeriods.copyWith(...)`.
-class _$PeriodsCWProxyImpl implements _$PeriodsCWProxy {
-  const _$PeriodsCWProxyImpl(this._value);
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPeriod.copyWith(...)`.
+class _$PeriodCWProxyImpl implements _$PeriodCWProxy {
+  const _$PeriodCWProxyImpl(this._value);
 
-  final Periods _value;
+  final Period _value;
 
   @override
 
@@ -641,13 +640,13 @@ class _$PeriodsCWProxyImpl implements _$PeriodsCWProxy {
   ///
   /// Usage
   /// ```dart
-  /// Periods(...).copyWith(id: 12, name: "My name")
+  /// Period(...).copyWith(id: 12, name: "My name")
   /// ````
-  Periods call({
+  Period call({
     Object? open = const $CopyWithPlaceholder(),
     Object? close = const $CopyWithPlaceholder(),
   }) {
-    return Periods(
+    return Period(
       open: open == const $CopyWithPlaceholder()
           ? _value.open
           // ignore: cast_nullable_to_non_nullable
@@ -660,10 +659,10 @@ class _$PeriodsCWProxyImpl implements _$PeriodsCWProxy {
   }
 }
 
-extension $PeriodsCopyWith on Periods {
-  /// Returns a callable class that can be used as follows: `instanceOfPeriods.copyWith(...)`.
+extension $PeriodCopyWith on Period {
+  /// Returns a callable class that can be used as follows: `instanceOfPeriod.copyWith(...)`.
   // ignore: library_private_types_in_public_api
-  _$PeriodsCWProxy get copyWith => _$PeriodsCWProxyImpl(this);
+  _$PeriodCWProxy get copyWith => _$PeriodCWProxyImpl(this);
 }
 
 abstract class _$OpenCWProxy {
@@ -889,7 +888,7 @@ abstract class _$CurrentOpeningHoursCWProxy {
   /// ````
   CurrentOpeningHours call({
     bool? openNow,
-    List<Periods>? periods,
+    List<Period>? periods,
     List<String>? weekdayDescriptions,
     String? nextCloseTime,
   });
@@ -923,7 +922,7 @@ class _$CurrentOpeningHoursCWProxyImpl implements _$CurrentOpeningHoursCWProxy {
       periods: periods == const $CopyWithPlaceholder()
           ? _value.periods
           // ignore: cast_nullable_to_non_nullable
-          : periods as List<Periods>?,
+          : periods as List<Period>?,
       weekdayDescriptions: weekdayDescriptions == const $CopyWithPlaceholder()
           ? _value.weekdayDescriptions
           // ignore: cast_nullable_to_non_nullable
@@ -1049,14 +1048,14 @@ extension $EditorialSummaryCopyWith on EditorialSummary {
   _$EditorialSummaryCWProxy get copyWith => _$EditorialSummaryCWProxyImpl(this);
 }
 
-abstract class _$ReviewsCWProxy {
+abstract class _$ReviewCWProxy {
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
   ///
   /// Usage
   /// ```dart
-  /// Reviews(...).copyWith(id: 12, name: "My name")
+  /// Review(...).copyWith(id: 12, name: "My name")
   /// ````
-  Reviews call({
+  Review call({
     String? name,
     String? relativePublishTimeDescription,
     int? rating,
@@ -1069,11 +1068,11 @@ abstract class _$ReviewsCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfReviews.copyWith(...)`.
-class _$ReviewsCWProxyImpl implements _$ReviewsCWProxy {
-  const _$ReviewsCWProxyImpl(this._value);
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfReview.copyWith(...)`.
+class _$ReviewCWProxyImpl implements _$ReviewCWProxy {
+  const _$ReviewCWProxyImpl(this._value);
 
-  final Reviews _value;
+  final Review _value;
 
   @override
 
@@ -1081,9 +1080,9 @@ class _$ReviewsCWProxyImpl implements _$ReviewsCWProxy {
   ///
   /// Usage
   /// ```dart
-  /// Reviews(...).copyWith(id: 12, name: "My name")
+  /// Review(...).copyWith(id: 12, name: "My name")
   /// ````
-  Reviews call({
+  Review call({
     Object? name = const $CopyWithPlaceholder(),
     Object? relativePublishTimeDescription = const $CopyWithPlaceholder(),
     Object? rating = const $CopyWithPlaceholder(),
@@ -1094,7 +1093,7 @@ class _$ReviewsCWProxyImpl implements _$ReviewsCWProxy {
     Object? flagContentUri = const $CopyWithPlaceholder(),
     Object? googleMapsUri = const $CopyWithPlaceholder(),
   }) {
-    return Reviews(
+    return Review(
       name: name == const $CopyWithPlaceholder()
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
@@ -1136,10 +1135,10 @@ class _$ReviewsCWProxyImpl implements _$ReviewsCWProxy {
   }
 }
 
-extension $ReviewsCopyWith on Reviews {
-  /// Returns a callable class that can be used as follows: `instanceOfReviews.copyWith(...)`.
+extension $ReviewCopyWith on Review {
+  /// Returns a callable class that can be used as follows: `instanceOfReview.copyWith(...)`.
   // ignore: library_private_types_in_public_api
-  _$ReviewsCWProxy get copyWith => _$ReviewsCWProxyImpl(this);
+  _$ReviewCWProxy get copyWith => _$ReviewCWProxyImpl(this);
 }
 
 abstract class _$TextCWProxy {
@@ -1299,28 +1298,29 @@ extension $AuthorAttributionCopyWith on AuthorAttribution {
       _$AuthorAttributionCWProxyImpl(this);
 }
 
-abstract class _$PhotosCWProxy {
+abstract class _$PhotoCWProxy {
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
   ///
   /// Usage
   /// ```dart
-  /// Photos(...).copyWith(id: 12, name: "My name")
+  /// Photo(...).copyWith(id: 12, name: "My name")
   /// ````
-  Photos call({
+  Photo call({
     String? name,
     int? widthPx,
     int? heightPx,
-    List<AuthorAttributions>? authorAttributions,
+    List<AuthorAttribution>? authorAttributions,
     String? flagContentUri,
     String? googleMapsUri,
+    String? photoUri,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPhotos.copyWith(...)`.
-class _$PhotosCWProxyImpl implements _$PhotosCWProxy {
-  const _$PhotosCWProxyImpl(this._value);
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPhoto.copyWith(...)`.
+class _$PhotoCWProxyImpl implements _$PhotoCWProxy {
+  const _$PhotoCWProxyImpl(this._value);
 
-  final Photos _value;
+  final Photo _value;
 
   @override
 
@@ -1328,17 +1328,18 @@ class _$PhotosCWProxyImpl implements _$PhotosCWProxy {
   ///
   /// Usage
   /// ```dart
-  /// Photos(...).copyWith(id: 12, name: "My name")
+  /// Photo(...).copyWith(id: 12, name: "My name")
   /// ````
-  Photos call({
+  Photo call({
     Object? name = const $CopyWithPlaceholder(),
     Object? widthPx = const $CopyWithPlaceholder(),
     Object? heightPx = const $CopyWithPlaceholder(),
     Object? authorAttributions = const $CopyWithPlaceholder(),
     Object? flagContentUri = const $CopyWithPlaceholder(),
     Object? googleMapsUri = const $CopyWithPlaceholder(),
+    Object? photoUri = const $CopyWithPlaceholder(),
   }) {
-    return Photos(
+    return Photo(
       name: name == const $CopyWithPlaceholder()
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
@@ -1354,7 +1355,7 @@ class _$PhotosCWProxyImpl implements _$PhotosCWProxy {
       authorAttributions: authorAttributions == const $CopyWithPlaceholder()
           ? _value.authorAttributions
           // ignore: cast_nullable_to_non_nullable
-          : authorAttributions as List<AuthorAttributions>?,
+          : authorAttributions as List<AuthorAttribution>?,
       flagContentUri: flagContentUri == const $CopyWithPlaceholder()
           ? _value.flagContentUri
           // ignore: cast_nullable_to_non_nullable
@@ -1363,58 +1364,6 @@ class _$PhotosCWProxyImpl implements _$PhotosCWProxy {
           ? _value.googleMapsUri
           // ignore: cast_nullable_to_non_nullable
           : googleMapsUri as String?,
-    );
-  }
-}
-
-extension $PhotosCopyWith on Photos {
-  /// Returns a callable class that can be used as follows: `instanceOfPhotos.copyWith(...)`.
-  // ignore: library_private_types_in_public_api
-  _$PhotosCWProxy get copyWith => _$PhotosCWProxyImpl(this);
-}
-
-abstract class _$AuthorAttributionsCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
-  ///
-  /// Usage
-  /// ```dart
-  /// AuthorAttributions(...).copyWith(id: 12, name: "My name")
-  /// ````
-  AuthorAttributions call({
-    String? displayName,
-    String? uri,
-    String? photoUri,
-  });
-}
-
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAuthorAttributions.copyWith(...)`.
-class _$AuthorAttributionsCWProxyImpl implements _$AuthorAttributionsCWProxy {
-  const _$AuthorAttributionsCWProxyImpl(this._value);
-
-  final AuthorAttributions _value;
-
-  @override
-
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
-  ///
-  /// Usage
-  /// ```dart
-  /// AuthorAttributions(...).copyWith(id: 12, name: "My name")
-  /// ````
-  AuthorAttributions call({
-    Object? displayName = const $CopyWithPlaceholder(),
-    Object? uri = const $CopyWithPlaceholder(),
-    Object? photoUri = const $CopyWithPlaceholder(),
-  }) {
-    return AuthorAttributions(
-      displayName: displayName == const $CopyWithPlaceholder()
-          ? _value.displayName
-          // ignore: cast_nullable_to_non_nullable
-          : displayName as String?,
-      uri: uri == const $CopyWithPlaceholder()
-          ? _value.uri
-          // ignore: cast_nullable_to_non_nullable
-          : uri as String?,
       photoUri: photoUri == const $CopyWithPlaceholder()
           ? _value.photoUri
           // ignore: cast_nullable_to_non_nullable
@@ -1423,11 +1372,10 @@ class _$AuthorAttributionsCWProxyImpl implements _$AuthorAttributionsCWProxy {
   }
 }
 
-extension $AuthorAttributionsCopyWith on AuthorAttributions {
-  /// Returns a callable class that can be used as follows: `instanceOfAuthorAttributions.copyWith(...)`.
+extension $PhotoCopyWith on Photo {
+  /// Returns a callable class that can be used as follows: `instanceOfPhoto.copyWith(...)`.
   // ignore: library_private_types_in_public_api
-  _$AuthorAttributionsCWProxy get copyWith =>
-      _$AuthorAttributionsCWProxyImpl(this);
+  _$PhotoCWProxy get copyWith => _$PhotoCWProxyImpl(this);
 }
 
 abstract class _$AccessibilityOptionsCWProxy {
@@ -1492,7 +1440,7 @@ abstract class _$AddressDescriptorCWProxy {
   /// AddressDescriptor(...).copyWith(id: 12, name: "My name")
   /// ````
   AddressDescriptor call({
-    List<Landmarks>? landmarks,
+    List<Landmark>? landmarks,
   });
 }
 
@@ -1517,7 +1465,7 @@ class _$AddressDescriptorCWProxyImpl implements _$AddressDescriptorCWProxy {
       landmarks: landmarks == const $CopyWithPlaceholder()
           ? _value.landmarks
           // ignore: cast_nullable_to_non_nullable
-          : landmarks as List<Landmarks>?,
+          : landmarks as List<Landmark>?,
     );
   }
 }
@@ -1529,14 +1477,14 @@ extension $AddressDescriptorCopyWith on AddressDescriptor {
       _$AddressDescriptorCWProxyImpl(this);
 }
 
-abstract class _$LandmarksCWProxy {
+abstract class _$LandmarkCWProxy {
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
   ///
   /// Usage
   /// ```dart
-  /// Landmarks(...).copyWith(id: 12, name: "My name")
+  /// Landmark(...).copyWith(id: 12, name: "My name")
   /// ````
-  Landmarks call({
+  Landmark call({
     String? name,
     String? placeId,
     DisplayName? displayName,
@@ -1546,11 +1494,11 @@ abstract class _$LandmarksCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfLandmarks.copyWith(...)`.
-class _$LandmarksCWProxyImpl implements _$LandmarksCWProxy {
-  const _$LandmarksCWProxyImpl(this._value);
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfLandmark.copyWith(...)`.
+class _$LandmarkCWProxyImpl implements _$LandmarkCWProxy {
+  const _$LandmarkCWProxyImpl(this._value);
 
-  final Landmarks _value;
+  final Landmark _value;
 
   @override
 
@@ -1558,9 +1506,9 @@ class _$LandmarksCWProxyImpl implements _$LandmarksCWProxy {
   ///
   /// Usage
   /// ```dart
-  /// Landmarks(...).copyWith(id: 12, name: "My name")
+  /// Landmark(...).copyWith(id: 12, name: "My name")
   /// ````
-  Landmarks call({
+  Landmark call({
     Object? name = const $CopyWithPlaceholder(),
     Object? placeId = const $CopyWithPlaceholder(),
     Object? displayName = const $CopyWithPlaceholder(),
@@ -1568,7 +1516,7 @@ class _$LandmarksCWProxyImpl implements _$LandmarksCWProxy {
     Object? straightLineDistanceMeters = const $CopyWithPlaceholder(),
     Object? travelDistanceMeters = const $CopyWithPlaceholder(),
   }) {
-    return Landmarks(
+    return Landmark(
       name: name == const $CopyWithPlaceholder()
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
@@ -1598,10 +1546,10 @@ class _$LandmarksCWProxyImpl implements _$LandmarksCWProxy {
   }
 }
 
-extension $LandmarksCopyWith on Landmarks {
-  /// Returns a callable class that can be used as follows: `instanceOfLandmarks.copyWith(...)`.
+extension $LandmarkCopyWith on Landmark {
+  /// Returns a callable class that can be used as follows: `instanceOfLandmark.copyWith(...)`.
   // ignore: library_private_types_in_public_api
-  _$LandmarksCWProxy get copyWith => _$LandmarksCWProxyImpl(this);
+  _$LandmarkCWProxy get copyWith => _$LandmarkCWProxyImpl(this);
 }
 
 abstract class _$GoogleMapsLinksCWProxy {
@@ -1685,7 +1633,7 @@ PlaceDetails _$PlaceDetailsFromJson(Map<String, dynamic> json) => PlaceDetails(
       internationalPhoneNumber: json['internationalPhoneNumber'] as String?,
       formattedAddress: json['formattedAddress'] as String?,
       addressComponents: (json['addressComponents'] as List<dynamic>?)
-          ?.map((e) => AddressComponents.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => AddressComponent.fromJson(e as Map<String, dynamic>))
           .toList(),
       plusCode: json['plusCode'] == null
           ? null
@@ -1727,10 +1675,10 @@ PlaceDetails _$PlaceDetailsFromJson(Map<String, dynamic> json) => PlaceDetails(
           : EditorialSummary.fromJson(
               json['editorialSummary'] as Map<String, dynamic>),
       reviews: (json['reviews'] as List<dynamic>?)
-          ?.map((e) => Reviews.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
           .toList(),
       photos: (json['photos'] as List<dynamic>?)
-          ?.map((e) => Photos.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Photo.fromJson(e as Map<String, dynamic>))
           .toList(),
       accessibilityOptions: json['accessibilityOptions'] == null
           ? null
@@ -1833,8 +1781,8 @@ Map<String, dynamic> _$PlaceDetailsToJson(PlaceDetails instance) =>
       if (instance.googleMapsLinks case final value?) 'googleMapsLinks': value,
     };
 
-AddressComponents _$AddressComponentsFromJson(Map<String, dynamic> json) =>
-    AddressComponents(
+AddressComponent _$AddressComponentFromJson(Map<String, dynamic> json) =>
+    AddressComponent(
       longText: json['longText'] as String?,
       shortText: json['shortText'] as String?,
       types:
@@ -1842,14 +1790,14 @@ AddressComponents _$AddressComponentsFromJson(Map<String, dynamic> json) =>
       languageCode: json['languageCode'] as String?,
     );
 
-abstract final class _$AddressComponentsJsonKeys {
+abstract final class _$AddressComponentJsonKeys {
   static const String longText = 'longText';
   static const String shortText = 'shortText';
   static const String types = 'types';
   static const String languageCode = 'languageCode';
 }
 
-Map<String, dynamic> _$AddressComponentsToJson(AddressComponents instance) =>
+Map<String, dynamic> _$AddressComponentToJson(AddressComponent instance) =>
     <String, dynamic>{
       if (instance.longText case final value?) 'longText': value,
       if (instance.shortText case final value?) 'shortText': value,
@@ -1940,7 +1888,7 @@ RegularOpeningHours _$RegularOpeningHoursFromJson(Map<String, dynamic> json) =>
     RegularOpeningHours(
       openNow: json['openNow'] as bool?,
       periods: (json['periods'] as List<dynamic>?)
-          ?.map((e) => Periods.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Period.fromJson(e as Map<String, dynamic>))
           .toList(),
       weekdayDescriptions: (json['weekdayDescriptions'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -1965,7 +1913,7 @@ Map<String, dynamic> _$RegularOpeningHoursToJson(
       if (instance.nextCloseTime case final value?) 'nextCloseTime': value,
     };
 
-Periods _$PeriodsFromJson(Map<String, dynamic> json) => Periods(
+Period _$PeriodFromJson(Map<String, dynamic> json) => Period(
       open: json['open'] == null
           ? null
           : Open.fromJson(json['open'] as Map<String, dynamic>),
@@ -1974,12 +1922,12 @@ Periods _$PeriodsFromJson(Map<String, dynamic> json) => Periods(
           : Close.fromJson(json['close'] as Map<String, dynamic>),
     );
 
-abstract final class _$PeriodsJsonKeys {
+abstract final class _$PeriodJsonKeys {
   static const String open = 'open';
   static const String close = 'close';
 }
 
-Map<String, dynamic> _$PeriodsToJson(Periods instance) => <String, dynamic>{
+Map<String, dynamic> _$PeriodToJson(Period instance) => <String, dynamic>{
       if (instance.open case final value?) 'open': value,
       if (instance.close case final value?) 'close': value,
     };
@@ -2059,7 +2007,7 @@ CurrentOpeningHours _$CurrentOpeningHoursFromJson(Map<String, dynamic> json) =>
     CurrentOpeningHours(
       openNow: json['openNow'] as bool?,
       periods: (json['periods'] as List<dynamic>?)
-          ?.map((e) => Periods.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Period.fromJson(e as Map<String, dynamic>))
           .toList(),
       weekdayDescriptions: (json['weekdayDescriptions'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -2119,7 +2067,7 @@ Map<String, dynamic> _$EditorialSummaryToJson(EditorialSummary instance) =>
       if (instance.languageCode case final value?) 'languageCode': value,
     };
 
-Reviews _$ReviewsFromJson(Map<String, dynamic> json) => Reviews(
+Review _$ReviewFromJson(Map<String, dynamic> json) => Review(
       name: json['name'] as String?,
       relativePublishTimeDescription:
           json['relativePublishTimeDescription'] as String?,
@@ -2139,7 +2087,7 @@ Reviews _$ReviewsFromJson(Map<String, dynamic> json) => Reviews(
       googleMapsUri: json['googleMapsUri'] as String?,
     );
 
-abstract final class _$ReviewsJsonKeys {
+abstract final class _$ReviewJsonKeys {
   static const String name = 'name';
   static const String relativePublishTimeDescription =
       'relativePublishTimeDescription';
@@ -2152,7 +2100,7 @@ abstract final class _$ReviewsJsonKeys {
   static const String googleMapsUri = 'googleMapsUri';
 }
 
-Map<String, dynamic> _$ReviewsToJson(Reviews instance) => <String, dynamic>{
+Map<String, dynamic> _$ReviewToJson(Review instance) => <String, dynamic>{
       if (instance.name case final value?) 'name': value,
       if (instance.relativePublishTimeDescription case final value?)
         'relativePublishTimeDescription': value,
@@ -2217,27 +2165,29 @@ Map<String, dynamic> _$AuthorAttributionToJson(AuthorAttribution instance) =>
       if (instance.photoUri case final value?) 'photoUri': value,
     };
 
-Photos _$PhotosFromJson(Map<String, dynamic> json) => Photos(
+Photo _$PhotoFromJson(Map<String, dynamic> json) => Photo(
       name: json['name'] as String?,
       widthPx: (json['widthPx'] as num?)?.toInt(),
       heightPx: (json['heightPx'] as num?)?.toInt(),
       authorAttributions: (json['authorAttributions'] as List<dynamic>?)
-          ?.map((e) => AuthorAttributions.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => AuthorAttribution.fromJson(e as Map<String, dynamic>))
           .toList(),
       flagContentUri: json['flagContentUri'] as String?,
       googleMapsUri: json['googleMapsUri'] as String?,
+      photoUri: json['photoUri'] as String?,
     );
 
-abstract final class _$PhotosJsonKeys {
+abstract final class _$PhotoJsonKeys {
   static const String name = 'name';
   static const String widthPx = 'widthPx';
   static const String heightPx = 'heightPx';
   static const String authorAttributions = 'authorAttributions';
   static const String flagContentUri = 'flagContentUri';
   static const String googleMapsUri = 'googleMapsUri';
+  static const String photoUri = 'photoUri';
 }
 
-Map<String, dynamic> _$PhotosToJson(Photos instance) => <String, dynamic>{
+Map<String, dynamic> _$PhotoToJson(Photo instance) => <String, dynamic>{
       if (instance.name case final value?) 'name': value,
       if (instance.widthPx case final value?) 'widthPx': value,
       if (instance.heightPx case final value?) 'heightPx': value,
@@ -2245,25 +2195,6 @@ Map<String, dynamic> _$PhotosToJson(Photos instance) => <String, dynamic>{
         'authorAttributions': value,
       if (instance.flagContentUri case final value?) 'flagContentUri': value,
       if (instance.googleMapsUri case final value?) 'googleMapsUri': value,
-    };
-
-AuthorAttributions _$AuthorAttributionsFromJson(Map<String, dynamic> json) =>
-    AuthorAttributions(
-      displayName: json['displayName'] as String?,
-      uri: json['uri'] as String?,
-      photoUri: json['photoUri'] as String?,
-    );
-
-abstract final class _$AuthorAttributionsJsonKeys {
-  static const String displayName = 'displayName';
-  static const String uri = 'uri';
-  static const String photoUri = 'photoUri';
-}
-
-Map<String, dynamic> _$AuthorAttributionsToJson(AuthorAttributions instance) =>
-    <String, dynamic>{
-      if (instance.displayName case final value?) 'displayName': value,
-      if (instance.uri case final value?) 'uri': value,
       if (instance.photoUri case final value?) 'photoUri': value,
     };
 
@@ -2294,7 +2225,7 @@ Map<String, dynamic> _$AccessibilityOptionsToJson(
 AddressDescriptor _$AddressDescriptorFromJson(Map<String, dynamic> json) =>
     AddressDescriptor(
       landmarks: (json['landmarks'] as List<dynamic>?)
-          ?.map((e) => Landmarks.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Landmark.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -2307,7 +2238,7 @@ Map<String, dynamic> _$AddressDescriptorToJson(AddressDescriptor instance) =>
       if (instance.landmarks case final value?) 'landmarks': value,
     };
 
-Landmarks _$LandmarksFromJson(Map<String, dynamic> json) => Landmarks(
+Landmark _$LandmarkFromJson(Map<String, dynamic> json) => Landmark(
       name: json['name'] as String?,
       placeId: json['placeId'] as String?,
       displayName: json['displayName'] == null
@@ -2320,7 +2251,7 @@ Landmarks _$LandmarksFromJson(Map<String, dynamic> json) => Landmarks(
       travelDistanceMeters: (json['travelDistanceMeters'] as num?)?.toDouble(),
     );
 
-abstract final class _$LandmarksJsonKeys {
+abstract final class _$LandmarkJsonKeys {
   static const String name = 'name';
   static const String placeId = 'placeId';
   static const String displayName = 'displayName';
@@ -2329,7 +2260,7 @@ abstract final class _$LandmarksJsonKeys {
   static const String travelDistanceMeters = 'travelDistanceMeters';
 }
 
-Map<String, dynamic> _$LandmarksToJson(Landmarks instance) => <String, dynamic>{
+Map<String, dynamic> _$LandmarkToJson(Landmark instance) => <String, dynamic>{
       if (instance.name case final value?) 'name': value,
       if (instance.placeId case final value?) 'placeId': value,
       if (instance.displayName case final value?) 'displayName': value,

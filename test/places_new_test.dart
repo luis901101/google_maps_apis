@@ -6,7 +6,6 @@ import 'package:test/test.dart';
 
 Future<void> main() async {
   final apiKey = Platform.environment['GOOGLE_API_KEY'];
-  final placeId = Platform.environment['GOOGLE_PLACE_ID'];
   var placesAPI = PlacesAPINew(apiKey: apiKey);
   await placesAPI.init();
 
@@ -15,6 +14,7 @@ Future<void> main() async {
   });
 
   group('Get Place Details by ID', () {
+    final placeId = Platform.environment['GOOGLE_PLACE_ID'];
     test('Get Place Details with all fields', () async {
       var response = await placesAPI.getDetails(
         id: placeId ?? '',
@@ -69,7 +69,7 @@ Future<void> main() async {
           types: [],
           formattedAddress: '',
           addressComponents: [
-            AddressComponents(
+            AddressComponent(
               longText: '',
             ),
           ],
@@ -81,7 +81,7 @@ Future<void> main() async {
           ),
           regularOpeningHours: RegularOpeningHours(
             periods: [
-              Periods(
+              Period(
                 open: Open(
                   day: 0,
                 ),
@@ -130,6 +130,55 @@ Future<void> main() async {
       expect(response.error?.error?.code, 400);
       expect(response.error?.error?.status, 'INVALID_ARGUMENT');
       expect(response.error?.error?.details, isNotNull);
+    });
+  });
+
+  group('Get Place Photo', () {
+    final placeId = Platform.environment['GOOGLE_PLACE_ID'];
+    final photoId = Platform.environment['GOOGLE_PLACE_PHOTO_ID'];
+    test('Get Place Photo url from resource name', () async {
+      final response = await placesAPI.getPhotoUrl(
+        name: 'places/$placeId/photos/$photoId',
+        maxWidthPx: 3840,
+        maxHeightPx: 3840,
+      );
+      expect(response.isSuccessful, true);
+      expect(response.body, isNotNull);
+      expect(response.body,
+          startsWith('https://lh3.googleusercontent.com/places/'));
+    });
+    test('Get Place Photo url from placeId and photoId', () async {
+      final response = await placesAPI.getPhotoUrl(
+        placeId: placeId,
+        photoId: photoId,
+        maxWidthPx: 3840,
+        maxHeightPx: 3840,
+      );
+      expect(response.isSuccessful, true);
+      expect(response.body, isNotNull);
+      expect(response.body,
+          startsWith('https://lh3.googleusercontent.com/places/'));
+    });
+    test('Get Place Photo binary from resource name', () async {
+      final response = await placesAPI.getPhotoBinary(
+        name: 'places/$placeId/photos/$photoId',
+        maxWidthPx: 3840,
+        maxHeightPx: 3840,
+      );
+      expect(response.isSuccessful, true);
+      expect(response.body, isNotNull);
+      expect(response.body, isNotEmpty);
+    });
+    test('Get Place Photo binary from placeId and photoId', () async {
+      final response = await placesAPI.getPhotoBinary(
+        placeId: placeId,
+        photoId: photoId,
+        maxWidthPx: 3840,
+        maxHeightPx: 3840,
+      );
+      expect(response.isSuccessful, true);
+      expect(response.body, isNotNull);
+      expect(response.body, isNotEmpty);
     });
   });
 }
