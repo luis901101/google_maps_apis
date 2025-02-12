@@ -136,8 +136,40 @@ Future<void> main() async {
   group('Get Place Photo', () {
     final placeId = Platform.environment['GOOGLE_PLACE_ID'];
     final photoId = Platform.environment['GOOGLE_PLACE_PHOTO_ID'];
-    test('Get Place Photo url from resource name', () async {
-      final response = await placesAPI.getPhotoUrl(
+    test('Build Place Photo url from resource name', () async {
+      final name = 'places/$placeId/photos/$photoId';
+      final url = placesAPI.buildPhotoUrl(
+        name: name,
+        maxWidthPx: 3840,
+        maxHeightPx: 3840,
+      );
+      expect(url, isNotNull);
+      expect(
+          url, startsWith('${placesAPI.restAPI.dio.options.baseUrl}/v1/$name'));
+      expect(url, contains('key=$apiKey'));
+      expect(url, contains('maxWidthPx=3840'));
+      expect(url, contains('maxHeightPx=3840'));
+      expect(url, contains('skipHttpRedirect=false'));
+    });
+    test('Build Place Photo url from placeId and photoId', () async {
+      final url = placesAPI.buildPhotoUrl(
+        placeId: placeId,
+        photoId: photoId,
+        maxWidthPx: 3840,
+        maxHeightPx: 3840,
+      );
+      expect(url, isNotNull);
+      expect(
+          url,
+          startsWith(
+              '${placesAPI.restAPI.dio.options.baseUrl}/v1/places/$placeId/photos/$photoId'));
+      expect(url, contains('key=$apiKey'));
+      expect(url, contains('maxWidthPx=3840'));
+      expect(url, contains('maxHeightPx=3840'));
+      expect(url, contains('skipHttpRedirect=false'));
+    });
+    test('Get Place plain Photo url from resource name', () async {
+      final response = await placesAPI.getPlainPhotoUrl(
         name: 'places/$placeId/photos/$photoId',
         maxWidthPx: 3840,
         maxHeightPx: 3840,
@@ -147,8 +179,8 @@ Future<void> main() async {
       expect(response.body,
           startsWith('https://lh3.googleusercontent.com/places/'));
     });
-    test('Get Place Photo url from placeId and photoId', () async {
-      final response = await placesAPI.getPhotoUrl(
+    test('Get Place plain Photo url from placeId and photoId', () async {
+      final response = await placesAPI.getPlainPhotoUrl(
         placeId: placeId,
         photoId: photoId,
         maxWidthPx: 3840,

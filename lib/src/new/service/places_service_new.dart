@@ -16,13 +16,4 @@ abstract class PlacesServiceNew {
     // @Header(RestAPIService.googleFieldMaskKey) required List<String> fields,
     @Query('fields') required List<String> fields,
   });
-
-  @GET('/{placeId}/photos/{photoId}/media')
-  Future<HttpResponse<Photo?>> getPhoto({
-    @Path() required String placeId,
-    @Path() required String photoId,
-    @Query('maxWidthPx') int? maxWidthPx,
-    @Query('maxHeightPx') int? maxHeightPx,
-    @Query('skipHttpRedirect') bool skipHttpRedirect = true,
-  });
 }

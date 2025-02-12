@@ -70,14 +70,111 @@ class PlacesAPINew extends RestAPIService<PlaceDetails> {
     return response;
   }
 
-  /// Get photo url of a Place.
+  /// Build photo url for requests
   ///
   /// Required params:
   ///  - [name] or [placeId] and [photoId]: If you opt to use [placeId] and [photoId], set only the ids without the resource name.
   ///  - [maxWidthPx] or [maxHeightPx]: You can specify one or both to set the the maximum desired height and width pixels of the image.
   ///
   /// Documentation: https://developers.google.com/maps/documentation/places/web-service/place-photos#get-photo-ref
-  Future<GoogleHTTPResponse<String>> getPhotoUrl({
+  String _buildPhotoUrl({
+    /// This would be required only in case you initialized the [PlacesAPINew] with a [token] or [tokenCallback] instead of an [apiKey]. The reason is that the [apiKey] can be used as a query-param in the url.
+    String? apiKey,
+
+    /// Photo resource name: https://developers.google.com/maps/documentation/places/web-service/place-photos#photo-name
+    String? name,
+
+    /// Place identifier
+    String? placeId,
+
+    /// Photo identifier
+    String? photoId,
+
+    /// Maximum desired width of the image in pixels: https://developers.google.com/maps/documentation/places/web-service/place-photos#maxheightpx-and-maxwidthpx
+    int? maxWidthPx,
+
+    /// Maximum desired height of the image in pixels: https://developers.google.com/maps/documentation/places/web-service/place-photos#maxheightpx-and-maxwidthpx
+    int? maxHeightPx,
+
+    /// Whether to follow redirects or not.
+    /// If false, the photo binary will be obtained after a redirect.
+    /// If true, a json will be obtained with the photo resource name and the final photo url.
+    bool skipHttpRedirect = false,
+  }) {
+    assert(
+        (name != null || (placeId != null && photoId != null)) &&
+            (maxWidthPx != null || maxHeightPx != null),
+        'Ensure that name != null or placeId != null and photoId != null. Also ensure that maxWidthPx != null or maxHeightPx != null.');
+    try {
+      if (name != null) {
+        final split = name.split('/');
+        placeId = split[1];
+        photoId = split[3];
+      }
+    } catch (e) {
+      throw Exception('Malformed Photo resource name');
+    }
+
+    Uri uri = Uri.parse(restAPI.dio.options.baseUrl).replace(
+      path: '/v1/places/$placeId/photos/$photoId/media',
+      queryParameters: {
+        'key': apiKey ?? this.apiKey,
+        'maxWidthPx': maxWidthPx?.toString(),
+        'maxHeightPx': maxHeightPx?.toString(),
+        'skipHttpRedirect': skipHttpRedirect.toString(),
+      },
+    );
+
+    return uri.toString();
+  }
+
+  /// Build photo url of a Place. This function will return the photo url with the necessary params to request the photo binary.
+  /// This function is ideal to be used directly with  some [ImageWidget] like [Image.network] or [CachedNetworkImage] so the image gets loaded directly from the url.
+  /// Note: take into account the photo will be obtained after a redirect.
+  ///
+  /// Required params:
+  ///  - [name] or [placeId] and [photoId]: If you opt to use [placeId] and [photoId], set only the ids without the resource name.
+  ///  - [maxWidthPx] or [maxHeightPx]: You can specify one or both to set the the maximum desired height and width pixels of the image.
+  ///
+  /// Documentation: https://developers.google.com/maps/documentation/places/web-service/place-photos#get-photo-ref
+  String buildPhotoUrl({
+    /// This would be required only in case you initialized the [PlacesAPINew] with a [token] or [tokenCallback] instead of an [apiKey]. The reason is that the [apiKey] can be used as a query-param in the url.
+    String? apiKey,
+
+    /// Photo resource name: https://developers.google.com/maps/documentation/places/web-service/place-photos#photo-name
+    String? name,
+
+    /// Place identifier
+    String? placeId,
+
+    /// Photo identifier
+    String? photoId,
+
+    /// Maximum desired width of the image in pixels: https://developers.google.com/maps/documentation/places/web-service/place-photos#maxheightpx-and-maxwidthpx
+    int? maxWidthPx,
+
+    /// Maximum desired height of the image in pixels: https://developers.google.com/maps/documentation/places/web-service/place-photos#maxheightpx-and-maxwidthpx
+    int? maxHeightPx,
+  }) {
+    return _buildPhotoUrl(
+      apiKey: apiKey,
+      name: name,
+      placeId: placeId,
+      photoId: photoId,
+      maxWidthPx: maxWidthPx,
+      maxHeightPx: maxHeightPx,
+      skipHttpRedirect: false,
+    );
+  }
+
+  /// Get the photo url of a Place after redirect, this means the final photo url will not use the apiKey nor the place or photo id.
+  ///
+  /// Required params:
+  ///  - [name] or [placeId] and [photoId]: If you opt to use [placeId] and [photoId], set only the ids without the resource name.
+  ///  - [maxWidthPx] or [maxHeightPx]: You can specify one or both to set the the maximum desired height and width pixels of the image.
+  ///
+  /// Documentation: https://developers.google.com/maps/documentation/places/web-service/place-photos#get-photo-ref
+  Future<GoogleHTTPResponse<String>> getPlainPhotoUrl({
     /// Photo resource name: https://developers.google.com/maps/documentation/places/web-service/place-photos#photo-name
     String? name,
 
@@ -93,32 +190,42 @@ class PlacesAPINew extends RestAPIService<PlaceDetails> {
     /// Maximum desired height of the image in pixels: https://developers.google.com/maps/documentation/places/web-service/place-photos#maxheightpx-and-maxwidthpx
     int? maxHeightPx,
   }) async {
-    assert(
-        (name != null || (placeId != null && photoId != null)) &&
-            (maxWidthPx != null || maxHeightPx != null),
-        'Ensure that name != null or placeId != null and photoId != null. Also ensure that maxWidthPx != null or maxHeightPx != null.');
-    try {
-      if (name != null) {
-        final split = name.split('/');
-        placeId = split[1];
-        photoId = split[3];
-      }
-    } catch (e) {
-      throw Exception('Malformed Photo resource name');
-    }
-    final response = await genericParseResponse(
-        _service.getPhoto(
-          placeId: placeId ?? '',
-          photoId: photoId ?? '',
-          maxWidthPx: maxWidthPx,
-          maxHeightPx: maxHeightPx,
-        ),
-        dataType: Photo());
+    final requestOptions = RequestOptions(
+      method: 'GET',
+      baseUrl: _buildPhotoUrl(
+        name: name,
+        placeId: placeId,
+        photoId: photoId,
+        maxWidthPx: maxWidthPx,
+        maxHeightPx: maxHeightPx,
+        skipHttpRedirect: true,
+      ),
+      responseType: ResponseType.json,
+      receiveTimeout: restAPI.receiveTimeout,
+      connectTimeout: restAPI.connectTimeout,
+      sendTimeout: restAPI.sendTimeout,
+    );
+    final response = await Dio().fetch<Map<String, dynamic>>(requestOptions);
+    late Photo? photo =
+        response.data == null ? null : Photo.fromJson(response.data!);
     return GoogleHTTPResponse(
-      response.base,
-      response.body?.photoUri,
-      error: response.error,
-      extraData: response.extraData,
+      http.Response(
+        '',
+        response.statusCode ?? HttpStatus.notFound,
+        headers: MapUtils.parseHeaders(response.headers) ?? {},
+        isRedirect: response.isRedirect,
+        request: http.Request(
+          response.requestOptions.method,
+          response.requestOptions.uri,
+        ),
+      ),
+      photo?.photoUri,
+      extraData: response.extra,
+      error: response.statusCode != 200
+          ? GoogleErrorResponse(
+              error: ErrorInfo(message: 'Failed to fetch photo binary'),
+            )
+          : null,
     );
   }
 
@@ -145,24 +252,16 @@ class PlacesAPINew extends RestAPIService<PlaceDetails> {
     /// Maximum desired height of the image in pixels: https://developers.google.com/maps/documentation/places/web-service/place-photos#maxheightpx-and-maxwidthpx
     int? maxHeightPx,
   }) async {
-    final responseUrl = await getPhotoUrl(
-      name: name,
-      placeId: placeId,
-      photoId: photoId,
-      maxWidthPx: maxWidthPx,
-      maxHeightPx: maxHeightPx,
-    );
-    if (!responseUrl.isSuccessful) {
-      return GoogleHTTPResponse(
-        responseUrl.base,
-        null,
-        error: responseUrl.error,
-        extraData: responseUrl.extraData,
-      );
-    }
     final requestOptions = RequestOptions(
       method: 'GET',
-      baseUrl: responseUrl.body,
+      baseUrl: _buildPhotoUrl(
+        name: name,
+        placeId: placeId,
+        photoId: photoId,
+        maxWidthPx: maxWidthPx,
+        maxHeightPx: maxHeightPx,
+        skipHttpRedirect: false,
+      ),
       responseType: ResponseType.bytes,
       receiveTimeout: restAPI.receiveTimeout,
       connectTimeout: restAPI.connectTimeout,
