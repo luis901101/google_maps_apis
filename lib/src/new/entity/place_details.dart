@@ -112,7 +112,12 @@ class PlaceDetails extends Jsonable<PlaceDetails> {
     List<String> fields = [];
     if (value != null) {
       if (value is Jsonable) {
-        fields.addAll(_searchInMap(parentKey: key, map: value.toJson()));
+        final results = _searchInMap(parentKey: key, map: value.toJson());
+        if (results.isNotEmpty) {
+          fields.addAll(results);
+        } else {
+          fields.add(key);
+        }
       } else if (value is Map) {
         final results = _searchInMap(parentKey: key, map: value);
         if (results.isNotEmpty) {

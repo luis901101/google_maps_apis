@@ -62,10 +62,6 @@ GoogleErrorResponse _$GoogleErrorResponseFromJson(Map<String, dynamic> json) =>
           : ErrorInfo.fromJson(json['error'] as Map<String, dynamic>),
     );
 
-abstract final class _$GoogleErrorResponseJsonKeys {
-  static const String error = 'error';
-}
-
 Map<String, dynamic> _$GoogleErrorResponseToJson(
         GoogleErrorResponse instance) =>
     <String, dynamic>{

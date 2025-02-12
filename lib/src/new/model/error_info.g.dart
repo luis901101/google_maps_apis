@@ -13,13 +13,6 @@ ErrorInfo _$ErrorInfoFromJson(Map<String, dynamic> json) => ErrorInfo(
       details: json['details'],
     );
 
-abstract final class _$ErrorInfoJsonKeys {
-  static const String code = 'code';
-  static const String message = 'message';
-  static const String status = 'status';
-  static const String details = 'details';
-}
-
 Map<String, dynamic> _$ErrorInfoToJson(ErrorInfo instance) => <String, dynamic>{
       if (instance.code case final value?) 'code': value,
       if (instance.message case final value?) 'message': value,

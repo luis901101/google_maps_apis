@@ -10,15 +10,17 @@ targets:
       json_serializable|json_serializable:
         options:
           include_if_null: false
-          create_json_keys: true
+#          create_json_keys: true
         generate_for:
           - '**/entity/*.dart'
+          - '**/filter/*.dart'
           - '**/model/*.dart'
       copy_with_extension_gen|copy_with_extension_gen:
         options:
           skip_fields: true
         generate_for:
           - '**/entity/*.dart'
+          - '**/filter/*.dart'
           - '**/model/*.dart'
       retrofit_generator|retrofit_generator:
         generate_for:
@@ -34,39 +36,3 @@ targets:
         options:
           include_if_null: false
           field_rename: snake
-
-#targets:
-#  $default:
-#    builders:
-#      json_serializable:
-#        options:
-#          include_if_null: false
-#      retrofit_generator:
-#        enabled: false
-#      copy_with_extension_gen:
-#        enabled: false
-#  google_maps_apis|lib/src/legacy:
-#    builders:
-#      json_serializable:
-#        generate_for:
-#          - '**/legacy/*.dart'
-#        options:
-#          include_if_null: false
-#          field_rename: snake
-#      retrofit_generator:
-#        enabled: false
-#      copy_with_extension_gen:
-#        enabled: false
-#  google_maps_apis|lib/src/new:
-#    builders:
-#      json_serializable:
-#        generate_for:
-#          - '**/entity/*.dart'
-#          - '**/model/*.dart'
-#      copy_with_extension_gen:
-#        generate_for:
-#          - '**/entity/*.dart'
-#          - '**/model/*.dart'
-#      retrofit_generator:
-#        generate_for:
-#          - '**/service/*.dart'

@@ -4,6 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:google_maps_apis/src/new/base_api/rest_api.dart';
 import 'package:google_maps_apis/src/new/base_api/rest_api_service.dart';
 import 'package:google_maps_apis/src/new/entity/place_details.dart';
+import 'package:google_maps_apis/src/new/entity/places_response.dart';
+import 'package:google_maps_apis/src/new/filter/nearby_search_filter.dart';
 import 'package:google_maps_apis/src/new/model/error_info.dart';
 import 'package:google_maps_apis/src/new/model/google_error_response.dart';
 import 'package:google_maps_apis/src/new/model/google_http_response.dart';
@@ -12,6 +14,15 @@ import 'package:google_maps_apis/src/new/utils/map_utils.dart';
 import 'package:http/http.dart' as http;
 
 /// API service for the Places API (New): https://developers.google.com/maps/documentation/places/web-service/op-overview
+///
+/// [baseUrl] is the base url of the API, by default it's 'https://places.googleapis.com', but you could use some proxy base url to cache requests.
+/// [token] is the token to be used in the requests, if you use this, you don't need to use [apiKey].
+/// [tokenCallback] is a callback that returns the token to be used in the requests, if you use this, you don't need to use [apiKey] or [token].
+/// [apiKey] is the api key to be used in the requests, if you use this, you don't need to use [token] or [tokenCallback].
+/// [connectTimeout] is the maximum amount of time in milliseconds that the request can take to establish a connection.
+/// [receiveTimeout] is the maximum amount of time in milliseconds that the request can take to receive data.
+/// [sendTimeout] is the maximum amount of time in milliseconds that the request can take to send data.
+/// [httpClient] is the client to be used in the requests, in case you want to use a custom client for logging or error reporting purposes.
 class PlacesAPINew extends RestAPIService<PlaceDetails> {
   late final PlacesServiceNew _service;
   PlacesAPINew({
@@ -37,6 +48,10 @@ class PlacesAPINew extends RestAPIService<PlaceDetails> {
   }
 
   /// Fetch details of a place.
+  /// Once you have a place ID, you can request more details about a particular establishment
+  /// or point of interest by initiating a Place Details (New) request.
+  /// A Place Details (New) request returns more comprehensive information about the indicated place
+  /// such as its complete address, phone number, user rating and reviews.
   ///
   /// Required params:
   ///  - [id]: The id of the place.
@@ -48,6 +63,7 @@ class PlacesAPINew extends RestAPIService<PlaceDetails> {
     required String id,
 
     /// If true, all fields will be included in the response. It's the same as using fields: ['*'].
+    /// Take into account including all fields is expensive in terms of quota usage and performance.
     bool allFields = false,
 
     /// List of fields to be included in the response by creating a response field mask: https://developers.google.com/maps/documentation/places/web-service/place-details#fieldmask
@@ -63,11 +79,10 @@ class PlacesAPINew extends RestAPIService<PlaceDetails> {
     } else {
       fields ??= placeFields?.toFieldsMask();
     }
-    final response = await parseResponse(_service.getDetails(
+    return parseResponse(_service.getDetails(
       id: id,
       fields: fields ?? [],
     ));
-    return response;
   }
 
   /// Build photo url for requests
@@ -286,6 +301,47 @@ class PlacesAPINew extends RestAPIService<PlaceDetails> {
               error: ErrorInfo(message: 'Failed to fetch photo binary'),
             )
           : null,
+    );
+  }
+
+  /// Searches nearby a specified location and radius.
+  /// A Nearby Search (New) request takes one or more place types, and returns
+  /// a list of matching places within the specified area. A field mask specifying
+  /// one or more data types is required. Nearby Search (New) only supports POST requests.
+  ///
+  /// Required params:
+  ///  - [id]: The id of the place.
+  ///  - [allFields] or [fields] or [placeFields]: A definition of the fields to be included in the response must be specified.
+  ///
+  /// Documentation: https://developers.google.com/maps/documentation/places/web-service/nearby-search
+  Future<GoogleHTTPResponse<PlacesResponse?>> searchNearby({
+    /// If true, all fields will be included in the response. It's the same as using fields: ['*'].
+    /// Take into account including all fields is expensive in terms of quota usage and performance.
+    bool allFields = false,
+
+    /// List of fields to be included in the response by creating a response field mask: https://developers.google.com/maps/documentation/places/web-service/nearby-search#fieldmask
+    /// Take into account this function returns a list of [places], so the fields must be specified with the 'places.' hierarchy in mind, like 'places.id','places.displayName'.
+    List<String>? fields,
+
+    /// [Recommended] An instance of PlaceDetails where all fields that are not null will be used as the fields parameter taking into account the field hierarchy, as described here: https://developers.google.com/maps/documentation/places/web-service/nearby-search#fieldmask
+    PlaceDetails? placeFields,
+
+    /// Filters for the search
+    required NearbySearchFilter filter,
+  }) async {
+    assert(allFields || fields != null || placeFields != null,
+        'Ensure that allFields = true or fields != null, or placeFields != null with some field != null.');
+    if (allFields) {
+      fields = ['*'];
+    } else {
+      fields ??= placeFields?.toFieldsMask(parentKey: 'places');
+    }
+    return genericParseResponse(
+      _service.searchNearby(
+        fields: fields ?? [],
+        filter: filter,
+      ),
+      dataType: PlacesResponse(places: []),
     );
   }
 }

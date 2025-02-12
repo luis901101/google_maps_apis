@@ -1695,41 +1695,6 @@ PlaceDetails _$PlaceDetailsFromJson(Map<String, dynamic> json) => PlaceDetails(
               json['googleMapsLinks'] as Map<String, dynamic>),
     );
 
-abstract final class _$PlaceDetailsJsonKeys {
-  static const String name = 'name';
-  static const String id = 'id';
-  static const String types = 'types';
-  static const String nationalPhoneNumber = 'nationalPhoneNumber';
-  static const String internationalPhoneNumber = 'internationalPhoneNumber';
-  static const String formattedAddress = 'formattedAddress';
-  static const String addressComponents = 'addressComponents';
-  static const String plusCode = 'plusCode';
-  static const String location = 'location';
-  static const String viewport = 'viewport';
-  static const String rating = 'rating';
-  static const String googleMapsUri = 'googleMapsUri';
-  static const String websiteUri = 'websiteUri';
-  static const String regularOpeningHours = 'regularOpeningHours';
-  static const String utcOffsetMinutes = 'utcOffsetMinutes';
-  static const String adrFormatAddress = 'adrFormatAddress';
-  static const String businessStatus = 'businessStatus';
-  static const String userRatingCount = 'userRatingCount';
-  static const String iconMaskBaseUri = 'iconMaskBaseUri';
-  static const String iconBackgroundColor = 'iconBackgroundColor';
-  static const String displayName = 'displayName';
-  static const String primaryTypeDisplayName = 'primaryTypeDisplayName';
-  static const String currentOpeningHours = 'currentOpeningHours';
-  static const String primaryType = 'primaryType';
-  static const String shortFormattedAddress = 'shortFormattedAddress';
-  static const String editorialSummary = 'editorialSummary';
-  static const String reviews = 'reviews';
-  static const String photos = 'photos';
-  static const String accessibilityOptions = 'accessibilityOptions';
-  static const String pureServiceAreaBusiness = 'pureServiceAreaBusiness';
-  static const String addressDescriptor = 'addressDescriptor';
-  static const String googleMapsLinks = 'googleMapsLinks';
-}
-
 Map<String, dynamic> _$PlaceDetailsToJson(PlaceDetails instance) =>
     <String, dynamic>{
       if (instance.name case final value?) 'name': value,
@@ -1790,13 +1755,6 @@ AddressComponent _$AddressComponentFromJson(Map<String, dynamic> json) =>
       languageCode: json['languageCode'] as String?,
     );
 
-abstract final class _$AddressComponentJsonKeys {
-  static const String longText = 'longText';
-  static const String shortText = 'shortText';
-  static const String types = 'types';
-  static const String languageCode = 'languageCode';
-}
-
 Map<String, dynamic> _$AddressComponentToJson(AddressComponent instance) =>
     <String, dynamic>{
       if (instance.longText case final value?) 'longText': value,
@@ -1810,11 +1768,6 @@ PlusCode _$PlusCodeFromJson(Map<String, dynamic> json) => PlusCode(
       compoundCode: json['compoundCode'] as String?,
     );
 
-abstract final class _$PlusCodeJsonKeys {
-  static const String globalCode = 'globalCode';
-  static const String compoundCode = 'compoundCode';
-}
-
 Map<String, dynamic> _$PlusCodeToJson(PlusCode instance) => <String, dynamic>{
       if (instance.globalCode case final value?) 'globalCode': value,
       if (instance.compoundCode case final value?) 'compoundCode': value,
@@ -1824,11 +1777,6 @@ Location _$LocationFromJson(Map<String, dynamic> json) => Location(
       latitude: (json['latitude'] as num?)?.toDouble(),
       longitude: (json['longitude'] as num?)?.toDouble(),
     );
-
-abstract final class _$LocationJsonKeys {
-  static const String latitude = 'latitude';
-  static const String longitude = 'longitude';
-}
 
 Map<String, dynamic> _$LocationToJson(Location instance) => <String, dynamic>{
       if (instance.latitude case final value?) 'latitude': value,
@@ -1844,11 +1792,6 @@ Viewport _$ViewportFromJson(Map<String, dynamic> json) => Viewport(
           : High.fromJson(json['high'] as Map<String, dynamic>),
     );
 
-abstract final class _$ViewportJsonKeys {
-  static const String low = 'low';
-  static const String high = 'high';
-}
-
 Map<String, dynamic> _$ViewportToJson(Viewport instance) => <String, dynamic>{
       if (instance.low case final value?) 'low': value,
       if (instance.high case final value?) 'high': value,
@@ -1859,11 +1802,6 @@ Low _$LowFromJson(Map<String, dynamic> json) => Low(
       longitude: (json['longitude'] as num?)?.toDouble(),
     );
 
-abstract final class _$LowJsonKeys {
-  static const String latitude = 'latitude';
-  static const String longitude = 'longitude';
-}
-
 Map<String, dynamic> _$LowToJson(Low instance) => <String, dynamic>{
       if (instance.latitude case final value?) 'latitude': value,
       if (instance.longitude case final value?) 'longitude': value,
@@ -1873,11 +1811,6 @@ High _$HighFromJson(Map<String, dynamic> json) => High(
       latitude: (json['latitude'] as num?)?.toDouble(),
       longitude: (json['longitude'] as num?)?.toDouble(),
     );
-
-abstract final class _$HighJsonKeys {
-  static const String latitude = 'latitude';
-  static const String longitude = 'longitude';
-}
 
 Map<String, dynamic> _$HighToJson(High instance) => <String, dynamic>{
       if (instance.latitude case final value?) 'latitude': value,
@@ -1895,13 +1828,6 @@ RegularOpeningHours _$RegularOpeningHoursFromJson(Map<String, dynamic> json) =>
           .toList(),
       nextCloseTime: json['nextCloseTime'] as String?,
     );
-
-abstract final class _$RegularOpeningHoursJsonKeys {
-  static const String openNow = 'openNow';
-  static const String periods = 'periods';
-  static const String weekdayDescriptions = 'weekdayDescriptions';
-  static const String nextCloseTime = 'nextCloseTime';
-}
 
 Map<String, dynamic> _$RegularOpeningHoursToJson(
         RegularOpeningHours instance) =>
@@ -1922,11 +1848,6 @@ Period _$PeriodFromJson(Map<String, dynamic> json) => Period(
           : Close.fromJson(json['close'] as Map<String, dynamic>),
     );
 
-abstract final class _$PeriodJsonKeys {
-  static const String open = 'open';
-  static const String close = 'close';
-}
-
 Map<String, dynamic> _$PeriodToJson(Period instance) => <String, dynamic>{
       if (instance.open case final value?) 'open': value,
       if (instance.close case final value?) 'close': value,
@@ -1937,12 +1858,6 @@ Open _$OpenFromJson(Map<String, dynamic> json) => Open(
       hour: (json['hour'] as num?)?.toInt(),
       minute: (json['minute'] as num?)?.toInt(),
     );
-
-abstract final class _$OpenJsonKeys {
-  static const String day = 'day';
-  static const String hour = 'hour';
-  static const String minute = 'minute';
-}
 
 Map<String, dynamic> _$OpenToJson(Open instance) => <String, dynamic>{
       if (instance.day case final value?) 'day': value,
@@ -1956,12 +1871,6 @@ Close _$CloseFromJson(Map<String, dynamic> json) => Close(
       minute: (json['minute'] as num?)?.toInt(),
     );
 
-abstract final class _$CloseJsonKeys {
-  static const String day = 'day';
-  static const String hour = 'hour';
-  static const String minute = 'minute';
-}
-
 Map<String, dynamic> _$CloseToJson(Close instance) => <String, dynamic>{
       if (instance.day case final value?) 'day': value,
       if (instance.hour case final value?) 'hour': value,
@@ -1972,11 +1881,6 @@ DisplayName _$DisplayNameFromJson(Map<String, dynamic> json) => DisplayName(
       text: json['text'] as String?,
       languageCode: json['languageCode'] as String?,
     );
-
-abstract final class _$DisplayNameJsonKeys {
-  static const String text = 'text';
-  static const String languageCode = 'languageCode';
-}
 
 Map<String, dynamic> _$DisplayNameToJson(DisplayName instance) =>
     <String, dynamic>{
@@ -1990,11 +1894,6 @@ PrimaryTypeDisplayName _$PrimaryTypeDisplayNameFromJson(
       text: json['text'] as String?,
       languageCode: json['languageCode'] as String?,
     );
-
-abstract final class _$PrimaryTypeDisplayNameJsonKeys {
-  static const String text = 'text';
-  static const String languageCode = 'languageCode';
-}
 
 Map<String, dynamic> _$PrimaryTypeDisplayNameToJson(
         PrimaryTypeDisplayName instance) =>
@@ -2015,13 +1914,6 @@ CurrentOpeningHours _$CurrentOpeningHoursFromJson(Map<String, dynamic> json) =>
       nextCloseTime: json['nextCloseTime'] as String?,
     );
 
-abstract final class _$CurrentOpeningHoursJsonKeys {
-  static const String openNow = 'openNow';
-  static const String periods = 'periods';
-  static const String weekdayDescriptions = 'weekdayDescriptions';
-  static const String nextCloseTime = 'nextCloseTime';
-}
-
 Map<String, dynamic> _$CurrentOpeningHoursToJson(
         CurrentOpeningHours instance) =>
     <String, dynamic>{
@@ -2038,12 +1930,6 @@ Date _$DateFromJson(Map<String, dynamic> json) => Date(
       day: (json['day'] as num?)?.toInt(),
     );
 
-abstract final class _$DateJsonKeys {
-  static const String year = 'year';
-  static const String month = 'month';
-  static const String day = 'day';
-}
-
 Map<String, dynamic> _$DateToJson(Date instance) => <String, dynamic>{
       if (instance.year case final value?) 'year': value,
       if (instance.month case final value?) 'month': value,
@@ -2055,11 +1941,6 @@ EditorialSummary _$EditorialSummaryFromJson(Map<String, dynamic> json) =>
       text: json['text'] as String?,
       languageCode: json['languageCode'] as String?,
     );
-
-abstract final class _$EditorialSummaryJsonKeys {
-  static const String text = 'text';
-  static const String languageCode = 'languageCode';
-}
 
 Map<String, dynamic> _$EditorialSummaryToJson(EditorialSummary instance) =>
     <String, dynamic>{
@@ -2087,19 +1968,6 @@ Review _$ReviewFromJson(Map<String, dynamic> json) => Review(
       googleMapsUri: json['googleMapsUri'] as String?,
     );
 
-abstract final class _$ReviewJsonKeys {
-  static const String name = 'name';
-  static const String relativePublishTimeDescription =
-      'relativePublishTimeDescription';
-  static const String rating = 'rating';
-  static const String text = 'text';
-  static const String originalText = 'originalText';
-  static const String authorAttribution = 'authorAttribution';
-  static const String publishTime = 'publishTime';
-  static const String flagContentUri = 'flagContentUri';
-  static const String googleMapsUri = 'googleMapsUri';
-}
-
 Map<String, dynamic> _$ReviewToJson(Review instance) => <String, dynamic>{
       if (instance.name case final value?) 'name': value,
       if (instance.relativePublishTimeDescription case final value?)
@@ -2119,11 +1987,6 @@ Text _$TextFromJson(Map<String, dynamic> json) => Text(
       languageCode: json['languageCode'] as String?,
     );
 
-abstract final class _$TextJsonKeys {
-  static const String text = 'text';
-  static const String languageCode = 'languageCode';
-}
-
 Map<String, dynamic> _$TextToJson(Text instance) => <String, dynamic>{
       if (instance.text case final value?) 'text': value,
       if (instance.languageCode case final value?) 'languageCode': value,
@@ -2133,11 +1996,6 @@ OriginalText _$OriginalTextFromJson(Map<String, dynamic> json) => OriginalText(
       text: json['text'] as String?,
       languageCode: json['languageCode'] as String?,
     );
-
-abstract final class _$OriginalTextJsonKeys {
-  static const String text = 'text';
-  static const String languageCode = 'languageCode';
-}
 
 Map<String, dynamic> _$OriginalTextToJson(OriginalText instance) =>
     <String, dynamic>{
@@ -2151,12 +2009,6 @@ AuthorAttribution _$AuthorAttributionFromJson(Map<String, dynamic> json) =>
       uri: json['uri'] as String?,
       photoUri: json['photoUri'] as String?,
     );
-
-abstract final class _$AuthorAttributionJsonKeys {
-  static const String displayName = 'displayName';
-  static const String uri = 'uri';
-  static const String photoUri = 'photoUri';
-}
 
 Map<String, dynamic> _$AuthorAttributionToJson(AuthorAttribution instance) =>
     <String, dynamic>{
@@ -2177,16 +2029,6 @@ Photo _$PhotoFromJson(Map<String, dynamic> json) => Photo(
       photoUri: json['photoUri'] as String?,
     );
 
-abstract final class _$PhotoJsonKeys {
-  static const String name = 'name';
-  static const String widthPx = 'widthPx';
-  static const String heightPx = 'heightPx';
-  static const String authorAttributions = 'authorAttributions';
-  static const String flagContentUri = 'flagContentUri';
-  static const String googleMapsUri = 'googleMapsUri';
-  static const String photoUri = 'photoUri';
-}
-
 Map<String, dynamic> _$PhotoToJson(Photo instance) => <String, dynamic>{
       if (instance.name case final value?) 'name': value,
       if (instance.widthPx case final value?) 'widthPx': value,
@@ -2206,13 +2048,6 @@ AccessibilityOptions _$AccessibilityOptionsFromJson(
           json['wheelchairAccessibleEntrance'] as bool?,
     );
 
-abstract final class _$AccessibilityOptionsJsonKeys {
-  static const String wheelchairAccessibleParking =
-      'wheelchairAccessibleParking';
-  static const String wheelchairAccessibleEntrance =
-      'wheelchairAccessibleEntrance';
-}
-
 Map<String, dynamic> _$AccessibilityOptionsToJson(
         AccessibilityOptions instance) =>
     <String, dynamic>{
@@ -2228,10 +2063,6 @@ AddressDescriptor _$AddressDescriptorFromJson(Map<String, dynamic> json) =>
           ?.map((e) => Landmark.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
-
-abstract final class _$AddressDescriptorJsonKeys {
-  static const String landmarks = 'landmarks';
-}
 
 Map<String, dynamic> _$AddressDescriptorToJson(AddressDescriptor instance) =>
     <String, dynamic>{
@@ -2250,15 +2081,6 @@ Landmark _$LandmarkFromJson(Map<String, dynamic> json) => Landmark(
           (json['straightLineDistanceMeters'] as num?)?.toDouble(),
       travelDistanceMeters: (json['travelDistanceMeters'] as num?)?.toDouble(),
     );
-
-abstract final class _$LandmarkJsonKeys {
-  static const String name = 'name';
-  static const String placeId = 'placeId';
-  static const String displayName = 'displayName';
-  static const String types = 'types';
-  static const String straightLineDistanceMeters = 'straightLineDistanceMeters';
-  static const String travelDistanceMeters = 'travelDistanceMeters';
-}
 
 Map<String, dynamic> _$LandmarkToJson(Landmark instance) => <String, dynamic>{
       if (instance.name case final value?) 'name': value,
@@ -2279,14 +2101,6 @@ GoogleMapsLinks _$GoogleMapsLinksFromJson(Map<String, dynamic> json) =>
       reviewsUri: json['reviewsUri'] as String?,
       photosUri: json['photosUri'] as String?,
     );
-
-abstract final class _$GoogleMapsLinksJsonKeys {
-  static const String directionsUri = 'directionsUri';
-  static const String placeUri = 'placeUri';
-  static const String writeAReviewUri = 'writeAReviewUri';
-  static const String reviewsUri = 'reviewsUri';
-  static const String photosUri = 'photosUri';
-}
 
 Map<String, dynamic> _$GoogleMapsLinksToJson(GoogleMapsLinks instance) =>
     <String, dynamic>{

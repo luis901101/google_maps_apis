@@ -213,4 +213,104 @@ Future<void> main() async {
       expect(response.body, isNotEmpty);
     });
   });
+
+  group('Nearby Search', () {
+    test('Search nearby max 10 restaurants with fields list', () async {
+      final int maxResultCount = 10;
+      var response = await placesAPI.searchNearby(
+        fields: [
+          'places.id',
+          'places.displayName',
+          'places.rating',
+        ],
+        filter: NearbySearchFilter(
+          includedTypes: [PlaceType.restaurant],
+          maxResultCount: maxResultCount,
+          locationRestriction: LocationRestriction(
+            circle: Circle(
+              center: Coordinates(
+                latitude: 37.7749,
+                longitude: -122.4194,
+              ),
+              radius: 500,
+            ),
+          ),
+        ),
+      );
+      expect(response.isSuccessful, true);
+      expect(response.body, isNotNull);
+      expect(response.body?.places, isNotEmpty);
+      expect(response.body?.places.length, maxResultCount);
+      expect(response.body?.places.firstOrNull?.id, isNotNull);
+      expect(response.body?.places.firstOrNull?.displayName, isNotNull);
+    });
+    test('Search nearby including too many types', () async {
+      var response = await placesAPI.searchNearby(
+        placeFields: PlaceDetails(
+          id: '',
+          displayName: DisplayName(),
+          formattedAddress: '',
+          regularOpeningHours: RegularOpeningHours(
+            periods: [],
+          ),
+        ),
+        filter: NearbySearchFilter(
+          includedTypes: PlaceType.foodAndDrinkTypes,
+          locationRestriction: LocationRestriction(
+            circle: Circle(
+              center: Coordinates(
+                latitude: 37.7937,
+                longitude: -122.3965,
+              ),
+              radius: 500.0,
+            ),
+          ),
+        ),
+      );
+      expect(response.isSuccessful, false);
+      expect(response.error, isNotNull);
+    });
+    test('Search nearby with advanced filter', () async {
+      final int maxResultCount = 20;
+      var response = await placesAPI.searchNearby(
+        placeFields: PlaceDetails(
+          id: '',
+          displayName: DisplayName(),
+          formattedAddress: '',
+          regularOpeningHours: RegularOpeningHours(
+            periods: [],
+          ),
+        ),
+        filter: NearbySearchFilter(
+          includedTypes: PlaceType.foodAndDrinkTypes.sublist(0, 50),
+          excludedTypes: [PlaceType.sushiRestaurant],
+          includedPrimaryTypes: [PlaceType.restaurant],
+          excludedPrimaryTypes: [PlaceType.hamburgerRestaurant],
+          maxResultCount: maxResultCount,
+          rankPreference: RankPreferenceType.distance,
+          languageCode: 'es',
+          regionCode: 'es',
+          locationRestriction: LocationRestriction(
+            circle: Circle(
+              center: Coordinates(
+                latitude: 37.7937,
+                longitude: -122.3965,
+              ),
+              radius: 500.0,
+            ),
+          ),
+        ),
+      );
+      expect(response.isSuccessful, true);
+      expect(response.body, isNotNull);
+      expect(response.body?.places, isNotEmpty);
+      expect(response.body?.places.length, maxResultCount);
+      final place = response.body?.places.firstOrNull;
+      expect(place?.id, isNotNull);
+      expect(place?.displayName, isNotNull);
+      expect(place?.formattedAddress, isNotNull);
+      expect(place?.regularOpeningHours, isNotNull);
+      expect(place?.regularOpeningHours?.periods, isNotEmpty);
+    });
+  });
 }
