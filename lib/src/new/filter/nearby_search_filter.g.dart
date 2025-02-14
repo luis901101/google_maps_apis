@@ -14,15 +14,16 @@ abstract class _$NearbySearchFilterCWProxy {
   /// NearbySearchFilter(...).copyWith(id: 12, name: "My name")
   /// ````
   NearbySearchFilter call({
-    LocationRestriction locationRestriction,
+    String? languageCode,
+    String? regionCode,
     List<PlaceType>? includedTypes,
     List<PlaceType>? excludedTypes,
     List<PlaceType>? includedPrimaryTypes,
     List<PlaceType>? excludedPrimaryTypes,
-    String? languageCode,
     int? maxResultCount,
+    LocationCircleArea locationRestriction,
     RankPreferenceType? rankPreference,
-    String? regionCode,
+    RoutingParameters? routingParameters,
   });
 }
 
@@ -41,21 +42,26 @@ class _$NearbySearchFilterCWProxyImpl implements _$NearbySearchFilterCWProxy {
   /// NearbySearchFilter(...).copyWith(id: 12, name: "My name")
   /// ````
   NearbySearchFilter call({
-    Object? locationRestriction = const $CopyWithPlaceholder(),
+    Object? languageCode = const $CopyWithPlaceholder(),
+    Object? regionCode = const $CopyWithPlaceholder(),
     Object? includedTypes = const $CopyWithPlaceholder(),
     Object? excludedTypes = const $CopyWithPlaceholder(),
     Object? includedPrimaryTypes = const $CopyWithPlaceholder(),
     Object? excludedPrimaryTypes = const $CopyWithPlaceholder(),
-    Object? languageCode = const $CopyWithPlaceholder(),
     Object? maxResultCount = const $CopyWithPlaceholder(),
+    Object? locationRestriction = const $CopyWithPlaceholder(),
     Object? rankPreference = const $CopyWithPlaceholder(),
-    Object? regionCode = const $CopyWithPlaceholder(),
+    Object? routingParameters = const $CopyWithPlaceholder(),
   }) {
     return NearbySearchFilter(
-      locationRestriction: locationRestriction == const $CopyWithPlaceholder()
-          ? _value.locationRestriction
+      languageCode: languageCode == const $CopyWithPlaceholder()
+          ? _value.languageCode
           // ignore: cast_nullable_to_non_nullable
-          : locationRestriction as LocationRestriction,
+          : languageCode as String?,
+      regionCode: regionCode == const $CopyWithPlaceholder()
+          ? _value.regionCode
+          // ignore: cast_nullable_to_non_nullable
+          : regionCode as String?,
       includedTypes: includedTypes == const $CopyWithPlaceholder()
           ? _value.includedTypes
           // ignore: cast_nullable_to_non_nullable
@@ -72,22 +78,22 @@ class _$NearbySearchFilterCWProxyImpl implements _$NearbySearchFilterCWProxy {
           ? _value.excludedPrimaryTypes
           // ignore: cast_nullable_to_non_nullable
           : excludedPrimaryTypes as List<PlaceType>?,
-      languageCode: languageCode == const $CopyWithPlaceholder()
-          ? _value.languageCode
-          // ignore: cast_nullable_to_non_nullable
-          : languageCode as String?,
       maxResultCount: maxResultCount == const $CopyWithPlaceholder()
           ? _value.maxResultCount
           // ignore: cast_nullable_to_non_nullable
           : maxResultCount as int?,
+      locationRestriction: locationRestriction == const $CopyWithPlaceholder()
+          ? _value.locationRestriction
+          // ignore: cast_nullable_to_non_nullable
+          : locationRestriction as LocationCircleArea,
       rankPreference: rankPreference == const $CopyWithPlaceholder()
           ? _value.rankPreference
           // ignore: cast_nullable_to_non_nullable
           : rankPreference as RankPreferenceType?,
-      regionCode: regionCode == const $CopyWithPlaceholder()
-          ? _value.regionCode
+      routingParameters: routingParameters == const $CopyWithPlaceholder()
+          ? _value.routingParameters
           // ignore: cast_nullable_to_non_nullable
-          : regionCode as String?,
+          : routingParameters as RoutingParameters?,
     );
   }
 }
@@ -99,159 +105,14 @@ extension $NearbySearchFilterCopyWith on NearbySearchFilter {
       _$NearbySearchFilterCWProxyImpl(this);
 }
 
-abstract class _$LocationRestrictionCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
-  ///
-  /// Usage
-  /// ```dart
-  /// LocationRestriction(...).copyWith(id: 12, name: "My name")
-  /// ````
-  LocationRestriction call({
-    Circle circle,
-  });
-}
-
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfLocationRestriction.copyWith(...)`.
-class _$LocationRestrictionCWProxyImpl implements _$LocationRestrictionCWProxy {
-  const _$LocationRestrictionCWProxyImpl(this._value);
-
-  final LocationRestriction _value;
-
-  @override
-
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
-  ///
-  /// Usage
-  /// ```dart
-  /// LocationRestriction(...).copyWith(id: 12, name: "My name")
-  /// ````
-  LocationRestriction call({
-    Object? circle = const $CopyWithPlaceholder(),
-  }) {
-    return LocationRestriction(
-      circle: circle == const $CopyWithPlaceholder()
-          ? _value.circle
-          // ignore: cast_nullable_to_non_nullable
-          : circle as Circle,
-    );
-  }
-}
-
-extension $LocationRestrictionCopyWith on LocationRestriction {
-  /// Returns a callable class that can be used as follows: `instanceOfLocationRestriction.copyWith(...)`.
-  // ignore: library_private_types_in_public_api
-  _$LocationRestrictionCWProxy get copyWith =>
-      _$LocationRestrictionCWProxyImpl(this);
-}
-
-abstract class _$CircleCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
-  ///
-  /// Usage
-  /// ```dart
-  /// Circle(...).copyWith(id: 12, name: "My name")
-  /// ````
-  Circle call({
-    Coordinates center,
-    double? radius,
-  });
-}
-
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCircle.copyWith(...)`.
-class _$CircleCWProxyImpl implements _$CircleCWProxy {
-  const _$CircleCWProxyImpl(this._value);
-
-  final Circle _value;
-
-  @override
-
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
-  ///
-  /// Usage
-  /// ```dart
-  /// Circle(...).copyWith(id: 12, name: "My name")
-  /// ````
-  Circle call({
-    Object? center = const $CopyWithPlaceholder(),
-    Object? radius = const $CopyWithPlaceholder(),
-  }) {
-    return Circle(
-      center: center == const $CopyWithPlaceholder()
-          ? _value.center
-          // ignore: cast_nullable_to_non_nullable
-          : center as Coordinates,
-      radius: radius == const $CopyWithPlaceholder()
-          ? _value.radius
-          // ignore: cast_nullable_to_non_nullable
-          : radius as double?,
-    );
-  }
-}
-
-extension $CircleCopyWith on Circle {
-  /// Returns a callable class that can be used as follows: `instanceOfCircle.copyWith(...)`.
-  // ignore: library_private_types_in_public_api
-  _$CircleCWProxy get copyWith => _$CircleCWProxyImpl(this);
-}
-
-abstract class _$CoordinatesCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
-  ///
-  /// Usage
-  /// ```dart
-  /// Coordinates(...).copyWith(id: 12, name: "My name")
-  /// ````
-  Coordinates call({
-    double latitude,
-    double longitude,
-  });
-}
-
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCoordinates.copyWith(...)`.
-class _$CoordinatesCWProxyImpl implements _$CoordinatesCWProxy {
-  const _$CoordinatesCWProxyImpl(this._value);
-
-  final Coordinates _value;
-
-  @override
-
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
-  ///
-  /// Usage
-  /// ```dart
-  /// Coordinates(...).copyWith(id: 12, name: "My name")
-  /// ````
-  Coordinates call({
-    Object? latitude = const $CopyWithPlaceholder(),
-    Object? longitude = const $CopyWithPlaceholder(),
-  }) {
-    return Coordinates(
-      latitude: latitude == const $CopyWithPlaceholder()
-          ? _value.latitude
-          // ignore: cast_nullable_to_non_nullable
-          : latitude as double,
-      longitude: longitude == const $CopyWithPlaceholder()
-          ? _value.longitude
-          // ignore: cast_nullable_to_non_nullable
-          : longitude as double,
-    );
-  }
-}
-
-extension $CoordinatesCopyWith on Coordinates {
-  /// Returns a callable class that can be used as follows: `instanceOfCoordinates.copyWith(...)`.
-  // ignore: library_private_types_in_public_api
-  _$CoordinatesCWProxy get copyWith => _$CoordinatesCWProxyImpl(this);
-}
-
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
 NearbySearchFilter _$NearbySearchFilterFromJson(Map<String, dynamic> json) =>
     NearbySearchFilter(
-      locationRestriction: LocationRestriction.fromJson(
-          json['locationRestriction'] as Map<String, dynamic>),
+      languageCode: json['languageCode'] as String?,
+      regionCode: json['regionCode'] as String?,
       includedTypes: (json['includedTypes'] as List<dynamic>?)
           ?.map((e) => $enumDecode(_$PlaceTypeEnumMap, e))
           .toList(),
@@ -264,16 +125,21 @@ NearbySearchFilter _$NearbySearchFilterFromJson(Map<String, dynamic> json) =>
       excludedPrimaryTypes: (json['excludedPrimaryTypes'] as List<dynamic>?)
           ?.map((e) => $enumDecode(_$PlaceTypeEnumMap, e))
           .toList(),
-      languageCode: json['languageCode'] as String?,
       maxResultCount: (json['maxResultCount'] as num?)?.toInt(),
+      locationRestriction: LocationCircleArea.fromJson(
+          json['locationRestriction'] as Map<String, dynamic>),
       rankPreference: $enumDecodeNullable(
           _$RankPreferenceTypeEnumMap, json['rankPreference']),
-      regionCode: json['regionCode'] as String?,
+      routingParameters: json['routingParameters'] == null
+          ? null
+          : RoutingParameters.fromJson(
+              json['routingParameters'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$NearbySearchFilterToJson(NearbySearchFilter instance) =>
     <String, dynamic>{
-      'locationRestriction': instance.locationRestriction,
+      if (instance.languageCode case final value?) 'languageCode': value,
+      if (instance.regionCode case final value?) 'regionCode': value,
       if (instance.includedTypes?.map((e) => _$PlaceTypeEnumMap[e]!).toList()
           case final value?)
         'includedTypes': value,
@@ -290,12 +156,13 @@ Map<String, dynamic> _$NearbySearchFilterToJson(NearbySearchFilter instance) =>
               .toList()
           case final value?)
         'excludedPrimaryTypes': value,
-      if (instance.languageCode case final value?) 'languageCode': value,
       if (instance.maxResultCount case final value?) 'maxResultCount': value,
+      'locationRestriction': instance.locationRestriction,
       if (_$RankPreferenceTypeEnumMap[instance.rankPreference]
           case final value?)
         'rankPreference': value,
-      if (instance.regionCode case final value?) 'regionCode': value,
+      if (instance.routingParameters case final value?)
+        'routingParameters': value,
     };
 
 const _$PlaceTypeEnumMap = {
@@ -645,37 +512,6 @@ const _$PlaceTypeEnumMap = {
 
 const _$RankPreferenceTypeEnumMap = {
   RankPreferenceType.popularity: 'POPULARITY',
+  RankPreferenceType.relevance: 'RELEVANCE',
   RankPreferenceType.distance: 'DISTANCE',
 };
-
-LocationRestriction _$LocationRestrictionFromJson(Map<String, dynamic> json) =>
-    LocationRestriction(
-      circle: Circle.fromJson(json['circle'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$LocationRestrictionToJson(
-        LocationRestriction instance) =>
-    <String, dynamic>{
-      'circle': instance.circle,
-    };
-
-Circle _$CircleFromJson(Map<String, dynamic> json) => Circle(
-      center: Coordinates.fromJson(json['center'] as Map<String, dynamic>),
-      radius: (json['radius'] as num?)?.toDouble(),
-    );
-
-Map<String, dynamic> _$CircleToJson(Circle instance) => <String, dynamic>{
-      'center': instance.center,
-      'radius': instance.radius,
-    };
-
-Coordinates _$CoordinatesFromJson(Map<String, dynamic> json) => Coordinates(
-      latitude: (json['latitude'] as num).toDouble(),
-      longitude: (json['longitude'] as num).toDouble(),
-    );
-
-Map<String, dynamic> _$CoordinatesToJson(Coordinates instance) =>
-    <String, dynamic>{
-      'latitude': instance.latitude,
-      'longitude': instance.longitude,
-    };

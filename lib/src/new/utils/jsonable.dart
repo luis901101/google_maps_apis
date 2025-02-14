@@ -80,6 +80,67 @@ abstract class Jsonable<T extends Object> {
     return list;
   }
 
-  ///  Factory constructor is required to work with automatic json serialization
-  ///  factory T.fromJson(Map<String, dynamic> json) => _$TFromJson(json);
+  List<String> toFieldsMask({String? parentKey}) {
+    List<String> fields = [];
+    final map = toJson();
+    fields.addAll(_searchInMap(parentKey: parentKey, map: map));
+    return fields;
+  }
+
+  List<String> _searchInMap({String? parentKey, Map map = const {}}) {
+    parentKey = parentKey != null
+        ? !parentKey.endsWith('.')
+            ? '$parentKey.'
+            : parentKey
+        : '';
+    List<String> fields = [];
+    for (final MapEntry(key: key, value: value) in map.entries) {
+      fields.addAll(_checkValue(key: '$parentKey$key', value: value));
+    }
+    return fields;
+  }
+
+  List<String> _searchInList({String? parentKey, List list = const []}) {
+    parentKey = parentKey != null
+        ? !parentKey.endsWith('.')
+            ? '$parentKey.'
+            : parentKey
+        : '';
+    List<String> fields = [];
+    for (final value in list) {
+      fields.addAll(_checkValue(key: parentKey, value: value));
+    }
+    return fields;
+  }
+
+  List<String> _checkValue({required String key, dynamic value}) {
+    List<String> fields = [];
+    if (value != null) {
+      if (value is Jsonable) {
+        final results = _searchInMap(parentKey: key, map: value.toJson());
+        if (results.isNotEmpty) {
+          fields.addAll(results);
+        } else {
+          fields.add(key);
+        }
+      } else if (value is Map) {
+        final results = _searchInMap(parentKey: key, map: value);
+        if (results.isNotEmpty) {
+          fields.addAll(results);
+        } else {
+          fields.add(key);
+        }
+      } else if (value is List) {
+        final results = _searchInList(parentKey: key, list: value);
+        if (results.isNotEmpty) {
+          fields.addAll(results);
+        } else {
+          fields.add(key);
+        }
+      } else {
+        fields.add(key);
+      }
+    }
+    return fields;
+  }
 }

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+packageName=$(grep '^name:' pubspec.yaml | awk '{print $2}');
+
+cd lib
+echo "library;" > package_temp.dart
+echo "" >> package_temp.dart
+
+cd src/new
+while IFS= read -r line; do
+    # Remove the leading "./" from the file path
+    modified_line=${line#./}
+    echo "export 'package:${packageName}/src/new/${modified_line}';"
+done < <(find . -type f -name "*.dart" ! -name "*.g.dart") >> ../../package_temp.dart
+cd ../../
+mv package_temp.dart places_new.dart
+
+echo "Generated exports successfully"

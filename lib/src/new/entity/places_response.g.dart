@@ -14,7 +14,11 @@ abstract class _$PlacesResponseCWProxy {
   /// PlacesResponse(...).copyWith(id: 12, name: "My name")
   /// ````
   PlacesResponse call({
-    List<PlaceDetails>? places,
+    List<Place>? places,
+    List<RoutingSummary>? routingSummaries,
+    List<ContextualContent>? contextualContents,
+    String? nextPageToken,
+    String? searchUri,
   });
 }
 
@@ -34,12 +38,32 @@ class _$PlacesResponseCWProxyImpl implements _$PlacesResponseCWProxy {
   /// ````
   PlacesResponse call({
     Object? places = const $CopyWithPlaceholder(),
+    Object? routingSummaries = const $CopyWithPlaceholder(),
+    Object? contextualContents = const $CopyWithPlaceholder(),
+    Object? nextPageToken = const $CopyWithPlaceholder(),
+    Object? searchUri = const $CopyWithPlaceholder(),
   }) {
     return PlacesResponse(
       places: places == const $CopyWithPlaceholder()
           ? _value.places
           // ignore: cast_nullable_to_non_nullable
-          : places as List<PlaceDetails>?,
+          : places as List<Place>?,
+      routingSummaries: routingSummaries == const $CopyWithPlaceholder()
+          ? _value.routingSummaries
+          // ignore: cast_nullable_to_non_nullable
+          : routingSummaries as List<RoutingSummary>?,
+      contextualContents: contextualContents == const $CopyWithPlaceholder()
+          ? _value.contextualContents
+          // ignore: cast_nullable_to_non_nullable
+          : contextualContents as List<ContextualContent>?,
+      nextPageToken: nextPageToken == const $CopyWithPlaceholder()
+          ? _value.nextPageToken
+          // ignore: cast_nullable_to_non_nullable
+          : nextPageToken as String?,
+      searchUri: searchUri == const $CopyWithPlaceholder()
+          ? _value.searchUri
+          // ignore: cast_nullable_to_non_nullable
+          : searchUri as String?,
     );
   }
 }
@@ -57,11 +81,25 @@ extension $PlacesResponseCopyWith on PlacesResponse {
 PlacesResponse _$PlacesResponseFromJson(Map<String, dynamic> json) =>
     PlacesResponse(
       places: (json['places'] as List<dynamic>?)
-          ?.map((e) => PlaceDetails.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Place.fromJson(e as Map<String, dynamic>))
           .toList(),
+      routingSummaries: (json['routingSummaries'] as List<dynamic>?)
+          ?.map((e) => RoutingSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      contextualContents: (json['contextualContents'] as List<dynamic>?)
+          ?.map((e) => ContextualContent.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextPageToken: json['nextPageToken'] as String?,
+      searchUri: json['searchUri'] as String?,
     );
 
 Map<String, dynamic> _$PlacesResponseToJson(PlacesResponse instance) =>
     <String, dynamic>{
       'places': instance.places,
+      if (instance.routingSummaries case final value?)
+        'routingSummaries': value,
+      if (instance.contextualContents case final value?)
+        'contextualContents': value,
+      if (instance.nextPageToken case final value?) 'nextPageToken': value,
+      if (instance.searchUri case final value?) 'searchUri': value,
     };

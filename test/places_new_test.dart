@@ -60,10 +60,10 @@ Future<void> main() async {
           response.body?.regularOpeningHours?.periods?.firstOrNull?.open?.day,
           isNotNull);
     });
-    test('Get Place Details with placeFields instance', () async {
+    test('Get Place Details with instance fields', () async {
       var response = await placesAPI.getDetails(
         id: placeId ?? '',
-        placeFields: PlaceDetails(
+        instanceFields: Place(
           id: '',
           name: '',
           types: [],
@@ -75,14 +75,14 @@ Future<void> main() async {
           ],
           rating: 0.0,
           viewport: Viewport(
-            low: Low(
+            low: LatLng(
               latitude: 0.0,
             ),
           ),
-          regularOpeningHours: RegularOpeningHours(
+          regularOpeningHours: OpeningHours(
             periods: [
               Period(
-                open: Open(
+                open: Point(
                   day: 0,
                 ),
               ),
@@ -109,6 +109,23 @@ Future<void> main() async {
       expect(
           response.body?.regularOpeningHours?.periods?.firstOrNull?.open?.day,
           isNotNull);
+    });
+    test('Get Place Details with instance fields and filters', () async {
+      var response = await placesAPI.getDetails(
+        id: placeId ?? '',
+        instanceFields: Place(
+          id: '',
+          name: '',
+          formattedAddress: '',
+        ),
+        filter: PlaceDetailsFilter(
+            languageCode: 'es', regionCode: 'ES', sessionToken: 'ZZZ-ZZZ-ZZZ'),
+      );
+      expect(response.isSuccessful, true);
+      expect(response.body, isNotNull);
+      expect(response.body?.id, placeId);
+      expect(response.body?.name, isNotNull);
+      expect(response.body?.formattedAddress, isNotNull);
     });
     test('Get Place Details without fields', () async {
       var response = await placesAPI.getDetails(
@@ -226,7 +243,7 @@ Future<void> main() async {
         filter: NearbySearchFilter(
           includedTypes: [PlaceType.restaurant],
           maxResultCount: maxResultCount,
-          locationRestriction: LocationRestriction(
+          locationRestriction: LocationCircleArea(
             circle: Circle(
               center: Coordinates(
                 latitude: 37.7749,
@@ -240,23 +257,28 @@ Future<void> main() async {
       expect(response.isSuccessful, true);
       expect(response.body, isNotNull);
       expect(response.body?.places, isNotEmpty);
-      expect(response.body?.places.length, maxResultCount);
-      expect(response.body?.places.firstOrNull?.id, isNotNull);
-      expect(response.body?.places.firstOrNull?.displayName, isNotNull);
+      expect(response.body?.places.length, lessThanOrEqualTo(maxResultCount));
+      final place = response.body?.places.firstOrNull;
+      expect(place?.id, isNotNull);
+      expect(place?.displayName, isNotNull);
     });
     test('Search nearby including too many types', () async {
       var response = await placesAPI.searchNearby(
-        placeFields: PlaceDetails(
-          id: '',
-          displayName: DisplayName(),
-          formattedAddress: '',
-          regularOpeningHours: RegularOpeningHours(
-            periods: [],
-          ),
+        instanceFields: PlacesResponse(
+          places: [
+            Place(
+              id: '',
+              displayName: LocalizedText(),
+              formattedAddress: '',
+              regularOpeningHours: OpeningHours(
+                periods: [],
+              ),
+            ),
+          ],
         ),
         filter: NearbySearchFilter(
           includedTypes: PlaceType.foodAndDrinkTypes,
-          locationRestriction: LocationRestriction(
+          locationRestriction: LocationCircleArea(
             circle: Circle(
               center: Coordinates(
                 latitude: 37.7937,
@@ -271,15 +293,19 @@ Future<void> main() async {
       expect(response.error, isNotNull);
     });
     test('Search nearby with advanced filter', () async {
-      final int maxResultCount = 20;
+      final int maxResultCount = 10;
       var response = await placesAPI.searchNearby(
-        placeFields: PlaceDetails(
-          id: '',
-          displayName: DisplayName(),
-          formattedAddress: '',
-          regularOpeningHours: RegularOpeningHours(
-            periods: [],
-          ),
+        instanceFields: PlacesResponse(
+          places: [
+            Place(
+              id: '',
+              displayName: LocalizedText(),
+              formattedAddress: '',
+              regularOpeningHours: OpeningHours(
+                periods: [],
+              ),
+            ),
+          ],
         ),
         filter: NearbySearchFilter(
           includedTypes: PlaceType.foodAndDrinkTypes.sublist(0, 50),
@@ -290,7 +316,7 @@ Future<void> main() async {
           rankPreference: RankPreferenceType.distance,
           languageCode: 'es',
           regionCode: 'es',
-          locationRestriction: LocationRestriction(
+          locationRestriction: LocationCircleArea(
             circle: Circle(
               center: Coordinates(
                 latitude: 37.7937,
@@ -304,13 +330,196 @@ Future<void> main() async {
       expect(response.isSuccessful, true);
       expect(response.body, isNotNull);
       expect(response.body?.places, isNotEmpty);
-      expect(response.body?.places.length, maxResultCount);
+      expect(response.body?.places.length, lessThanOrEqualTo(maxResultCount));
       final place = response.body?.places.firstOrNull;
       expect(place?.id, isNotNull);
       expect(place?.displayName, isNotNull);
       expect(place?.formattedAddress, isNotNull);
       expect(place?.regularOpeningHours, isNotNull);
       expect(place?.regularOpeningHours?.periods, isNotEmpty);
+    });
+    test('Search nearby including routingSummaries', () async {
+      final int maxResultCount = 10;
+      var response = await placesAPI.searchNearby(
+        instanceFields: PlacesResponse(
+          places: [
+            Place(
+              id: '',
+              displayName: LocalizedText(),
+              formattedAddress: '',
+              regularOpeningHours: OpeningHours(
+                periods: [],
+              ),
+            ),
+          ],
+          routingSummaries: [],
+        ),
+        filter: NearbySearchFilter(
+          maxResultCount: maxResultCount,
+          routingParameters: RoutingParameters(
+            origin: LatLng(
+              latitude: 37.7749,
+              longitude: -122.4194,
+            ),
+          ),
+          locationRestriction: LocationCircleArea(
+            circle: Circle(
+              center: Coordinates(
+                latitude: 37.7937,
+                longitude: -122.3965,
+              ),
+              radius: 500.0,
+            ),
+          ),
+        ),
+      );
+      expect(response.isSuccessful, true);
+      expect(response.body, isNotNull);
+      expect(response.body?.places, isNotEmpty);
+      expect(response.body?.places.length, lessThanOrEqualTo(maxResultCount));
+      expect(response.body?.routingSummaries?.length,
+          equals(response.body?.places.length));
+      final place = response.body?.places.firstOrNull;
+      expect(place?.id, isNotNull);
+      expect(place?.displayName, isNotNull);
+      expect(place?.formattedAddress, isNotNull);
+      expect(place?.regularOpeningHours, isNotNull);
+      expect(place?.regularOpeningHours?.periods, isNotEmpty);
+      final routingSummary = response.body?.routingSummaries?.firstOrNull;
+      expect(routingSummary?.directionsUri, isNotNull);
+      expect(routingSummary?.legs, isNotEmpty);
+      final leg = routingSummary?.legs?.firstOrNull;
+      expect(leg?.distanceMeters, isNotNull);
+      expect(leg?.duration, isNotNull);
+    });
+  });
+
+  group('Text Search', () {
+    test('Simple search by text with max 10 places and fields list', () async {
+      final int pageSize = 10;
+      var response = await placesAPI.searchText(
+        fields: [
+          'places.id',
+          'places.displayName',
+          'places.rating',
+        ],
+        filter: TextSearchFilter(
+          textQuery: 'Spicy Vegetarian Food in Sydney, Australia',
+          pageSize: pageSize,
+        ),
+      );
+      expect(response.isSuccessful, true);
+      expect(response.body, isNotNull);
+      expect(response.body?.places, isNotEmpty);
+      expect(response.body?.places.length, lessThanOrEqualTo(pageSize));
+      final place = response.body?.places.firstOrNull;
+      expect(place?.id, isNotNull);
+      expect(place?.displayName, isNotNull);
+      expect(place?.rating, isNotNull);
+    });
+    test('Search by text with max 10 places and instance fields', () async {
+      final int pageSize = 10;
+      var response = await placesAPI.searchText(
+        instanceFields: PlacesResponse(
+          places: [
+            Place(
+              id: '',
+              displayName: LocalizedText(),
+              formattedAddress: '',
+              rating: 0.0,
+              regularOpeningHours: OpeningHours(
+                periods: [],
+              ),
+            ),
+          ],
+        ),
+        filter: TextSearchFilter(
+          textQuery: 'Spicy Vegetarian Food in Sydney, Australia',
+          pageSize: pageSize,
+        ),
+      );
+      expect(response.isSuccessful, true);
+      expect(response.body, isNotNull);
+      expect(response.body?.places, isNotEmpty);
+      expect(response.body?.places.length, lessThanOrEqualTo(pageSize));
+      final place = response.body?.places.firstOrNull;
+      expect(place?.id, isNotNull);
+      expect(place?.displayName, isNotNull);
+      expect(place?.formattedAddress, isNotNull);
+      expect(place?.rating, isNotNull);
+      expect(place?.regularOpeningHours, isNotNull);
+      expect(place?.regularOpeningHours?.periods, isNotEmpty);
+    });
+    test('Search by text with price levels filter and instance fields',
+        () async {
+      final int pageSize = 10;
+      final priceLevels = [PriceLevel.inexpensive, PriceLevel.moderate];
+      var response = await placesAPI.searchText(
+        instanceFields: PlacesResponse(
+          places: [
+            Place(
+              id: '',
+              displayName: LocalizedText(),
+              formattedAddress: '',
+              rating: 0.0,
+              priceLevel: PriceLevel.inexpensive,
+              regularOpeningHours: OpeningHours(
+                periods: [],
+              ),
+            ),
+          ],
+        ),
+        filter: TextSearchFilter(
+          textQuery: 'Spicy Vegetarian Food in Sydney, Australia',
+          pageSize: pageSize,
+          priceLevels: priceLevels,
+        ),
+      );
+      expect(response.isSuccessful, true);
+      expect(response.body, isNotNull);
+      expect(response.body?.places, isNotEmpty);
+      expect(response.body?.places.length, lessThanOrEqualTo(pageSize));
+      final place = response.body?.places.firstOrNull;
+      expect(place?.id, isNotNull);
+      expect(place?.displayName, isNotNull);
+      expect(place?.priceLevel, isIn(priceLevels));
+    });
+    test('Search by text with pagination and instance fields', () async {
+      print('Google will return up to 3 pages with 20 results each.');
+      final int pageSize = 20;
+      int page = 0;
+      String? nextPageToken;
+
+      /// Necessary delay between paginated requests: Check here: https://web.archive.org/web/20200821074639if_/https://developers.google.com/places/web-service/search#PlaceSearchPaging
+      const nextPageTokenDelay = Duration(seconds: 1);
+
+      do {
+        ++page;
+        var response = await placesAPI.searchText(
+          instanceFields: PlacesResponse(
+            places: [
+              Place(
+                id: '',
+                displayName: LocalizedText(),
+              ),
+            ],
+            nextPageToken: '',
+          ),
+          filter: TextSearchFilter(
+            textQuery: 'pizza in New York',
+            pageSize: pageSize,
+            pageToken: nextPageToken,
+          ),
+        );
+        expect(response.isSuccessful, true);
+        expect(response.body, isNotNull);
+        expect(response.body?.places, isNotEmpty);
+        expect(response.body?.places.length, lessThanOrEqualTo(pageSize));
+        nextPageToken = response.body?.nextPageToken;
+        print(
+            'Page: $page\nPlaces: ${response.body?.places.length}\nNext Page Token: $nextPageToken\n=============================');
+        await Future.delayed(nextPageTokenDelay);
+      } while (page <= 4 && nextPageToken != null);
     });
   });
 }

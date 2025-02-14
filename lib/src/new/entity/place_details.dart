@@ -1,52 +1,325 @@
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:google_maps_apis/src/new/entity/accessibility_options.dart';
+import 'package:google_maps_apis/src/new/entity/address_component.dart';
+import 'package:google_maps_apis/src/new/entity/address_descriptor.dart';
+import 'package:google_maps_apis/src/new/entity/area_summary.dart';
+import 'package:google_maps_apis/src/new/entity/attribution.dart';
+import 'package:google_maps_apis/src/new/entity/containing_place.dart';
+import 'package:google_maps_apis/src/new/entity/ev_charge_options.dart';
+import 'package:google_maps_apis/src/new/entity/fuel_options.dart';
+import 'package:google_maps_apis/src/new/entity/generative_summary.dart';
+import 'package:google_maps_apis/src/new/entity/google_maps_links.dart';
+import 'package:google_maps_apis/src/new/entity/lat_lng.dart';
+import 'package:google_maps_apis/src/new/entity/localized_text.dart';
+import 'package:google_maps_apis/src/new/entity/opening_hours.dart';
+import 'package:google_maps_apis/src/new/entity/parking_options.dart';
+import 'package:google_maps_apis/src/new/entity/payment_options.dart';
+import 'package:google_maps_apis/src/new/entity/photo.dart';
+import 'package:google_maps_apis/src/new/entity/plus_code.dart';
+import 'package:google_maps_apis/src/new/entity/price_range.dart';
+import 'package:google_maps_apis/src/new/entity/review.dart';
+import 'package:google_maps_apis/src/new/entity/sub_destination.dart';
+import 'package:google_maps_apis/src/new/entity/viewport.dart';
+import 'package:google_maps_apis/src/new/enums/business_status.dart';
+import 'package:google_maps_apis/src/new/enums/place_type.dart';
+import 'package:google_maps_apis/src/new/enums/price_level.dart';
 import 'package:google_maps_apis/src/new/utils/jsonable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:copy_with_extension/copy_with_extension.dart';
 
 part 'place_details.g.dart';
 
+/// All the information representing a Place.
+///
+/// Documentation:https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Place
 @JsonSerializable()
 @CopyWith()
-class PlaceDetails extends Jsonable<PlaceDetails> {
+class Place extends Jsonable<Place> {
+  /// This Place's resource name, in places/{placeId} format. Can be used to
+  /// look up the Place.
   final String? name;
+
+  /// The unique identifier of a place.
   final String? id;
-  final List<String>? types;
+
+  /// The localized name of the place, suitable as a short human-readable
+  /// description. For example, "Google Sydney", "Starbucks", "Pyrmont", etc.
+  final LocalizedText? displayName;
+
+  /// A set of type tags for this result. For example, "political" and "locality".
+  /// For the complete list of possible values, see Table A and Table B at
+  /// https://developers.google.com/maps/documentation/places/web-service/place-types
+  ///
+  /// Also represented by [PlaceType] enum.
+  @JsonKey(fromJson: PlaceType.fromJsonList)
+  final List<PlaceType>? types;
+
+  /// The primary type of the given result. This type must one of the Places API
+  /// supported types. For example, "restaurant", "cafe", "airport", etc.
+  /// A place can only have a single primary type. For the complete list of
+  /// possible values, see Table A and Table B at
+  /// https://developers.google.com/maps/documentation/places/web-service/place-types
+  ///
+  /// Also represented by [PlaceType] enum.
+  @JsonKey(unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+  final PlaceType? primaryType;
+
+  /// The display name of the primary type, localized to the request language if
+  /// applicable. For the complete list of possible values, see Table A and Table B at
+  /// https://developers.google.com/maps/documentation/places/web-service/place-types
+  final LocalizedText? primaryTypeDisplayName;
+
+  /// A human-readable phone number for the place, in national format.
   final String? nationalPhoneNumber;
+
+  /// A human-readable phone number for the place, in international format.
   final String? internationalPhoneNumber;
+
+  /// A full, human-readable address for this place.
   final String? formattedAddress;
-  final List<AddressComponent>? addressComponents;
-  final PlusCode? plusCode;
-  final Location? location;
-  final Viewport? viewport;
-  final double? rating;
-  final String? googleMapsUri;
-  final String? websiteUri;
-  final RegularOpeningHours? regularOpeningHours;
-  final int? utcOffsetMinutes;
-  final String? adrFormatAddress;
-  final String? businessStatus;
-  final int? userRatingCount;
-  final String? iconMaskBaseUri;
-  final String? iconBackgroundColor;
-  final DisplayName? displayName;
-  final PrimaryTypeDisplayName? primaryTypeDisplayName;
-  final CurrentOpeningHours? currentOpeningHours;
-  final String? primaryType;
+
+  /// A short, human-readable address for this place.
   final String? shortFormattedAddress;
-  final EditorialSummary? editorialSummary;
+
+  /// Repeated components for each locality level. Note the following facts about
+  /// the addressComponents[] array: - The array of address components may contain
+  /// more components than the formattedAddress. - The array does not necessarily
+  /// include all the political entities that contain an address, apart from those
+  /// included in the formattedAddress. To retrieve all the political entities
+  /// that contain a specific address, you should use reverse geocoding, passing
+  /// the latitude/longitude of the address as a parameter to the request.
+  /// - The format of the response is not guaranteed to remain the same between
+  /// requests. In particular, the number of addressComponents varies based on
+  /// the address requested and can change over time for the same address.
+  /// A component can change position in the array. The type of the component
+  /// can change. A particular component may be missing in a later response.
+  final List<AddressComponent>? addressComponents;
+
+  /// Plus code of the place location lat/long.
+  final PlusCode? plusCode;
+
+  /// The position of this place.
+  final LatLng? location;
+
+  /// A viewport suitable for displaying the place on an average-sized map.
+  /// This viewport should not be used as the physical boundary or the service
+  /// area of the business.
+  final Viewport? viewport;
+
+  /// A rating between 1.0 and 5.0, based on user reviews of this place.
+  final double? rating;
+
+  /// A URL providing more information about this place.
+  final String? googleMapsUri;
+
+  /// The authoritative website for this place, e.g. a business' homepage.
+  /// Note that for places that are part of a chain (e.g. an IKEA store), this
+  /// will usually be the website for the individual store, not the overall chain.
+  final String? websiteUri;
+
+  /// List of reviews about this place, sorted by relevance.
+  /// A maximum of 5 reviews can be returned.
   final List<Review>? reviews;
+
+  /// The regular hours of operation. Note that if a place is always open (24 hours),
+  /// the close field will not be set. Clients can rely on always open (24 hours)
+  /// being represented as an [open][OpeningHours.Period.open] period containing
+  /// [day][Point.day] with value 0, [hour][Point.hour] with value 0, and
+  /// [minute][Point.minute] with value 0.
+  final OpeningHours? regularOpeningHours;
+
+  /// Information (including references) about photos of this place.
+  /// A maximum of 10 photos can be returned.
   final List<Photo>? photos;
-  final AccessibilityOptions? accessibilityOptions;
-  final bool? pureServiceAreaBusiness;
+
+  /// The place's address in adr microformat: http://microformats.org/wiki/adr.
+  final String? adrFormatAddress;
+
+  /// The business status for the place.
+  @JsonKey(unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+  final BusinessStatus? businessStatus;
+
+  /// Price level of the place.
+  @JsonKey(unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+  final PriceLevel? priceLevel;
+
+  /// A set of data provider that must be shown with this result.
+  final List<Attribution>? attributions;
+
+  /// A truncated URL to an icon mask. User can access different icon type by
+  /// appending type suffix to the end (eg, ".svg" or ".png").
+  final String? iconMaskBaseUri;
+
+  /// Background color for icon_mask in hex format, e.g. #909CE1.
+  final String? iconBackgroundColor;
+
+  /// The hours of operation for the next seven days (including today). The time
+  /// period starts at midnight on the date of the request and ends at 11:59 pm
+  /// six days later. This field includes the specialDays subfield of all hours,
+  /// set for dates that have exceptional hours.
+  final OpeningHours? currentOpeningHours;
+
+  /// Contains an array of entries for the next seven days including information
+  /// about secondary hours of a business. Secondary hours are different from a
+  /// business's main hours. For example, a restaurant can specify drive through
+  /// hours or delivery hours as its secondary hours. This field populates the type
+  /// subfield, which draws from a predefined list of opening hours types
+  /// (such as DRIVE_THROUGH, PICKUP, or TAKEOUT) based on the types of the place.
+  /// This field includes the specialDays subfield of all hours, set for dates
+  /// that have exceptional hours.
+  final OpeningHours? currentSecondaryOpeningHours;
+
+  /// Contains an array of entries for information about regular secondary hours
+  /// of a business. Secondary hours are different from a business's main hours.
+  /// For example, a restaurant can specify drive through hours or delivery hours
+  /// as its secondary hours. This field populates the type subfield, which draws
+  /// from a predefined list of opening hours types (such as DRIVE_THROUGH, PICKUP, or TAKEOUT)
+  /// based on the types of the place.
+  final OpeningHours? regularSecondaryOpeningHours;
+
+  /// Contains a summary of the place. A summary is comprised of a textual overview,
+  /// and also includes the language code for these if applicable. Summary text
+  /// must be presented as-is and can not be modified or altered.
+  final LocalizedText? editorialSummary;
+
+  /// Payment options the place accepts. If a payment option data is not available,
+  /// the payment option field will be unset.
+  final PaymentOptions? paymentOptions;
+
+  /// Options of parking provided by the place.
+  final ParkingOptions? parkingOptions;
+
+  /// A list of sub destinations related to the place.
+  final List<SubDestination>? subDestinations;
+
+  /// The most recent information about fuel options in a gas station.
+  /// This information is updated regularly.
+  final FuelOptions? fuelOptions;
+
+  /// Information of ev charging options.
+  final EVChargeOptions? evChargeOptions;
+
+  /// Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details.
+  ///
+  /// AI-generated summary of the place.
+  final GenerativeSummary? generativeSummary;
+
+  /// Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details.
+  ///
+  /// AI-generated summary of the area that the place is in.
+  final AreaSummary? areaSummary;
+
+  /// List of places in which the current place is located.
+  final List<ContainingPlace>? containingPlaces;
+
+  /// The address descriptor of the place. Address descriptors include additional
+  /// information that help describe a location using landmarks and areas.
+  /// See address descriptor regional coverage in https://developers.google.com/maps/documentation/geocoding/address-descriptors/coverage.
   final AddressDescriptor? addressDescriptor;
+
+  /// Links to trigger different Google Maps actions.
   final GoogleMapsLinks? googleMapsLinks;
 
-  PlaceDetails({
+  /// The price range associated with a Place.
+  final PriceRange? priceRange;
+
+  /// Number of minutes this place's timezone is currently offset from UTC.
+  /// This is expressed in minutes to support timezones that are offset by
+  /// fractions of an hour, e.g. X hours and 15 minutes.
+  final int? utcOffsetMinutes;
+
+  /// The total number of reviews (with or without text) for this place.
+  final int? userRatingCount;
+
+  /// Specifies if the business supports takeout.
+  final bool? takeout;
+
+  /// Specifies if the business supports delivery.
+  final bool? delivery;
+
+  /// Specifies if the business supports indoor or outdoor seating options.
+  final bool? dineIn;
+
+  /// Specifies if the business supports curbside pickup.
+  final bool? curbsidePickup;
+
+  /// Specifies if the place supports reservations.
+  final bool? reservable;
+
+  /// Specifies if the place serves breakfast.
+  final bool? servesBreakfast;
+
+  /// Specifies if the place serves lunch.
+  final bool? servesLunch;
+
+  /// Specifies if the place serves dinner.
+  final bool? servesDinner;
+
+  /// Specifies if the place serves beer.
+  final bool? servesBeer;
+
+  /// Specifies if the place serves wine.
+  final bool? servesWine;
+
+  /// Specifies if the place serves brunch.
+  final bool? servesBrunch;
+
+  /// Specifies if the place serves vegetarian food.
+  final bool? servesVegetarianFood;
+
+  /// Place provides outdoor seating.
+  final bool? outdoorSeating;
+
+  /// Place provides live music.
+  final bool? liveMusic;
+
+  /// Place has a children's menu.
+  final bool? menuForChildren;
+
+  /// Place serves cocktails.
+  final bool? servesCocktails;
+
+  /// Place serves dessert.
+  final bool? servesDessert;
+
+  /// Place serves coffee.
+  final bool? servesCoffee;
+
+  /// Place is good for children.
+  final bool? goodForChildren;
+
+  /// Place allows dogs.
+  final bool? allowsDogs;
+
+  /// Place has restroom.
+  final bool? restroom;
+
+  /// Place accommodates groups.
+  final bool? goodForGroups;
+
+  /// Place is suitable for watching sports.
+  final bool? goodForWatchingSports;
+
+  /// Information about the accessibility options a place offers.
+  final AccessibilityOptions? accessibilityOptions;
+
+  /// Indicates whether the place is a pure service area business. Pure service
+  /// area business is a business that visits or delivers to customers directly
+  /// but does not serve customers at their business address. For example,
+  /// businesses like cleaning services or plumbers. Those businesses may not
+  /// have a physical address or location on Google Maps.
+  final bool? pureServiceAreaBusiness;
+
+  Place({
     this.name,
     this.id,
+    this.displayName,
     this.types,
+    this.primaryType,
+    this.primaryTypeDisplayName,
     this.nationalPhoneNumber,
     this.internationalPhoneNumber,
     this.formattedAddress,
+    this.shortFormattedAddress,
     this.addressComponents,
     this.plusCode,
     this.location,
@@ -54,757 +327,69 @@ class PlaceDetails extends Jsonable<PlaceDetails> {
     this.rating,
     this.googleMapsUri,
     this.websiteUri,
+    this.reviews,
     this.regularOpeningHours,
-    this.utcOffsetMinutes,
+    this.photos,
     this.adrFormatAddress,
     this.businessStatus,
-    this.userRatingCount,
+    this.priceLevel,
+    this.attributions,
     this.iconMaskBaseUri,
     this.iconBackgroundColor,
-    this.displayName,
-    this.primaryTypeDisplayName,
     this.currentOpeningHours,
-    this.primaryType,
-    this.shortFormattedAddress,
+    this.currentSecondaryOpeningHours,
+    this.regularSecondaryOpeningHours,
     this.editorialSummary,
-    this.reviews,
-    this.photos,
-    this.accessibilityOptions,
-    this.pureServiceAreaBusiness,
+    this.paymentOptions,
+    this.parkingOptions,
+    this.subDestinations,
+    this.fuelOptions,
+    this.evChargeOptions,
+    this.generativeSummary,
+    this.areaSummary,
+    this.containingPlaces,
     this.addressDescriptor,
     this.googleMapsLinks,
+    this.priceRange,
+    this.utcOffsetMinutes,
+    this.userRatingCount,
+    this.takeout,
+    this.delivery,
+    this.dineIn,
+    this.curbsidePickup,
+    this.reservable,
+    this.servesBreakfast,
+    this.servesLunch,
+    this.servesDinner,
+    this.servesBeer,
+    this.servesWine,
+    this.servesBrunch,
+    this.servesVegetarianFood,
+    this.outdoorSeating,
+    this.liveMusic,
+    this.menuForChildren,
+    this.servesCocktails,
+    this.servesDessert,
+    this.servesCoffee,
+    this.goodForChildren,
+    this.allowsDogs,
+    this.restroom,
+    this.goodForGroups,
+    this.goodForWatchingSports,
+    this.accessibilityOptions,
+    this.pureServiceAreaBusiness,
   });
 
-  List<String> toFieldsMask({String? parentKey}) {
-    List<String> fields = [];
-    final map = toJson();
-    fields.addAll(_searchInMap(parentKey: parentKey, map: map));
-    return fields;
-  }
-
-  List<String> _searchInMap({String? parentKey, Map map = const {}}) {
-    parentKey = parentKey != null
-        ? !parentKey.endsWith('.')
-            ? '$parentKey.'
-            : parentKey
-        : '';
-    List<String> fields = [];
-    for (final MapEntry(key: key, value: value) in map.entries) {
-      fields.addAll(_checkValue(key: '$parentKey$key', value: value));
-    }
-    return fields;
-  }
-
-  List<String> _searchInList({String? parentKey, List list = const []}) {
-    parentKey = parentKey != null
-        ? !parentKey.endsWith('.')
-            ? '$parentKey.'
-            : parentKey
-        : '';
-    List<String> fields = [];
-    for (final value in list) {
-      fields.addAll(_checkValue(key: parentKey, value: value));
-    }
-    return fields;
-  }
-
-  List<String> _checkValue({required String key, dynamic value}) {
-    List<String> fields = [];
-    if (value != null) {
-      if (value is Jsonable) {
-        final results = _searchInMap(parentKey: key, map: value.toJson());
-        if (results.isNotEmpty) {
-          fields.addAll(results);
-        } else {
-          fields.add(key);
-        }
-      } else if (value is Map) {
-        final results = _searchInMap(parentKey: key, map: value);
-        if (results.isNotEmpty) {
-          fields.addAll(results);
-        } else {
-          fields.add(key);
-        }
-      } else if (value is List) {
-        final results = _searchInList(parentKey: key, list: value);
-        if (results.isNotEmpty) {
-          fields.addAll(results);
-        } else {
-          fields.add(key);
-        }
-      } else {
-        fields.add(key);
-      }
-    }
-    return fields;
-  }
-
-  factory PlaceDetails.fromJson(Map<String, dynamic> json) {
-    return _$PlaceDetailsFromJson(json);
+  factory Place.fromJson(Map<String, dynamic> json) {
+    return _$PlaceFromJson(json);
   }
 
   @override
-  PlaceDetails? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? PlaceDetails.fromJson(json) : null;
+  Place? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? Place.fromJson(json) : null;
 
   @override
   Map<String, dynamic> toJson() {
-    return _$PlaceDetailsToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class AddressComponent extends Jsonable<AddressComponent> {
-  final String? longText;
-  final String? shortText;
-  final List<String>? types;
-  final String? languageCode;
-
-  AddressComponent({
-    this.longText,
-    this.shortText,
-    this.types,
-    this.languageCode,
-  });
-
-  factory AddressComponent.fromJson(Map<String, dynamic> json) {
-    return _$AddressComponentFromJson(json);
-  }
-
-  @override
-  AddressComponent? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? AddressComponent.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$AddressComponentToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class PlusCode extends Jsonable<PlusCode> {
-  final String? globalCode;
-  final String? compoundCode;
-
-  PlusCode({
-    this.globalCode,
-    this.compoundCode,
-  });
-
-  factory PlusCode.fromJson(Map<String, dynamic> json) {
-    return _$PlusCodeFromJson(json);
-  }
-
-  @override
-  PlusCode? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? PlusCode.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$PlusCodeToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class Location extends Jsonable<Location> {
-  final double? latitude;
-  final double? longitude;
-
-  Location({
-    this.latitude,
-    this.longitude,
-  });
-
-  factory Location.fromJson(Map<String, dynamic> json) {
-    return _$LocationFromJson(json);
-  }
-
-  @override
-  Location? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? Location.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$LocationToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class Viewport extends Jsonable<Viewport> {
-  final Low? low;
-  final High? high;
-
-  Viewport({
-    this.low,
-    this.high,
-  });
-
-  factory Viewport.fromJson(Map<String, dynamic> json) {
-    return _$ViewportFromJson(json);
-  }
-
-  @override
-  Viewport? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? Viewport.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$ViewportToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class Low extends Jsonable<Low> {
-  final double? latitude;
-  final double? longitude;
-
-  Low({
-    this.latitude,
-    this.longitude,
-  });
-
-  factory Low.fromJson(Map<String, dynamic> json) {
-    return _$LowFromJson(json);
-  }
-
-  @override
-  Low? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? Low.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$LowToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class High extends Jsonable<High> {
-  final double? latitude;
-  final double? longitude;
-
-  High({
-    this.latitude,
-    this.longitude,
-  });
-
-  factory High.fromJson(Map<String, dynamic> json) {
-    return _$HighFromJson(json);
-  }
-
-  @override
-  High? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? High.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$HighToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class RegularOpeningHours extends Jsonable<RegularOpeningHours> {
-  final bool? openNow;
-  final List<Period>? periods;
-  final List<String>? weekdayDescriptions;
-  final String? nextCloseTime;
-
-  RegularOpeningHours({
-    this.openNow,
-    this.periods,
-    this.weekdayDescriptions,
-    this.nextCloseTime,
-  });
-
-  factory RegularOpeningHours.fromJson(Map<String, dynamic> json) {
-    return _$RegularOpeningHoursFromJson(json);
-  }
-
-  @override
-  RegularOpeningHours? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? RegularOpeningHours.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$RegularOpeningHoursToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class Period extends Jsonable<Period> {
-  final Open? open;
-  final Close? close;
-
-  Period({
-    this.open,
-    this.close,
-  });
-
-  factory Period.fromJson(Map<String, dynamic> json) {
-    return _$PeriodFromJson(json);
-  }
-
-  @override
-  Period? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? Period.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$PeriodToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class Open extends Jsonable<Open> {
-  final int? day;
-  final int? hour;
-  final int? minute;
-
-  Open({
-    this.day,
-    this.hour,
-    this.minute,
-  });
-
-  factory Open.fromJson(Map<String, dynamic> json) {
-    return _$OpenFromJson(json);
-  }
-
-  @override
-  Open? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? Open.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$OpenToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class Close extends Jsonable<Close> {
-  final int? day;
-  final int? hour;
-  final int? minute;
-
-  Close({
-    this.day,
-    this.hour,
-    this.minute,
-  });
-
-  factory Close.fromJson(Map<String, dynamic> json) {
-    return _$CloseFromJson(json);
-  }
-
-  @override
-  Close? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? Close.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$CloseToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class DisplayName extends Jsonable<DisplayName> {
-  final String? text;
-  final String? languageCode;
-
-  DisplayName({
-    this.text,
-    this.languageCode,
-  });
-
-  factory DisplayName.fromJson(Map<String, dynamic> json) {
-    return _$DisplayNameFromJson(json);
-  }
-
-  @override
-  DisplayName? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? DisplayName.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$DisplayNameToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class PrimaryTypeDisplayName extends Jsonable<PrimaryTypeDisplayName> {
-  final String? text;
-  final String? languageCode;
-
-  PrimaryTypeDisplayName({
-    this.text,
-    this.languageCode,
-  });
-
-  factory PrimaryTypeDisplayName.fromJson(Map<String, dynamic> json) {
-    return _$PrimaryTypeDisplayNameFromJson(json);
-  }
-
-  @override
-  PrimaryTypeDisplayName? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? PrimaryTypeDisplayName.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$PrimaryTypeDisplayNameToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class CurrentOpeningHours extends Jsonable<CurrentOpeningHours> {
-  final bool? openNow;
-  final List<Period>? periods;
-  final List<String>? weekdayDescriptions;
-  final String? nextCloseTime;
-
-  CurrentOpeningHours({
-    this.openNow,
-    this.periods,
-    this.weekdayDescriptions,
-    this.nextCloseTime,
-  });
-
-  factory CurrentOpeningHours.fromJson(Map<String, dynamic> json) {
-    return _$CurrentOpeningHoursFromJson(json);
-  }
-
-  @override
-  CurrentOpeningHours? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? CurrentOpeningHours.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$CurrentOpeningHoursToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class Date extends Jsonable<Date> {
-  final int? year;
-  final int? month;
-  final int? day;
-
-  Date({
-    this.year,
-    this.month,
-    this.day,
-  });
-
-  factory Date.fromJson(Map<String, dynamic> json) {
-    return _$DateFromJson(json);
-  }
-
-  @override
-  Date? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? Date.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$DateToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class EditorialSummary extends Jsonable<EditorialSummary> {
-  final String? text;
-  final String? languageCode;
-
-  EditorialSummary({
-    this.text,
-    this.languageCode,
-  });
-
-  factory EditorialSummary.fromJson(Map<String, dynamic> json) {
-    return _$EditorialSummaryFromJson(json);
-  }
-
-  @override
-  EditorialSummary? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? EditorialSummary.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$EditorialSummaryToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class Review extends Jsonable<Review> {
-  final String? name;
-  final String? relativePublishTimeDescription;
-  final int? rating;
-  final Text? text;
-  final OriginalText? originalText;
-  final AuthorAttribution? authorAttribution;
-  final String? publishTime;
-  final String? flagContentUri;
-  final String? googleMapsUri;
-
-  Review({
-    this.name,
-    this.relativePublishTimeDescription,
-    this.rating,
-    this.text,
-    this.originalText,
-    this.authorAttribution,
-    this.publishTime,
-    this.flagContentUri,
-    this.googleMapsUri,
-  });
-
-  factory Review.fromJson(Map<String, dynamic> json) {
-    return _$ReviewFromJson(json);
-  }
-
-  @override
-  Review? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? Review.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$ReviewToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class Text extends Jsonable<Text> {
-  final String? text;
-  final String? languageCode;
-
-  Text({
-    this.text,
-    this.languageCode,
-  });
-
-  factory Text.fromJson(Map<String, dynamic> json) {
-    return _$TextFromJson(json);
-  }
-
-  @override
-  Text? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? Text.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$TextToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class OriginalText extends Jsonable<OriginalText> {
-  final String? text;
-  final String? languageCode;
-
-  OriginalText({
-    this.text,
-    this.languageCode,
-  });
-
-  factory OriginalText.fromJson(Map<String, dynamic> json) {
-    return _$OriginalTextFromJson(json);
-  }
-
-  @override
-  OriginalText? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? OriginalText.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$OriginalTextToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class AuthorAttribution extends Jsonable<AuthorAttribution> {
-  final String? displayName;
-  final String? uri;
-  final String? photoUri;
-
-  AuthorAttribution({
-    this.displayName,
-    this.uri,
-    this.photoUri,
-  });
-
-  factory AuthorAttribution.fromJson(Map<String, dynamic> json) {
-    return _$AuthorAttributionFromJson(json);
-  }
-
-  @override
-  AuthorAttribution? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? AuthorAttribution.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$AuthorAttributionToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class Photo extends Jsonable<Photo> {
-  final String? name;
-  final int? widthPx;
-  final int? heightPx;
-  final List<AuthorAttribution>? authorAttributions;
-  final String? flagContentUri;
-  final String? googleMapsUri;
-  final String? photoUri;
-
-  Photo({
-    this.name,
-    this.widthPx,
-    this.heightPx,
-    this.authorAttributions,
-    this.flagContentUri,
-    this.googleMapsUri,
-    this.photoUri,
-  });
-
-  factory Photo.fromJson(Map<String, dynamic> json) {
-    return _$PhotoFromJson(json);
-  }
-
-  @override
-  Photo? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? Photo.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$PhotoToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class AccessibilityOptions extends Jsonable<AccessibilityOptions> {
-  final bool? wheelchairAccessibleParking;
-  final bool? wheelchairAccessibleEntrance;
-
-  AccessibilityOptions({
-    this.wheelchairAccessibleParking,
-    this.wheelchairAccessibleEntrance,
-  });
-
-  factory AccessibilityOptions.fromJson(Map<String, dynamic> json) {
-    return _$AccessibilityOptionsFromJson(json);
-  }
-
-  @override
-  AccessibilityOptions? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? AccessibilityOptions.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$AccessibilityOptionsToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class AddressDescriptor extends Jsonable<AddressDescriptor> {
-  final List<Landmark>? landmarks;
-
-  AddressDescriptor({
-    this.landmarks,
-  });
-
-  factory AddressDescriptor.fromJson(Map<String, dynamic> json) {
-    return _$AddressDescriptorFromJson(json);
-  }
-
-  @override
-  AddressDescriptor? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? AddressDescriptor.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$AddressDescriptorToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class Landmark extends Jsonable<Landmark> {
-  final String? name;
-  final String? placeId;
-  final DisplayName? displayName;
-  final List<String>? types;
-  final double? straightLineDistanceMeters;
-  final double? travelDistanceMeters;
-
-  Landmark({
-    this.name,
-    this.placeId,
-    this.displayName,
-    this.types,
-    this.straightLineDistanceMeters,
-    this.travelDistanceMeters,
-  });
-
-  factory Landmark.fromJson(Map<String, dynamic> json) {
-    return _$LandmarkFromJson(json);
-  }
-
-  @override
-  Landmark? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? Landmark.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$LandmarkToJson(this);
-  }
-}
-
-@JsonSerializable()
-@CopyWith()
-class GoogleMapsLinks extends Jsonable<GoogleMapsLinks> {
-  final String? directionsUri;
-  final String? placeUri;
-  final String? writeAReviewUri;
-  final String? reviewsUri;
-  final String? photosUri;
-
-  GoogleMapsLinks({
-    this.directionsUri,
-    this.placeUri,
-    this.writeAReviewUri,
-    this.reviewsUri,
-    this.photosUri,
-  });
-
-  factory GoogleMapsLinks.fromJson(Map<String, dynamic> json) {
-    return _$GoogleMapsLinksFromJson(json);
-  }
-
-  @override
-  GoogleMapsLinks? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? GoogleMapsLinks.fromJson(json) : null;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$GoogleMapsLinksToJson(this);
+    return _$PlaceToJson(this);
   }
 }

@@ -3,9 +3,12 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:google_maps_apis/src/new/base_api/rest_api.dart';
 import 'package:google_maps_apis/src/new/base_api/rest_api_service.dart';
+import 'package:google_maps_apis/src/new/entity/photo.dart';
 import 'package:google_maps_apis/src/new/entity/place_details.dart';
 import 'package:google_maps_apis/src/new/entity/places_response.dart';
 import 'package:google_maps_apis/src/new/filter/nearby_search_filter.dart';
+import 'package:google_maps_apis/src/new/filter/place_details_filter.dart';
+import 'package:google_maps_apis/src/new/filter/text_search_filter.dart';
 import 'package:google_maps_apis/src/new/model/error_info.dart';
 import 'package:google_maps_apis/src/new/model/google_error_response.dart';
 import 'package:google_maps_apis/src/new/model/google_http_response.dart';
@@ -23,7 +26,7 @@ import 'package:http/http.dart' as http;
 /// [receiveTimeout] is the maximum amount of time in milliseconds that the request can take to receive data.
 /// [sendTimeout] is the maximum amount of time in milliseconds that the request can take to send data.
 /// [httpClient] is the client to be used in the requests, in case you want to use a custom client for logging or error reporting purposes.
-class PlacesAPINew extends RestAPIService<PlaceDetails> {
+class PlacesAPINew extends RestAPIService<Place> {
   late final PlacesServiceNew _service;
   PlacesAPINew({
     String? baseUrl,
@@ -37,7 +40,7 @@ class PlacesAPINew extends RestAPIService<PlaceDetails> {
   }) : super(
           restAPI: RestAPI(),
           baseUrl: baseUrl ??= 'https://places.googleapis.com',
-          dataType: PlaceDetails(),
+          dataType: Place(),
         );
 
   @override
@@ -45,6 +48,27 @@ class PlacesAPINew extends RestAPIService<PlaceDetails> {
     if (isInitialized) return;
     await super.init();
     _service = PlacesServiceNew(dio: restAPI.dio);
+  }
+
+  List<String> _checkFields({
+    bool allFields = false,
+    List<String>? fields,
+    Place? placeDetailsFields,
+    PlacesResponse? placeResponseFields,
+  }) {
+    assert(
+        allFields ||
+            fields != null ||
+            placeDetailsFields != null ||
+            placeResponseFields != null,
+        'Ensure that allFields = true or fields != null, or instanceFields != null with some field != null or .');
+    if (allFields) {
+      fields = ['*'];
+    } else {
+      fields ??= placeDetailsFields?.toFieldsMask() ??
+          placeResponseFields?.toFieldsMask();
+    }
+    return fields ?? [];
   }
 
   /// Fetch details of a place.
@@ -55,10 +79,10 @@ class PlacesAPINew extends RestAPIService<PlaceDetails> {
   ///
   /// Required params:
   ///  - [id]: The id of the place.
-  ///  - [allFields] or [fields] or [placeFields]: A definition of the fields to be included in the response must be specified.
+  ///  - [allFields] or [fields] or [instanceFields]: A definition of the fields to be included in the response must be specified.
   ///
   /// Documentation: https://developers.google.com/maps/documentation/places/web-service/place-details
-  Future<GoogleHTTPResponse<PlaceDetails?>> getDetails({
+  Future<GoogleHTTPResponse<Place?>> getDetails({
     /// Place identifier
     required String id,
 
@@ -70,18 +94,20 @@ class PlacesAPINew extends RestAPIService<PlaceDetails> {
     List<String>? fields,
 
     /// [Recommended] An instance of PlaceDetails where all fields that are not null will be used as the fields parameter taking into account the field hierarchy, as described here: https://developers.google.com/maps/documentation/places/web-service/choose-fields#define_a_response_field_mask
-    PlaceDetails? placeFields,
+    Place? instanceFields,
+
+    /// Basic filters for specifying [languageCode], [regionCode] and [sessionToken]
+    PlaceDetailsFilter? filter,
   }) async {
-    assert(allFields || fields != null || placeFields != null,
-        'Ensure that allFields = true or fields != null, or placeFields != null with some field != null.');
-    if (allFields) {
-      fields = ['*'];
-    } else {
-      fields ??= placeFields?.toFieldsMask();
-    }
+    fields = _checkFields(
+      allFields: allFields,
+      fields: fields,
+      placeDetailsFields: instanceFields,
+    );
     return parseResponse(_service.getDetails(
       id: id,
-      fields: fields ?? [],
+      fields: fields,
+      filter: filter,
     ));
   }
 
@@ -170,17 +196,16 @@ class PlacesAPINew extends RestAPIService<PlaceDetails> {
 
     /// Maximum desired height of the image in pixels: https://developers.google.com/maps/documentation/places/web-service/place-photos#maxheightpx-and-maxwidthpx
     int? maxHeightPx,
-  }) {
-    return _buildPhotoUrl(
-      apiKey: apiKey,
-      name: name,
-      placeId: placeId,
-      photoId: photoId,
-      maxWidthPx: maxWidthPx,
-      maxHeightPx: maxHeightPx,
-      skipHttpRedirect: false,
-    );
-  }
+  }) =>
+      _buildPhotoUrl(
+        apiKey: apiKey,
+        name: name,
+        placeId: placeId,
+        photoId: photoId,
+        maxWidthPx: maxWidthPx,
+        maxHeightPx: maxHeightPx,
+        skipHttpRedirect: false,
+      );
 
   /// Get the photo url of a Place after redirect, this means the final photo url will not use the apiKey nor the place or photo id.
   ///
@@ -310,8 +335,7 @@ class PlacesAPINew extends RestAPIService<PlaceDetails> {
   /// one or more data types is required. Nearby Search (New) only supports POST requests.
   ///
   /// Required params:
-  ///  - [id]: The id of the place.
-  ///  - [allFields] or [fields] or [placeFields]: A definition of the fields to be included in the response must be specified.
+  ///  - [allFields] or [fields] or [instanceFields]: A definition of the fields to be included in the response must be specified.
   ///
   /// Documentation: https://developers.google.com/maps/documentation/places/web-service/nearby-search
   Future<GoogleHTTPResponse<PlacesResponse?>> searchNearby({
@@ -323,22 +347,59 @@ class PlacesAPINew extends RestAPIService<PlaceDetails> {
     /// Take into account this function returns a list of [places], so the fields must be specified with the 'places.' hierarchy in mind, like 'places.id','places.displayName'.
     List<String>? fields,
 
-    /// [Recommended] An instance of PlaceDetails where all fields that are not null will be used as the fields parameter taking into account the field hierarchy, as described here: https://developers.google.com/maps/documentation/places/web-service/nearby-search#fieldmask
-    PlaceDetails? placeFields,
+    /// [Recommended] An instance of PlacesResponse where all fields that are not null will be used as the fields parameter taking into account the field hierarchy, as described here: https://developers.google.com/maps/documentation/places/web-service/nearby-search#fieldmask
+    PlacesResponse? instanceFields,
 
     /// Filters for the search
     required NearbySearchFilter filter,
   }) async {
-    assert(allFields || fields != null || placeFields != null,
-        'Ensure that allFields = true or fields != null, or placeFields != null with some field != null.');
-    if (allFields) {
-      fields = ['*'];
-    } else {
-      fields ??= placeFields?.toFieldsMask(parentKey: 'places');
-    }
+    fields = _checkFields(
+      allFields: allFields,
+      fields: fields,
+      placeResponseFields: instanceFields,
+    );
     return genericParseResponse(
       _service.searchNearby(
-        fields: fields ?? [],
+        fields: fields,
+        filter: filter,
+      ),
+      dataType: PlacesResponse(places: []),
+    );
+  }
+
+  /// Searches by text with multiple possible filters.
+  /// Text Search (New) returns information about a set of places based on a string,
+  /// for example, "pizza in New York" or "shoe stores near Ottawa" or "123 Main Street".
+  /// The service responds with a list of places matching the text string and any
+  /// location bias that has been set.
+  ///
+  /// Required params:
+  ///  - [allFields] or [fields] or [instanceFields]: A definition of the fields to be included in the response must be specified.
+  ///
+  /// Documentation: https://developers.google.com/maps/documentation/places/web-service/text-search
+  Future<GoogleHTTPResponse<PlacesResponse?>> searchText({
+    /// If true, all fields will be included in the response. It's the same as using fields: ['*'].
+    /// Take into account including all fields is expensive in terms of quota usage and performance.
+    bool allFields = false,
+
+    /// List of fields to be included in the response by creating a response field mask: https://developers.google.com/maps/documentation/places/web-service/text-search#fieldmask
+    /// Take into account this function returns a list of [places], so the fields must be specified with the 'places.' hierarchy in mind, like 'places.id','places.displayName'.
+    List<String>? fields,
+
+    /// [Recommended] An instance of PlacesResponse where all fields that are not null will be used as the fields parameter taking into account the field hierarchy, as described here: https://developers.google.com/maps/documentation/places/web-service/text-search#fieldmask
+    PlacesResponse? instanceFields,
+
+    /// Filters for the search
+    required TextSearchFilter filter,
+  }) async {
+    fields = _checkFields(
+      allFields: allFields,
+      fields: fields,
+      placeResponseFields: instanceFields,
+    );
+    return genericParseResponse(
+      _service.searchText(
+        fields: fields,
         filter: filter,
       ),
       dataType: PlacesResponse(places: []),

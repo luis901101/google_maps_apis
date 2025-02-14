@@ -815,4 +815,16 @@ enum PlaceType {
 
   static PlaceType? valueOf(String name) =>
       PlaceType.values.firstWhereOrNull((value) => value.name == name);
+
+  static List<PlaceType>? fromJsonList(List<dynamic>? values) {
+    if (values == null) return null;
+    List<PlaceType> result = [];
+    for (final value in values) {
+      final parsedValue = PlaceType.valueOf('$value');
+      if (parsedValue != null) {
+        result.add(parsedValue);
+      }
+    }
+    return result.isEmpty ? null : result;
+  }
 }
