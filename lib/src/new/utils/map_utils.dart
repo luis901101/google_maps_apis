@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart' as dio;
 
-extension MapExtension<K, V> on Map<K, V> {
+extension MapUtils<K, V> on Map<K, V> {
   Map<K2, V2> mapWhere<K2, V2>(
       MapEntry<K2, V2> Function(K key, V value) convert,
       bool Function(K key, V value) test) {
@@ -15,9 +15,7 @@ extension MapExtension<K, V> on Map<K, V> {
     });
     return result;
   }
-}
 
-class MapUtils {
   static Map<String, String>? parseHeaders(dio.Headers? headers) =>
       parseMapListHeaders(headers?.map);
 

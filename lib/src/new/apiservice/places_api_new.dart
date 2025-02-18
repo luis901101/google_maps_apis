@@ -5,7 +5,7 @@ import 'package:google_maps_apis/src/new/base_api/rest_api.dart';
 import 'package:google_maps_apis/src/new/base_api/rest_api_service.dart';
 import 'package:google_maps_apis/src/new/filter/autocomplete_search_filter.dart';
 import 'package:google_maps_apis/src/new/model/photo.dart';
-import 'package:google_maps_apis/src/new/model/place_details.dart';
+import 'package:google_maps_apis/src/new/model/place.dart';
 import 'package:google_maps_apis/src/new/model/places_response.dart';
 import 'package:google_maps_apis/src/new/filter/nearby_search_filter.dart';
 import 'package:google_maps_apis/src/new/filter/place_details_filter.dart';

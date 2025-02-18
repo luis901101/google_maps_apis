@@ -26,7 +26,7 @@ import 'package:google_maps_apis/src/new/enums/price_level.dart';
 import 'package:google_maps_apis/src/new/utils/jsonable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'place_details.g.dart';
+part 'place.g.dart';
 
 /// All the information representing a Place.
 ///

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'place_details.dart';
+part of 'place.dart';
 
 // **************************************************************************
 // CopyWithGenerator

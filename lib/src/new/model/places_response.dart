@@ -1,5 +1,5 @@
 import 'package:google_maps_apis/src/new/model/contextual_content.dart';
-import 'package:google_maps_apis/src/new/model/place_details.dart';
+import 'package:google_maps_apis/src/new/model/place.dart';
 import 'package:google_maps_apis/src/new/model/routing_summary.dart';
 import 'package:google_maps_apis/src/new/utils/jsonable.dart';
 import 'package:json_annotation/json_annotation.dart';

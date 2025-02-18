@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart' hide Headers;
-import 'package:google_maps_apis/src/new/model/place_details.dart';
+import 'package:google_maps_apis/src/new/model/place.dart';
 import 'package:google_maps_apis/src/new/model/places_response.dart';
 import 'package:google_maps_apis/src/new/filter/autocomplete_search_filter.dart';
 import 'package:google_maps_apis/src/new/filter/nearby_search_filter.dart';

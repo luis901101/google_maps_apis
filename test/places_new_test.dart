@@ -17,7 +17,7 @@ Future<void> main() async {
   group('Get Place Details by ID', () {
     final placeId = Platform.environment['GOOGLE_PLACE_ID'];
     test('Get Place Details with all fields', () async {
-      var response = await placesAPI.getDetails(
+      final response = await placesAPI.getDetails(
         id: placeId ?? '',
         allFields: true,
       );
@@ -28,7 +28,7 @@ Future<void> main() async {
       expect(response.body?.location, isNotNull);
     });
     test('Get Place Details with specific fields list', () async {
-      var response = await placesAPI.getDetails(
+      final response = await placesAPI.getDetails(
         id: placeId ?? '',
         fields: [
           'name',
@@ -62,7 +62,7 @@ Future<void> main() async {
           isNotNull);
     });
     test('Get Place Details with instance fields', () async {
-      var response = await placesAPI.getDetails(
+      final response = await placesAPI.getDetails(
         id: placeId ?? '',
         instanceFields: Place(
           id: '',
@@ -112,7 +112,7 @@ Future<void> main() async {
           isNotNull);
     });
     test('Get Place Details with instance fields and filters', () async {
-      var response = await placesAPI.getDetails(
+      final response = await placesAPI.getDetails(
         id: placeId ?? '',
         instanceFields: Place(
           id: '',
@@ -129,7 +129,7 @@ Future<void> main() async {
       expect(response.body?.formattedAddress, isNotNull);
     });
     test('Get Place Details without fields', () async {
-      var response = await placesAPI.getDetails(
+      final response = await placesAPI.getDetails(
         id: placeId ?? '',
         fields: [],
       );
@@ -139,7 +139,7 @@ Future<void> main() async {
       expect(response.error?.error?.status, 'INVALID_ARGUMENT');
     });
     test('Get Place Details with invalid fields', () async {
-      var response = await placesAPI.getDetails(
+      final response = await placesAPI.getDetails(
         id: placeId ?? '',
         fields: ['test'],
       );
@@ -235,7 +235,7 @@ Future<void> main() async {
   group('Nearby Search', () {
     test('Search nearby max 10 restaurants with fields list', () async {
       final int maxResultCount = 10;
-      var response = await placesAPI.searchNearby(
+      final response = await placesAPI.searchNearby(
         fields: [
           'places.id',
           'places.displayName',
@@ -264,7 +264,7 @@ Future<void> main() async {
       expect(place?.displayName, isNotNull);
     });
     test('Search nearby including too many types', () async {
-      var response = await placesAPI.searchNearby(
+      final response = await placesAPI.searchNearby(
         instanceFields: PlacesResponse(
           places: [
             Place(
@@ -295,7 +295,7 @@ Future<void> main() async {
     });
     test('Search nearby with advanced filter', () async {
       final int maxResultCount = 10;
-      var response = await placesAPI.searchNearby(
+      final response = await placesAPI.searchNearby(
         instanceFields: PlacesResponse(
           places: [
             Place(
@@ -341,7 +341,7 @@ Future<void> main() async {
     });
     test('Search nearby including routingSummaries', () async {
       final int maxResultCount = 10;
-      var response = await placesAPI.searchNearby(
+      final response = await placesAPI.searchNearby(
         instanceFields: PlacesResponse(
           places: [
             Place(
@@ -398,7 +398,7 @@ Future<void> main() async {
   group('Text Search', () {
     test('Simple search by text with max 10 places and fields list', () async {
       final int pageSize = 10;
-      var response = await placesAPI.searchText(
+      final response = await placesAPI.searchText(
         fields: [
           'places.id',
           'places.displayName',
@@ -420,7 +420,7 @@ Future<void> main() async {
     });
     test('Search by text with max 10 places and instance fields', () async {
       final int pageSize = 10;
-      var response = await placesAPI.searchText(
+      final response = await placesAPI.searchText(
         instanceFields: PlacesResponse(
           places: [
             Place(
@@ -455,7 +455,7 @@ Future<void> main() async {
         () async {
       final int pageSize = 10;
       final priceLevels = [PriceLevel.inexpensive, PriceLevel.moderate];
-      var response = await placesAPI.searchText(
+      final response = await placesAPI.searchText(
         instanceFields: PlacesResponse(
           places: [
             Place(
@@ -496,7 +496,7 @@ Future<void> main() async {
 
       do {
         ++page;
-        var response = await placesAPI.searchText(
+        final response = await placesAPI.searchText(
           instanceFields: PlacesResponse(
             places: [
               Place(
@@ -528,7 +528,7 @@ Future<void> main() async {
     test(
         'Search within a circular area with locationRestriction and fields list',
         () async {
-      var response = await placesAPI.searchAutocomplete(
+      final response = await placesAPI.searchAutocomplete(
         fields: [
           'suggestions.placePrediction.placeId',
           'suggestions.placePrediction.text',
@@ -559,7 +559,7 @@ Future<void> main() async {
     test(
         'Search within a rectangular area with locationBias and fields instance',
         () async {
-      var response = await placesAPI.searchAutocomplete(
+      final response = await placesAPI.searchAutocomplete(
         instanceFields: PlacesSuggestions(
           suggestions: [
             Suggestion(
@@ -603,7 +603,7 @@ Future<void> main() async {
     test(
         'Search within a circular area with locationBias, specifying primary types and no fields selection',
         () async {
-      var response = await placesAPI.searchAutocomplete(
+      final response = await placesAPI.searchAutocomplete(
         filter: AutocompleteSearchFilter(
           input: 'Soccer',
           includedPrimaryTypes: [PlaceType.sportingGoodsStore],
@@ -630,7 +630,7 @@ Future<void> main() async {
     test(
         'Search within a circular area with locationBias, including Query Predictions, origin and no fields selection',
         () async {
-      var response = await placesAPI.searchAutocomplete(
+      final response = await placesAPI.searchAutocomplete(
         filter: AutocompleteSearchFilter(
           input: 'Amoeba',
           includeQueryPredictions: true,
@@ -665,5 +665,94 @@ Future<void> main() async {
       expect(queryPrediction?.text, isNotNull);
       expect(queryPrediction?.structuredFormat, isNotNull);
     });
+  });
+
+  group('Session Token', () {
+    final sessionToken = SessionTokenHandler();
+    final inputs = ['P', 'Pi', 'Pizz', 'Pizza', 'Pizza'];
+    final placeId = Platform.environment['GOOGLE_PLACE_ID'];
+
+    for (final input in inputs) {
+      test('Autocomplete search "$input" with session token', () async {
+        PlacesSuggestions? cachedSuggestions =
+            sessionToken.suggestionsFromCache(input);
+        if (cachedSuggestions == null) {
+          final token = sessionToken.token;
+          print(
+              'Doing Autocomplete search for "$input" using sessionToken: $token used ${sessionToken.used} times');
+          final response = await placesAPI.searchAutocomplete(
+            instanceFields: PlacesSuggestions(
+              suggestions: [
+                Suggestion(
+                  placePrediction: PlacePrediction(
+                    placeId: '',
+                    text: FormattableText(),
+                  ),
+                ),
+              ],
+            ),
+            filter: AutocompleteSearchFilter(
+              input: input,
+              sessionToken: token,
+              locationRestriction: LocationRestriction(
+                circle: Circle(
+                  center: Coordinates(
+                    latitude: 37.7749,
+                    longitude: -122.4194,
+                  ),
+                  radius: 5000,
+                ),
+              ),
+            ),
+          );
+          expect(response.isSuccessful, true);
+          sessionToken.cacheSuggestions(
+              text: input, data: cachedSuggestions = response.body);
+        } else {
+          print(
+              'No need to do Autocomplete search for "$input" as it is already cached');
+        }
+        expect(cachedSuggestions, isNotNull);
+        expect(cachedSuggestions?.suggestions, isNotEmpty);
+        final placePrediction =
+            cachedSuggestions?.suggestions.firstOrNull?.placePrediction;
+        expect(placePrediction?.placeId, isNotNull);
+        expect(placePrediction?.text, isNotNull);
+      });
+    }
+
+    for (int i = 0; i < 2; ++i) {
+      test(
+          'Place Details get for "$placeId" with session token after Autocomplete search',
+          () async {
+        Place? place = sessionToken.placeFromCache(placeId);
+        if (place == null) {
+          final token = sessionToken.token;
+          print(
+              'Doing Place Details get for "$placeId" using sessionToken: $token used ${sessionToken.used} times');
+          final response = await placesAPI.getDetails(
+            id: placeId ?? '',
+            instanceFields: Place(
+              id: '',
+              displayName: LocalizedText(),
+            ),
+            filter: PlaceDetailsFilter(
+              sessionToken: token,
+            ),
+          );
+          expect(response.isSuccessful, true);
+          sessionToken.cachePlaceDetails(
+              id: placeId, data: place = response.body);
+          print(
+              'New sessionToken: ${sessionToken.token} generated after Place Details results cached');
+        } else {
+          print(
+              'No need to do Place Details search for "$placeId" as it is already cached');
+        }
+        expect(place, isNotNull);
+        expect(place?.id, isNotNull);
+        expect(place?.displayName, isNotNull);
+      });
+    }
   });
 }
