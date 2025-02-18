@@ -1,37 +1,33 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'nearby_search_filter.dart';
+part of 'place_prediction.dart';
 
 // **************************************************************************
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$NearbySearchFilterCWProxy {
+abstract class _$PlacePredictionCWProxy {
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
   ///
   /// Usage
   /// ```dart
-  /// NearbySearchFilter(...).copyWith(id: 12, name: "My name")
+  /// PlacePrediction(...).copyWith(id: 12, name: "My name")
   /// ````
-  NearbySearchFilter call({
-    String? languageCode,
-    String? regionCode,
-    List<PlaceType>? includedTypes,
-    List<PlaceType>? excludedTypes,
-    List<PlaceType>? includedPrimaryTypes,
-    List<PlaceType>? excludedPrimaryTypes,
-    int? maxResultCount,
-    LocationRestrictionCircle locationRestriction,
-    RankPreferenceType? rankPreference,
-    RoutingParameters? routingParameters,
+  PlacePrediction call({
+    String? place,
+    String? placeId,
+    FormattableText? text,
+    StructuredFormat? structuredFormat,
+    List<PlaceType>? types,
+    int? distanceMeters,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfNearbySearchFilter.copyWith(...)`.
-class _$NearbySearchFilterCWProxyImpl implements _$NearbySearchFilterCWProxy {
-  const _$NearbySearchFilterCWProxyImpl(this._value);
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPlacePrediction.copyWith(...)`.
+class _$PlacePredictionCWProxyImpl implements _$PlacePredictionCWProxy {
+  const _$PlacePredictionCWProxyImpl(this._value);
 
-  final NearbySearchFilter _value;
+  final PlacePrediction _value;
 
   @override
 
@@ -39,131 +35,82 @@ class _$NearbySearchFilterCWProxyImpl implements _$NearbySearchFilterCWProxy {
   ///
   /// Usage
   /// ```dart
-  /// NearbySearchFilter(...).copyWith(id: 12, name: "My name")
+  /// PlacePrediction(...).copyWith(id: 12, name: "My name")
   /// ````
-  NearbySearchFilter call({
-    Object? languageCode = const $CopyWithPlaceholder(),
-    Object? regionCode = const $CopyWithPlaceholder(),
-    Object? includedTypes = const $CopyWithPlaceholder(),
-    Object? excludedTypes = const $CopyWithPlaceholder(),
-    Object? includedPrimaryTypes = const $CopyWithPlaceholder(),
-    Object? excludedPrimaryTypes = const $CopyWithPlaceholder(),
-    Object? maxResultCount = const $CopyWithPlaceholder(),
-    Object? locationRestriction = const $CopyWithPlaceholder(),
-    Object? rankPreference = const $CopyWithPlaceholder(),
-    Object? routingParameters = const $CopyWithPlaceholder(),
+  PlacePrediction call({
+    Object? place = const $CopyWithPlaceholder(),
+    Object? placeId = const $CopyWithPlaceholder(),
+    Object? text = const $CopyWithPlaceholder(),
+    Object? structuredFormat = const $CopyWithPlaceholder(),
+    Object? types = const $CopyWithPlaceholder(),
+    Object? distanceMeters = const $CopyWithPlaceholder(),
   }) {
-    return NearbySearchFilter(
-      languageCode: languageCode == const $CopyWithPlaceholder()
-          ? _value.languageCode
+    return PlacePrediction(
+      place: place == const $CopyWithPlaceholder()
+          ? _value.place
           // ignore: cast_nullable_to_non_nullable
-          : languageCode as String?,
-      regionCode: regionCode == const $CopyWithPlaceholder()
-          ? _value.regionCode
+          : place as String?,
+      placeId: placeId == const $CopyWithPlaceholder()
+          ? _value.placeId
           // ignore: cast_nullable_to_non_nullable
-          : regionCode as String?,
-      includedTypes: includedTypes == const $CopyWithPlaceholder()
-          ? _value.includedTypes
+          : placeId as String?,
+      text: text == const $CopyWithPlaceholder()
+          ? _value.text
           // ignore: cast_nullable_to_non_nullable
-          : includedTypes as List<PlaceType>?,
-      excludedTypes: excludedTypes == const $CopyWithPlaceholder()
-          ? _value.excludedTypes
+          : text as FormattableText?,
+      structuredFormat: structuredFormat == const $CopyWithPlaceholder()
+          ? _value.structuredFormat
           // ignore: cast_nullable_to_non_nullable
-          : excludedTypes as List<PlaceType>?,
-      includedPrimaryTypes: includedPrimaryTypes == const $CopyWithPlaceholder()
-          ? _value.includedPrimaryTypes
+          : structuredFormat as StructuredFormat?,
+      types: types == const $CopyWithPlaceholder()
+          ? _value.types
           // ignore: cast_nullable_to_non_nullable
-          : includedPrimaryTypes as List<PlaceType>?,
-      excludedPrimaryTypes: excludedPrimaryTypes == const $CopyWithPlaceholder()
-          ? _value.excludedPrimaryTypes
+          : types as List<PlaceType>?,
+      distanceMeters: distanceMeters == const $CopyWithPlaceholder()
+          ? _value.distanceMeters
           // ignore: cast_nullable_to_non_nullable
-          : excludedPrimaryTypes as List<PlaceType>?,
-      maxResultCount: maxResultCount == const $CopyWithPlaceholder()
-          ? _value.maxResultCount
-          // ignore: cast_nullable_to_non_nullable
-          : maxResultCount as int?,
-      locationRestriction: locationRestriction == const $CopyWithPlaceholder()
-          ? _value.locationRestriction
-          // ignore: cast_nullable_to_non_nullable
-          : locationRestriction as LocationRestrictionCircle,
-      rankPreference: rankPreference == const $CopyWithPlaceholder()
-          ? _value.rankPreference
-          // ignore: cast_nullable_to_non_nullable
-          : rankPreference as RankPreferenceType?,
-      routingParameters: routingParameters == const $CopyWithPlaceholder()
-          ? _value.routingParameters
-          // ignore: cast_nullable_to_non_nullable
-          : routingParameters as RoutingParameters?,
+          : distanceMeters as int?,
     );
   }
 }
 
-extension $NearbySearchFilterCopyWith on NearbySearchFilter {
-  /// Returns a callable class that can be used as follows: `instanceOfNearbySearchFilter.copyWith(...)`.
+extension $PlacePredictionCopyWith on PlacePrediction {
+  /// Returns a callable class that can be used as follows: `instanceOfPlacePrediction.copyWith(...)`.
   // ignore: library_private_types_in_public_api
-  _$NearbySearchFilterCWProxy get copyWith =>
-      _$NearbySearchFilterCWProxyImpl(this);
+  _$PlacePredictionCWProxy get copyWith => _$PlacePredictionCWProxyImpl(this);
 }
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-NearbySearchFilter _$NearbySearchFilterFromJson(Map<String, dynamic> json) =>
-    NearbySearchFilter(
-      languageCode: json['languageCode'] as String?,
-      regionCode: json['regionCode'] as String?,
-      includedTypes: PlaceType.fromJsonList(json['includedTypes'] as List?),
-      excludedTypes: PlaceType.fromJsonList(json['excludedTypes'] as List?),
-      includedPrimaryTypes:
-          PlaceType.fromJsonList(json['includedPrimaryTypes'] as List?),
-      excludedPrimaryTypes:
-          PlaceType.fromJsonList(json['excludedPrimaryTypes'] as List?),
-      maxResultCount: (json['maxResultCount'] as num?)?.toInt(),
-      locationRestriction: LocationRestrictionCircle.fromJson(
-          json['locationRestriction'] as Map<String, dynamic>),
-      rankPreference: $enumDecodeNullable(
-          _$RankPreferenceTypeEnumMap, json['rankPreference']),
-      routingParameters: json['routingParameters'] == null
+PlacePrediction _$PlacePredictionFromJson(Map<String, dynamic> json) =>
+    PlacePrediction(
+      place: json['place'] as String?,
+      placeId: json['placeId'] as String?,
+      text: json['text'] == null
           ? null
-          : RoutingParameters.fromJson(
-              json['routingParameters'] as Map<String, dynamic>),
+          : FormattableText.fromJson(json['text'] as Map<String, dynamic>),
+      structuredFormat: json['structuredFormat'] == null
+          ? null
+          : StructuredFormat.fromJson(
+              json['structuredFormat'] as Map<String, dynamic>),
+      types: PlaceType.fromJsonList(json['types'] as List?),
+      distanceMeters: (json['distanceMeters'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$NearbySearchFilterToJson(NearbySearchFilter instance) =>
+Map<String, dynamic> _$PlacePredictionToJson(PlacePrediction instance) =>
     <String, dynamic>{
-      if (instance.languageCode case final value?) 'languageCode': value,
-      if (instance.regionCode case final value?) 'regionCode': value,
-      if (instance.includedTypes?.map((e) => _$PlaceTypeEnumMap[e]!).toList()
+      if (instance.place case final value?) 'place': value,
+      if (instance.placeId case final value?) 'placeId': value,
+      if (instance.text case final value?) 'text': value,
+      if (instance.structuredFormat case final value?)
+        'structuredFormat': value,
+      if (instance.types?.map((e) => _$PlaceTypeEnumMap[e]!).toList()
           case final value?)
-        'includedTypes': value,
-      if (instance.excludedTypes?.map((e) => _$PlaceTypeEnumMap[e]!).toList()
-          case final value?)
-        'excludedTypes': value,
-      if (instance.includedPrimaryTypes
-              ?.map((e) => _$PlaceTypeEnumMap[e]!)
-              .toList()
-          case final value?)
-        'includedPrimaryTypes': value,
-      if (instance.excludedPrimaryTypes
-              ?.map((e) => _$PlaceTypeEnumMap[e]!)
-              .toList()
-          case final value?)
-        'excludedPrimaryTypes': value,
-      if (instance.maxResultCount case final value?) 'maxResultCount': value,
-      'locationRestriction': instance.locationRestriction,
-      if (_$RankPreferenceTypeEnumMap[instance.rankPreference]
-          case final value?)
-        'rankPreference': value,
-      if (instance.routingParameters case final value?)
-        'routingParameters': value,
+        'types': value,
+      if (instance.distanceMeters case final value?) 'distanceMeters': value,
     };
-
-const _$RankPreferenceTypeEnumMap = {
-  RankPreferenceType.popularity: 'POPULARITY',
-  RankPreferenceType.relevance: 'RELEVANCE',
-  RankPreferenceType.distance: 'DISTANCE',
-};
 
 const _$PlaceTypeEnumMap = {
   PlaceType.carDealer: 'car_dealer',

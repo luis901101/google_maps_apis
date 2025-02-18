@@ -6,23 +6,24 @@ part of 'location_area.dart';
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$LocationCircleAreaCWProxy {
+abstract class _$LocationRestrictionCircleCWProxy {
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
   ///
   /// Usage
   /// ```dart
-  /// LocationCircleArea(...).copyWith(id: 12, name: "My name")
+  /// LocationRestrictionCircle(...).copyWith(id: 12, name: "My name")
   /// ````
-  LocationCircleArea call({
+  LocationRestrictionCircle call({
     Circle circle,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfLocationCircleArea.copyWith(...)`.
-class _$LocationCircleAreaCWProxyImpl implements _$LocationCircleAreaCWProxy {
-  const _$LocationCircleAreaCWProxyImpl(this._value);
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfLocationRestrictionCircle.copyWith(...)`.
+class _$LocationRestrictionCircleCWProxyImpl
+    implements _$LocationRestrictionCircleCWProxy {
+  const _$LocationRestrictionCircleCWProxyImpl(this._value);
 
-  final LocationCircleArea _value;
+  final LocationRestrictionCircle _value;
 
   @override
 
@@ -30,12 +31,12 @@ class _$LocationCircleAreaCWProxyImpl implements _$LocationCircleAreaCWProxy {
   ///
   /// Usage
   /// ```dart
-  /// LocationCircleArea(...).copyWith(id: 12, name: "My name")
+  /// LocationRestrictionCircle(...).copyWith(id: 12, name: "My name")
   /// ````
-  LocationCircleArea call({
+  LocationRestrictionCircle call({
     Object? circle = const $CopyWithPlaceholder(),
   }) {
-    return LocationCircleArea(
+    return LocationRestrictionCircle(
       circle: circle == const $CopyWithPlaceholder()
           ? _value.circle
           // ignore: cast_nullable_to_non_nullable
@@ -44,11 +45,112 @@ class _$LocationCircleAreaCWProxyImpl implements _$LocationCircleAreaCWProxy {
   }
 }
 
-extension $LocationCircleAreaCopyWith on LocationCircleArea {
-  /// Returns a callable class that can be used as follows: `instanceOfLocationCircleArea.copyWith(...)`.
+extension $LocationRestrictionCircleCopyWith on LocationRestrictionCircle {
+  /// Returns a callable class that can be used as follows: `instanceOfLocationRestrictionCircle.copyWith(...)`.
   // ignore: library_private_types_in_public_api
-  _$LocationCircleAreaCWProxy get copyWith =>
-      _$LocationCircleAreaCWProxyImpl(this);
+  _$LocationRestrictionCircleCWProxy get copyWith =>
+      _$LocationRestrictionCircleCWProxyImpl(this);
+}
+
+abstract class _$LocationBiasCWProxy {
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  ///
+  /// Usage
+  /// ```dart
+  /// LocationBias(...).copyWith(id: 12, name: "My name")
+  /// ````
+  LocationBias call({
+    Circle? circle,
+    Rectangle? rectangle,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfLocationBias.copyWith(...)`.
+class _$LocationBiasCWProxyImpl implements _$LocationBiasCWProxy {
+  const _$LocationBiasCWProxyImpl(this._value);
+
+  final LocationBias _value;
+
+  @override
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  ///
+  /// Usage
+  /// ```dart
+  /// LocationBias(...).copyWith(id: 12, name: "My name")
+  /// ````
+  LocationBias call({
+    Object? circle = const $CopyWithPlaceholder(),
+    Object? rectangle = const $CopyWithPlaceholder(),
+  }) {
+    return LocationBias(
+      circle: circle == const $CopyWithPlaceholder()
+          ? _value.circle
+          // ignore: cast_nullable_to_non_nullable
+          : circle as Circle?,
+      rectangle: rectangle == const $CopyWithPlaceholder()
+          ? _value.rectangle
+          // ignore: cast_nullable_to_non_nullable
+          : rectangle as Rectangle?,
+    );
+  }
+}
+
+extension $LocationBiasCopyWith on LocationBias {
+  /// Returns a callable class that can be used as follows: `instanceOfLocationBias.copyWith(...)`.
+  // ignore: library_private_types_in_public_api
+  _$LocationBiasCWProxy get copyWith => _$LocationBiasCWProxyImpl(this);
+}
+
+abstract class _$LocationRestrictionCWProxy {
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  ///
+  /// Usage
+  /// ```dart
+  /// LocationRestriction(...).copyWith(id: 12, name: "My name")
+  /// ````
+  LocationRestriction call({
+    Circle? circle,
+    Rectangle? rectangle,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfLocationRestriction.copyWith(...)`.
+class _$LocationRestrictionCWProxyImpl implements _$LocationRestrictionCWProxy {
+  const _$LocationRestrictionCWProxyImpl(this._value);
+
+  final LocationRestriction _value;
+
+  @override
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  ///
+  /// Usage
+  /// ```dart
+  /// LocationRestriction(...).copyWith(id: 12, name: "My name")
+  /// ````
+  LocationRestriction call({
+    Object? circle = const $CopyWithPlaceholder(),
+    Object? rectangle = const $CopyWithPlaceholder(),
+  }) {
+    return LocationRestriction(
+      circle: circle == const $CopyWithPlaceholder()
+          ? _value.circle
+          // ignore: cast_nullable_to_non_nullable
+          : circle as Circle?,
+      rectangle: rectangle == const $CopyWithPlaceholder()
+          ? _value.rectangle
+          // ignore: cast_nullable_to_non_nullable
+          : rectangle as Rectangle?,
+    );
+  }
+}
+
+extension $LocationRestrictionCopyWith on LocationRestriction {
+  /// Returns a callable class that can be used as follows: `instanceOfLocationRestriction.copyWith(...)`.
+  // ignore: library_private_types_in_public_api
+  _$LocationRestrictionCWProxy get copyWith =>
+      _$LocationRestrictionCWProxyImpl(this);
 }
 
 abstract class _$LocationMultiAreaCWProxy {
@@ -206,14 +308,48 @@ extension $RectangleCopyWith on Rectangle {
 // JsonSerializableGenerator
 // **************************************************************************
 
-LocationCircleArea _$LocationCircleAreaFromJson(Map<String, dynamic> json) =>
-    LocationCircleArea(
+LocationRestrictionCircle _$LocationRestrictionCircleFromJson(
+        Map<String, dynamic> json) =>
+    LocationRestrictionCircle(
       circle: Circle.fromJson(json['circle'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$LocationCircleAreaToJson(LocationCircleArea instance) =>
+Map<String, dynamic> _$LocationRestrictionCircleToJson(
+        LocationRestrictionCircle instance) =>
     <String, dynamic>{
       'circle': instance.circle,
+    };
+
+LocationBias _$LocationBiasFromJson(Map<String, dynamic> json) => LocationBias(
+      circle: json['circle'] == null
+          ? null
+          : Circle.fromJson(json['circle'] as Map<String, dynamic>),
+      rectangle: json['rectangle'] == null
+          ? null
+          : Rectangle.fromJson(json['rectangle'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$LocationBiasToJson(LocationBias instance) =>
+    <String, dynamic>{
+      if (instance.circle case final value?) 'circle': value,
+      if (instance.rectangle case final value?) 'rectangle': value,
+    };
+
+LocationRestriction _$LocationRestrictionFromJson(Map<String, dynamic> json) =>
+    LocationRestriction(
+      circle: json['circle'] == null
+          ? null
+          : Circle.fromJson(json['circle'] as Map<String, dynamic>),
+      rectangle: json['rectangle'] == null
+          ? null
+          : Rectangle.fromJson(json['rectangle'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$LocationRestrictionToJson(
+        LocationRestriction instance) =>
+    <String, dynamic>{
+      if (instance.circle case final value?) 'circle': value,
+      if (instance.rectangle case final value?) 'rectangle': value,
     };
 
 LocationMultiArea _$LocationMultiAreaFromJson(Map<String, dynamic> json) =>

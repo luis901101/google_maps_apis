@@ -1,6 +1,6 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:google_maps_apis/src/new/entity/lat_lng.dart';
-import 'package:google_maps_apis/src/new/entity/route_modifiers.dart';
+import 'package:google_maps_apis/src/new/model/lat_lng.dart';
+import 'package:google_maps_apis/src/new/model/route_modifiers.dart';
 import 'package:google_maps_apis/src/new/enums/routing_preference.dart';
 import 'package:google_maps_apis/src/new/enums/travel_mode.dart';
 import 'package:google_maps_apis/src/new/utils/jsonable.dart';

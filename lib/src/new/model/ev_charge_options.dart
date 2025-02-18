@@ -1,5 +1,5 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:google_maps_apis/src/new/entity/connector_aggregation.dart';
+import 'package:google_maps_apis/src/new/model/connector_aggregation.dart';
 import 'package:google_maps_apis/src/new/utils/jsonable.dart';
 import 'package:json_annotation/json_annotation.dart';
 

@@ -1,6 +1,6 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:google_maps_apis/src/new/entity/area.dart';
-import 'package:google_maps_apis/src/new/entity/landmark.dart';
+import 'package:google_maps_apis/src/new/model/area.dart';
+import 'package:google_maps_apis/src/new/model/landmark.dart';
 import 'package:google_maps_apis/src/new/utils/jsonable.dart';
 import 'package:json_annotation/json_annotation.dart';
 

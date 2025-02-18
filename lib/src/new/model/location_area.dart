@@ -5,26 +5,81 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'location_area.g.dart';
 
+/// A circle region to search.
+///
+/// Documentation: https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places/searchNearby#locationrestriction
 @JsonSerializable()
 @CopyWith()
-class LocationCircleArea extends Jsonable<LocationCircleArea> {
+class LocationRestrictionCircle extends Jsonable<LocationRestrictionCircle> {
   final Circle circle;
 
-  LocationCircleArea({
+  LocationRestrictionCircle({
     required this.circle,
   });
 
-  factory LocationCircleArea.fromJson(Map<String, dynamic> json) {
-    return _$LocationCircleAreaFromJson(json);
+  factory LocationRestrictionCircle.fromJson(Map<String, dynamic> json) {
+    return _$LocationRestrictionCircleFromJson(json);
   }
 
   @override
-  LocationCircleArea? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? LocationCircleArea.fromJson(json) : null;
+  LocationRestrictionCircle? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? LocationRestrictionCircle.fromJson(json) : null;
 
   @override
   Map<String, dynamic> toJson() {
-    return _$LocationCircleAreaToJson(this);
+    return _$LocationRestrictionCircleToJson(this);
+  }
+}
+
+/// The region to search. This location serves as a bias which means results
+/// around given location might be returned.
+///
+/// Documentation: https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places/searchText#locationbias
+@JsonSerializable()
+@CopyWith()
+class LocationBias extends LocationMultiArea {
+  LocationBias({
+    super.circle,
+    super.rectangle,
+  });
+
+  factory LocationBias.fromJson(Map<String, dynamic> json) {
+    return _$LocationBiasFromJson(json);
+  }
+
+  @override
+  LocationBias? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? LocationBias.fromJson(json) : null;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$LocationBiasToJson(this);
+  }
+}
+
+/// The region to search. This location serves as a restriction which means
+/// results outside given location will not be returned.
+///
+/// Documentation: https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places/searchText#locationrestriction
+@JsonSerializable()
+@CopyWith()
+class LocationRestriction extends LocationMultiArea {
+  LocationRestriction({
+    super.circle,
+    super.rectangle,
+  });
+
+  factory LocationRestriction.fromJson(Map<String, dynamic> json) {
+    return _$LocationRestrictionFromJson(json);
+  }
+
+  @override
+  LocationRestriction? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? LocationRestriction.fromJson(json) : null;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$LocationRestrictionToJson(this);
   }
 }
 

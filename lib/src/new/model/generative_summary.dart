@@ -1,6 +1,6 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:google_maps_apis/src/new/entity/localized_text.dart';
-import 'package:google_maps_apis/src/new/entity/references.dart';
+import 'package:google_maps_apis/src/new/model/localized_text.dart';
+import 'package:google_maps_apis/src/new/model/references.dart';
 import 'package:google_maps_apis/src/new/utils/jsonable.dart';
 import 'package:json_annotation/json_annotation.dart';
 

@@ -119,6 +119,42 @@ class _PlacesServiceNew implements PlacesServiceNew {
     return httpResponse;
   }
 
+  @override
+  Future<HttpResponse<PlacesSuggestions?>> searchAutocomplete({
+    List<String>? fields,
+    required AutocompleteSearchFilter filter,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'fields': fields};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(filter.toJson());
+    _data.removeWhere((k, v) => v == null);
+    final _options = _setStreamType<HttpResponse<PlacesSuggestions?>>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            ':autocomplete',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>?>(_options);
+    late PlacesSuggestions? _value;
+    try {
+      _value = _result.data == null
+          ? null
+          : PlacesSuggestions.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    final httpResponse = HttpResponse(_value, _result);
+    return httpResponse;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

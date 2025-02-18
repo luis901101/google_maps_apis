@@ -1,12 +1,13 @@
-import 'package:google_maps_apis/src/new/entity/contextual_content.dart';
-import 'package:google_maps_apis/src/new/entity/place_details.dart';
-import 'package:google_maps_apis/src/new/entity/routing_summary.dart';
+import 'package:google_maps_apis/src/new/model/contextual_content.dart';
+import 'package:google_maps_apis/src/new/model/place_details.dart';
+import 'package:google_maps_apis/src/new/model/routing_summary.dart';
 import 'package:google_maps_apis/src/new/utils/jsonable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 
 part 'places_response.g.dart';
 
+/// Response DTO for Search Nearby and Search Text.
 @JsonSerializable()
 @CopyWith()
 class PlacesResponse extends Jsonable<PlacesResponse> {

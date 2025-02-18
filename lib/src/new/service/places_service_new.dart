@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart' hide Headers;
-import 'package:google_maps_apis/src/new/entity/place_details.dart';
-import 'package:google_maps_apis/src/new/entity/places_response.dart';
+import 'package:google_maps_apis/src/new/model/place_details.dart';
+import 'package:google_maps_apis/src/new/model/places_response.dart';
+import 'package:google_maps_apis/src/new/filter/autocomplete_search_filter.dart';
 import 'package:google_maps_apis/src/new/filter/nearby_search_filter.dart';
 import 'package:google_maps_apis/src/new/filter/place_details_filter.dart';
 import 'package:google_maps_apis/src/new/filter/text_search_filter.dart';
+import 'package:google_maps_apis/src/new/model/places_suggestions.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'places_service_new.g.dart';
@@ -32,5 +34,11 @@ abstract class PlacesServiceNew {
   Future<HttpResponse<PlacesResponse?>> searchText({
     @Query('fields') required List<String> fields,
     @Body(nullToAbsent: true) required TextSearchFilter filter,
+  });
+
+  @POST(':autocomplete')
+  Future<HttpResponse<PlacesSuggestions?>> searchAutocomplete({
+    @Query('fields') required List<String>? fields,
+    @Body(nullToAbsent: true) required AutocompleteSearchFilter filter,
   });
 }

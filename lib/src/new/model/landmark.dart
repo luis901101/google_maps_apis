@@ -1,5 +1,5 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:google_maps_apis/src/new/entity/localized_text.dart';
+import 'package:google_maps_apis/src/new/model/localized_text.dart';
 import 'package:google_maps_apis/src/new/enums/place_type.dart';
 import 'package:google_maps_apis/src/new/enums/spatial_relationship.dart';
 import 'package:google_maps_apis/src/new/utils/jsonable.dart';

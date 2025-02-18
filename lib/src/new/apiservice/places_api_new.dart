@@ -3,15 +3,17 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:google_maps_apis/src/new/base_api/rest_api.dart';
 import 'package:google_maps_apis/src/new/base_api/rest_api_service.dart';
-import 'package:google_maps_apis/src/new/entity/photo.dart';
-import 'package:google_maps_apis/src/new/entity/place_details.dart';
-import 'package:google_maps_apis/src/new/entity/places_response.dart';
+import 'package:google_maps_apis/src/new/filter/autocomplete_search_filter.dart';
+import 'package:google_maps_apis/src/new/model/photo.dart';
+import 'package:google_maps_apis/src/new/model/place_details.dart';
+import 'package:google_maps_apis/src/new/model/places_response.dart';
 import 'package:google_maps_apis/src/new/filter/nearby_search_filter.dart';
 import 'package:google_maps_apis/src/new/filter/place_details_filter.dart';
 import 'package:google_maps_apis/src/new/filter/text_search_filter.dart';
 import 'package:google_maps_apis/src/new/model/error_info.dart';
 import 'package:google_maps_apis/src/new/model/google_error_response.dart';
 import 'package:google_maps_apis/src/new/model/google_http_response.dart';
+import 'package:google_maps_apis/src/new/model/places_suggestions.dart';
 import 'package:google_maps_apis/src/new/service/places_service_new.dart';
 import 'package:google_maps_apis/src/new/utils/map_utils.dart';
 import 'package:http/http.dart' as http;
@@ -55,18 +57,21 @@ class PlacesAPINew extends RestAPIService<Place> {
     List<String>? fields,
     Place? placeDetailsFields,
     PlacesResponse? placeResponseFields,
+    PlacesSuggestions? placeSuggestionsFields,
   }) {
     assert(
         allFields ||
             fields != null ||
             placeDetailsFields != null ||
-            placeResponseFields != null,
+            placeResponseFields != null ||
+            placeSuggestionsFields != null,
         'Ensure that allFields = true or fields != null, or instanceFields != null with some field != null or .');
     if (allFields) {
       fields = ['*'];
     } else {
       fields ??= placeDetailsFields?.toFieldsMask() ??
-          placeResponseFields?.toFieldsMask();
+          placeResponseFields?.toFieldsMask() ??
+          placeSuggestionsFields?.toFieldsMask();
     }
     return fields ?? [];
   }
@@ -336,6 +341,7 @@ class PlacesAPINew extends RestAPIService<Place> {
   ///
   /// Required params:
   ///  - [allFields] or [fields] or [instanceFields]: A definition of the fields to be included in the response must be specified.
+  ///  - [filter]: Filters for the search.
   ///
   /// Documentation: https://developers.google.com/maps/documentation/places/web-service/nearby-search
   Future<GoogleHTTPResponse<PlacesResponse?>> searchNearby({
@@ -375,6 +381,7 @@ class PlacesAPINew extends RestAPIService<Place> {
   ///
   /// Required params:
   ///  - [allFields] or [fields] or [instanceFields]: A definition of the fields to be included in the response must be specified.
+  ///  - [filter]: Filters for the search.
   ///
   /// Documentation: https://developers.google.com/maps/documentation/places/web-service/text-search
   Future<GoogleHTTPResponse<PlacesResponse?>> searchText({
@@ -402,7 +409,52 @@ class PlacesAPINew extends RestAPIService<Place> {
         fields: fields,
         filter: filter,
       ),
-      dataType: PlacesResponse(places: []),
+      dataType: PlacesResponse(),
+    );
+  }
+
+  /// Searches by text with multiple possible filters.
+  /// The Autocomplete (New) service is a web service that returns place predictions
+  /// and query predictions in response to an HTTP request. In the request,
+  /// specify a text search string and geographic bounds that controls the search area.
+  ///
+  /// The Autocomplete (New) service can match on full words and substrings of
+  /// the input, resolving place names, addresses, and plus codes. Applications
+  /// can therefore send queries as the user types, to provide on-the-fly place
+  /// and query predictions.
+  ///
+  /// Required params:
+  ///  - [filter]: Filters for the search.
+  ///
+  /// Documentation: https://developers.google.com/maps/documentation/places/web-service/place-autocomplete
+  Future<GoogleHTTPResponse<PlacesSuggestions?>> searchAutocomplete({
+    /// If true, all fields will be included in the response. It's the same as using fields: ['*'].
+    /// Take into account including all fields is expensive in terms of quota usage and performance.
+    bool allFields = false,
+
+    /// List of fields to be included in the response by creating a response field mask: https://developers.google.com/maps/documentation/places/web-service/text-search#fieldmask
+    /// Take into account this function returns a list of [places], so the fields must be specified with the 'places.' hierarchy in mind, like 'places.id','places.displayName'.
+    List<String>? fields,
+
+    /// [Recommended] An instance of PlacesResponse where all fields that are not null will be used as the fields parameter taking into account the field hierarchy, as described here: https://developers.google.com/maps/documentation/places/web-service/text-search#fieldmask
+    PlacesSuggestions? instanceFields,
+
+    /// Filters for the search
+    required AutocompleteSearchFilter filter,
+  }) async {
+    if (allFields || fields != null || instanceFields != null) {
+      fields = _checkFields(
+        allFields: allFields,
+        fields: fields,
+        placeSuggestionsFields: instanceFields,
+      );
+    }
+    return genericParseResponse(
+      _service.searchAutocomplete(
+        fields: fields,
+        filter: filter,
+      ),
+      dataType: PlacesSuggestions(),
     );
   }
 }

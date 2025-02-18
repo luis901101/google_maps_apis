@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:collection/collection.dart';
 import 'package:google_maps_apis/places_new.dart';
 import 'package:test/test.dart';
 
@@ -243,7 +244,7 @@ Future<void> main() async {
         filter: NearbySearchFilter(
           includedTypes: [PlaceType.restaurant],
           maxResultCount: maxResultCount,
-          locationRestriction: LocationCircleArea(
+          locationRestriction: LocationRestrictionCircle(
             circle: Circle(
               center: Coordinates(
                 latitude: 37.7749,
@@ -278,7 +279,7 @@ Future<void> main() async {
         ),
         filter: NearbySearchFilter(
           includedTypes: PlaceType.foodAndDrinkTypes,
-          locationRestriction: LocationCircleArea(
+          locationRestriction: LocationRestrictionCircle(
             circle: Circle(
               center: Coordinates(
                 latitude: 37.7937,
@@ -316,7 +317,7 @@ Future<void> main() async {
           rankPreference: RankPreferenceType.distance,
           languageCode: 'es',
           regionCode: 'es',
-          locationRestriction: LocationCircleArea(
+          locationRestriction: LocationRestrictionCircle(
             circle: Circle(
               center: Coordinates(
                 latitude: 37.7937,
@@ -362,7 +363,7 @@ Future<void> main() async {
               longitude: -122.4194,
             ),
           ),
-          locationRestriction: LocationCircleArea(
+          locationRestriction: LocationRestrictionCircle(
             circle: Circle(
               center: Coordinates(
                 latitude: 37.7937,
@@ -520,6 +521,149 @@ Future<void> main() async {
             'Page: $page\nPlaces: ${response.body?.places.length}\nNext Page Token: $nextPageToken\n=============================');
         await Future.delayed(nextPageTokenDelay);
       } while (page <= 4 && nextPageToken != null);
+    });
+  });
+
+  group('Autocomplete Search', () {
+    test(
+        'Search within a circular area with locationRestriction and fields list',
+        () async {
+      var response = await placesAPI.searchAutocomplete(
+        fields: [
+          'suggestions.placePrediction.placeId',
+          'suggestions.placePrediction.text',
+          'suggestions.placePrediction.structuredFormat.mainText.text',
+        ],
+        filter: AutocompleteSearchFilter(
+          input: 'Art museum',
+          locationRestriction: LocationRestriction(
+            circle: Circle(
+              center: Coordinates(
+                latitude: 37.7749,
+                longitude: -122.4194,
+              ),
+              radius: 5000,
+            ),
+          ),
+        ),
+      );
+      expect(response.isSuccessful, true);
+      expect(response.body, isNotNull);
+      expect(response.body?.suggestions, isNotEmpty);
+      final placePrediction =
+          response.body?.suggestions.firstOrNull?.placePrediction;
+      expect(placePrediction?.placeId, isNotNull);
+      expect(placePrediction?.text, isNotNull);
+      expect(placePrediction?.structuredFormat?.mainText?.text, isNotNull);
+    });
+    test(
+        'Search within a rectangular area with locationBias and fields instance',
+        () async {
+      var response = await placesAPI.searchAutocomplete(
+        instanceFields: PlacesSuggestions(
+          suggestions: [
+            Suggestion(
+              placePrediction: PlacePrediction(
+                placeId: '',
+                text: FormattableText(),
+                structuredFormat: StructuredFormat(
+                  mainText: FormattableText(
+                    text: '',
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        filter: AutocompleteSearchFilter(
+          input: 'Art museum',
+          locationBias: LocationBias(
+            rectangle: Rectangle(
+              low: Coordinates(
+                latitude: 37.7751,
+                longitude: -122.4219,
+              ),
+              high: Coordinates(
+                latitude: 37.7955,
+                longitude: -122.3937,
+              ),
+            ),
+          ),
+        ),
+      );
+      expect(response.isSuccessful, true);
+      expect(response.body, isNotNull);
+      expect(response.body?.suggestions, isNotEmpty);
+      final placePrediction =
+          response.body?.suggestions.firstOrNull?.placePrediction;
+      expect(placePrediction?.placeId, isNotNull);
+      expect(placePrediction?.text, isNotNull);
+      expect(placePrediction?.structuredFormat?.mainText?.text, isNotNull);
+    });
+    test(
+        'Search within a circular area with locationBias, specifying primary types and no fields selection',
+        () async {
+      var response = await placesAPI.searchAutocomplete(
+        filter: AutocompleteSearchFilter(
+          input: 'Soccer',
+          includedPrimaryTypes: [PlaceType.sportingGoodsStore],
+          locationBias: LocationBias(
+            circle: Circle(
+              center: Coordinates(
+                latitude: 37.7749,
+                longitude: -122.4194,
+              ),
+              radius: 500.0,
+            ),
+          ),
+        ),
+      );
+      expect(response.isSuccessful, true);
+      expect(response.body, isNotNull);
+      expect(response.body?.suggestions, isNotEmpty);
+      final placePrediction =
+          response.body?.suggestions.firstOrNull?.placePrediction;
+      expect(placePrediction?.placeId, isNotNull);
+      expect(placePrediction?.text, isNotNull);
+      expect(placePrediction?.structuredFormat?.mainText?.text, isNotNull);
+    });
+    test(
+        'Search within a circular area with locationBias, including Query Predictions, origin and no fields selection',
+        () async {
+      var response = await placesAPI.searchAutocomplete(
+        filter: AutocompleteSearchFilter(
+          input: 'Amoeba',
+          includeQueryPredictions: true,
+          origin: LatLng(
+            latitude: 37.7749,
+            longitude: -122.4194,
+          ),
+          locationBias: LocationBias(
+            circle: Circle(
+              center: Coordinates(
+                latitude: 37.7749,
+                longitude: -122.4194,
+              ),
+              radius: 5000.0,
+            ),
+          ),
+        ),
+      );
+      expect(response.isSuccessful, true);
+      expect(response.body, isNotNull);
+      expect(response.body?.suggestions, isNotEmpty);
+      final placePrediction = response.body?.suggestions
+          .firstWhereOrNull((item) => item.placePrediction != null)
+          ?.placePrediction;
+      expect(placePrediction?.placeId, isNotNull);
+      expect(placePrediction?.text, isNotNull);
+      expect(placePrediction?.structuredFormat?.mainText?.text, isNotNull);
+      expect(placePrediction?.distanceMeters, greaterThanOrEqualTo(0));
+      final queryPrediction = response.body?.suggestions
+          .firstWhereOrNull((item) => item.queryPrediction != null)
+          ?.queryPrediction;
+      expect(queryPrediction?.text, isNotNull);
+      expect(queryPrediction?.structuredFormat, isNotNull);
     });
   });
 }

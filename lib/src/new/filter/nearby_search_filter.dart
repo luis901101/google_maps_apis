@@ -1,4 +1,4 @@
-import 'package:google_maps_apis/src/new/entity/routing_parameters.dart';
+import 'package:google_maps_apis/src/new/model/routing_parameters.dart';
 import 'package:google_maps_apis/src/new/enums/place_type.dart';
 import 'package:google_maps_apis/src/new/enums/rank_preference_type.dart';
 import 'package:google_maps_apis/src/new/filter/base_filter.dart';
@@ -8,7 +8,7 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 
 part 'nearby_search_filter.g.dart';
 
-/// Structure for the body of Nearby Search requests:
+/// Structure of the body of Nearby Search requests:
 ///
 /// Documentation: https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places/searchNearby#request-body
 @JsonSerializable()
@@ -33,6 +33,7 @@ class NearbySearchFilter extends BaseFilter<NearbySearchFilter> {
   /// for instance: [PlaceType.foodAndDrinkTypes]
   ///
   /// Documentation: https://developers.google.com/maps/documentation/places/web-service/nearby-search#includedtypes
+  @JsonKey(fromJson: PlaceType.fromJsonList)
   final List<PlaceType>? includedTypes;
 
   /// Excluded Place type (eg, "restaurant" or "gas_station")
@@ -59,6 +60,7 @@ class NearbySearchFilter extends BaseFilter<NearbySearchFilter> {
   /// for instance: [PlaceType.foodAndDrinkTypes]
   ///
   /// /// Documentation: https://developers.google.com/maps/documentation/places/web-service/nearby-search#excludedtypes
+  @JsonKey(fromJson: PlaceType.fromJsonList)
   final List<PlaceType>? excludedTypes;
 
   /// Included primary Place type (e.g. "restaurant" or "gas_station")
@@ -82,6 +84,7 @@ class NearbySearchFilter extends BaseFilter<NearbySearchFilter> {
   /// for instance: [PlaceType.foodAndDrinkTypes]
   ///
   /// Documentation: https://developers.google.com/maps/documentation/places/web-service/nearby-search#includedprimarytypes
+  @JsonKey(fromJson: PlaceType.fromJsonList)
   final List<PlaceType>? includedPrimaryTypes;
 
   /// Excluded primary Place type (e.g. "restaurant" or "gas_station")
@@ -104,6 +107,7 @@ class NearbySearchFilter extends BaseFilter<NearbySearchFilter> {
   /// for instance: [PlaceType.foodAndDrinkTypes]
   ///
   /// Documentation: https://developers.google.com/maps/documentation/places/web-service/nearby-search#excludedprimarytypes
+  @JsonKey(fromJson: PlaceType.fromJsonList)
   final List<PlaceType>? excludedPrimaryTypes;
 
   /// Maximum number of results to return. It must be between 1 and 20 (default),
@@ -120,7 +124,7 @@ class NearbySearchFilter extends BaseFilter<NearbySearchFilter> {
   /// You must set it in your request to a value greater than 0.0.
   ///
   /// Documentation: https://developers.google.com/maps/documentation/places/web-service/nearby-search#locationrestriction
-  final LocationCircleArea locationRestriction;
+  final LocationRestrictionCircle locationRestriction;
 
   /// The type of ranking to use. If this parameter is omitted,
   /// results are ranked by [RankPreferenceType.popularity].

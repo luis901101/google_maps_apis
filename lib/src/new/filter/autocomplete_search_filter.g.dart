@@ -1,37 +1,40 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'nearby_search_filter.dart';
+part of 'autocomplete_search_filter.dart';
 
 // **************************************************************************
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$NearbySearchFilterCWProxy {
+abstract class _$AutocompleteSearchFilterCWProxy {
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
   ///
   /// Usage
   /// ```dart
-  /// NearbySearchFilter(...).copyWith(id: 12, name: "My name")
+  /// AutocompleteSearchFilter(...).copyWith(id: 12, name: "My name")
   /// ````
-  NearbySearchFilter call({
+  AutocompleteSearchFilter call({
+    String? sessionToken,
     String? languageCode,
     String? regionCode,
-    List<PlaceType>? includedTypes,
-    List<PlaceType>? excludedTypes,
+    String? input,
+    LocationBias? locationBias,
+    LocationRestriction? locationRestriction,
     List<PlaceType>? includedPrimaryTypes,
-    List<PlaceType>? excludedPrimaryTypes,
-    int? maxResultCount,
-    LocationRestrictionCircle locationRestriction,
-    RankPreferenceType? rankPreference,
-    RoutingParameters? routingParameters,
+    List<String>? includedRegionCodes,
+    LatLng? origin,
+    int? inputOffset,
+    bool? includeQueryPredictions,
+    bool? includePureServiceAreaBusinesses,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfNearbySearchFilter.copyWith(...)`.
-class _$NearbySearchFilterCWProxyImpl implements _$NearbySearchFilterCWProxy {
-  const _$NearbySearchFilterCWProxyImpl(this._value);
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAutocompleteSearchFilter.copyWith(...)`.
+class _$AutocompleteSearchFilterCWProxyImpl
+    implements _$AutocompleteSearchFilterCWProxy {
+  const _$AutocompleteSearchFilterCWProxyImpl(this._value);
 
-  final NearbySearchFilter _value;
+  final AutocompleteSearchFilter _value;
 
   @override
 
@@ -39,21 +42,27 @@ class _$NearbySearchFilterCWProxyImpl implements _$NearbySearchFilterCWProxy {
   ///
   /// Usage
   /// ```dart
-  /// NearbySearchFilter(...).copyWith(id: 12, name: "My name")
+  /// AutocompleteSearchFilter(...).copyWith(id: 12, name: "My name")
   /// ````
-  NearbySearchFilter call({
+  AutocompleteSearchFilter call({
+    Object? sessionToken = const $CopyWithPlaceholder(),
     Object? languageCode = const $CopyWithPlaceholder(),
     Object? regionCode = const $CopyWithPlaceholder(),
-    Object? includedTypes = const $CopyWithPlaceholder(),
-    Object? excludedTypes = const $CopyWithPlaceholder(),
-    Object? includedPrimaryTypes = const $CopyWithPlaceholder(),
-    Object? excludedPrimaryTypes = const $CopyWithPlaceholder(),
-    Object? maxResultCount = const $CopyWithPlaceholder(),
+    Object? input = const $CopyWithPlaceholder(),
+    Object? locationBias = const $CopyWithPlaceholder(),
     Object? locationRestriction = const $CopyWithPlaceholder(),
-    Object? rankPreference = const $CopyWithPlaceholder(),
-    Object? routingParameters = const $CopyWithPlaceholder(),
+    Object? includedPrimaryTypes = const $CopyWithPlaceholder(),
+    Object? includedRegionCodes = const $CopyWithPlaceholder(),
+    Object? origin = const $CopyWithPlaceholder(),
+    Object? inputOffset = const $CopyWithPlaceholder(),
+    Object? includeQueryPredictions = const $CopyWithPlaceholder(),
+    Object? includePureServiceAreaBusinesses = const $CopyWithPlaceholder(),
   }) {
-    return NearbySearchFilter(
+    return AutocompleteSearchFilter(
+      sessionToken: sessionToken == const $CopyWithPlaceholder()
+          ? _value.sessionToken
+          // ignore: cast_nullable_to_non_nullable
+          : sessionToken as String?,
       languageCode: languageCode == const $CopyWithPlaceholder()
           ? _value.languageCode
           // ignore: cast_nullable_to_non_nullable
@@ -62,108 +71,111 @@ class _$NearbySearchFilterCWProxyImpl implements _$NearbySearchFilterCWProxy {
           ? _value.regionCode
           // ignore: cast_nullable_to_non_nullable
           : regionCode as String?,
-      includedTypes: includedTypes == const $CopyWithPlaceholder()
-          ? _value.includedTypes
+      input: input == const $CopyWithPlaceholder()
+          ? _value.input
           // ignore: cast_nullable_to_non_nullable
-          : includedTypes as List<PlaceType>?,
-      excludedTypes: excludedTypes == const $CopyWithPlaceholder()
-          ? _value.excludedTypes
+          : input as String?,
+      locationBias: locationBias == const $CopyWithPlaceholder()
+          ? _value.locationBias
           // ignore: cast_nullable_to_non_nullable
-          : excludedTypes as List<PlaceType>?,
+          : locationBias as LocationBias?,
+      locationRestriction: locationRestriction == const $CopyWithPlaceholder()
+          ? _value.locationRestriction
+          // ignore: cast_nullable_to_non_nullable
+          : locationRestriction as LocationRestriction?,
       includedPrimaryTypes: includedPrimaryTypes == const $CopyWithPlaceholder()
           ? _value.includedPrimaryTypes
           // ignore: cast_nullable_to_non_nullable
           : includedPrimaryTypes as List<PlaceType>?,
-      excludedPrimaryTypes: excludedPrimaryTypes == const $CopyWithPlaceholder()
-          ? _value.excludedPrimaryTypes
+      includedRegionCodes: includedRegionCodes == const $CopyWithPlaceholder()
+          ? _value.includedRegionCodes
           // ignore: cast_nullable_to_non_nullable
-          : excludedPrimaryTypes as List<PlaceType>?,
-      maxResultCount: maxResultCount == const $CopyWithPlaceholder()
-          ? _value.maxResultCount
+          : includedRegionCodes as List<String>?,
+      origin: origin == const $CopyWithPlaceholder()
+          ? _value.origin
           // ignore: cast_nullable_to_non_nullable
-          : maxResultCount as int?,
-      locationRestriction: locationRestriction == const $CopyWithPlaceholder()
-          ? _value.locationRestriction
+          : origin as LatLng?,
+      inputOffset: inputOffset == const $CopyWithPlaceholder()
+          ? _value.inputOffset
           // ignore: cast_nullable_to_non_nullable
-          : locationRestriction as LocationRestrictionCircle,
-      rankPreference: rankPreference == const $CopyWithPlaceholder()
-          ? _value.rankPreference
-          // ignore: cast_nullable_to_non_nullable
-          : rankPreference as RankPreferenceType?,
-      routingParameters: routingParameters == const $CopyWithPlaceholder()
-          ? _value.routingParameters
-          // ignore: cast_nullable_to_non_nullable
-          : routingParameters as RoutingParameters?,
+          : inputOffset as int?,
+      includeQueryPredictions:
+          includeQueryPredictions == const $CopyWithPlaceholder()
+              ? _value.includeQueryPredictions
+              // ignore: cast_nullable_to_non_nullable
+              : includeQueryPredictions as bool?,
+      includePureServiceAreaBusinesses:
+          includePureServiceAreaBusinesses == const $CopyWithPlaceholder()
+              ? _value.includePureServiceAreaBusinesses
+              // ignore: cast_nullable_to_non_nullable
+              : includePureServiceAreaBusinesses as bool?,
     );
   }
 }
 
-extension $NearbySearchFilterCopyWith on NearbySearchFilter {
-  /// Returns a callable class that can be used as follows: `instanceOfNearbySearchFilter.copyWith(...)`.
+extension $AutocompleteSearchFilterCopyWith on AutocompleteSearchFilter {
+  /// Returns a callable class that can be used as follows: `instanceOfAutocompleteSearchFilter.copyWith(...)`.
   // ignore: library_private_types_in_public_api
-  _$NearbySearchFilterCWProxy get copyWith =>
-      _$NearbySearchFilterCWProxyImpl(this);
+  _$AutocompleteSearchFilterCWProxy get copyWith =>
+      _$AutocompleteSearchFilterCWProxyImpl(this);
 }
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-NearbySearchFilter _$NearbySearchFilterFromJson(Map<String, dynamic> json) =>
-    NearbySearchFilter(
+AutocompleteSearchFilter _$AutocompleteSearchFilterFromJson(
+        Map<String, dynamic> json) =>
+    AutocompleteSearchFilter(
+      sessionToken: json['sessionToken'] as String?,
       languageCode: json['languageCode'] as String?,
       regionCode: json['regionCode'] as String?,
-      includedTypes: PlaceType.fromJsonList(json['includedTypes'] as List?),
-      excludedTypes: PlaceType.fromJsonList(json['excludedTypes'] as List?),
+      input: json['input'] as String?,
+      locationBias: json['locationBias'] == null
+          ? null
+          : LocationBias.fromJson(json['locationBias'] as Map<String, dynamic>),
+      locationRestriction: json['locationRestriction'] == null
+          ? null
+          : LocationRestriction.fromJson(
+              json['locationRestriction'] as Map<String, dynamic>),
       includedPrimaryTypes:
           PlaceType.fromJsonList(json['includedPrimaryTypes'] as List?),
-      excludedPrimaryTypes:
-          PlaceType.fromJsonList(json['excludedPrimaryTypes'] as List?),
-      maxResultCount: (json['maxResultCount'] as num?)?.toInt(),
-      locationRestriction: LocationRestrictionCircle.fromJson(
-          json['locationRestriction'] as Map<String, dynamic>),
-      rankPreference: $enumDecodeNullable(
-          _$RankPreferenceTypeEnumMap, json['rankPreference']),
-      routingParameters: json['routingParameters'] == null
+      includedRegionCodes: (json['includedRegionCodes'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      origin: json['origin'] == null
           ? null
-          : RoutingParameters.fromJson(
-              json['routingParameters'] as Map<String, dynamic>),
+          : LatLng.fromJson(json['origin'] as Map<String, dynamic>),
+      inputOffset: (json['inputOffset'] as num?)?.toInt(),
+      includeQueryPredictions: json['includeQueryPredictions'] as bool?,
+      includePureServiceAreaBusinesses:
+          json['includePureServiceAreaBusinesses'] as bool?,
     );
 
-Map<String, dynamic> _$NearbySearchFilterToJson(NearbySearchFilter instance) =>
+Map<String, dynamic> _$AutocompleteSearchFilterToJson(
+        AutocompleteSearchFilter instance) =>
     <String, dynamic>{
       if (instance.languageCode case final value?) 'languageCode': value,
       if (instance.regionCode case final value?) 'regionCode': value,
-      if (instance.includedTypes?.map((e) => _$PlaceTypeEnumMap[e]!).toList()
-          case final value?)
-        'includedTypes': value,
-      if (instance.excludedTypes?.map((e) => _$PlaceTypeEnumMap[e]!).toList()
-          case final value?)
-        'excludedTypes': value,
+      if (instance.sessionToken case final value?) 'sessionToken': value,
+      if (instance.input case final value?) 'input': value,
+      if (instance.locationBias case final value?) 'locationBias': value,
+      if (instance.locationRestriction case final value?)
+        'locationRestriction': value,
       if (instance.includedPrimaryTypes
               ?.map((e) => _$PlaceTypeEnumMap[e]!)
               .toList()
           case final value?)
         'includedPrimaryTypes': value,
-      if (instance.excludedPrimaryTypes
-              ?.map((e) => _$PlaceTypeEnumMap[e]!)
-              .toList()
-          case final value?)
-        'excludedPrimaryTypes': value,
-      if (instance.maxResultCount case final value?) 'maxResultCount': value,
-      'locationRestriction': instance.locationRestriction,
-      if (_$RankPreferenceTypeEnumMap[instance.rankPreference]
-          case final value?)
-        'rankPreference': value,
-      if (instance.routingParameters case final value?)
-        'routingParameters': value,
+      if (instance.includedRegionCodes case final value?)
+        'includedRegionCodes': value,
+      if (instance.origin case final value?) 'origin': value,
+      if (instance.inputOffset case final value?) 'inputOffset': value,
+      if (instance.includeQueryPredictions case final value?)
+        'includeQueryPredictions': value,
+      if (instance.includePureServiceAreaBusinesses case final value?)
+        'includePureServiceAreaBusinesses': value,
     };
-
-const _$RankPreferenceTypeEnumMap = {
-  RankPreferenceType.popularity: 'POPULARITY',
-  RankPreferenceType.relevance: 'RELEVANCE',
-  RankPreferenceType.distance: 'DISTANCE',
-};
 
 const _$PlaceTypeEnumMap = {
   PlaceType.carDealer: 'car_dealer',

@@ -1,7 +1,7 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:google_maps_apis/src/new/entity/justification.dart';
-import 'package:google_maps_apis/src/new/entity/photo.dart';
-import 'package:google_maps_apis/src/new/entity/review.dart';
+import 'package:google_maps_apis/src/new/model/justification.dart';
+import 'package:google_maps_apis/src/new/model/photo.dart';
+import 'package:google_maps_apis/src/new/model/review.dart';
 import 'package:google_maps_apis/src/new/utils/jsonable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
