@@ -1,5 +1,5 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:google_maps_apis/src/new/model/coordinates.dart';
+import 'package:google_maps_apis/src/new/model/reference_point.dart';
 import 'package:google_maps_apis/src/new/utils/jsonable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -111,7 +111,8 @@ class LocationMultiArea extends Jsonable<LocationMultiArea> {
 @JsonSerializable()
 @CopyWith()
 class Circle extends Jsonable<Circle> {
-  final Coordinates center;
+  /// The center point of the Circle
+  final ReferencePoint center;
 
   /// The radius in meters must be between 1.0 and 50000.0, inclusive.
   /// The default radius is 500.0.
@@ -157,12 +158,12 @@ class Rectangle extends Jsonable<Rectangle> {
   /// The low point marks the southwest corner of the rectangle.
   ///
   /// Documentation: https://developers.google.com/maps/documentation/places/web-service/text-search#location-bias
-  final Coordinates low;
+  final ReferencePoint low;
 
   /// The high point represents the northeast corner of the rectangle.
   ///
   /// Documentation: https://developers.google.com/maps/documentation/places/web-service/text-search#location-bias
-  final Coordinates high;
+  final ReferencePoint high;
   Rectangle({
     required this.low,
     required this.high,

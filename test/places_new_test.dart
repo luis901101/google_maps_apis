@@ -246,7 +246,7 @@ Future<void> main() async {
           maxResultCount: maxResultCount,
           locationRestriction: LocationRestrictionCircle(
             circle: Circle(
-              center: Coordinates(
+              center: ReferencePoint(
                 latitude: 37.7749,
                 longitude: -122.4194,
               ),
@@ -281,7 +281,7 @@ Future<void> main() async {
           includedTypes: PlaceType.foodAndDrinkTypes,
           locationRestriction: LocationRestrictionCircle(
             circle: Circle(
-              center: Coordinates(
+              center: ReferencePoint(
                 latitude: 37.7937,
                 longitude: -122.3965,
               ),
@@ -319,7 +319,7 @@ Future<void> main() async {
           regionCode: 'es',
           locationRestriction: LocationRestrictionCircle(
             circle: Circle(
-              center: Coordinates(
+              center: ReferencePoint(
                 latitude: 37.7937,
                 longitude: -122.3965,
               ),
@@ -365,7 +365,7 @@ Future<void> main() async {
           ),
           locationRestriction: LocationRestrictionCircle(
             circle: Circle(
-              center: Coordinates(
+              center: ReferencePoint(
                 latitude: 37.7937,
                 longitude: -122.3965,
               ),
@@ -538,7 +538,7 @@ Future<void> main() async {
           input: 'Art museum',
           locationRestriction: LocationRestriction(
             circle: Circle(
-              center: Coordinates(
+              center: ReferencePoint(
                 latitude: 37.7749,
                 longitude: -122.4194,
               ),
@@ -579,11 +579,11 @@ Future<void> main() async {
           input: 'Art museum',
           locationBias: LocationBias(
             rectangle: Rectangle(
-              low: Coordinates(
+              low: ReferencePoint(
                 latitude: 37.7751,
                 longitude: -122.4219,
               ),
-              high: Coordinates(
+              high: ReferencePoint(
                 latitude: 37.7955,
                 longitude: -122.3937,
               ),
@@ -609,7 +609,7 @@ Future<void> main() async {
           includedPrimaryTypes: [PlaceType.sportingGoodsStore],
           locationBias: LocationBias(
             circle: Circle(
-              center: Coordinates(
+              center: ReferencePoint(
                 latitude: 37.7749,
                 longitude: -122.4194,
               ),
@@ -640,7 +640,7 @@ Future<void> main() async {
           ),
           locationBias: LocationBias(
             circle: Circle(
-              center: Coordinates(
+              center: ReferencePoint(
                 latitude: 37.7749,
                 longitude: -122.4194,
               ),
@@ -696,7 +696,7 @@ Future<void> main() async {
               sessionToken: token,
               locationRestriction: LocationRestriction(
                 circle: Circle(
-                  center: Coordinates(
+                  center: ReferencePoint(
                     latitude: 37.7749,
                     longitude: -122.4194,
                   ),

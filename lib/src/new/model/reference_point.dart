@@ -2,29 +2,29 @@ import 'package:google_maps_apis/src/new/utils/jsonable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 
-part 'coordinates.g.dart';
+part 'reference_point.g.dart';
 
 @JsonSerializable()
 @CopyWith()
-class Coordinates extends Jsonable<Coordinates> {
+class ReferencePoint extends Jsonable<ReferencePoint> {
   final double latitude;
   final double longitude;
 
-  Coordinates({
+  ReferencePoint({
     required this.latitude,
     required this.longitude,
   });
 
-  factory Coordinates.fromJson(Map<String, dynamic> json) {
-    return _$CoordinatesFromJson(json);
+  factory ReferencePoint.fromJson(Map<String, dynamic> json) {
+    return _$ReferencePointFromJson(json);
   }
 
   @override
-  Coordinates? fromJsonMap(Map<String, dynamic>? json) =>
-      json != null ? Coordinates.fromJson(json) : null;
+  ReferencePoint? fromJsonMap(Map<String, dynamic>? json) =>
+      json != null ? ReferencePoint.fromJson(json) : null;
 
   @override
   Map<String, dynamic> toJson() {
-    return _$CoordinatesToJson(this);
+    return _$ReferencePointToJson(this);
   }
 }

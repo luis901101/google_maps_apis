@@ -212,7 +212,7 @@ abstract class _$CircleCWProxy {
   /// Circle(...).copyWith(id: 12, name: "My name")
   /// ````
   Circle call({
-    Coordinates center,
+    ReferencePoint center,
     double? radius,
   });
 }
@@ -239,7 +239,7 @@ class _$CircleCWProxyImpl implements _$CircleCWProxy {
       center: center == const $CopyWithPlaceholder()
           ? _value.center
           // ignore: cast_nullable_to_non_nullable
-          : center as Coordinates,
+          : center as ReferencePoint,
       radius: radius == const $CopyWithPlaceholder()
           ? _value.radius
           // ignore: cast_nullable_to_non_nullable
@@ -262,8 +262,8 @@ abstract class _$RectangleCWProxy {
   /// Rectangle(...).copyWith(id: 12, name: "My name")
   /// ````
   Rectangle call({
-    Coordinates low,
-    Coordinates high,
+    ReferencePoint low,
+    ReferencePoint high,
   });
 }
 
@@ -289,11 +289,11 @@ class _$RectangleCWProxyImpl implements _$RectangleCWProxy {
       low: low == const $CopyWithPlaceholder()
           ? _value.low
           // ignore: cast_nullable_to_non_nullable
-          : low as Coordinates,
+          : low as ReferencePoint,
       high: high == const $CopyWithPlaceholder()
           ? _value.high
           // ignore: cast_nullable_to_non_nullable
-          : high as Coordinates,
+          : high as ReferencePoint,
     );
   }
 }
@@ -369,7 +369,7 @@ Map<String, dynamic> _$LocationMultiAreaToJson(LocationMultiArea instance) =>
     };
 
 Circle _$CircleFromJson(Map<String, dynamic> json) => Circle(
-      center: Coordinates.fromJson(json['center'] as Map<String, dynamic>),
+      center: ReferencePoint.fromJson(json['center'] as Map<String, dynamic>),
       radius: (json['radius'] as num?)?.toDouble(),
     );
 
@@ -379,8 +379,8 @@ Map<String, dynamic> _$CircleToJson(Circle instance) => <String, dynamic>{
     };
 
 Rectangle _$RectangleFromJson(Map<String, dynamic> json) => Rectangle(
-      low: Coordinates.fromJson(json['low'] as Map<String, dynamic>),
-      high: Coordinates.fromJson(json['high'] as Map<String, dynamic>),
+      low: ReferencePoint.fromJson(json['low'] as Map<String, dynamic>),
+      high: ReferencePoint.fromJson(json['high'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$RectangleToJson(Rectangle instance) => <String, dynamic>{

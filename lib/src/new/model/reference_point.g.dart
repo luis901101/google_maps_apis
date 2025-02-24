@@ -1,29 +1,29 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'coordinates.dart';
+part of 'reference_point.dart';
 
 // **************************************************************************
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$CoordinatesCWProxy {
+abstract class _$ReferencePointCWProxy {
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
   ///
   /// Usage
   /// ```dart
-  /// Coordinates(...).copyWith(id: 12, name: "My name")
+  /// ReferencePoint(...).copyWith(id: 12, name: "My name")
   /// ````
-  Coordinates call({
+  ReferencePoint call({
     double latitude,
     double longitude,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfCoordinates.copyWith(...)`.
-class _$CoordinatesCWProxyImpl implements _$CoordinatesCWProxy {
-  const _$CoordinatesCWProxyImpl(this._value);
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfReferencePoint.copyWith(...)`.
+class _$ReferencePointCWProxyImpl implements _$ReferencePointCWProxy {
+  const _$ReferencePointCWProxyImpl(this._value);
 
-  final Coordinates _value;
+  final ReferencePoint _value;
 
   @override
 
@@ -31,13 +31,13 @@ class _$CoordinatesCWProxyImpl implements _$CoordinatesCWProxy {
   ///
   /// Usage
   /// ```dart
-  /// Coordinates(...).copyWith(id: 12, name: "My name")
+  /// ReferencePoint(...).copyWith(id: 12, name: "My name")
   /// ````
-  Coordinates call({
+  ReferencePoint call({
     Object? latitude = const $CopyWithPlaceholder(),
     Object? longitude = const $CopyWithPlaceholder(),
   }) {
-    return Coordinates(
+    return ReferencePoint(
       latitude: latitude == const $CopyWithPlaceholder()
           ? _value.latitude
           // ignore: cast_nullable_to_non_nullable
@@ -50,22 +50,23 @@ class _$CoordinatesCWProxyImpl implements _$CoordinatesCWProxy {
   }
 }
 
-extension $CoordinatesCopyWith on Coordinates {
-  /// Returns a callable class that can be used as follows: `instanceOfCoordinates.copyWith(...)`.
+extension $ReferencePointCopyWith on ReferencePoint {
+  /// Returns a callable class that can be used as follows: `instanceOfReferencePoint.copyWith(...)`.
   // ignore: library_private_types_in_public_api
-  _$CoordinatesCWProxy get copyWith => _$CoordinatesCWProxyImpl(this);
+  _$ReferencePointCWProxy get copyWith => _$ReferencePointCWProxyImpl(this);
 }
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Coordinates _$CoordinatesFromJson(Map<String, dynamic> json) => Coordinates(
+ReferencePoint _$ReferencePointFromJson(Map<String, dynamic> json) =>
+    ReferencePoint(
       latitude: (json['latitude'] as num).toDouble(),
       longitude: (json['longitude'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$CoordinatesToJson(Coordinates instance) =>
+Map<String, dynamic> _$ReferencePointToJson(ReferencePoint instance) =>
     <String, dynamic>{
       'latitude': instance.latitude,
       'longitude': instance.longitude,
