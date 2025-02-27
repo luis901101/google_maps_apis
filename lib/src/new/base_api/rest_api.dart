@@ -19,16 +19,16 @@ class RestAPI {
   String? apiKey;
   TokenCallback? tokenCallback;
 
-  void init(
-      {String? apiUrl,
-      Duration? connectTimeout,
-      Duration? receiveTimeout,
-      Duration? sendTimeout,
-      HttpClient? httpClient,
-      Map<String, dynamic>? headers,
-      String? apiKey,
-      TokenCallback? tokenCallback,
-      }) {
+  void init({
+    String? apiUrl,
+    Duration? connectTimeout,
+    Duration? receiveTimeout,
+    Duration? sendTimeout,
+    HttpClient? httpClient,
+    Map<String, dynamic>? headers,
+    String? apiKey,
+    TokenCallback? tokenCallback,
+  }) {
     if ((apiUrl?.isNotEmpty ?? true)) this.apiUrl = apiUrl!;
     if (connectTimeout != null) this.connectTimeout = connectTimeout;
     if (receiveTimeout != null) this.receiveTimeout = receiveTimeout;
@@ -58,13 +58,13 @@ class RestAPI {
     // Adding auth token to each request
     dio.interceptors
         .add(InterceptorsWrapper(onRequest: (options, handler) async {
-          final tempHeaders = headers ?? <String, dynamic>{};
-      if(apiKey != null) {
+      final tempHeaders = headers ?? <String, dynamic>{};
+      if (apiKey != null) {
         tempHeaders[googleApiKeyKey] = apiKey;
       }
-      if(tokenCallback != null) {
+      if (tokenCallback != null) {
         String? token = await tokenCallback!();
-        if(token != null) {
+        if (token != null) {
           tempHeaders[HttpHeaders.authorizationHeader] = 'Bearer $token';
         }
       }

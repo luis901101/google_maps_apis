@@ -61,12 +61,11 @@ abstract class RestAPIService<DataType extends Jsonable> {
     this.receiveTimeout,
     this.sendTimeout,
     this.httpClient,
-  })  :
-        assert(
-        (((token?.isNotEmpty ?? false) && tokenCallback == null) ||
-            ((token?.isEmpty ?? true) && tokenCallback != null)) ||
-            (apiKey?.isNotEmpty ?? false),
-        '\n\nA token or tokenCallback must be specified, only one of both.'
+  })  : assert(
+            (((token?.isNotEmpty ?? false) && tokenCallback == null) ||
+                    ((token?.isEmpty ?? true) && tokenCallback != null)) ||
+                (apiKey?.isNotEmpty ?? false),
+            '\n\nA token or tokenCallback must be specified, only one of both.'
             '\nOtherwise an apiKey must be specified.'),
         tokenCallback =
             tokenCallback ??= (token == null ? null : (() async => token)),

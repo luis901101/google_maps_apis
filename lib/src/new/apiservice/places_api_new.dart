@@ -158,8 +158,8 @@ class PlacesAPINew extends RestAPIService<Place> {
       path: '/v1/places/$placeId/photos/$photoId/media',
       queryParameters: {
         'key': apiKey ?? this.apiKey,
-        'maxWidthPx': maxWidthPx?.toString(),
-        'maxHeightPx': maxHeightPx?.toString(),
+        if (maxWidthPx != null) 'maxWidthPx': maxWidthPx.toString(),
+        if (maxHeightPx != null) 'maxHeightPx': maxHeightPx.toString(),
         'skipHttpRedirect': skipHttpRedirect.toString(),
       },
     );
