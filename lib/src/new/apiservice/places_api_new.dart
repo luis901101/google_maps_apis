@@ -1,18 +1,17 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:google_maps_apis/src/new/base_api/rest_api.dart';
 import 'package:google_maps_apis/src/new/base_api/rest_api_service.dart';
 import 'package:google_maps_apis/src/new/filter/autocomplete_search_filter.dart';
-import 'package:google_maps_apis/src/new/model/photo.dart';
-import 'package:google_maps_apis/src/new/model/place.dart';
-import 'package:google_maps_apis/src/new/model/places_response.dart';
 import 'package:google_maps_apis/src/new/filter/nearby_search_filter.dart';
 import 'package:google_maps_apis/src/new/filter/place_details_filter.dart';
 import 'package:google_maps_apis/src/new/filter/text_search_filter.dart';
 import 'package:google_maps_apis/src/new/model/error_info.dart';
 import 'package:google_maps_apis/src/new/model/google_error_response.dart';
 import 'package:google_maps_apis/src/new/model/google_http_response.dart';
+import 'package:google_maps_apis/src/new/model/photo.dart';
+import 'package:google_maps_apis/src/new/model/place.dart';
+import 'package:google_maps_apis/src/new/model/places_response.dart';
 import 'package:google_maps_apis/src/new/model/places_suggestions.dart';
 import 'package:google_maps_apis/src/new/service/places_service_new.dart';
 import 'package:google_maps_apis/src/new/utils/map_utils.dart';
@@ -40,15 +39,9 @@ class PlacesAPINew extends RestAPIService<Place> {
     super.sendTimeout,
     super.httpClient,
   }) : super(
-          restAPI: RestAPI(),
           baseUrl: baseUrl ??= 'https://places.googleapis.com',
           dataType: Place(),
-        );
-
-  @override
-  Future<void> init() async {
-    if (isInitialized) return;
-    await super.init();
+        ) {
     _service = PlacesServiceNew(dio: restAPI.dio);
   }
 

@@ -8,7 +8,6 @@ import 'package:test/test.dart';
 Future<void> main() async {
   final apiKey = Platform.environment['GOOGLE_API_KEY'];
   var placesAPI = PlacesAPINew(apiKey: apiKey);
-  await placesAPI.init();
 
   tearDownAll(() {
     placesAPI.dispose();

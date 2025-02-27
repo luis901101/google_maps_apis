@@ -2,8 +2,11 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
+import 'package:google_maps_apis/src/new/utils/callbacks.dart';
 
 class RestAPI {
+  static const googleApiKeyKey = 'X-Goog-Api-Key';
+
   Dio dio = Dio();
 
   HttpClient? httpClient;
@@ -13,6 +16,8 @@ class RestAPI {
   Duration? sendTimeout;
   String apiUrl = '';
   Map<String, dynamic>? headers;
+  String? apiKey;
+  TokenCallback? tokenCallback;
 
   void init(
       {String? apiUrl,
@@ -20,13 +25,18 @@ class RestAPI {
       Duration? receiveTimeout,
       Duration? sendTimeout,
       HttpClient? httpClient,
-      Map<String, dynamic>? headers}) {
+      Map<String, dynamic>? headers,
+      String? apiKey,
+      TokenCallback? tokenCallback,
+      }) {
     if ((apiUrl?.isNotEmpty ?? true)) this.apiUrl = apiUrl!;
     if (connectTimeout != null) this.connectTimeout = connectTimeout;
     if (receiveTimeout != null) this.receiveTimeout = receiveTimeout;
     if (sendTimeout != null) this.sendTimeout = sendTimeout;
     if (httpClient != null) this.httpClient = httpClient;
     if (headers != null) this.headers = headers;
+    if (apiKey != null) this.apiKey = apiKey;
+    if (tokenCallback != null) this.tokenCallback = tokenCallback;
     _initDio();
   }
 
@@ -48,9 +58,17 @@ class RestAPI {
     // Adding auth token to each request
     dio.interceptors
         .add(InterceptorsWrapper(onRequest: (options, handler) async {
-      if (headers != null) {
-        options.headers.addAll(headers!);
+          final tempHeaders = headers ?? <String, dynamic>{};
+      if(apiKey != null) {
+        tempHeaders[googleApiKeyKey] = apiKey;
       }
+      if(tokenCallback != null) {
+        String? token = await tokenCallback!();
+        if(token != null) {
+          tempHeaders[HttpHeaders.authorizationHeader] = 'Bearer $token';
+        }
+      }
+      options.headers.addAll(tempHeaders);
       return handler.next(options);
     }));
 

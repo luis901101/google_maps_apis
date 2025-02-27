@@ -9,6 +9,10 @@ Types of changes
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## 2.0.0
+### Added
+- Added support for [Places API (New)](https://developers.google.com/maps/documentation/places/web-service/op-overview). **Note:** using legacy Places API remains the same, no breaking changes.
+
 ## 1.1.1
 ### Changed
 - Reverted the query params encoding to the previous implementation.

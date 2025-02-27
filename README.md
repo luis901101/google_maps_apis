@@ -88,7 +88,6 @@ final placesAPI = PlacesAPINew(
   httpClient: HttpClient(),
   baseUrl: 'https://my-proxy.com',
 );
-await placesAPI.init(); /// This is required to be called before any api requests.
 
 /// Get Place Details
 /// Simple get place with all fields

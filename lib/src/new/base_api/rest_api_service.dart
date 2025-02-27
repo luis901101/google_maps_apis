@@ -13,7 +13,6 @@ import 'package:http/http.dart' as http;
 import 'package:retrofit/retrofit.dart';
 
 abstract class RestAPIService<DataType extends Jsonable> {
-  static const googleApiKeyKey = 'X-Goog-Api-Key';
   static const googleFieldMaskKey = 'X-Goog-FieldMask';
   static String bearer(String token) => 'Bearer $token';
 
@@ -32,7 +31,7 @@ abstract class RestAPIService<DataType extends Jsonable> {
   final String? token;
 
   /// Callback to asynchronously get API Authorization Bearer token
-  final TokenCallback tokenCallback;
+  final TokenCallback? tokenCallback;
 
   /// Timeout for requests.
   final Duration? connectTimeout;
@@ -50,10 +49,8 @@ abstract class RestAPIService<DataType extends Jsonable> {
   /// Not supported on Web
   final HttpClient? httpClient;
 
-  bool _initialized = false;
-
   RestAPIService({
-    required this.restAPI,
+    RestAPI? restAPI,
     this.onInit,
     required this.baseUrl,
     this.dataType,
@@ -64,34 +61,29 @@ abstract class RestAPIService<DataType extends Jsonable> {
     this.receiveTimeout,
     this.sendTimeout,
     this.httpClient,
-  })  : assert(
-            (((token?.isNotEmpty ?? false) && tokenCallback == null) ||
-                    ((token?.isEmpty ?? true) && tokenCallback != null)) ||
-                (apiKey?.isNotEmpty ?? false),
-            '\n\nA token or tokenCallback must be specified, only one of both.'
+  })  :
+        assert(
+        (((token?.isNotEmpty ?? false) && tokenCallback == null) ||
+            ((token?.isEmpty ?? true) && tokenCallback != null)) ||
+            (apiKey?.isNotEmpty ?? false),
+        '\n\nA token or tokenCallback must be specified, only one of both.'
             '\nOtherwise an apiKey must be specified.'),
-        tokenCallback = tokenCallback ?? (() async => token);
+        tokenCallback =
+            tokenCallback ??= (token == null ? null : (() async => token)),
+        restAPI = restAPI ?? RestAPI() {
+    _init();
+  }
 
-  bool get isInitialized => _initialized;
-
-  /// Call this function before using APIs
-  Future<void> init() async {
-    if (isInitialized) return;
-    String? token = await tokenCallback();
-    Map<String, dynamic> headers = {
-      if (token != null) HttpHeaders.authorizationHeader: 'Bearer $token',
-      if (apiKey != null) googleApiKeyKey: apiKey,
-    };
-
+  void _init() {
     restAPI.init(
       httpClient: httpClient,
       apiUrl: baseUrl,
       connectTimeout: connectTimeout,
       receiveTimeout: receiveTimeout,
       sendTimeout: sendTimeout,
-      headers: headers,
+      apiKey: apiKey,
+      tokenCallback: tokenCallback,
     );
-    _initialized = true;
   }
 
   GoogleHTTPResponse httpResponseToCustomHttpResponse(HttpResponse response) {
