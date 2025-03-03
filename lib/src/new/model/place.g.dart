@@ -41,8 +41,8 @@ abstract class _$PlaceCWProxy {
     String? iconMaskBaseUri,
     String? iconBackgroundColor,
     OpeningHours? currentOpeningHours,
-    OpeningHours? currentSecondaryOpeningHours,
-    OpeningHours? regularSecondaryOpeningHours,
+    List<OpeningHours>? currentSecondaryOpeningHours,
+    List<OpeningHours>? regularSecondaryOpeningHours,
     LocalizedText? editorialSummary,
     PaymentOptions? paymentOptions,
     ParkingOptions? parkingOptions,
@@ -285,12 +285,12 @@ class _$PlaceCWProxyImpl implements _$PlaceCWProxy {
           currentSecondaryOpeningHours == const $CopyWithPlaceholder()
               ? _value.currentSecondaryOpeningHours
               // ignore: cast_nullable_to_non_nullable
-              : currentSecondaryOpeningHours as OpeningHours?,
+              : currentSecondaryOpeningHours as List<OpeningHours>?,
       regularSecondaryOpeningHours:
           regularSecondaryOpeningHours == const $CopyWithPlaceholder()
               ? _value.regularSecondaryOpeningHours
               // ignore: cast_nullable_to_non_nullable
-              : regularSecondaryOpeningHours as OpeningHours?,
+              : regularSecondaryOpeningHours as List<OpeningHours>?,
       editorialSummary: editorialSummary == const $CopyWithPlaceholder()
           ? _value.editorialSummary
           // ignore: cast_nullable_to_non_nullable
@@ -520,14 +520,14 @@ Place _$PlaceFromJson(Map<String, dynamic> json) => Place(
           ? null
           : OpeningHours.fromJson(
               json['currentOpeningHours'] as Map<String, dynamic>),
-      currentSecondaryOpeningHours: json['currentSecondaryOpeningHours'] == null
-          ? null
-          : OpeningHours.fromJson(
-              json['currentSecondaryOpeningHours'] as Map<String, dynamic>),
-      regularSecondaryOpeningHours: json['regularSecondaryOpeningHours'] == null
-          ? null
-          : OpeningHours.fromJson(
-              json['regularSecondaryOpeningHours'] as Map<String, dynamic>),
+      currentSecondaryOpeningHours:
+          (json['currentSecondaryOpeningHours'] as List<dynamic>?)
+              ?.map((e) => OpeningHours.fromJson(e as Map<String, dynamic>))
+              .toList(),
+      regularSecondaryOpeningHours:
+          (json['regularSecondaryOpeningHours'] as List<dynamic>?)
+              ?.map((e) => OpeningHours.fromJson(e as Map<String, dynamic>))
+              .toList(),
       editorialSummary: json['editorialSummary'] == null
           ? null
           : LocalizedText.fromJson(

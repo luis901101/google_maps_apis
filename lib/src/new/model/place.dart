@@ -166,7 +166,7 @@ class Place extends Jsonable<Place> {
   /// (such as DRIVE_THROUGH, PICKUP, or TAKEOUT) based on the types of the place.
   /// This field includes the specialDays subfield of all hours, set for dates
   /// that have exceptional hours.
-  final OpeningHours? currentSecondaryOpeningHours;
+  final List<OpeningHours>? currentSecondaryOpeningHours;
 
   /// Contains an array of entries for information about regular secondary hours
   /// of a business. Secondary hours are different from a business's main hours.
@@ -174,7 +174,7 @@ class Place extends Jsonable<Place> {
   /// as its secondary hours. This field populates the type subfield, which draws
   /// from a predefined list of opening hours types (such as DRIVE_THROUGH, PICKUP, or TAKEOUT)
   /// based on the types of the place.
-  final OpeningHours? regularSecondaryOpeningHours;
+  final List<OpeningHours>? regularSecondaryOpeningHours;
 
   /// Contains a summary of the place. A summary is comprised of a textual overview,
   /// and also includes the language code for these if applicable. Summary text
