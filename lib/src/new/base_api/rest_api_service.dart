@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:io';
-
 import 'package:dio/dio.dart' as dio;
 import 'package:google_maps_apis/src/new/base_api/rest_api.dart';
 import 'package:google_maps_apis/src/new/model/error_info.dart';
@@ -13,7 +11,6 @@ import 'package:http/http.dart' as http;
 import 'package:retrofit/retrofit.dart';
 
 abstract class RestAPIService<DataType extends Jsonable> {
-  static const googleFieldMaskKey = 'X-Goog-FieldMask';
   static String bearer(String token) => 'Bearer $token';
 
   /// Base api url
@@ -45,9 +42,8 @@ abstract class RestAPIService<DataType extends Jsonable> {
   /// API key to be used on requests
   final String? apiKey;
 
-  /// Set this if you need control over http requests like validating certificates and so.
-  /// Not supported on Web
-  final HttpClient? httpClient;
+  /// Set this adapter if you need control over http requests
+  final dio.HttpClientAdapter? httpClientAdapter;
 
   RestAPIService({
     RestAPI? restAPI,
@@ -60,7 +56,7 @@ abstract class RestAPIService<DataType extends Jsonable> {
     this.connectTimeout,
     this.receiveTimeout,
     this.sendTimeout,
-    this.httpClient,
+    this.httpClientAdapter,
   })  : assert(
             (((token?.isNotEmpty ?? false) && tokenCallback == null) ||
                     ((token?.isEmpty ?? true) && tokenCallback != null)) ||
@@ -75,7 +71,7 @@ abstract class RestAPIService<DataType extends Jsonable> {
 
   void _init() {
     restAPI.init(
-      httpClient: httpClient,
+      httpClientAdapter: httpClientAdapter,
       apiUrl: baseUrl,
       connectTimeout: connectTimeout,
       receiveTimeout: receiveTimeout,
@@ -90,7 +86,7 @@ abstract class RestAPIService<DataType extends Jsonable> {
     return GoogleHTTPResponse(
         http.Response(
           '',
-          response.response.statusCode ?? HttpStatus.notFound,
+          response.response.statusCode ?? 404,
           headers: MapUtils.parseHeaders(response.response.headers) ?? {},
           isRedirect: response.response.isRedirect,
           request: http.Request(
@@ -115,7 +111,7 @@ abstract class RestAPIService<DataType extends Jsonable> {
     return GoogleHTTPResponse(
         http.Response(
           '',
-          error.response?.statusCode ?? HttpStatus.notFound,
+          error.response?.statusCode ?? 404,
           headers: MapUtils.parseHeaders(error.response?.headers) ?? {},
           isRedirect: error.response?.isRedirect ?? false,
           request: http.Request(
@@ -131,7 +127,7 @@ abstract class RestAPIService<DataType extends Jsonable> {
   Future<GoogleHTTPResponse> getSaveResponse<ContainerDataTypeGeneric>(
       Future futureResponse) async {
     GoogleHTTPResponse response = GoogleHTTPResponse(
-      http.Response('', HttpStatus.notFound),
+      http.Response('', 404),
       null,
     );
 

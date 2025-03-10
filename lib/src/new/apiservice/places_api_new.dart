@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:google_maps_apis/src/new/base_api/rest_api_service.dart';
 import 'package:google_maps_apis/src/new/filter/autocomplete_search_filter.dart';
@@ -14,19 +12,32 @@ import 'package:google_maps_apis/src/new/model/place.dart';
 import 'package:google_maps_apis/src/new/model/places_response.dart';
 import 'package:google_maps_apis/src/new/model/places_suggestions.dart';
 import 'package:google_maps_apis/src/new/service/places_service_new.dart';
+import 'package:google_maps_apis/src/new/utils/custom_parser_error_logger.dart';
 import 'package:google_maps_apis/src/new/utils/map_utils.dart';
 import 'package:http/http.dart' as http;
+import 'package:retrofit/retrofit.dart';
 
 /// API service for the Places API (New): https://developers.google.com/maps/documentation/places/web-service/op-overview
 ///
-/// [baseUrl] is the base url of the API, by default it's 'https://places.googleapis.com', but you could use some proxy base url to cache requests.
-/// [token] is the token to be used in the requests, if you use this, you don't need to use [apiKey].
-/// [tokenCallback] is a callback that returns the token to be used in the requests, if you use this, you don't need to use [apiKey] or [token].
-/// [apiKey] is the api key to be used in the requests, if you use this, you don't need to use [token] or [tokenCallback].
-/// [connectTimeout] is the maximum amount of time in milliseconds that the request can take to establish a connection.
-/// [receiveTimeout] is the maximum amount of time in milliseconds that the request can take to receive data.
-/// [sendTimeout] is the maximum amount of time in milliseconds that the request can take to send data.
-/// [httpClient] is the client to be used in the requests, in case you want to use a custom client for logging or error reporting purposes.
+/// [baseUrl] is the base url of the API, by default it's 'https://places.googleapis.com',
+/// but you could use some proxy base url to cache requests.
+/// [token] is the token to be used in the requests, if you use this, you don't
+/// need to use [apiKey].
+/// [tokenCallback] is a callback that returns the token to be used in the requests,
+/// if you use this, you don't need to use [apiKey] or [token].
+/// [apiKey] is the api key to be used in the requests, if you use this, you
+/// don't need to use [token] or [tokenCallback].
+/// [connectTimeout] is the maximum amount of time in milliseconds that the request
+/// can take to establish a connection.
+/// [receiveTimeout] is the maximum amount of time in milliseconds that the request
+/// can take to receive data.
+/// [sendTimeout] is the maximum amount of time in milliseconds that the request
+/// can take to send data.
+/// [httpClientAdapter] is the client adapter if you need to customize how http
+/// requests are made, note you should use either [IOHttpClientAdapter] on
+/// `dart:io` native platforms or [BrowserHttpClientAdapter] on `dart:html`
+/// web platforms.
+/// [errorLogger] is a logger for errors that occur during parsing of response data.
 class PlacesAPINew extends RestAPIService<Place> {
   late final PlacesServiceNew _service;
   PlacesAPINew({
@@ -37,12 +48,14 @@ class PlacesAPINew extends RestAPIService<Place> {
     super.connectTimeout,
     super.receiveTimeout,
     super.sendTimeout,
-    super.httpClient,
+    super.httpClientAdapter,
+    ParseErrorLogger? errorLogger,
   }) : super(
           baseUrl: baseUrl ??= 'https://places.googleapis.com',
           dataType: Place(),
         ) {
-    _service = PlacesServiceNew(dio: restAPI.dio);
+    _service = PlacesServiceNew(
+        dio: restAPI.dio, errorLogger: errorLogger ?? CustomParseErrorLogger());
   }
 
   List<String> _checkFields({
@@ -249,7 +262,7 @@ class PlacesAPINew extends RestAPIService<Place> {
     return GoogleHTTPResponse(
       http.Response(
         '',
-        response.statusCode ?? HttpStatus.notFound,
+        response.statusCode ?? 404,
         headers: MapUtils.parseHeaders(response.headers) ?? {},
         isRedirect: response.isRedirect,
         request: http.Request(
@@ -309,7 +322,7 @@ class PlacesAPINew extends RestAPIService<Place> {
     return GoogleHTTPResponse(
       http.Response(
         '',
-        response.statusCode ?? HttpStatus.notFound,
+        response.statusCode ?? 404,
         headers: MapUtils.parseHeaders(response.headers) ?? {},
         isRedirect: response.isRedirect,
         request: http.Request(

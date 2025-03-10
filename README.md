@@ -85,7 +85,7 @@ final placesAPI = PlacesAPINew(
   sendTimeout: const Duration(seconds: 30),
   connectTimeout: const Duration(seconds: 30),
   receiveTimeout: const Duration(seconds: 30),
-  httpClient: HttpClient(),
+  httpClientAdapter: SomeCustomHttpClientAdapter(), // Optional custom http client adapter, by default it uses IOHttpClientAdapter() for native and BrowserHttpClientAdapter() for web
   baseUrl: 'https://my-proxy.com',
 );
 

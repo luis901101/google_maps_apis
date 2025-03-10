@@ -9,6 +9,10 @@ Types of changes
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## 3.0.0
+### Changed
+- [BREAKING] Changed `PlacesAPINew` property `HttpClient? httpClient` to `HttpClientAdapter? httpClientAdapter` to allow more control over http client customization. 
+
 ## 2.0.0
 ### Added
 - Added support for [Places API (New)](https://developers.google.com/maps/documentation/places/web-service/op-overview). **Note:** using legacy Places API remains the same, no breaking changes.

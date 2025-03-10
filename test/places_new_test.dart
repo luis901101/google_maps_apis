@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
+import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:google_maps_apis/places_new.dart';
 import 'package:test/test.dart';
 
@@ -11,6 +13,47 @@ Future<void> main() async {
 
   tearDownAll(() {
     placesAPI.dispose();
+  });
+
+  group('Using Custom HttpClientAdapter', () {
+    test('Get Place Details with some fields using custom httpClientAdapter',
+        () async {
+      final placeId = Platform.environment['GOOGLE_PLACE_ID'];
+      final tempPlacesAPI = PlacesAPINew(
+          apiKey: apiKey, httpClientAdapter: IOHttpClientAdapter());
+      final response = await tempPlacesAPI.getDetails(
+          id: placeId ?? '',
+          instanceFields: Place(
+            name: '',
+            displayName: LocalizedText(),
+          ));
+      expect(response.isSuccessful, true);
+      expect(response.body, isNotNull);
+      expect(response.body?.name, isNotNull);
+      expect(response.body?.displayName, isNotNull);
+    });
+    test(
+        'Get Place Details with some fields using custom httpClientAdapter with badCertificate validation',
+        () async {
+      final placeId = Platform.environment['GOOGLE_PLACE_ID'];
+      final tempPlacesAPI = PlacesAPINew(
+        apiKey: apiKey,
+        httpClientAdapter: IOHttpClientAdapter()
+          ..validateCertificate = (cert, host, port) {
+            return false;
+          },
+      );
+      final response = await tempPlacesAPI.getDetails(
+          id: placeId ?? '',
+          instanceFields: Place(
+            name: '',
+            displayName: LocalizedText(),
+          ));
+      expect(response.isSuccessful, false);
+      expect(response.extraData is DioException, isTrue);
+      expect((response.extraData as DioException).type,
+          DioExceptionType.badCertificate);
+    });
   });
 
   group('Get Place Details by ID', () {

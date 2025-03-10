@@ -12,6 +12,7 @@ export 'package:google_maps_apis/src/new/enums/price_level.dart';
 export 'package:google_maps_apis/src/new/enums/rank_preference_type.dart';
 export 'package:google_maps_apis/src/new/enums/secondary_hours_type.dart';
 export 'package:google_maps_apis/src/new/utils/session_token_handler.dart';
+export 'package:google_maps_apis/src/new/utils/custom_parser_error_logger.dart';
 export 'package:google_maps_apis/src/new/utils/callbacks.dart';
 export 'package:google_maps_apis/src/new/utils/map_utils.dart';
 export 'package:google_maps_apis/src/new/utils/jsonable.dart';

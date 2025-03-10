@@ -12,8 +12,12 @@ part 'places_service_new.g.dart';
 
 @RestApi()
 abstract class PlacesServiceNew {
-  factory PlacesServiceNew({required Dio dio}) {
-    return _PlacesServiceNew(dio, baseUrl: '${dio.options.baseUrl}/v1/places');
+  factory PlacesServiceNew({required Dio dio, ParseErrorLogger? errorLogger}) {
+    return _PlacesServiceNew(
+      dio,
+      baseUrl: '${dio.options.baseUrl}/v1/places',
+      errorLogger: errorLogger,
+    );
   }
 
   @GET('/{id}')

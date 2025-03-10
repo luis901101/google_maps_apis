@@ -1,16 +1,13 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
-import 'package:dio/io.dart';
 import 'package:google_maps_apis/src/new/utils/callbacks.dart';
 
 class RestAPI {
-  static const googleApiKeyKey = 'X-Goog-Api-Key';
+  static const googleApiKeyKey = 'x-goog-api-key';
+  static const authorizationHeaderKey = 'authorization';
 
   Dio dio = Dio();
 
-  HttpClient? httpClient;
-
+  HttpClientAdapter? httpClientAdapter;
   Duration? connectTimeout;
   Duration? receiveTimeout;
   Duration? sendTimeout;
@@ -24,7 +21,7 @@ class RestAPI {
     Duration? connectTimeout,
     Duration? receiveTimeout,
     Duration? sendTimeout,
-    HttpClient? httpClient,
+    HttpClientAdapter? httpClientAdapter,
     Map<String, dynamic>? headers,
     String? apiKey,
     TokenCallback? tokenCallback,
@@ -33,14 +30,15 @@ class RestAPI {
     if (connectTimeout != null) this.connectTimeout = connectTimeout;
     if (receiveTimeout != null) this.receiveTimeout = receiveTimeout;
     if (sendTimeout != null) this.sendTimeout = sendTimeout;
-    if (httpClient != null) this.httpClient = httpClient;
+    if (httpClientAdapter != null) this.httpClientAdapter = httpClientAdapter;
     if (headers != null) this.headers = headers;
     if (apiKey != null) this.apiKey = apiKey;
     if (tokenCallback != null) this.tokenCallback = tokenCallback;
     _initDio();
   }
 
-  String? get authorizationHeader => headers?[HttpHeaders.authorizationHeader];
+  String? get authorizationHeader =>
+      headers?[authorizationHeaderKey] ?? headers?['Authorization'];
 
   void _initDio() {
     dispose();
@@ -53,8 +51,7 @@ class RestAPI {
       // headers: RestAPIService.contentTypeJson,
       contentType: Headers.jsonContentType,
       listFormat: ListFormat.csv,
-    ));
-
+    )).clone(httpClientAdapter: httpClientAdapter);
     // Adding auth token to each request
     dio.interceptors
         .add(InterceptorsWrapper(onRequest: (options, handler) async {
@@ -65,18 +62,12 @@ class RestAPI {
       if (tokenCallback != null) {
         String? token = await tokenCallback!();
         if (token != null) {
-          tempHeaders[HttpHeaders.authorizationHeader] = 'Bearer $token';
+          tempHeaders[authorizationHeaderKey] = 'Bearer $token';
         }
       }
       options.headers.addAll(tempHeaders);
       return handler.next(options);
     }));
-
-    // Adding custom httpClient
-    if (httpClient != null) {
-      (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient =
-          () => httpClient!;
-    }
   }
 
   void dispose() {
