@@ -3,18 +3,21 @@ import 'package:json_annotation/json_annotation.dart';
 
 /// Business status for the place.
 /// Documentation: https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#businessstatus
-@JsonEnum(fieldRename: FieldRename.screamingSnake)
 enum BusinessStatus {
   /// Default value. This value is unused.
+  @JsonValue('BUSINESS_STATUS_UNSPECIFIED')
   businessStatusUnspecified('BUSINESS_STATUS_UNSPECIFIED'),
 
   /// The establishment is operational, not necessarily open now.
+  @JsonValue('OPERATIONAL')
   operational('OPERATIONAL'),
 
   /// The establishment is temporarily closed.
+  @JsonValue('CLOSED_TEMPORARILY')
   closedTemporarily('CLOSED_TEMPORARILY'),
 
   /// The establishment is permanently closed.
+  @JsonValue('CLOSED_PERMANENTLY')
   closedPermanently('CLOSED_PERMANENTLY'),
   ;
 

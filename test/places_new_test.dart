@@ -15,6 +15,113 @@ Future<void> main() async {
     placesAPI.dispose();
   });
 
+  group('Json parsing tests', () {
+    test('BusinessStatus enum parsing', () {
+      final data = Place(
+        businessStatus: BusinessStatus.closedTemporarily,
+      );
+      final jsonMap = data.toJson();
+      expect(jsonMap['businessStatus'], contains('CLOSED_TEMPORARILY'));
+
+      final json = data.toJsonString();
+      expect(json, contains('businessStatus'));
+      expect(json, contains('CLOSED_TEMPORARILY'));
+    });
+    test('Containment enum parsing', () {
+      final value = Area(
+        containment: Containment.containmentUnspecified,
+      );
+      final jsonMap = value.toJson();
+      expect(jsonMap['containment'], contains('CONTAINMENT_UNSPECIFIED'));
+
+      final json = value.toJsonString();
+      expect(json, contains('containment'));
+      expect(json, contains('CONTAINMENT_UNSPECIFIED'));
+    });
+    test('FuelType enum parsing', () {
+      final value = FuelPrice(
+        type: FuelType.regularUnleaded,
+      );
+      final jsonMap = value.toJson();
+      expect(jsonMap['type'], contains('REGULAR_UNLEADED'));
+
+      final json = value.toJsonString();
+      expect(json, contains('type'));
+      expect(json, contains('REGULAR_UNLEADED'));
+    });
+    test('PlaceType enum parsing', () {
+      final data = Place(
+        types: [
+          PlaceType.administrativeAreaLevel1,
+          PlaceType.sublocalityLevel2,
+        ],
+      );
+      final jsonMap = data.toJson();
+      expect(jsonMap['types'], contains('administrative_area_level_1'));
+      expect(jsonMap['types'], contains('sublocality_level_2'));
+
+      final json = data.toJsonString();
+      expect(json, contains('types'));
+      expect(json, contains('administrative_area_level_1'));
+      expect(json, contains('sublocality_level_2'));
+    });
+    test('RankPreferenceType enum parsing', () {
+      final data = TextSearchFilter(
+          rankPreference: RankPreferenceType.distance, textQuery: '');
+      final jsonMap = data.toJson();
+      expect(jsonMap['rankPreference'], contains('DISTANCE'));
+
+      final json = data.toJsonString();
+      expect(json, contains('rankPreference'));
+      expect(json, contains('DISTANCE'));
+    });
+    test('RoutingPreference enum parsing', () {
+      final data = RoutingParameters(
+        routingPreference: RoutingPreference.routingPreferenceUnspecified,
+      );
+      final jsonMap = data.toJson();
+      expect(jsonMap['routingPreference'],
+          contains('ROUTING_PREFERENCE_UNSPECIFIED'));
+
+      final json = data.toJsonString();
+      expect(json, contains('routingPreference'));
+      expect(json, contains('ROUTING_PREFERENCE_UNSPECIFIED'));
+    });
+    test('SecondaryHoursType enum parsing', () {
+      final data = OpeningHours(
+        secondaryHoursType: SecondaryHoursType.driveThrough,
+      );
+      final jsonMap = data.toJson();
+      expect(jsonMap['secondaryHoursType'], contains('DRIVE_THROUGH'));
+
+      final json = data.toJsonString();
+      expect(json, contains('secondaryHoursType'));
+      expect(json, contains('DRIVE_THROUGH'));
+    });
+    test('SpatialRelationship enum parsing', () {
+      final data = Landmark(
+        spatialRelationship: SpatialRelationship.acrossTheRoad,
+      );
+      final jsonMap = data.toJson();
+      expect(jsonMap['spatialRelationship'], contains('ACROSS_THE_ROAD'));
+
+      final json = data.toJsonString();
+      expect(json, contains('spatialRelationship'));
+      expect(json, contains('ACROSS_THE_ROAD'));
+    });
+    test('TravelMode enum parsing', () {
+      final data = RoutingParameters(
+        travelMode: TravelMode.travelModeUnspecified,
+      );
+      final jsonMap = data.toJson();
+      expect(jsonMap['travelMode'], contains('TRAVEL_MODE_UNSPECIFIED'));
+
+      final json = data.toJsonString();
+      expect(json, contains('travelMode'));
+      expect(json, contains('TRAVEL_MODE_UNSPECIFIED'));
+    });
+  });
+
   group('Using Custom HttpClientAdapter', () {
     test('Get Place Details with some fields using custom httpClientAdapter',
         () async {

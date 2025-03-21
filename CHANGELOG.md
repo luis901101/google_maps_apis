@@ -9,6 +9,10 @@ Types of changes
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## 3.0.1
+### Fixed
+- Fixed bug in JSON parsing for enums that was causing wrong snake_case parsing.
+
 ## 3.0.0
 ### Changed
 - [BREAKING] Changed `PlacesAPINew` property `HttpClient? httpClient` to `HttpClientAdapter? httpClientAdapter` to allow more control over http client customization. 
