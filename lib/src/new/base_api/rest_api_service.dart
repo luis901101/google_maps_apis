@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:dio/dio.dart' as dio;
 import 'package:google_maps_apis/src/new/base_api/rest_api.dart';
 import 'package:google_maps_apis/src/new/model/error_info.dart';
@@ -45,6 +46,9 @@ abstract class RestAPIService<DataType extends Jsonable> {
   /// Set this adapter if you need control over http requests
   final dio.HttpClientAdapter? httpClientAdapter;
 
+  /// Custom HTTP headers to be added to every request
+  final Map<String, dynamic>? headers;
+
   RestAPIService({
     RestAPI? restAPI,
     this.onInit,
@@ -57,6 +61,7 @@ abstract class RestAPIService<DataType extends Jsonable> {
     this.receiveTimeout,
     this.sendTimeout,
     this.httpClientAdapter,
+    this.headers,
   })  : assert(
             (((token?.isNotEmpty ?? false) && tokenCallback == null) ||
                     ((token?.isEmpty ?? true) && tokenCallback != null)) ||
@@ -76,6 +81,7 @@ abstract class RestAPIService<DataType extends Jsonable> {
       connectTimeout: connectTimeout,
       receiveTimeout: receiveTimeout,
       sendTimeout: sendTimeout,
+      headers: headers,
       apiKey: apiKey,
       tokenCallback: tokenCallback,
     );

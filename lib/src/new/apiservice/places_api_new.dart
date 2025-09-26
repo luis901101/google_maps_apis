@@ -49,6 +49,7 @@ class PlacesAPINew extends RestAPIService<Place> {
     super.receiveTimeout,
     super.sendTimeout,
     super.httpClientAdapter,
+    super.headers,
     ParseErrorLogger? errorLogger,
   }) : super(
           baseUrl: baseUrl ??= 'https://places.googleapis.com',
@@ -256,7 +257,8 @@ class PlacesAPINew extends RestAPIService<Place> {
       connectTimeout: restAPI.connectTimeout,
       sendTimeout: restAPI.sendTimeout,
     );
-    final response = await Dio().fetch<Map<String, dynamic>>(requestOptions);
+    final response =
+        await restAPI.dio.fetch<Map<String, dynamic>>(requestOptions);
     late Photo? photo =
         response.data == null ? null : Photo.fromJson(response.data!);
     return GoogleHTTPResponse(
@@ -318,7 +320,7 @@ class PlacesAPINew extends RestAPIService<Place> {
       connectTimeout: restAPI.connectTimeout,
       sendTimeout: restAPI.sendTimeout,
     );
-    final response = await Dio().fetch<List<int>>(requestOptions);
+    final response = await restAPI.dio.fetch<List<int>>(requestOptions);
     return GoogleHTTPResponse(
       http.Response(
         '',
