@@ -87,6 +87,18 @@ final placesAPI = PlacesAPINew(
   receiveTimeout: const Duration(seconds: 30),
   httpClientAdapter: SomeCustomHttpClientAdapter(), // Optional custom http client adapter, by default it uses IOHttpClientAdapter() for native and BrowserHttpClientAdapter() for web
   baseUrl: 'https://my-proxy.com',
+  cancelTokenCallback: () => CancelToken(),
+  headers: {
+    'X-Some-Header': 'some-value',
+  },
+  interceptors: [
+    InterceptorsWrapper(
+      onRequest: (options, handler) {
+        print('Interceptor onRequest: ${options.headers}');
+        handler.next(options);
+      },
+    ),
+  ],
 );
 
 /// Get Place Details
@@ -94,6 +106,7 @@ final placesAPI = PlacesAPINew(
 final response = await placesAPI.getDetails(
   id: placeId ?? '',
   allFields: true,
+  cancelToken: CancelToken(), // Optional cancel token to cancel the request
 );
 
 /// Get place with specific fields as a hardcoded list
