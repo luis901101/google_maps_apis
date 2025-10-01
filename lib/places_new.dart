@@ -80,3 +80,4 @@ export 'package:google_maps_apis/src/new/filter/base_filter.dart';
 export 'package:google_maps_apis/src/new/filter/autocomplete_search_filter.dart';
 export 'package:google_maps_apis/src/new/service/places_service_new.dart';
 export 'package:google_maps_apis/src/new/apiservice/places_api_new.dart';
+export 'package:google_maps_apis/src/new/utils/interceptors.dart';

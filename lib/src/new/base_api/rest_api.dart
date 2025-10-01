@@ -15,6 +15,8 @@ class RestAPI {
   Map<String, dynamic>? headers;
   String? apiKey;
   TokenCallback? tokenCallback;
+  CancelToken? cancelToken;
+  List<Interceptor>? interceptors;
 
   void init({
     String? apiUrl,
@@ -25,6 +27,8 @@ class RestAPI {
     Map<String, dynamic>? headers,
     String? apiKey,
     TokenCallback? tokenCallback,
+    CancelToken? cancelToken,
+    List<Interceptor>? interceptors,
   }) {
     if ((apiUrl?.isNotEmpty ?? true)) this.apiUrl = apiUrl!;
     if (connectTimeout != null) this.connectTimeout = connectTimeout;
@@ -34,6 +38,8 @@ class RestAPI {
     if (headers != null) this.headers = headers;
     if (apiKey != null) this.apiKey = apiKey;
     if (tokenCallback != null) this.tokenCallback = tokenCallback;
+    if (cancelToken != null) this.cancelToken = cancelToken;
+    if (interceptors != null) this.interceptors = interceptors;
     _initDio();
   }
 
@@ -68,6 +74,10 @@ class RestAPI {
       options.headers.addAll(tempHeaders);
       return handler.next(options);
     }));
+
+    // Adding custom interceptors
+    final interceptors = this.interceptors ?? <Interceptor>[];
+    dio.interceptors.addAll(interceptors);
   }
 
   void dispose() {

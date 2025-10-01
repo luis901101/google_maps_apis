@@ -50,6 +50,8 @@ class PlacesAPINew extends RestAPIService<Place> {
     super.sendTimeout,
     super.httpClientAdapter,
     super.headers,
+    super.cancelToken,
+    super.interceptors,
     ParseErrorLogger? errorLogger,
   }) : super(
           baseUrl: baseUrl ??= 'https://places.googleapis.com',
@@ -256,6 +258,7 @@ class PlacesAPINew extends RestAPIService<Place> {
       receiveTimeout: restAPI.receiveTimeout,
       connectTimeout: restAPI.connectTimeout,
       sendTimeout: restAPI.sendTimeout,
+      cancelToken: restAPI.cancelToken,
     );
     final response =
         await restAPI.dio.fetch<Map<String, dynamic>>(requestOptions);
@@ -319,6 +322,7 @@ class PlacesAPINew extends RestAPIService<Place> {
       receiveTimeout: restAPI.receiveTimeout,
       connectTimeout: restAPI.connectTimeout,
       sendTimeout: restAPI.sendTimeout,
+      cancelToken: restAPI.cancelToken,
     );
     final response = await restAPI.dio.fetch<List<int>>(requestOptions);
     return GoogleHTTPResponse(

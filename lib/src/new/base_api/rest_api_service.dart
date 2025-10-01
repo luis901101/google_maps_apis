@@ -49,6 +49,12 @@ abstract class RestAPIService<DataType extends Jsonable> {
   /// Custom HTTP headers to be added to every request
   final Map<String, dynamic>? headers;
 
+  /// Cancel token for cancelling requests
+  final dio.CancelToken? cancelToken;
+
+  /// Custom interceptors for debugging, logging, or other purposes
+  final List<dio.Interceptor>? interceptors;
+
   RestAPIService({
     RestAPI? restAPI,
     this.onInit,
@@ -62,6 +68,8 @@ abstract class RestAPIService<DataType extends Jsonable> {
     this.sendTimeout,
     this.httpClientAdapter,
     this.headers,
+    this.cancelToken,
+    this.interceptors,
   })  : assert(
             (((token?.isNotEmpty ?? false) && tokenCallback == null) ||
                     ((token?.isEmpty ?? true) && tokenCallback != null)) ||
@@ -82,6 +90,8 @@ abstract class RestAPIService<DataType extends Jsonable> {
       receiveTimeout: receiveTimeout,
       sendTimeout: sendTimeout,
       headers: headers,
+      cancelToken: cancelToken,
+      interceptors: interceptors,
       apiKey: apiKey,
       tokenCallback: tokenCallback,
     );
