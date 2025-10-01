@@ -38,6 +38,9 @@ import 'package:retrofit/retrofit.dart';
 /// `dart:io` native platforms or [BrowserHttpClientAdapter] on `dart:html`
 /// web platforms.
 /// [errorLogger] is a logger for errors that occur during parsing of response data.
+/// [headers] allows adding global HTTP headers for all requests.
+/// [cancelToken] enables programmatically cancelling in-flight requests.
+/// [interceptors] enables advanced customization like logging, retries and rate limiting.
 class PlacesAPINew extends RestAPIService<Place> {
   late final PlacesServiceNew _service;
   PlacesAPINew({
@@ -49,6 +52,9 @@ class PlacesAPINew extends RestAPIService<Place> {
     super.receiveTimeout,
     super.sendTimeout,
     super.httpClientAdapter,
+    super.headers,
+    super.cancelToken,
+    super.interceptors,
     ParseErrorLogger? errorLogger,
   }) : super(
           baseUrl: baseUrl ??= 'https://places.googleapis.com',
@@ -255,8 +261,10 @@ class PlacesAPINew extends RestAPIService<Place> {
       receiveTimeout: restAPI.receiveTimeout,
       connectTimeout: restAPI.connectTimeout,
       sendTimeout: restAPI.sendTimeout,
+      cancelToken: restAPI.cancelToken,
     );
-    final response = await Dio().fetch<Map<String, dynamic>>(requestOptions);
+    final response =
+        await restAPI.dio.fetch<Map<String, dynamic>>(requestOptions);
     late Photo? photo =
         response.data == null ? null : Photo.fromJson(response.data!);
     return GoogleHTTPResponse(
@@ -317,8 +325,9 @@ class PlacesAPINew extends RestAPIService<Place> {
       receiveTimeout: restAPI.receiveTimeout,
       connectTimeout: restAPI.connectTimeout,
       sendTimeout: restAPI.sendTimeout,
+      cancelToken: restAPI.cancelToken,
     );
-    final response = await Dio().fetch<List<int>>(requestOptions);
+    final response = await restAPI.dio.fetch<List<int>>(requestOptions);
     return GoogleHTTPResponse(
       http.Response(
         '',
