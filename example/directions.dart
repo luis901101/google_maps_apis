@@ -5,12 +5,15 @@ import 'dart:io';
 
 import 'package:google_maps_apis/directions.dart';
 
-final directions =
-    GoogleMapsDirections(apiKey: Platform.environment['API_KEY']);
+final directions = GoogleMapsDirections(
+  apiKey: Platform.environment['API_KEY'],
+);
 
 Future<void> main() async {
-  var res =
-      await directions.directionsWithAddress('Paris, France', 'Rennes, France');
+  var res = await directions.directionsWithAddress(
+    'Paris, France',
+    'Rennes, France',
+  );
 
   print(res.status);
   if (res.isOk) {

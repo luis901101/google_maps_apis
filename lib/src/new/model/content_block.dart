@@ -23,11 +23,7 @@ class ContentBlock extends Jsonable<ContentBlock> {
   /// References that are related to this block of content.
   final References? references;
 
-  ContentBlock({
-    this.topic,
-    this.content,
-    this.references,
-  });
+  ContentBlock({this.topic, this.content, this.references});
 
   factory ContentBlock.fromJson(Map<String, dynamic> json) {
     return _$ContentBlockFromJson(json);

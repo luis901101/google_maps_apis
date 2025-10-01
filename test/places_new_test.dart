@@ -17,9 +17,7 @@ Future<void> main() async {
 
   group('Json parsing tests', () {
     test('BusinessStatus enum parsing', () {
-      final data = Place(
-        businessStatus: BusinessStatus.closedTemporarily,
-      );
+      final data = Place(businessStatus: BusinessStatus.closedTemporarily);
       final jsonMap = data.toJson();
       expect(jsonMap['businessStatus'], contains('CLOSED_TEMPORARILY'));
 
@@ -28,9 +26,7 @@ Future<void> main() async {
       expect(json, contains('CLOSED_TEMPORARILY'));
     });
     test('Containment enum parsing', () {
-      final value = Area(
-        containment: Containment.containmentUnspecified,
-      );
+      final value = Area(containment: Containment.containmentUnspecified);
       final jsonMap = value.toJson();
       expect(jsonMap['containment'], contains('CONTAINMENT_UNSPECIFIED'));
 
@@ -39,9 +35,7 @@ Future<void> main() async {
       expect(json, contains('CONTAINMENT_UNSPECIFIED'));
     });
     test('FuelType enum parsing', () {
-      final value = FuelPrice(
-        type: FuelType.regularUnleaded,
-      );
+      final value = FuelPrice(type: FuelType.regularUnleaded);
       final jsonMap = value.toJson();
       expect(jsonMap['type'], contains('REGULAR_UNLEADED'));
 
@@ -67,7 +61,9 @@ Future<void> main() async {
     });
     test('RankPreferenceType enum parsing', () {
       final data = TextSearchFilter(
-          rankPreference: RankPreferenceType.distance, textQuery: '');
+        rankPreference: RankPreferenceType.distance,
+        textQuery: '',
+      );
       final jsonMap = data.toJson();
       expect(jsonMap['rankPreference'], contains('DISTANCE'));
 
@@ -80,8 +76,10 @@ Future<void> main() async {
         routingPreference: RoutingPreference.routingPreferenceUnspecified,
       );
       final jsonMap = data.toJson();
-      expect(jsonMap['routingPreference'],
-          contains('ROUTING_PREFERENCE_UNSPECIFIED'));
+      expect(
+        jsonMap['routingPreference'],
+        contains('ROUTING_PREFERENCE_UNSPECIFIED'),
+      );
 
       final json = data.toJsonString();
       expect(json, contains('routingPreference'));
@@ -123,85 +121,97 @@ Future<void> main() async {
   });
 
   group('Using Custom HttpClientAdapter', () {
-    test('Get Place Details with some fields using custom httpClientAdapter',
-        () async {
-      final placeId = Platform.environment['GOOGLE_PLACE_ID'];
-      final tempPlacesAPI = PlacesAPINew(
-          apiKey: apiKey, httpClientAdapter: IOHttpClientAdapter());
-      final response = await tempPlacesAPI.getDetails(
-          id: placeId ?? '',
-          instanceFields: Place(
-            name: '',
-            displayName: LocalizedText(),
-          ));
-      expect(response.isSuccessful, true);
-      expect(response.body, isNotNull);
-      expect(response.body?.name, isNotNull);
-      expect(response.body?.displayName, isNotNull);
-    });
     test(
-        'Get Place Details with some fields using custom httpClientAdapter with badCertificate validation',
-        () async {
-      final placeId = Platform.environment['GOOGLE_PLACE_ID'];
-      final tempPlacesAPI = PlacesAPINew(
-        apiKey: apiKey,
-        httpClientAdapter: IOHttpClientAdapter()
-          ..validateCertificate = (cert, host, port) {
-            return false;
-          },
-      );
-      final response = await tempPlacesAPI.getDetails(
+      'Get Place Details with some fields using custom httpClientAdapter',
+      () async {
+        final placeId = Platform.environment['GOOGLE_PLACE_ID'];
+        final tempPlacesAPI = PlacesAPINew(
+          apiKey: apiKey,
+          httpClientAdapter: IOHttpClientAdapter(),
+        );
+        final response = await tempPlacesAPI.getDetails(
           id: placeId ?? '',
-          instanceFields: Place(
-            name: '',
-            displayName: LocalizedText(),
-          ));
-      expect(response.isSuccessful, false);
-      expect(response.extraData is DioException, isTrue);
-      expect((response.extraData as DioException).type,
-          DioExceptionType.badCertificate);
-    });
+          instanceFields: Place(name: '', displayName: LocalizedText()),
+        );
+        expect(response.isSuccessful, true);
+        expect(response.body, isNotNull);
+        expect(response.body?.name, isNotNull);
+        expect(response.body?.displayName, isNotNull);
+      },
+    );
+    test(
+      'Get Place Details with some fields using custom httpClientAdapter with badCertificate validation',
+      () async {
+        final placeId = Platform.environment['GOOGLE_PLACE_ID'];
+        final tempPlacesAPI = PlacesAPINew(
+          apiKey: apiKey,
+          httpClientAdapter: IOHttpClientAdapter()
+            ..validateCertificate = (cert, host, port) {
+              return false;
+            },
+        );
+        final response = await tempPlacesAPI.getDetails(
+          id: placeId ?? '',
+          instanceFields: Place(name: '', displayName: LocalizedText()),
+        );
+        expect(response.isSuccessful, false);
+        expect(response.extraData is DioException, isTrue);
+        expect(
+          (response.extraData as DioException).type,
+          DioExceptionType.badCertificate,
+        );
+      },
+    );
   });
 
   group('Cancel requests using cancel token ', () {
     final placeId = Platform.environment['GOOGLE_PLACE_ID'];
-    test('Get Place Details and cancel request with cancel token param',
-        () async {
-      final cancelToken = CancelToken();
-      final request = placesAPI.getDetails(
-          id: placeId ?? '', allFields: true, cancelToken: cancelToken);
+    test(
+      'Get Place Details and cancel request with cancel token param',
+      () async {
+        final cancelToken = CancelToken();
+        final request = placesAPI.getDetails(
+          id: placeId ?? '',
+          allFields: true,
+          cancelToken: cancelToken,
+        );
 
-      final cancellationReason = 'Cancelled by user using cancel token param';
-      cancelToken.cancel(cancellationReason);
-      final response = await request;
+        final cancellationReason = 'Cancelled by user using cancel token param';
+        cancelToken.cancel(cancellationReason);
+        final response = await request;
 
-      expect(response.isSuccessful, false);
-      expect(response.extraData is DioException, true);
-      print(
-          'Cancellation reason from response: ${(response.extraData as DioException).error}');
-      expect((response.extraData as DioException).error, cancellationReason);
-    });
+        expect(response.isSuccessful, false);
+        expect(response.extraData is DioException, true);
+        print(
+          'Cancellation reason from response: ${(response.extraData as DioException).error}',
+        );
+        expect((response.extraData as DioException).error, cancellationReason);
+      },
+    );
 
-    test('Get Place Details and cancel request with default api cancel token',
-        () async {
-      final cancellationReason =
-          'Cancelled by user using cancel token from api';
-      final cancelToken = CancelToken();
-      placesAPI.restAPI.cancelTokenCallback = () => cancelToken;
-      cancelToken.cancel(cancellationReason);
-      final response = await placesAPI.getDetails(
-        id: placeId ?? '',
-        allFields: true,
-      );
-      placesAPI.restAPI.cancelTokenCallback =
-          null; // Reset cancel token callback for future requests
+    test(
+      'Get Place Details and cancel request with default api cancel token',
+      () async {
+        final cancellationReason =
+            'Cancelled by user using cancel token from api';
+        final cancelToken = CancelToken();
+        placesAPI.restAPI.cancelTokenCallback = () => cancelToken;
+        cancelToken.cancel(cancellationReason);
+        final response = await placesAPI.getDetails(
+          id: placeId ?? '',
+          allFields: true,
+        );
+        placesAPI.restAPI.cancelTokenCallback =
+            null; // Reset cancel token callback for future requests
 
-      expect(response.isSuccessful, false);
-      expect(response.extraData is DioException, true);
-      print(
-          'Cancellation reason from response: ${(response.extraData as DioException).error}');
-      expect((response.extraData as DioException).error, cancellationReason);
-    });
+        expect(response.isSuccessful, false);
+        expect(response.extraData is DioException, true);
+        print(
+          'Cancellation reason from response: ${(response.extraData as DioException).error}',
+        );
+        expect((response.extraData as DioException).error, cancellationReason);
+      },
+    );
   });
 
   group('Get Place Details by ID', () {
@@ -245,11 +255,14 @@ Future<void> main() async {
       expect(response.body?.viewport?.low?.latitude, isNotNull);
       expect(response.body?.regularOpeningHours, isNotNull);
       expect(response.body?.regularOpeningHours?.periods, isNotEmpty);
-      expect(response.body?.regularOpeningHours?.periods?.firstOrNull?.open,
-          isNotNull);
       expect(
-          response.body?.regularOpeningHours?.periods?.firstOrNull?.open?.day,
-          isNotNull);
+        response.body?.regularOpeningHours?.periods?.firstOrNull?.open,
+        isNotNull,
+      );
+      expect(
+        response.body?.regularOpeningHours?.periods?.firstOrNull?.open?.day,
+        isNotNull,
+      );
     });
     test('Get Place Details with instance fields', () async {
       final response = await placesAPI.getDetails(
@@ -259,25 +272,11 @@ Future<void> main() async {
           name: '',
           types: [],
           formattedAddress: '',
-          addressComponents: [
-            AddressComponent(
-              longText: '',
-            ),
-          ],
+          addressComponents: [AddressComponent(longText: '')],
           rating: 0.0,
-          viewport: Viewport(
-            low: LatLng(
-              latitude: 0.0,
-            ),
-          ),
+          viewport: Viewport(low: LatLng(latitude: 0.0)),
           regularOpeningHours: OpeningHours(
-            periods: [
-              Period(
-                open: Point(
-                  day: 0,
-                ),
-              ),
-            ],
+            periods: [Period(open: Point(day: 0))],
           ),
         ),
       );
@@ -295,22 +294,24 @@ Future<void> main() async {
       expect(response.body?.viewport?.low?.latitude, isNotNull);
       expect(response.body?.regularOpeningHours, isNotNull);
       expect(response.body?.regularOpeningHours?.periods, isNotEmpty);
-      expect(response.body?.regularOpeningHours?.periods?.firstOrNull?.open,
-          isNotNull);
       expect(
-          response.body?.regularOpeningHours?.periods?.firstOrNull?.open?.day,
-          isNotNull);
+        response.body?.regularOpeningHours?.periods?.firstOrNull?.open,
+        isNotNull,
+      );
+      expect(
+        response.body?.regularOpeningHours?.periods?.firstOrNull?.open?.day,
+        isNotNull,
+      );
     });
     test('Get Place Details with instance fields and filters', () async {
       final response = await placesAPI.getDetails(
         id: placeId ?? '',
-        instanceFields: Place(
-          id: '',
-          name: '',
-          formattedAddress: '',
-        ),
+        instanceFields: Place(id: '', name: '', formattedAddress: ''),
         filter: PlaceDetailsFilter(
-            languageCode: 'es', regionCode: 'ES', sessionToken: 'ZZZ-ZZZ-ZZZ'),
+          languageCode: 'es',
+          regionCode: 'ES',
+          sessionToken: 'ZZZ-ZZZ-ZZZ',
+        ),
       );
       expect(response.isSuccessful, true);
       expect(response.body, isNotNull);
@@ -353,7 +354,9 @@ Future<void> main() async {
       );
       expect(url, isNotNull);
       expect(
-          url, startsWith('${placesAPI.restAPI.dio.options.baseUrl}/v1/$name'));
+        url,
+        startsWith('${placesAPI.restAPI.dio.options.baseUrl}/v1/$name'),
+      );
       expect(url, contains('key=$apiKey'));
       expect(url, contains('maxWidthPx=3840'));
       expect(url, contains('maxHeightPx=3840'));
@@ -368,9 +371,11 @@ Future<void> main() async {
       );
       expect(url, isNotNull);
       expect(
-          url,
-          startsWith(
-              '${placesAPI.restAPI.dio.options.baseUrl}/v1/places/$placeId/photos/$photoId'));
+        url,
+        startsWith(
+          '${placesAPI.restAPI.dio.options.baseUrl}/v1/places/$placeId/photos/$photoId',
+        ),
+      );
       expect(url, contains('key=$apiKey'));
       expect(url, contains('maxWidthPx=3840'));
       expect(url, contains('maxHeightPx=3840'));
@@ -384,8 +389,10 @@ Future<void> main() async {
       );
       expect(response.isSuccessful, true);
       expect(response.body, isNotNull);
-      expect(response.body,
-          startsWith('https://lh3.googleusercontent.com/place-photos/'));
+      expect(
+        response.body,
+        startsWith('https://lh3.googleusercontent.com/place-photos/'),
+      );
     });
     test('Get Place plain Photo url from placeId and photoId', () async {
       final response = await placesAPI.getPlainPhotoUrl(
@@ -396,8 +403,10 @@ Future<void> main() async {
       );
       expect(response.isSuccessful, true);
       expect(response.body, isNotNull);
-      expect(response.body,
-          startsWith('https://lh3.googleusercontent.com/place-photos/'));
+      expect(
+        response.body,
+        startsWith('https://lh3.googleusercontent.com/place-photos/'),
+      );
     });
     test('Get Place Photo binary from resource name', () async {
       final response = await placesAPI.getPhotoBinary(
@@ -426,20 +435,13 @@ Future<void> main() async {
     test('Search nearby max 10 restaurants with fields list', () async {
       final int maxResultCount = 10;
       final response = await placesAPI.searchNearby(
-        fields: [
-          'places.id',
-          'places.displayName',
-          'places.rating',
-        ],
+        fields: ['places.id', 'places.displayName', 'places.rating'],
         filter: NearbySearchFilter(
           includedTypes: [PlaceType.restaurant],
           maxResultCount: maxResultCount,
           locationRestriction: LocationRestrictionCircle(
             circle: Circle(
-              center: ReferencePoint(
-                latitude: 37.7749,
-                longitude: -122.4194,
-              ),
+              center: ReferencePoint(latitude: 37.7749, longitude: -122.4194),
               radius: 500,
             ),
           ),
@@ -461,9 +463,7 @@ Future<void> main() async {
               id: '',
               displayName: LocalizedText(),
               formattedAddress: '',
-              regularOpeningHours: OpeningHours(
-                periods: [],
-              ),
+              regularOpeningHours: OpeningHours(periods: []),
             ),
           ],
         ),
@@ -471,10 +471,7 @@ Future<void> main() async {
           includedTypes: PlaceType.foodAndDrinkTypes,
           locationRestriction: LocationRestrictionCircle(
             circle: Circle(
-              center: ReferencePoint(
-                latitude: 37.7937,
-                longitude: -122.3965,
-              ),
+              center: ReferencePoint(latitude: 37.7937, longitude: -122.3965),
               radius: 500.0,
             ),
           ),
@@ -492,9 +489,7 @@ Future<void> main() async {
               id: '',
               displayName: LocalizedText(),
               formattedAddress: '',
-              regularOpeningHours: OpeningHours(
-                periods: [],
-              ),
+              regularOpeningHours: OpeningHours(periods: []),
             ),
           ],
         ),
@@ -509,10 +504,7 @@ Future<void> main() async {
           regionCode: 'es',
           locationRestriction: LocationRestrictionCircle(
             circle: Circle(
-              center: ReferencePoint(
-                latitude: 37.7937,
-                longitude: -122.3965,
-              ),
+              center: ReferencePoint(latitude: 37.7937, longitude: -122.3965),
               radius: 500.0,
             ),
           ),
@@ -538,9 +530,7 @@ Future<void> main() async {
               id: '',
               displayName: LocalizedText(),
               formattedAddress: '',
-              regularOpeningHours: OpeningHours(
-                periods: [],
-              ),
+              regularOpeningHours: OpeningHours(periods: []),
             ),
           ],
           routingSummaries: [],
@@ -548,17 +538,11 @@ Future<void> main() async {
         filter: NearbySearchFilter(
           maxResultCount: maxResultCount,
           routingParameters: RoutingParameters(
-            origin: LatLng(
-              latitude: 37.7749,
-              longitude: -122.4194,
-            ),
+            origin: LatLng(latitude: 37.7749, longitude: -122.4194),
           ),
           locationRestriction: LocationRestrictionCircle(
             circle: Circle(
-              center: ReferencePoint(
-                latitude: 37.7937,
-                longitude: -122.3965,
-              ),
+              center: ReferencePoint(latitude: 37.7937, longitude: -122.3965),
               radius: 500.0,
             ),
           ),
@@ -568,8 +552,10 @@ Future<void> main() async {
       expect(response.body, isNotNull);
       expect(response.body?.places, isNotEmpty);
       expect(response.body?.places.length, lessThanOrEqualTo(maxResultCount));
-      expect(response.body?.routingSummaries?.length,
-          equals(response.body?.places.length));
+      expect(
+        response.body?.routingSummaries?.length,
+        equals(response.body?.places.length),
+      );
       final place = response.body?.places.firstOrNull;
       expect(place?.id, isNotNull);
       expect(place?.displayName, isNotNull);
@@ -589,11 +575,7 @@ Future<void> main() async {
     test('Simple search by text with max 10 places and fields list', () async {
       final int pageSize = 10;
       final response = await placesAPI.searchText(
-        fields: [
-          'places.id',
-          'places.displayName',
-          'places.rating',
-        ],
+        fields: ['places.id', 'places.displayName', 'places.rating'],
         filter: TextSearchFilter(
           textQuery: 'Spicy Vegetarian Food in Sydney, Australia',
           pageSize: pageSize,
@@ -618,9 +600,7 @@ Future<void> main() async {
               displayName: LocalizedText(),
               formattedAddress: '',
               rating: 0.0,
-              regularOpeningHours: OpeningHours(
-                periods: [],
-              ),
+              regularOpeningHours: OpeningHours(periods: []),
             ),
           ],
         ),
@@ -641,40 +621,40 @@ Future<void> main() async {
       expect(place?.regularOpeningHours, isNotNull);
       expect(place?.regularOpeningHours?.periods, isNotEmpty);
     });
-    test('Search by text with price levels filter and instance fields',
-        () async {
-      final int pageSize = 10;
-      final priceLevels = [PriceLevel.inexpensive, PriceLevel.moderate];
-      final response = await placesAPI.searchText(
-        instanceFields: PlacesResponse(
-          places: [
-            Place(
-              id: '',
-              displayName: LocalizedText(),
-              formattedAddress: '',
-              rating: 0.0,
-              priceLevel: PriceLevel.inexpensive,
-              regularOpeningHours: OpeningHours(
-                periods: [],
+    test(
+      'Search by text with price levels filter and instance fields',
+      () async {
+        final int pageSize = 10;
+        final priceLevels = [PriceLevel.inexpensive, PriceLevel.moderate];
+        final response = await placesAPI.searchText(
+          instanceFields: PlacesResponse(
+            places: [
+              Place(
+                id: '',
+                displayName: LocalizedText(),
+                formattedAddress: '',
+                rating: 0.0,
+                priceLevel: PriceLevel.inexpensive,
+                regularOpeningHours: OpeningHours(periods: []),
               ),
-            ),
-          ],
-        ),
-        filter: TextSearchFilter(
-          textQuery: 'Spicy Vegetarian Food in Sydney, Australia',
-          pageSize: pageSize,
-          priceLevels: priceLevels,
-        ),
-      );
-      expect(response.isSuccessful, true);
-      expect(response.body, isNotNull);
-      expect(response.body?.places, isNotEmpty);
-      expect(response.body?.places.length, lessThanOrEqualTo(pageSize));
-      final place = response.body?.places.firstOrNull;
-      expect(place?.id, isNotNull);
-      expect(place?.displayName, isNotNull);
-      expect(place?.priceLevel, isIn(priceLevels));
-    });
+            ],
+          ),
+          filter: TextSearchFilter(
+            textQuery: 'Spicy Vegetarian Food in Sydney, Australia',
+            pageSize: pageSize,
+            priceLevels: priceLevels,
+          ),
+        );
+        expect(response.isSuccessful, true);
+        expect(response.body, isNotNull);
+        expect(response.body?.places, isNotEmpty);
+        expect(response.body?.places.length, lessThanOrEqualTo(pageSize));
+        final place = response.body?.places.firstOrNull;
+        expect(place?.id, isNotNull);
+        expect(place?.displayName, isNotNull);
+        expect(place?.priceLevel, isIn(priceLevels));
+      },
+    );
     test('Search by text with pagination and instance fields', () async {
       print('Google will return up to 3 pages with 20 results each.');
       final int pageSize = 20;
@@ -688,12 +668,7 @@ Future<void> main() async {
         ++page;
         final response = await placesAPI.searchText(
           instanceFields: PlacesResponse(
-            places: [
-              Place(
-                id: '',
-                displayName: LocalizedText(),
-              ),
-            ],
+            places: [Place(id: '', displayName: LocalizedText())],
             nextPageToken: '',
           ),
           filter: TextSearchFilter(
@@ -708,7 +683,8 @@ Future<void> main() async {
         expect(response.body?.places.length, lessThanOrEqualTo(pageSize));
         nextPageToken = response.body?.nextPageToken;
         print(
-            'Page: $page\nPlaces: ${response.body?.places.length}\nNext Page Token: $nextPageToken\n=============================');
+          'Page: $page\nPlaces: ${response.body?.places.length}\nNext Page Token: $nextPageToken\n=============================',
+        );
         await Future.delayed(nextPageTokenDelay);
       } while (page <= 4 && nextPageToken != null);
     });
@@ -716,145 +692,129 @@ Future<void> main() async {
 
   group('Autocomplete Search', () {
     test(
-        'Search within a circular area with locationRestriction and fields list',
-        () async {
-      final response = await placesAPI.searchAutocomplete(
-        fields: [
-          'suggestions.placePrediction.placeId',
-          'suggestions.placePrediction.text',
-          'suggestions.placePrediction.structuredFormat.mainText.text',
-        ],
-        filter: AutocompleteSearchFilter(
-          input: 'Art museum',
-          locationRestriction: LocationRestriction(
-            circle: Circle(
-              center: ReferencePoint(
-                latitude: 37.7749,
-                longitude: -122.4194,
+      'Search within a circular area with locationRestriction and fields list',
+      () async {
+        final response = await placesAPI.searchAutocomplete(
+          fields: [
+            'suggestions.placePrediction.placeId',
+            'suggestions.placePrediction.text',
+            'suggestions.placePrediction.structuredFormat.mainText.text',
+          ],
+          filter: AutocompleteSearchFilter(
+            input: 'Art museum',
+            locationRestriction: LocationRestriction(
+              circle: Circle(
+                center: ReferencePoint(latitude: 37.7749, longitude: -122.4194),
+                radius: 5000,
               ),
-              radius: 5000,
             ),
           ),
-        ),
-      );
-      expect(response.isSuccessful, true);
-      expect(response.body, isNotNull);
-      expect(response.body?.suggestions, isNotEmpty);
-      final placePrediction =
-          response.body?.suggestions.firstOrNull?.placePrediction;
-      expect(placePrediction?.placeId, isNotNull);
-      expect(placePrediction?.text, isNotNull);
-      expect(placePrediction?.structuredFormat?.mainText?.text, isNotNull);
-    });
+        );
+        expect(response.isSuccessful, true);
+        expect(response.body, isNotNull);
+        expect(response.body?.suggestions, isNotEmpty);
+        final placePrediction =
+            response.body?.suggestions.firstOrNull?.placePrediction;
+        expect(placePrediction?.placeId, isNotNull);
+        expect(placePrediction?.text, isNotNull);
+        expect(placePrediction?.structuredFormat?.mainText?.text, isNotNull);
+      },
+    );
     test(
-        'Search within a rectangular area with locationBias and fields instance',
-        () async {
-      final response = await placesAPI.searchAutocomplete(
-        instanceFields: PlacesSuggestions(
-          suggestions: [
-            Suggestion(
-              placePrediction: PlacePrediction(
-                placeId: '',
-                text: FormattableText(),
-                structuredFormat: StructuredFormat(
-                  mainText: FormattableText(
-                    text: '',
+      'Search within a rectangular area with locationBias and fields instance',
+      () async {
+        final response = await placesAPI.searchAutocomplete(
+          instanceFields: PlacesSuggestions(
+            suggestions: [
+              Suggestion(
+                placePrediction: PlacePrediction(
+                  placeId: '',
+                  text: FormattableText(),
+                  structuredFormat: StructuredFormat(
+                    mainText: FormattableText(text: ''),
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
-        filter: AutocompleteSearchFilter(
-          input: 'Art museum',
-          locationBias: LocationBias(
-            rectangle: Rectangle(
-              low: ReferencePoint(
-                latitude: 37.7751,
-                longitude: -122.4219,
-              ),
-              high: ReferencePoint(
-                latitude: 37.7955,
-                longitude: -122.3937,
+            ],
+          ),
+          filter: AutocompleteSearchFilter(
+            input: 'Art museum',
+            locationBias: LocationBias(
+              rectangle: Rectangle(
+                low: ReferencePoint(latitude: 37.7751, longitude: -122.4219),
+                high: ReferencePoint(latitude: 37.7955, longitude: -122.3937),
               ),
             ),
           ),
-        ),
-      );
-      expect(response.isSuccessful, true);
-      expect(response.body, isNotNull);
-      expect(response.body?.suggestions, isNotEmpty);
-      final placePrediction =
-          response.body?.suggestions.firstOrNull?.placePrediction;
-      expect(placePrediction?.placeId, isNotNull);
-      expect(placePrediction?.text, isNotNull);
-      expect(placePrediction?.structuredFormat?.mainText?.text, isNotNull);
-    });
+        );
+        expect(response.isSuccessful, true);
+        expect(response.body, isNotNull);
+        expect(response.body?.suggestions, isNotEmpty);
+        final placePrediction =
+            response.body?.suggestions.firstOrNull?.placePrediction;
+        expect(placePrediction?.placeId, isNotNull);
+        expect(placePrediction?.text, isNotNull);
+        expect(placePrediction?.structuredFormat?.mainText?.text, isNotNull);
+      },
+    );
     test(
-        'Search within a circular area with locationBias, specifying primary types and no fields selection',
-        () async {
-      final response = await placesAPI.searchAutocomplete(
-        filter: AutocompleteSearchFilter(
-          input: 'Soccer',
-          includedPrimaryTypes: [PlaceType.sportingGoodsStore],
-          locationBias: LocationBias(
-            circle: Circle(
-              center: ReferencePoint(
-                latitude: 37.7749,
-                longitude: -122.4194,
+      'Search within a circular area with locationBias, specifying primary types and no fields selection',
+      () async {
+        final response = await placesAPI.searchAutocomplete(
+          filter: AutocompleteSearchFilter(
+            input: 'Soccer',
+            includedPrimaryTypes: [PlaceType.sportingGoodsStore],
+            locationBias: LocationBias(
+              circle: Circle(
+                center: ReferencePoint(latitude: 37.7749, longitude: -122.4194),
+                radius: 500.0,
               ),
-              radius: 500.0,
             ),
           ),
-        ),
-      );
-      expect(response.isSuccessful, true);
-      expect(response.body, isNotNull);
-      expect(response.body?.suggestions, isNotEmpty);
-      final placePrediction =
-          response.body?.suggestions.firstOrNull?.placePrediction;
-      expect(placePrediction?.placeId, isNotNull);
-      expect(placePrediction?.text, isNotNull);
-      expect(placePrediction?.structuredFormat?.mainText?.text, isNotNull);
-    });
+        );
+        expect(response.isSuccessful, true);
+        expect(response.body, isNotNull);
+        expect(response.body?.suggestions, isNotEmpty);
+        final placePrediction =
+            response.body?.suggestions.firstOrNull?.placePrediction;
+        expect(placePrediction?.placeId, isNotNull);
+        expect(placePrediction?.text, isNotNull);
+        expect(placePrediction?.structuredFormat?.mainText?.text, isNotNull);
+      },
+    );
     test(
-        'Search within a circular area with locationBias, including Query Predictions, origin and no fields selection',
-        () async {
-      final response = await placesAPI.searchAutocomplete(
-        filter: AutocompleteSearchFilter(
-          input: 'Amoeba',
-          includeQueryPredictions: true,
-          origin: LatLng(
-            latitude: 37.7749,
-            longitude: -122.4194,
-          ),
-          locationBias: LocationBias(
-            circle: Circle(
-              center: ReferencePoint(
-                latitude: 37.7749,
-                longitude: -122.4194,
+      'Search within a circular area with locationBias, including Query Predictions, origin and no fields selection',
+      () async {
+        final response = await placesAPI.searchAutocomplete(
+          filter: AutocompleteSearchFilter(
+            input: 'Amoeba',
+            includeQueryPredictions: true,
+            origin: LatLng(latitude: 37.7749, longitude: -122.4194),
+            locationBias: LocationBias(
+              circle: Circle(
+                center: ReferencePoint(latitude: 37.7749, longitude: -122.4194),
+                radius: 5000.0,
               ),
-              radius: 5000.0,
             ),
           ),
-        ),
-      );
-      expect(response.isSuccessful, true);
-      expect(response.body, isNotNull);
-      expect(response.body?.suggestions, isNotEmpty);
-      final placePrediction = response.body?.suggestions
-          .firstWhereOrNull((item) => item.placePrediction != null)
-          ?.placePrediction;
-      expect(placePrediction?.placeId, isNotNull);
-      expect(placePrediction?.text, isNotNull);
-      expect(placePrediction?.structuredFormat?.mainText?.text, isNotNull);
-      expect(placePrediction?.distanceMeters, greaterThanOrEqualTo(0));
-      final queryPrediction = response.body?.suggestions
-          .firstWhereOrNull((item) => item.queryPrediction != null)
-          ?.queryPrediction;
-      expect(queryPrediction?.text, isNotNull);
-      expect(queryPrediction?.structuredFormat, isNotNull);
-    });
+        );
+        expect(response.isSuccessful, true);
+        expect(response.body, isNotNull);
+        expect(response.body?.suggestions, isNotEmpty);
+        final placePrediction = response.body?.suggestions
+            .firstWhereOrNull((item) => item.placePrediction != null)
+            ?.placePrediction;
+        expect(placePrediction?.placeId, isNotNull);
+        expect(placePrediction?.text, isNotNull);
+        expect(placePrediction?.structuredFormat?.mainText?.text, isNotNull);
+        expect(placePrediction?.distanceMeters, greaterThanOrEqualTo(0));
+        final queryPrediction = response.body?.suggestions
+            .firstWhereOrNull((item) => item.queryPrediction != null)
+            ?.queryPrediction;
+        expect(queryPrediction?.text, isNotNull);
+        expect(queryPrediction?.structuredFormat, isNotNull);
+      },
+    );
   });
 
   group('Session Token', () {
@@ -864,12 +824,13 @@ Future<void> main() async {
 
     for (final input in inputs) {
       test('Autocomplete search "$input" with session token', () async {
-        PlacesSuggestions? cachedSuggestions =
-            sessionToken.suggestionsFromCache(input);
+        PlacesSuggestions? cachedSuggestions = sessionToken
+            .suggestionsFromCache(input);
         if (cachedSuggestions == null) {
           final token = sessionToken.token;
           print(
-              'Doing Autocomplete search for "$input" using sessionToken: $token used ${sessionToken.used} times');
+            'Doing Autocomplete search for "$input" using sessionToken: $token used ${sessionToken.used} times',
+          );
           final response = await placesAPI.searchAutocomplete(
             instanceFields: PlacesSuggestions(
               suggestions: [
@@ -897,10 +858,13 @@ Future<void> main() async {
           );
           expect(response.isSuccessful, true);
           sessionToken.cacheSuggestions(
-              text: input, data: cachedSuggestions = response.body);
+            text: input,
+            data: cachedSuggestions = response.body,
+          );
         } else {
           print(
-              'No need to do Autocomplete search for "$input" as it is already cached');
+            'No need to do Autocomplete search for "$input" as it is already cached',
+          );
         }
         expect(cachedSuggestions, isNotNull);
         expect(cachedSuggestions?.suggestions, isNotEmpty);
@@ -913,36 +877,37 @@ Future<void> main() async {
 
     for (int i = 0; i < 2; ++i) {
       test(
-          'Place Details get for "$placeId" with session token after Autocomplete search',
-          () async {
-        Place? place = sessionToken.placeFromCache(placeId);
-        if (place == null) {
-          final token = sessionToken.token;
-          print(
-              'Doing Place Details get for "$placeId" using sessionToken: $token used ${sessionToken.used} times');
-          final response = await placesAPI.getDetails(
-            id: placeId ?? '',
-            instanceFields: Place(
-              id: '',
-              displayName: LocalizedText(),
-            ),
-            filter: PlaceDetailsFilter(
-              sessionToken: token,
-            ),
-          );
-          expect(response.isSuccessful, true);
-          sessionToken.cachePlaceDetails(
-              id: placeId, data: place = response.body);
-          print(
-              'New sessionToken: ${sessionToken.token} generated after Place Details results cached');
-        } else {
-          print(
-              'No need to do Place Details search for "$placeId" as it is already cached');
-        }
-        expect(place, isNotNull);
-        expect(place?.id, isNotNull);
-        expect(place?.displayName, isNotNull);
-      });
+        'Place Details get for "$placeId" with session token after Autocomplete search',
+        () async {
+          Place? place = sessionToken.placeFromCache(placeId);
+          if (place == null) {
+            final token = sessionToken.token;
+            print(
+              'Doing Place Details get for "$placeId" using sessionToken: $token used ${sessionToken.used} times',
+            );
+            final response = await placesAPI.getDetails(
+              id: placeId ?? '',
+              instanceFields: Place(id: '', displayName: LocalizedText()),
+              filter: PlaceDetailsFilter(sessionToken: token),
+            );
+            expect(response.isSuccessful, true);
+            sessionToken.cachePlaceDetails(
+              id: placeId,
+              data: place = response.body,
+            );
+            print(
+              'New sessionToken: ${sessionToken.token} generated after Place Details results cached',
+            );
+          } else {
+            print(
+              'No need to do Place Details search for "$placeId" as it is already cached',
+            );
+          }
+          expect(place, isNotNull);
+          expect(place?.id, isNotNull);
+          expect(place?.displayName, isNotNull);
+        },
+      );
     }
   });
 }

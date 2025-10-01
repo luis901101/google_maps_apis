@@ -26,8 +26,7 @@ enum PriceLevel {
 
   /// Place provides very expensive services.
   @JsonValue('PRICE_LEVEL_VERY_EXPENSIVE')
-  veryExpensive('PRICE_LEVEL_VERY_EXPENSIVE', 4),
-  ;
+  veryExpensive('PRICE_LEVEL_VERY_EXPENSIVE', 4);
 
   final String name;
 

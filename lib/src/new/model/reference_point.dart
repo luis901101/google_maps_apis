@@ -10,10 +10,7 @@ class ReferencePoint extends Jsonable<ReferencePoint> {
   final double latitude;
   final double longitude;
 
-  ReferencePoint({
-    required this.latitude,
-    required this.longitude,
-  });
+  ReferencePoint({required this.latitude, required this.longitude});
 
   factory ReferencePoint.fromJson(Map<String, dynamic> json) {
     return _$ReferencePointFromJson(json);

@@ -17,10 +17,7 @@ class Period extends Jsonable<Period> {
   /// The time that the place starts to be closed.
   final Point? close;
 
-  Period({
-    this.open,
-    this.close,
-  });
+  Period({this.open, this.close});
 
   factory Period.fromJson(Map<String, dynamic> json) {
     return _$PeriodFromJson(json);

@@ -150,9 +150,8 @@ class NearbySearchFilter extends BaseFilter<NearbySearchFilter> {
     required this.locationRestriction,
     RankPreferenceType? rankPreference,
     this.routingParameters,
-  })  : maxResultCount = maxResultCount?.clamp(1, 20),
-        rankPreference =
-            RankPreferenceType.validForNearbySearch(rankPreference);
+  }) : maxResultCount = maxResultCount?.clamp(1, 20),
+       rankPreference = RankPreferenceType.validForNearbySearch(rankPreference);
 
   factory NearbySearchFilter.fromJson(Map<String, dynamic> json) {
     return _$NearbySearchFilterFromJson(json);

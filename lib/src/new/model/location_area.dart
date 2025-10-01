@@ -13,9 +13,7 @@ part 'location_area.g.dart';
 class LocationRestrictionCircle extends Jsonable<LocationRestrictionCircle> {
   final Circle circle;
 
-  LocationRestrictionCircle({
-    required this.circle,
-  });
+  LocationRestrictionCircle({required this.circle});
 
   factory LocationRestrictionCircle.fromJson(Map<String, dynamic> json) {
     return _$LocationRestrictionCircleFromJson(json);
@@ -38,10 +36,7 @@ class LocationRestrictionCircle extends Jsonable<LocationRestrictionCircle> {
 @JsonSerializable()
 @CopyWith()
 class LocationBias extends LocationMultiArea {
-  LocationBias({
-    super.circle,
-    super.rectangle,
-  });
+  LocationBias({super.circle, super.rectangle});
 
   factory LocationBias.fromJson(Map<String, dynamic> json) {
     return _$LocationBiasFromJson(json);
@@ -64,10 +59,7 @@ class LocationBias extends LocationMultiArea {
 @JsonSerializable()
 @CopyWith()
 class LocationRestriction extends LocationMultiArea {
-  LocationRestriction({
-    super.circle,
-    super.rectangle,
-  });
+  LocationRestriction({super.circle, super.rectangle});
 
   factory LocationRestriction.fromJson(Map<String, dynamic> json) {
     return _$LocationRestrictionFromJson(json);
@@ -89,10 +81,7 @@ class LocationMultiArea extends Jsonable<LocationMultiArea> {
   final Circle? circle;
   final Rectangle? rectangle;
 
-  LocationMultiArea({
-    this.circle,
-    this.rectangle,
-  });
+  LocationMultiArea({this.circle, this.rectangle});
 
   factory LocationMultiArea.fromJson(Map<String, dynamic> json) {
     return _$LocationMultiAreaFromJson(json);
@@ -122,10 +111,8 @@ class Circle extends Jsonable<Circle> {
   final double radius;
   static const double defaultRadius = 500.0;
 
-  Circle({
-    required this.center,
-    double? radius,
-  }) : radius = radius?.clamp(1, 50000) ?? defaultRadius;
+  Circle({required this.center, double? radius})
+    : radius = radius?.clamp(1, 50000) ?? defaultRadius;
 
   factory Circle.fromJson(Map<String, dynamic> json) {
     return _$CircleFromJson(json);
@@ -143,7 +130,6 @@ class Circle extends Jsonable<Circle> {
 
 @JsonSerializable()
 @CopyWith()
-
 /// A rectangle is a latitude-longitude viewport, represented as two diagonally opposite low and high points. The low point marks the southwest corner of the rectangle, and the high point represents the northeast corner of the rectangle.
 /// A viewport is considered a closed region, meaning it includes its boundary. The latitude bounds must range between -90 to 90 degrees inclusive, and the longitude bounds must range between -180 to 180 degrees inclusive:
 ///
@@ -164,10 +150,7 @@ class Rectangle extends Jsonable<Rectangle> {
   ///
   /// Documentation: https://developers.google.com/maps/documentation/places/web-service/text-search#location-bias
   final ReferencePoint high;
-  Rectangle({
-    required this.low,
-    required this.high,
-  });
+  Rectangle({required this.low, required this.high});
 
   factory Rectangle.fromJson(Map<String, dynamic> json) {
     return _$RectangleFromJson(json);

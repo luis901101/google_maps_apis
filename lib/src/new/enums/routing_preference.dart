@@ -30,8 +30,7 @@ enum RoutingPreference {
   /// without applying most performance optimizations. Using this value produces
   /// the highest latency.
   @JsonValue('TRAFFIC_AWARE_OPTIMAL')
-  trafficAwareOptimal('TRAFFIC_AWARE_OPTIMAL'),
-  ;
+  trafficAwareOptimal('TRAFFIC_AWARE_OPTIMAL');
 
   final String name;
   const RoutingPreference(this.name);

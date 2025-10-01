@@ -37,7 +37,8 @@ class GoogleMapsInterceptors {
       onResponse: (response, handler) {
         if (logResponse) {
           print(
-              '✅ $prefix ${response.statusCode} ${response.requestOptions.uri}');
+            '✅ $prefix ${response.statusCode} ${response.requestOptions.uri}',
+          );
           if (logHeaders) {
             print('📋 $prefix Response Headers: ${response.headers}');
           }
@@ -49,7 +50,8 @@ class GoogleMapsInterceptors {
       },
       onError: (error, handler) {
         print(
-            '❌ $prefix Error ${error.response?.statusCode} ${error.requestOptions.uri}');
+          '❌ $prefix Error ${error.response?.statusCode} ${error.requestOptions.uri}',
+        );
         if (error.response?.data != null) {
           print('📦 $prefix Error Body: ${error.response?.data}');
         }
@@ -77,7 +79,8 @@ class GoogleMapsInterceptors {
         final retryCount = error.requestOptions.extra['retryCount'] as int;
 
         if (retryCount < maxRetries) {
-          final shouldRetry = retryOnError?.call(error) ??
+          final shouldRetry =
+              retryOnError?.call(error) ??
               (error.type == DioExceptionType.connectionTimeout ||
                   error.type == DioExceptionType.receiveTimeout ||
                   error.type == DioExceptionType.sendTimeout ||
@@ -87,7 +90,8 @@ class GoogleMapsInterceptors {
           if (shouldRetry) {
             error.requestOptions.extra['retryCount'] = retryCount + 1;
             print(
-                '🔄 [Google Maps API] Retrying request (${retryCount + 1}/$maxRetries)');
+              '🔄 [Google Maps API] Retrying request (${retryCount + 1}/$maxRetries)',
+            );
 
             await Future.delayed(retryDelay);
             try {
@@ -134,7 +138,8 @@ class GoogleMapsInterceptors {
           final duration = DateTime.now().millisecondsSinceEpoch - startTime;
           final durationMs = Duration(milliseconds: duration);
           print(
-              '⏱️ $prefix Failed request took ${durationMs.inMilliseconds}ms');
+            '⏱️ $prefix Failed request took ${durationMs.inMilliseconds}ms',
+          );
         }
         handler.next(error);
       },
@@ -144,9 +149,7 @@ class GoogleMapsInterceptors {
   /// Creates a rate limiting interceptor
   ///
   /// [maxRequestsPerSecond] - Maximum requests per second
-  static Interceptor rateLimitInterceptor({
-    int maxRequestsPerSecond = 10,
-  }) {
+  static Interceptor rateLimitInterceptor({int maxRequestsPerSecond = 10}) {
     final requests = <DateTime>[];
 
     return InterceptorsWrapper(
@@ -161,7 +164,8 @@ class GoogleMapsInterceptors {
           final waitTime = Duration(seconds: 1) - now.difference(oldestRequest);
           if (waitTime.inMilliseconds > 0) {
             print(
-                '⏳ [Google Maps API] Rate limiting: waiting ${waitTime.inMilliseconds}ms');
+              '⏳ [Google Maps API] Rate limiting: waiting ${waitTime.inMilliseconds}ms',
+            );
             await Future.delayed(waitTime);
           }
         }

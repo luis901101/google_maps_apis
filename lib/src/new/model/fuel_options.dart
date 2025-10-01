@@ -16,9 +16,7 @@ class FuelOptions extends Jsonable<FuelOptions> {
   /// There is one entry per fuel type this station has. Order is not important.
   final List<FuelPrice>? fuelPrices;
 
-  FuelOptions({
-    this.fuelPrices,
-  });
+  FuelOptions({this.fuelPrices});
 
   factory FuelOptions.fromJson(Map<String, dynamic> json) {
     return _$FuelOptionsFromJson(json);

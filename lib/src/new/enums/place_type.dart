@@ -724,8 +724,7 @@ enum PlaceType {
   @JsonValue('subpremise')
   subpremise('subpremise'),
   @JsonValue('town_square')
-  townSquare('town_square'),
-  ;
+  townSquare('town_square');
 
   /// Automotive Types: https://developers.google.com/maps/documentation/places/web-service/place-types#automotive
   static const List<PlaceType> automotiveTypes = [
@@ -740,11 +739,7 @@ enum PlaceType {
   ];
 
   /// Business Types: https://developers.google.com/maps/documentation/places/web-service/place-types#business
-  static const List<PlaceType> businessTypes = [
-    corporateOffice,
-    farm,
-    ranch,
-  ];
+  static const List<PlaceType> businessTypes = [corporateOffice, farm, ranch];
 
   /// Culture Types: https://developers.google.com/maps/documentation/places/web-service/place-types#culture
   static const List<PlaceType> cultureTypes = [
@@ -831,11 +826,7 @@ enum PlaceType {
   ];
 
   /// Finance Types: https://developers.google.com/maps/documentation/places/web-service/place-types#finance
-  static const List<PlaceType> financeTypes = [
-    accounting,
-    atm,
-    bank,
-  ];
+  static const List<PlaceType> financeTypes = [accounting, atm, bank];
 
   /// Food and Drink Types: https://developers.google.com/maps/documentation/places/web-service/place-types#food-and-drink
   static const List<PlaceType> foodAndDrinkTypes = [
@@ -979,9 +970,7 @@ enum PlaceType {
   ];
 
   /// Natural Features Types: https://developers.google.com/maps/documentation/places/web-service/place-types#natural-features
-  static const List<PlaceType> naturalFeaturesTypes = [
-    beach,
-  ];
+  static const List<PlaceType> naturalFeaturesTypes = [beach];
 
   /// Places of Worship Types: https://developers.google.com/maps/documentation/places/web-service/place-types#places-of-worship
   static const List<PlaceType> placesOfWorshipTypes = [

@@ -6,8 +6,8 @@ abstract class Jsonable<T extends Object> {
   static Map<String, dynamic>? jsonableToJson(Jsonable? value) =>
       value?.toJson();
   static Jsonable<T>? jsonableFromJson<T extends Object>(
-          Map<String, dynamic>? json) =>
-      null;
+    Map<String, dynamic>? json,
+  ) => null;
 
   static String? dynamicToJsonString(dynamic value) => value?.toString();
   static String? doubleToJsonString2Digits(double? value) =>
@@ -57,23 +57,28 @@ abstract class Jsonable<T extends Object> {
       fromJsonListGeneric<T>(jsonList, fromJsonMap);
 
   static T? fromJsonStringGeneric<T>(
-          String? json, T? Function(Map<String, dynamic>? json) fromJsonMap) =>
-      (json?.isNotEmpty ?? true) ? fromJsonMap.call(jsonDecode(json!)) : null;
+    String? json,
+    T? Function(Map<String, dynamic>? json) fromJsonMap,
+  ) => (json?.isNotEmpty ?? true) ? fromJsonMap.call(jsonDecode(json!)) : null;
 
-  static List<T>? fromJsonStringListGeneric<T>(String? jsonStringList,
-          T? Function(Map<String, dynamic> json) fromJsonMap) =>
-      (jsonStringList?.isNotEmpty ?? true)
-          ? fromJsonListGeneric(jsonDecode(jsonStringList!), fromJsonMap)
-          : null;
+  static List<T>? fromJsonStringListGeneric<T>(
+    String? jsonStringList,
+    T? Function(Map<String, dynamic> json) fromJsonMap,
+  ) => (jsonStringList?.isNotEmpty ?? true)
+      ? fromJsonListGeneric(jsonDecode(jsonStringList!), fromJsonMap)
+      : null;
 
-  static List<T>? fromJsonListGeneric<T>(List<dynamic>? jsonList,
-      T? Function(Map<String, dynamic> json) fromJsonMap) {
+  static List<T>? fromJsonListGeneric<T>(
+    List<dynamic>? jsonList,
+    T? Function(Map<String, dynamic> json) fromJsonMap,
+  ) {
     if (jsonList == null) return null;
     if (jsonList.isEmpty) return [];
     List<T> list = jsonList.map((dynamic json) {
       if (json is! Map<String, dynamic>) {
         throw Exception(
-            'fromJsonList(List<dynamic> jsonList) expects a Json Map<String, dynamic> but other object was found instead');
+          'fromJsonList(List<dynamic> jsonList) expects a Json Map<String, dynamic> but other object was found instead',
+        );
       }
       return fromJsonMap.call(json)!;
     }).toList();
@@ -90,8 +95,8 @@ abstract class Jsonable<T extends Object> {
   List<String> _searchInMap({String? parentKey, Map map = const {}}) {
     parentKey = parentKey != null
         ? !parentKey.endsWith('.')
-            ? '$parentKey.'
-            : parentKey
+              ? '$parentKey.'
+              : parentKey
         : '';
     List<String> fields = [];
     for (final MapEntry(key: key, value: value) in map.entries) {
@@ -103,8 +108,8 @@ abstract class Jsonable<T extends Object> {
   List<String> _searchInList({String? parentKey, List list = const []}) {
     parentKey = parentKey != null
         ? !parentKey.endsWith('.')
-            ? '$parentKey.'
-            : parentKey
+              ? '$parentKey.'
+              : parentKey
         : '';
     List<String> fields = [];
     for (final value in list) {

@@ -13,10 +13,7 @@ class ContainingPlace extends Jsonable<ContainingPlace> {
   final String? name;
   final String? id;
 
-  ContainingPlace({
-    this.name,
-    this.id,
-  });
+  ContainingPlace({this.name, this.id});
 
   factory ContainingPlace.fromJson(Map<String, dynamic> json) {
     return _$ContainingPlaceFromJson(json);

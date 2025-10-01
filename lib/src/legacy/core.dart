@@ -7,10 +7,7 @@ class Location {
   final double lat;
   final double lng;
 
-  Location({
-    required this.lat,
-    required this.lng,
-  });
+  Location({required this.lat, required this.lng});
 
   factory Location.fromJson(Map<String, dynamic> json) =>
       _$LocationFromJson(json);
@@ -51,10 +48,7 @@ class CircleLocation extends LocationShape {
   final Location center;
   final int radius;
 
-  CircleLocation({
-    required this.center,
-    required this.radius,
-  });
+  CircleLocation({required this.center, required this.radius});
 
   @override
   String toString() => 'circle:$radius@${center.lat},${center.lng}';
@@ -69,10 +63,7 @@ class RectangleLocation extends LocationShape {
   final Location northEast;
   final Location southWest;
 
-  RectangleLocation({
-    required this.northEast,
-    required this.southWest,
-  });
+  RectangleLocation({required this.northEast, required this.southWest});
 
   @override
   String toString() =>
@@ -88,10 +79,7 @@ class Bounds {
   final Location northeast;
   final Location southwest;
 
-  Bounds({
-    required this.northeast,
-    required this.southwest,
-  });
+  Bounds({required this.northeast, required this.southwest});
 
   @override
   String toString() =>
@@ -116,7 +104,7 @@ abstract class GoogleResponseStatus {
   bool get isNotFound => status == ResponseStatus.notFound;
 
   GoogleResponseStatus({ResponseStatus? status, this.errorMessage})
-      : status = status ?? ResponseStatus.zeroResults;
+    : status = status ?? ResponseStatus.zeroResults;
 }
 
 abstract class GoogleResponseList<T> extends GoogleResponseStatus {
@@ -141,11 +129,7 @@ class AddressComponent {
   final String? shortName;
   final List<String>? types;
 
-  AddressComponent({
-    this.types,
-    this.longName,
-    this.shortName,
-  });
+  AddressComponent({this.types, this.longName, this.shortName});
 
   factory AddressComponent.fromJson(Map<String, dynamic> json) =>
       _$AddressComponentFromJson(json);
@@ -179,53 +163,30 @@ enum ResponseStatus {
   notFound,
   maxWaypointsExceeded,
   maxRouteLengthExceeded,
-  ;
 }
 
 /// Google requires the `mode` query param to be lower case but then when parsing `travel_mode` from json response it should be treated as upper case
 @JsonEnum(fieldRename: FieldRename.screamingSnake)
-enum TravelMode {
-  driving,
-  walking,
-  bicycling,
-  transit,
-  ;
-}
+enum TravelMode { driving, walking, bicycling, transit }
 
-enum RouteType {
-  tolls,
-  highways,
-  ferries,
-  indoor,
-}
+enum RouteType { tolls, highways, ferries, indoor }
 
-enum Unit {
-  metric,
-  imperial,
-}
+enum Unit { metric, imperial }
 
 enum TrafficModel {
   bestGuess('best_guess'),
   pessimistic('pessimistic'),
-  optimistic('optimistic'),
-  ;
+  optimistic('optimistic');
 
   final String name;
   const TrafficModel(this.name);
 }
 
-enum TransitMode {
-  bus,
-  subway,
-  train,
-  tram,
-  rail,
-}
+enum TransitMode { bus, subway, train, tram, rail }
 
 enum TransitRoutingPreferences {
   lessWalking('less_walking'),
-  fewerTransfers('fewer_transfers'),
-  ;
+  fewerTransfers('fewer_transfers');
 
   final String name;
   const TransitRoutingPreferences(this.name);

@@ -34,43 +34,45 @@ abstract class RestAPIService<DataType extends Jsonable> {
     TokenCallback? tokenCallback,
     CancelTokenCallback? cancelTokenCallback,
     List<dio.Interceptor>? interceptors,
-  })  : assert(
-            (((token?.isNotEmpty ?? false) && tokenCallback == null) ||
-                    ((token?.isEmpty ?? true) && tokenCallback != null)) ||
-                (apiKey?.isNotEmpty ?? false),
-            '\n\nA token or tokenCallback must be specified, only one of both.'
-            '\nOtherwise an apiKey must be specified.'),
-        restAPI = restAPI ?? RestAPI() {
+  }) : assert(
+         (((token?.isNotEmpty ?? false) && tokenCallback == null) ||
+                 ((token?.isEmpty ?? true) && tokenCallback != null)) ||
+             (apiKey?.isNotEmpty ?? false),
+         '\n\nA token or tokenCallback must be specified, only one of both.'
+         '\nOtherwise an apiKey must be specified.',
+       ),
+       restAPI = restAPI ?? RestAPI() {
     this.restAPI.init(
-          apiKey: apiKey,
-          baseUrl: baseUrl,
-          connectTimeout: connectTimeout,
-          receiveTimeout: receiveTimeout,
-          sendTimeout: sendTimeout,
-          httpClientAdapter: httpClientAdapter,
-          headers: headers,
-          tokenCallback:
-              tokenCallback ?? (token == null ? null : (() async => token)),
-          cancelTokenCallback: cancelTokenCallback,
-          interceptors: interceptors,
-        );
+      apiKey: apiKey,
+      baseUrl: baseUrl,
+      connectTimeout: connectTimeout,
+      receiveTimeout: receiveTimeout,
+      sendTimeout: sendTimeout,
+      httpClientAdapter: httpClientAdapter,
+      headers: headers,
+      tokenCallback:
+          tokenCallback ?? (token == null ? null : (() async => token)),
+      cancelTokenCallback: cancelTokenCallback,
+      interceptors: interceptors,
+    );
   }
 
   GoogleHTTPResponse httpResponseToCustomHttpResponse(HttpResponse response) {
     dynamic body = response.data;
     return GoogleHTTPResponse(
-        http.Response(
-          '',
-          response.response.statusCode ?? 404,
-          headers: MapUtils.parseHeaders(response.response.headers) ?? {},
-          isRedirect: response.response.isRedirect,
-          request: http.Request(
-            response.response.requestOptions.method,
-            response.response.requestOptions.uri,
-          ),
+      http.Response(
+        '',
+        response.response.statusCode ?? 404,
+        headers: MapUtils.parseHeaders(response.response.headers) ?? {},
+        isRedirect: response.response.isRedirect,
+        request: http.Request(
+          response.response.requestOptions.method,
+          response.response.requestOptions.uri,
         ),
-        body,
-        extraData: response);
+      ),
+      body,
+      extraData: response,
+    );
   }
 
   GoogleHTTPResponse dioErrorToCustomHttpResponse(dio.DioException error) {
@@ -79,28 +81,31 @@ abstract class RestAPIService<DataType extends Jsonable> {
       if (error.response?.data is GoogleErrorResponse) {
         googleErrorResponse = error.response?.data;
       } else if (error.response?.data is Map<String, dynamic>) {
-        googleErrorResponse =
-            GoogleErrorResponse.fromJson(error.response?.data);
+        googleErrorResponse = GoogleErrorResponse.fromJson(
+          error.response?.data,
+        );
       }
     }
     return GoogleHTTPResponse(
-        http.Response(
-          '',
-          error.response?.statusCode ?? 404,
-          headers: MapUtils.parseHeaders(error.response?.headers) ?? {},
-          isRedirect: error.response?.isRedirect ?? false,
-          request: http.Request(
-            error.response?.requestOptions.method ?? HttpMethod.GET,
-            error.response?.requestOptions.uri ?? Uri(),
-          ),
+      http.Response(
+        '',
+        error.response?.statusCode ?? 404,
+        headers: MapUtils.parseHeaders(error.response?.headers) ?? {},
+        isRedirect: error.response?.isRedirect ?? false,
+        request: http.Request(
+          error.response?.requestOptions.method ?? HttpMethod.GET,
+          error.response?.requestOptions.uri ?? Uri(),
         ),
-        null,
-        error: googleErrorResponse,
-        extraData: error);
+      ),
+      null,
+      error: googleErrorResponse,
+      extraData: error,
+    );
   }
 
   Future<GoogleHTTPResponse> getSaveResponse<ContainerDataTypeGeneric>(
-      Future futureResponse) async {
+    Future futureResponse,
+  ) async {
     GoogleHTTPResponse response = GoogleHTTPResponse(
       http.Response('', 404),
       null,
@@ -130,18 +135,20 @@ abstract class RestAPIService<DataType extends Jsonable> {
   }
 
   Future<GoogleHTTPResponse<DataType>> parseResponse(
-      Future futureResponse) async {
+    Future futureResponse,
+  ) async {
     return genericParseResponse(futureResponse, dataType: dataType);
   }
 
   Future<GoogleHTTPResponse<List<DataType>>> parseResponseAsList(
-      Future futureResponse) async {
+    Future futureResponse,
+  ) async {
     return genericParseResponseAsList(futureResponse, dataType: dataType);
   }
 
-  Future<GoogleHTTPResponse<DataTypeGeneric>>
-      genericParseResponse<DataTypeGeneric>(Future futureResponse,
-          {DataTypeGeneric? dataType}) async {
+  Future<GoogleHTTPResponse<DataTypeGeneric>> genericParseResponse<
+    DataTypeGeneric
+  >(Future futureResponse, {DataTypeGeneric? dataType}) async {
     GoogleHTTPResponse response = await getSaveResponse(futureResponse);
     try {
       DataTypeGeneric? dataTypeResult;
@@ -176,19 +183,14 @@ abstract class RestAPIService<DataType extends Jsonable> {
           request: response.base.request,
         ),
         null,
-        error: GoogleErrorResponse(
-          error: ErrorInfo(
-            message: message,
-          ),
-        ),
+        error: GoogleErrorResponse(error: ErrorInfo(message: message)),
       );
     }
   }
 
-  Future<GoogleHTTPResponse<List<DataTypeGeneric>>>
-      genericParseResponseAsList<DataTypeGeneric extends Jsonable?>(
-          Future futureResponse,
-          {DataTypeGeneric? dataType}) async {
+  Future<GoogleHTTPResponse<List<DataTypeGeneric>>> genericParseResponseAsList<
+    DataTypeGeneric extends Jsonable?
+  >(Future futureResponse, {DataTypeGeneric? dataType}) async {
     GoogleHTTPResponse response = await getSaveResponse(futureResponse);
     try {
       List<DataTypeGeneric>? dataList;
@@ -232,11 +234,7 @@ abstract class RestAPIService<DataType extends Jsonable> {
           request: response.base.request,
         ),
         null,
-        error: GoogleErrorResponse(
-          error: ErrorInfo(
-            message: message,
-          ),
-        ),
+        error: GoogleErrorResponse(error: ErrorInfo(message: message)),
       );
     }
   }

@@ -26,8 +26,7 @@ enum TravelMode {
   /// Only supported in those countries listed at Countries and regions supported
   /// for two-wheeled vehicles.
   @JsonValue('TWO_WHEELER')
-  twoWheeler('TWO_WHEELER'),
-  ;
+  twoWheeler('TWO_WHEELER');
 
   final String name;
   const TravelMode(this.name);

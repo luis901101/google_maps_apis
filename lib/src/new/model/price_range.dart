@@ -18,10 +18,7 @@ class PriceRange extends Jsonable<PriceRange> {
   /// The high end of the price range (exclusive). Price should be lower than this amount.
   final Money? endPrice;
 
-  PriceRange({
-    this.startPrice,
-    this.endPrice,
-  });
+  PriceRange({this.startPrice, this.endPrice});
 
   factory PriceRange.fromJson(Map<String, dynamic> json) {
     return _$PriceRangeFromJson(json);

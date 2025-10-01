@@ -163,10 +163,10 @@ class TextSearchFilter extends BaseFilter<TextSearchFilter> {
     List<PriceLevel>? priceLevels,
     RankPreferenceType? rankPreference,
     this.strictTypeFiltering,
-  })  : priceLevels = priceLevels
-            ?.where((element) => element != PriceLevel.free)
-            .toList(),
-        rankPreference = RankPreferenceType.validForTextSearch(rankPreference);
+  }) : priceLevels = priceLevels
+           ?.where((element) => element != PriceLevel.free)
+           .toList(),
+       rankPreference = RankPreferenceType.validForTextSearch(rankPreference);
 
   factory TextSearchFilter.fromJson(Map<String, dynamic> json) {
     return _$TextSearchFilterFromJson(json);

@@ -18,9 +18,7 @@ class GoogleMapsDirections extends GoogleWebService {
     super.baseUrl,
     super.httpClient,
     super.apiHeaders,
-  }) : super(
-          apiPath: _directionsUrl,
-        );
+  }) : super(apiPath: _directionsUrl);
 
   Future<DirectionsResponse> directions(
     Object /*Location|String*/ origin,
@@ -158,7 +156,8 @@ class GoogleMapsDirections extends GoogleWebService {
           departureTime is! num &&
           departureTime != 'now') {
         throw ArgumentError(
-            "'departureTime' must be a '$num' or a '$DateTime'");
+          "'departureTime' must be a '$num' or a '$DateTime'",
+        );
       }
 
       params['departure_time'] = departureTime is DateTime
@@ -350,12 +349,7 @@ abstract class _Step {
 
   final Value? distance;
 
-  _Step({
-    this.startLocation,
-    this.endLocation,
-    this.duration,
-    this.distance,
-  });
+  _Step({this.startLocation, this.endLocation, this.duration, this.distance});
 }
 
 @JsonSerializable()
@@ -418,11 +412,11 @@ class Step extends _Step {
     this.transitDetails,
     this.maneuver,
   }) : super(
-          startLocation: startLocation,
-          endLocation: endLocation,
-          duration: duration,
-          distance: distance,
-        );
+         startLocation: startLocation,
+         endLocation: endLocation,
+         duration: duration,
+         distance: distance,
+       );
 
   factory Step.fromJson(Map<String, dynamic> json) => _$StepFromJson(json);
   Map<String, dynamic> toJson() => _$StepToJson(this);
@@ -561,11 +555,7 @@ class TransitAgency {
   final String url;
   final String phone;
 
-  TransitAgency({
-    required this.name,
-    required this.url,
-    required this.phone,
-  });
+  TransitAgency({required this.name, required this.url, required this.phone});
 
   factory TransitAgency.fromJson(Map<String, dynamic> json) =>
       _$TransitAgencyFromJson(json);

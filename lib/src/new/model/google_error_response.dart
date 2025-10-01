@@ -11,9 +11,7 @@ part 'google_error_response.g.dart';
 class GoogleErrorResponse extends Jsonable<GoogleErrorResponse> {
   final ErrorInfo? error;
 
-  GoogleErrorResponse({
-    this.error,
-  });
+  GoogleErrorResponse({this.error});
 
   @override
   Map<String, dynamic> toJson() => _$GoogleErrorResponseToJson(this);

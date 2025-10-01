@@ -16,9 +16,7 @@ class SpecialDay extends Jsonable<SpecialDay> {
   /// The date of this special day.
   final Date? date;
 
-  SpecialDay({
-    this.date,
-  });
+  SpecialDay({this.date});
 
   factory SpecialDay.fromJson(Map<String, dynamic> json) {
     return _$SpecialDayFromJson(json);

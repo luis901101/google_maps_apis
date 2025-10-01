@@ -10,12 +10,7 @@ class ErrorInfo extends Jsonable<ErrorInfo> {
   final String? status;
   final dynamic details;
 
-  ErrorInfo({
-    this.code,
-    this.message,
-    this.status,
-    this.details,
-  });
+  ErrorInfo({this.code, this.message, this.status, this.details});
 
   @override
   Map<String, dynamic> toJson() => _$ErrorInfoToJson(this);

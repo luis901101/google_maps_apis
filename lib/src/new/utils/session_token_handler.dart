@@ -130,10 +130,7 @@ class SessionTokenHandler {
       _suggestionsCache[text];
 
   /// Add the [PlacesSuggestions] to the cache.
-  void cacheSuggestions({
-    required String? text,
-    PlacesSuggestions? data,
-  }) {
+  void cacheSuggestions({required String? text, PlacesSuggestions? data}) {
     if (text != null && data != null) {
       _suggestionsCache[text] = data;
     }
@@ -144,10 +141,7 @@ class SessionTokenHandler {
 
   /// Add the [Place] to the cache and refresh the session [token] to be ready
   /// for use in a new search session.
-  void cachePlaceDetails({
-    required String? id,
-    Place? data,
-  }) {
+  void cachePlaceDetails({required String? id, Place? data}) {
     if (id != null && data != null) {
       _placeDetailsCache[id] = data;
     }

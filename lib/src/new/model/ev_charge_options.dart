@@ -24,10 +24,7 @@ class EVChargeOptions extends Jsonable<EVChargeOptions> {
   /// the same type and same charge rate.
   final List<ConnectorAggregation>? connectorAggregation;
 
-  EVChargeOptions({
-    this.connectorCount,
-    this.connectorAggregation,
-  });
+  EVChargeOptions({this.connectorCount, this.connectorAggregation});
 
   factory EVChargeOptions.fromJson(Map<String, dynamic> json) {
     return _$EVChargeOptionsFromJson(json);

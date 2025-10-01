@@ -60,11 +60,13 @@ class PlacesAPINew extends RestAPIService<Place> {
     super.interceptors,
     ParseErrorLogger? errorLogger,
   }) : super(
-          baseUrl: baseUrl ??= 'https://places.googleapis.com',
-          dataType: Place(),
-        ) {
+         baseUrl: baseUrl ??= 'https://places.googleapis.com',
+         dataType: Place(),
+       ) {
     _service = PlacesServiceNew(
-        dio: restAPI.dio, errorLogger: errorLogger ?? CustomParseErrorLogger());
+      dio: restAPI.dio,
+      errorLogger: errorLogger ?? CustomParseErrorLogger(),
+    );
   }
 
   List<String> _checkFields({
@@ -75,16 +77,18 @@ class PlacesAPINew extends RestAPIService<Place> {
     PlacesSuggestions? placeSuggestionsFields,
   }) {
     assert(
-        allFields ||
-            fields != null ||
-            placeDetailsFields != null ||
-            placeResponseFields != null ||
-            placeSuggestionsFields != null,
-        'Ensure that allFields = true or fields != null, or instanceFields != null with some field != null or .');
+      allFields ||
+          fields != null ||
+          placeDetailsFields != null ||
+          placeResponseFields != null ||
+          placeSuggestionsFields != null,
+      'Ensure that allFields = true or fields != null, or instanceFields != null with some field != null or .',
+    );
     if (allFields) {
       fields = ['*'];
     } else {
-      fields ??= placeDetailsFields?.toFieldsMask() ??
+      fields ??=
+          placeDetailsFields?.toFieldsMask() ??
           placeResponseFields?.toFieldsMask() ??
           placeSuggestionsFields?.toFieldsMask();
     }
@@ -127,12 +131,14 @@ class PlacesAPINew extends RestAPIService<Place> {
       fields: fields,
       placeDetailsFields: instanceFields,
     );
-    return parseResponse(_service.getDetails(
-      id: id,
-      fields: fields,
-      filter: filter,
-      cancelToken: cancelToken ?? restAPI.cancelTokenCallback?.call(),
-    ));
+    return parseResponse(
+      _service.getDetails(
+        id: id,
+        fields: fields,
+        filter: filter,
+        cancelToken: cancelToken ?? restAPI.cancelTokenCallback?.call(),
+      ),
+    );
   }
 
   /// Build photo url for requests
@@ -167,9 +173,10 @@ class PlacesAPINew extends RestAPIService<Place> {
     bool skipHttpRedirect = false,
   }) {
     assert(
-        (name != null || (placeId != null && photoId != null)) &&
-            (maxWidthPx != null || maxHeightPx != null),
-        'Ensure that name != null or placeId != null and photoId != null. Also ensure that maxWidthPx != null or maxHeightPx != null.');
+      (name != null || (placeId != null && photoId != null)) &&
+          (maxWidthPx != null || maxHeightPx != null),
+      'Ensure that name != null or placeId != null and photoId != null. Also ensure that maxWidthPx != null or maxHeightPx != null.',
+    );
     try {
       if (name != null) {
         final split = name.split('/');
@@ -220,16 +227,15 @@ class PlacesAPINew extends RestAPIService<Place> {
 
     /// Maximum desired height of the image in pixels: https://developers.google.com/maps/documentation/places/web-service/place-photos#maxheightpx-and-maxwidthpx
     int? maxHeightPx,
-  }) =>
-      _buildPhotoUrl(
-        apiKey: apiKey,
-        name: name,
-        placeId: placeId,
-        photoId: photoId,
-        maxWidthPx: maxWidthPx,
-        maxHeightPx: maxHeightPx,
-        skipHttpRedirect: false,
-      );
+  }) => _buildPhotoUrl(
+    apiKey: apiKey,
+    name: name,
+    placeId: placeId,
+    photoId: photoId,
+    maxWidthPx: maxWidthPx,
+    maxHeightPx: maxHeightPx,
+    skipHttpRedirect: false,
+  );
 
   /// Get the photo url of a Place after redirect, this means the final photo url will not use the apiKey nor the place or photo id.
   ///
@@ -273,10 +279,12 @@ class PlacesAPINew extends RestAPIService<Place> {
       sendTimeout: restAPI.sendTimeout,
       cancelToken: cancelToken ?? restAPI.cancelTokenCallback?.call(),
     );
-    final response =
-        await restAPI.dio.fetch<Map<String, dynamic>>(requestOptions);
-    late Photo? photo =
-        response.data == null ? null : Photo.fromJson(response.data!);
+    final response = await restAPI.dio.fetch<Map<String, dynamic>>(
+      requestOptions,
+    );
+    late Photo? photo = response.data == null
+        ? null
+        : Photo.fromJson(response.data!);
     return GoogleHTTPResponse(
       http.Response(
         '',

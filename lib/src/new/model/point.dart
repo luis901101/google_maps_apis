@@ -29,13 +29,7 @@ class Point extends Jsonable<Point> {
   /// The minute. Ranges from 0 to 59.
   final int? minute;
 
-  Point({
-    this.date,
-    this.truncated,
-    this.day,
-    this.hour,
-    this.minute,
-  });
+  Point({this.date, this.truncated, this.day, this.hour, this.minute});
 
   factory Point.fromJson(Map<String, dynamic> json) {
     return _$PointFromJson(json);

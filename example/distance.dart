@@ -5,8 +5,9 @@ import 'dart:io';
 
 import 'package:google_maps_apis/distance.dart';
 
-final GoogleDistanceMatrix distanceMatrix =
-    GoogleDistanceMatrix(apiKey: Platform.environment['API_KEY']);
+final GoogleDistanceMatrix distanceMatrix = GoogleDistanceMatrix(
+  apiKey: Platform.environment['API_KEY'],
+);
 
 Future<void> main() async {
   var origins = [
@@ -31,7 +32,8 @@ Future<void> main() async {
       for (var row in responseForLocation.rows ?? []) {
         for (var element in row.elements) {
           print(
-              'distance ${element.distance.text} duration ${element.duration.text}');
+            'distance ${element.distance.text} duration ${element.duration.text}',
+          );
         }
       }
     } else {

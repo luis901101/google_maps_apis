@@ -36,10 +36,7 @@ class QueryPrediction extends Jsonable<QueryPrediction> {
   /// or vice versa.
   final StructuredFormat? structuredFormat;
 
-  QueryPrediction({
-    this.text,
-    this.structuredFormat,
-  });
+  QueryPrediction({this.text, this.structuredFormat});
 
   factory QueryPrediction.fromJson(Map<String, dynamic> json) {
     return _$QueryPredictionFromJson(json);

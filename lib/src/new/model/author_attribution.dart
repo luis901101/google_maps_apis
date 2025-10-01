@@ -19,11 +19,7 @@ class AuthorAttribution extends Jsonable<AuthorAttribution> {
   /// Profile photo URI of the author of the Photo or Review.
   final String? photoUri;
 
-  AuthorAttribution({
-    this.displayName,
-    this.uri,
-    this.photoUri,
-  });
+  AuthorAttribution({this.displayName, this.uri, this.photoUri});
 
   factory AuthorAttribution.fromJson(Map<String, dynamic> json) {
     return _$AuthorAttributionFromJson(json);

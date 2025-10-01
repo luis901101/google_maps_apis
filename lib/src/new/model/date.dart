@@ -28,11 +28,7 @@ class Date extends Jsonable<Date> {
   /// or 0 to specify a year by itself or a year and month where the day isn't significant.
   int? day;
 
-  Date({
-    this.year,
-    this.month,
-    this.day,
-  });
+  Date({this.year, this.month, this.day});
 
   factory Date.fromJson(Map<String, dynamic> json) {
     return _$DateFromJson(json);

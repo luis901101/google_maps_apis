@@ -14,9 +14,8 @@ class PlacesSuggestions extends Jsonable<PlacesSuggestions> {
   /// Contains a list of suggestions, ordered in descending order of relevance.
   final List<Suggestion> suggestions;
 
-  PlacesSuggestions({
-    List<Suggestion>? suggestions,
-  }) : suggestions = suggestions ?? <Suggestion>[];
+  PlacesSuggestions({List<Suggestion>? suggestions})
+    : suggestions = suggestions ?? <Suggestion>[];
 
   factory PlacesSuggestions.fromJson(Map<String, dynamic> json) {
     return _$PlacesSuggestionsFromJson(json);

@@ -30,8 +30,7 @@ enum SpatialRelationship {
 
   /// Close to the landmark's structure but further away from its street entrances.
   @JsonValue('BEHIND')
-  behind('BEHIND'),
-  ;
+  behind('BEHIND');
 
   final String name;
   const SpatialRelationship(this.name);

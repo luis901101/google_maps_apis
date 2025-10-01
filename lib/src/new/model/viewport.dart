@@ -17,10 +17,7 @@ class Viewport extends Jsonable<Viewport> {
   final LatLng? low;
   final LatLng? high;
 
-  Viewport({
-    this.low,
-    this.high,
-  });
+  Viewport({this.low, this.high});
 
   factory Viewport.fromJson(Map<String, dynamic> json) {
     return _$ViewportFromJson(json);

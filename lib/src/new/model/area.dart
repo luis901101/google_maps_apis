@@ -27,12 +27,7 @@ class Area extends Jsonable<Area> {
   /// Defines the spatial relationship between the target location and the area.
   final Containment? containment;
 
-  Area({
-    this.name,
-    this.placeId,
-    this.displayName,
-    this.containment,
-  });
+  Area({this.name, this.placeId, this.displayName, this.containment});
 
   factory Area.fromJson(Map<String, dynamic> json) {
     return _$AreaFromJson(json);

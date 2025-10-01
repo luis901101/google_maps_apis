@@ -4,10 +4,7 @@ class Path {
   final String? color;
   final String? enc;
 
-  Path({
-    this.color,
-    this.enc,
-  });
+  Path({this.color, this.enc});
 
   @override
   String toString() {
@@ -40,9 +37,7 @@ class StaticMap {
     this.scale = false,
     this.path,
     this.mapType = 'roadmap',
-  }) : assert(
-          size.contains('x'),
-        );
+  }) : assert(size.contains('x'));
 
   String getUrl() {
     final params = <String, String>{};
@@ -67,11 +62,7 @@ class StaticMap {
       params['center'] = c;
     }
 
-    params.addAll({
-      'key': _apiKey,
-      'size': size,
-      'mapType': mapType,
-    });
+    params.addAll({'key': _apiKey, 'size': size, 'mapType': mapType});
     return Uri(
       scheme: 'https',
       host: 'maps.googleapis.com',

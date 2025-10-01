@@ -21,10 +21,7 @@ class PlusCode extends Jsonable<PlusCode> {
   /// of a reference entity.
   final String? compoundCode;
 
-  PlusCode({
-    this.globalCode,
-    this.compoundCode,
-  });
+  PlusCode({this.globalCode, this.compoundCode});
 
   factory PlusCode.fromJson(Map<String, dynamic> json) {
     return _$PlusCodeFromJson(json);

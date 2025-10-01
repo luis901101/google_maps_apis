@@ -14,8 +14,7 @@ enum RankPreferenceType {
 
   /// Sorts results in ascending order by their distance from the specified location.
   @JsonValue('DISTANCE')
-  distance('DISTANCE'),
-  ;
+  distance('DISTANCE');
 
   static const List<RankPreferenceType> nearbySearchRankPreferences = [
     RankPreferenceType.popularity,

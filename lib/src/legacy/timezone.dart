@@ -18,9 +18,7 @@ class GoogleMapsTimezone extends GoogleWebService {
     super.baseUrl,
     super.httpClient,
     super.apiHeaders,
-  }) : super(
-          apiPath: _timezoneUrl,
-        );
+  }) : super(apiPath: _timezoneUrl);
 
   /// Retrieves time zone information for the specified location and the timestamp.
   /// If the language is specified, the time zone name will be localized to that

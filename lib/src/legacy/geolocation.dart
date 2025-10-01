@@ -20,10 +20,7 @@ class GoogleMapsGeolocation extends GoogleWebService {
     String? baseUrl,
     super.httpClient,
     Map<String, String>? apiHeaders,
-  }) : super(
-          baseUrl: baseUrl ?? _baseUrl,
-          apiPath: _geolocationUrl,
-        );
+  }) : super(baseUrl: baseUrl ?? _baseUrl, apiPath: _geolocationUrl);
 
   Future<GeolocationResponse> getGeolocation({
     int? homeMobileCountryCode,
@@ -108,8 +105,9 @@ class GoogleMapsGeolocation extends GoogleWebService {
     }
 
     if (wifiAccessPoints.isNotEmpty) {
-      params['wifiAccessPoints'] =
-          wifiAccessPoints.map((w) => w.toJson()).toList();
+      params['wifiAccessPoints'] = wifiAccessPoints
+          .map((w) => w.toJson())
+          .toList();
     }
 
     return params;
@@ -144,11 +142,7 @@ class GeolocationErrorResponse {
   final int? code;
   final String? message;
 
-  GeolocationErrorResponse({
-    this.errors,
-    this.code,
-    this.message,
-  });
+  GeolocationErrorResponse({this.errors, this.code, this.message});
 
   factory GeolocationErrorResponse.fromJson(Map<String, dynamic> json) =>
       _$GeolocationErrorResponseFromJson(json);
@@ -161,11 +155,7 @@ class GeolocationResponse {
   final num? accuracy;
   final GeolocationErrorResponse? error;
 
-  GeolocationResponse({
-    this.location,
-    this.accuracy,
-    this.error,
-  });
+  GeolocationResponse({this.location, this.accuracy, this.error});
 
   bool get isOkay => error == null;
 

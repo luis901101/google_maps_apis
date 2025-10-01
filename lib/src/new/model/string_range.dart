@@ -15,10 +15,7 @@ class StringRange extends Jsonable<StringRange> {
 
   /// Zero-based offset of the last Unicode character (exclusive).
   final int? endOffset;
-  StringRange({
-    this.startOffset,
-    this.endOffset,
-  });
+  StringRange({this.startOffset, this.endOffset});
 
   factory StringRange.fromJson(Map<String, dynamic> json) {
     return _$StringRangeFromJson(json);

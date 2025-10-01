@@ -16,10 +16,7 @@ class Attribution extends Jsonable<Attribution> {
   /// URI to the Place's data provider.
   final String? providerUri;
 
-  Attribution({
-    this.provider,
-    this.providerUri,
-  });
+  Attribution({this.provider, this.providerUri});
 
   factory Attribution.fromJson(Map<String, dynamic> json) {
     return _$AttributionFromJson(json);

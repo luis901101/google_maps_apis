@@ -17,10 +17,7 @@ class SubDestination extends Jsonable<SubDestination> {
   /// The place id of the sub destination.
   final String? id;
 
-  SubDestination({
-    this.name,
-    this.id,
-  });
+  SubDestination({this.name, this.id});
 
   factory SubDestination.fromJson(Map<String, dynamic> json) {
     return _$SubDestinationFromJson(json);

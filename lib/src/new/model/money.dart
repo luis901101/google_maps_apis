@@ -24,11 +24,7 @@ class Money extends Jsonable<Money> {
   /// is represented as units=-1 and nanos=-750,000,000.
   final int? nanos;
 
-  Money({
-    this.currencyCode,
-    this.units,
-    this.nanos,
-  });
+  Money({this.currencyCode, this.units, this.nanos});
 
   factory Money.fromJson(Map<String, dynamic> json) {
     return _$MoneyFromJson(json);

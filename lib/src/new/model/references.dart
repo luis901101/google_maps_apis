@@ -20,10 +20,7 @@ class References extends Jsonable<References> {
   /// in other APIs that accept Place resource names.
   final List<String>? places;
 
-  References({
-    this.reviews,
-    this.places,
-  });
+  References({this.reviews, this.places});
 
   factory References.fromJson(Map<String, dynamic> json) {
     return _$ReferencesFromJson(json);

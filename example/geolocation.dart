@@ -5,8 +5,9 @@ import 'dart:io';
 
 import 'package:google_maps_apis/geolocation.dart';
 
-final geolocation =
-    GoogleMapsGeolocation(apiKey: Platform.environment['API_KEY']);
+final geolocation = GoogleMapsGeolocation(
+  apiKey: Platform.environment['API_KEY'],
+);
 
 Future<void> main() async {
   var params = {
@@ -15,14 +16,14 @@ Future<void> main() async {
       {
         'macAddress': '00:25:9c:cf:1c:ac',
         'signalStrength': '-43',
-        'signalToNoiseRatio': '0'
+        'signalToNoiseRatio': '0',
       },
       {
         'macAddress': '00:25:9c:cf:1c:ad',
         'signalStrength': '-55',
-        'signalToNoiseRatio': '0'
-      }
-    ]
+        'signalToNoiseRatio': '0',
+      },
+    ],
   };
 
   // No params -> google uses current location

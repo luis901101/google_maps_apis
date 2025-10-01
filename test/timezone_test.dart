@@ -32,12 +32,16 @@ Future<void> main() async {
             timestamp: DateTime.fromMillisecondsSinceEpoch(timestamp * 1000),
             language: language,
           ),
-          _uri.replace(queryParameters: {
-            'location': location.toString(),
-            'timestamp': timestamp.toString(),
-            'language': language,
-            'key': apiKey,
-          }).toString(),
+          _uri
+              .replace(
+                queryParameters: {
+                  'location': location.toString(),
+                  'timestamp': timestamp.toString(),
+                  'language': language,
+                  'key': apiKey,
+                },
+              )
+              .toString(),
         );
       });
     });
@@ -59,5 +63,5 @@ final _responseExample = {
   'rawOffset': -18000,
   'status': 'OK',
   'timeZoneId': 'America/New_York',
-  'timeZoneName': 'Eastern Daylight Time'
+  'timeZoneName': 'Eastern Daylight Time',
 };

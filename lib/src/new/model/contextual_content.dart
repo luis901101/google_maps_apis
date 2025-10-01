@@ -26,11 +26,7 @@ class ContextualContent extends Jsonable<ContextualContent> {
   /// Justifications for the place.
   final List<Justification>? justifications;
 
-  ContextualContent({
-    this.reviews,
-    this.photos,
-    this.justifications,
-  });
+  ContextualContent({this.reviews, this.photos, this.justifications});
 
   factory ContextualContent.fromJson(Map<String, dynamic> json) {
     return _$ContextualContentFromJson(json);

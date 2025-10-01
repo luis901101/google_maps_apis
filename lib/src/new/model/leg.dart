@@ -13,10 +13,7 @@ class Leg extends Jsonable<Leg> {
   final String? duration;
   final int? distanceMeters;
 
-  Leg({
-    this.duration,
-    this.distanceMeters,
-  });
+  Leg({this.duration, this.distanceMeters});
 
   factory Leg.fromJson(Map<String, dynamic> json) {
     return _$LegFromJson(json);

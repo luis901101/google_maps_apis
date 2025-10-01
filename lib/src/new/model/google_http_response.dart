@@ -40,12 +40,11 @@ class GoogleHTTPResponse<BodyType> {
     http.BaseResponse? base,
     NewBodyType? body,
     GoogleErrorResponse? error,
-  }) =>
-      GoogleHTTPResponse<NewBodyType>(
-        base ?? this.base,
-        body ?? (this.body as NewBodyType),
-        error: error ?? this.error,
-      );
+  }) => GoogleHTTPResponse<NewBodyType>(
+    base ?? this.base,
+    body ?? (this.body as NewBodyType),
+    error: error ?? this.error,
+  );
 
   /// The HTTP status code of the response.
   int get statusCode => base.statusCode;

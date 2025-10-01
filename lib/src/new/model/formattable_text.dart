@@ -24,10 +24,7 @@ class FormattableText extends Jsonable<FormattableText> {
   /// guaranteed to be ordered in increasing offset values.
   final List<StringRange>? matches;
 
-  FormattableText({
-    this.text,
-    this.matches,
-  });
+  FormattableText({this.text, this.matches});
 
   factory FormattableText.fromJson(Map<String, dynamic> json) {
     return _$FormattableTextFromJson(json);

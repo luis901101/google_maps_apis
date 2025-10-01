@@ -15,10 +15,7 @@ abstract class BaseFilter<T extends Object> extends Jsonable<T> {
   /// Note that 3-digit region codes are not currently supported.
   final String? regionCode;
 
-  BaseFilter({
-    this.languageCode,
-    this.regionCode,
-  });
+  BaseFilter({this.languageCode, this.regionCode});
 
   @override
   T? fromJsonMap(Map<String, dynamic>? json) => null;

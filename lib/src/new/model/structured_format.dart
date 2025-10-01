@@ -25,10 +25,7 @@ class StructuredFormat extends Jsonable<StructuredFormat> {
   /// to further identify the Place or refine the query.
   final FormattableText? secondaryText;
 
-  StructuredFormat({
-    this.mainText,
-    this.secondaryText,
-  });
+  StructuredFormat({this.mainText, this.secondaryText});
 
   factory StructuredFormat.fromJson(Map<String, dynamic> json) {
     return _$StructuredFormatFromJson(json);

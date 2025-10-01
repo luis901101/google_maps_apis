@@ -45,19 +45,15 @@ Future<void> main() async {
 
 final _responseExample = {
   'location': {'lat': 33.3632256, 'lng': -117.0874871},
-  'accuracy': 20
+  'accuracy': 20,
 };
 
 final _errorExample = {
   'error': {
     'errors': [
-      {
-        'domain': 'global',
-        'reason': 'parseError',
-        'message': 'Parse Error',
-      }
+      {'domain': 'global', 'reason': 'parseError', 'message': 'Parse Error'},
     ],
     'code': 400,
-    'message': 'Parse Error'
-  }
+    'message': 'Parse Error',
+  },
 };

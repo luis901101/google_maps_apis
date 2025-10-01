@@ -18,8 +18,7 @@ enum Containment {
 
   /// The target location is outside the area region, but close by.
   @JsonValue('NEAR')
-  near('NEAR'),
-  ;
+  near('NEAR');
 
   final String name;
   const Containment(this.name);

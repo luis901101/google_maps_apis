@@ -78,8 +78,7 @@ enum FuelType {
 
   /// Truck diesel.
   @JsonValue('TRUCK_DIESEL')
-  truckDiesel('TRUCK_DIESEL'),
-  ;
+  truckDiesel('TRUCK_DIESEL');
 
   final String name;
   const FuelType(this.name);

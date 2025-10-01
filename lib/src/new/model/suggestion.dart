@@ -18,10 +18,7 @@ class Suggestion extends Jsonable<Suggestion> {
   /// A prediction for a query.
   final QueryPrediction? queryPrediction;
 
-  Suggestion({
-    this.placePrediction,
-    this.queryPrediction,
-  });
+  Suggestion({this.placePrediction, this.queryPrediction});
 
   factory Suggestion.fromJson(Map<String, dynamic> json) {
     return _$SuggestionFromJson(json);

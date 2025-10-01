@@ -26,9 +26,5 @@ abstract class BaseSessionFilter<T extends Object> extends BaseFilter<T> {
   ///   same token for more than one session will result in each request being billed individually.
   final String? sessionToken;
 
-  BaseSessionFilter({
-    super.languageCode,
-    super.regionCode,
-    this.sessionToken,
-  });
+  BaseSessionFilter({super.languageCode, super.regionCode, this.sessionToken});
 }

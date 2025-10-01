@@ -19,10 +19,7 @@ class AreaSummary extends Jsonable<AreaSummary> {
   /// A link where users can flag a problem with the summary.
   final String? flagContentUri;
 
-  AreaSummary({
-    this.contentBlocks,
-    this.flagContentUri,
-  });
+  AreaSummary({this.contentBlocks, this.flagContentUri});
 
   factory AreaSummary.fromJson(Map<String, dynamic> json) {
     return _$AreaSummaryFromJson(json);

@@ -71,33 +71,36 @@ class RestAPI {
   void _initDio() {
     dispose();
 
-    dio = Dio(BaseOptions(
-      baseUrl: baseUrl,
-      connectTimeout: connectTimeout,
-      receiveTimeout: receiveTimeout,
-      sendTimeout: sendTimeout,
-      // headers: RestAPIService.contentTypeJson,
-      contentType: Headers.jsonContentType,
-      listFormat: ListFormat.csv,
-    )).clone(httpClientAdapter: httpClientAdapter);
+    dio = Dio(
+      BaseOptions(
+        baseUrl: baseUrl,
+        connectTimeout: connectTimeout,
+        receiveTimeout: receiveTimeout,
+        sendTimeout: sendTimeout,
+        // headers: RestAPIService.contentTypeJson,
+        contentType: Headers.jsonContentType,
+        listFormat: ListFormat.csv,
+      ),
+    ).clone(httpClientAdapter: httpClientAdapter);
     // Base interceptor: add configured headers, API key and Authorization bearer
-    dio.interceptors
-        .addAll([
-      InterceptorsWrapper(onRequest: (options, handler) async {
-        final tempHeaders = headers ?? <String, dynamic>{};
-        if (apiKey != null) {
-          tempHeaders[googleApiKeyKey] = apiKey;
-        }
-        if (tokenCallback != null) {
-          String? token = await tokenCallback!();
-          if (token != null) {
-            tempHeaders[authorizationHeaderKey] = 'Bearer $token';
+    dio.interceptors.addAll([
+      InterceptorsWrapper(
+        onRequest: (options, handler) async {
+          final tempHeaders = headers ?? <String, dynamic>{};
+          if (apiKey != null) {
+            tempHeaders[googleApiKeyKey] = apiKey;
           }
-        }
-        options.headers.addAll(tempHeaders);
-        return handler.next(options);
-      }),
-      ...?interceptors
+          if (tokenCallback != null) {
+            String? token = await tokenCallback!();
+            if (token != null) {
+              tempHeaders[authorizationHeaderKey] = 'Bearer $token';
+            }
+          }
+          options.headers.addAll(tempHeaders);
+          return handler.next(options);
+        },
+      ),
+      ...?interceptors,
     ]);
   }
 

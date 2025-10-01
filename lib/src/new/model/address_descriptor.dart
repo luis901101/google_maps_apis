@@ -18,10 +18,7 @@ class AddressDescriptor extends Jsonable<AddressDescriptor> {
   /// A ranked list of containing or adjacent areas. The most recognizable and precise areas are ranked first.
   final List<Area>? areas;
 
-  AddressDescriptor({
-    this.landmarks,
-    this.areas,
-  });
+  AddressDescriptor({this.landmarks, this.areas});
 
   factory AddressDescriptor.fromJson(Map<String, dynamic> json) {
     return _$AddressDescriptorFromJson(json);

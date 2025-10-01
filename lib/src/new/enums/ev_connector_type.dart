@@ -42,8 +42,7 @@ enum EvConnectorType {
 
   /// Unspecified wall outlet.
   @JsonValue('EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET')
-  unspecifiedWallOutlet('EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET'),
-  ;
+  unspecifiedWallOutlet('EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET');
 
   final String name;
   const EvConnectorType(this.name);

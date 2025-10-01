@@ -38,10 +38,7 @@ class EvOptions extends Jsonable<EvOptions> {
   /// Documentation: https://developers.google.com/maps/documentation/places/web-service/text-search#minimumchargingratekw
   final double? minimumChargingRateKw;
 
-  EvOptions({
-    this.minimumChargingRateKw,
-    this.connectorTypes,
-  });
+  EvOptions({this.minimumChargingRateKw, this.connectorTypes});
 
   factory EvOptions.fromJson(Map<String, dynamic> json) {
     return _$EvOptionsFromJson(json);

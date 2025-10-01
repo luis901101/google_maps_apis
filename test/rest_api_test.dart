@@ -13,10 +13,12 @@ void main() {
         headers: {'X-Test': '1'},
         apiKey: 'abc',
         interceptors: [
-          InterceptorsWrapper(onRequest: (options, handler) {
-            captured.add(options);
-            handler.next(options);
-          }),
+          InterceptorsWrapper(
+            onRequest: (options, handler) {
+              captured.add(options);
+              handler.next(options);
+            },
+          ),
         ],
       );
 
@@ -41,11 +43,14 @@ void main() {
         baseUrl: 'https://example.com',
         headers: {'Authorization': 'Bearer override'},
         interceptors: [
-          InterceptorsWrapper(onRequest: (options, handler) {
-            authHeaderSeen = options.headers['authorization'] ??
-                options.headers['Authorization'];
-            handler.next(options);
-          }),
+          InterceptorsWrapper(
+            onRequest: (options, handler) {
+              authHeaderSeen =
+                  options.headers['authorization'] ??
+                  options.headers['Authorization'];
+              handler.next(options);
+            },
+          ),
         ],
       );
 

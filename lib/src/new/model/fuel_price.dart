@@ -26,11 +26,7 @@ class FuelPrice extends Jsonable<FuelPrice> {
   /// "2014-10-02T15:01:23.045123456Z".
   final DateTime? updateTime;
 
-  FuelPrice({
-    this.type,
-    this.price,
-    this.updateTime,
-  });
+  FuelPrice({this.type, this.price, this.updateTime});
 
   factory FuelPrice.fromJson(Map<String, dynamic> json) {
     return _$FuelPriceFromJson(json);

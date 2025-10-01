@@ -19,10 +19,7 @@ class LatLng extends Jsonable<LatLng> {
   /// The longitude in degrees. It must be in the range [-180.0, +180.0].
   final double? longitude;
 
-  LatLng({
-    this.latitude,
-    this.longitude,
-  });
+  LatLng({this.latitude, this.longitude});
 
   factory LatLng.fromJson(Map<String, dynamic> json) {
     return _$LatLngFromJson(json);

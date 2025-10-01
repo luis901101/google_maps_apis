@@ -16,10 +16,7 @@ class LocalizedText extends Jsonable<LocalizedText> {
   /// For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
   final String? languageCode;
 
-  LocalizedText({
-    this.text,
-    this.languageCode,
-  });
+  LocalizedText({this.text, this.languageCode});
 
   factory LocalizedText.fromJson(Map<String, dynamic> json) {
     return _$LocalizedTextFromJson(json);

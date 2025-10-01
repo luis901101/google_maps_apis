@@ -58,8 +58,7 @@ enum SecondaryHoursType {
 
   /// The online service hours.
   @JsonValue('ONLINE_SERVICE_HOURS')
-  onlineServiceHours('ONLINE_SERVICE_HOURS'),
-  ;
+  onlineServiceHours('ONLINE_SERVICE_HOURS');
 
   final String name;
   const SecondaryHoursType(this.name);

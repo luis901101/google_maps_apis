@@ -18,8 +18,7 @@ enum BusinessStatus {
 
   /// The establishment is permanently closed.
   @JsonValue('CLOSED_PERMANENTLY')
-  closedPermanently('CLOSED_PERMANENTLY'),
-  ;
+  closedPermanently('CLOSED_PERMANENTLY');
 
   final String name;
   const BusinessStatus(this.name);

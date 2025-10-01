@@ -31,10 +31,7 @@ class RoutingSummary extends Jsonable<RoutingSummary> {
   /// to generate the directions link.
   final String? directionsUri;
 
-  RoutingSummary({
-    this.legs,
-    this.directionsUri,
-  });
+  RoutingSummary({this.legs, this.directionsUri});
 
   factory RoutingSummary.fromJson(Map<String, dynamic> json) {
     return _$RoutingSummaryFromJson(json);

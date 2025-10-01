@@ -18,13 +18,11 @@ class GoogleDistanceMatrix extends GoogleWebService {
     super.baseUrl,
     super.httpClient,
     super.apiHeaders,
-  }) : super(
-          apiPath: _distanceUrl,
-        );
+  }) : super(apiPath: _distanceUrl);
 
   Future<DistanceResponse> _distance(
-    List<Object /*Location|String*/ > origin,
-    List<Object /*Location|String*/ > destination, {
+    List<Object /*Location|String*/> origin,
+    List<Object /*Location|String*/> destination, {
     TravelMode? travelMode,
     String? languageCode,
     bool alternative = false,
@@ -121,8 +119,8 @@ class GoogleDistanceMatrix extends GoogleWebService {
   }
 
   String buildUrl({
-    required List<Object /*Location|String*/ > origin,
-    required List<Object /*Location|String*/ > destination,
+    required List<Object /*Location|String*/> origin,
+    required List<Object /*Location|String*/> destination,
     TravelMode? travelMode,
     String? languageCode,
     bool alternative = false,
@@ -167,7 +165,8 @@ class GoogleDistanceMatrix extends GoogleWebService {
           departureTime is! num &&
           departureTime != 'now') {
         throw ArgumentError(
-            "'departureTime' must be a '$num' or a '$DateTime'");
+          "'departureTime' must be a '$num' or a '$DateTime'",
+        );
       }
 
       params['departure_time'] = departureTime is DateTime
@@ -267,11 +266,7 @@ class Element {
   final Value duration;
   final String? elementStatus;
 
-  Element({
-    required this.distance,
-    required this.duration,
-    this.elementStatus,
-  });
+  Element({required this.distance, required this.duration, this.elementStatus});
 
   factory Element.fromJson(Map<String, dynamic> json) =>
       _$ElementFromJson(json);
