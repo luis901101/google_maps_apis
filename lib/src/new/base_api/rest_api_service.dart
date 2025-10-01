@@ -52,7 +52,7 @@ abstract class RestAPIService<DataType extends Jsonable> {
   /// Cancel token for cancelling requests
   final dio.CancelToken? cancelToken;
 
-  /// Custom interceptors for debugging, logging, or other purposes
+  /// Custom interceptors for debugging, logging, retries or other purposes.
   final List<dio.Interceptor>? interceptors;
 
   RestAPIService({

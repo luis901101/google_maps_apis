@@ -5,6 +5,7 @@ class RestAPI {
   static const googleApiKeyKey = 'x-goog-api-key';
   static const authorizationHeaderKey = 'authorization';
 
+  /// Underlying Dio client used by all new APIs.
   Dio dio = Dio();
 
   HttpClientAdapter? httpClientAdapter;
@@ -12,12 +13,18 @@ class RestAPI {
   Duration? receiveTimeout;
   Duration? sendTimeout;
   String apiUrl = '';
+
+  /// Custom HTTP headers to add on every request. Useful for proxies, tracing, etc.
   Map<String, dynamic>? headers;
   String? apiKey;
   TokenCallback? tokenCallback;
   CancelToken? cancelToken;
+
+  /// Additional Dio interceptors appended after auth/header interceptor.
+  /// Enables advanced customization like logging, retries, rate-limiting.
   List<Interceptor>? interceptors;
 
+  /// Initialize the Dio client and register interceptors.
   void init({
     String? apiUrl,
     Duration? connectTimeout,
@@ -58,7 +65,7 @@ class RestAPI {
       contentType: Headers.jsonContentType,
       listFormat: ListFormat.csv,
     )).clone(httpClientAdapter: httpClientAdapter);
-    // Adding auth token to each request
+    // Base interceptor: add configured headers, API key and Authorization bearer
     dio.interceptors
         .add(InterceptorsWrapper(onRequest: (options, handler) async {
       final tempHeaders = headers ?? <String, dynamic>{};
@@ -75,7 +82,7 @@ class RestAPI {
       return handler.next(options);
     }));
 
-    // Adding custom interceptors
+    // Adding custom interceptors (e.g., debug logging, retries, etc.)
     final interceptors = this.interceptors ?? <Interceptor>[];
     dio.interceptors.addAll(interceptors);
   }

@@ -38,6 +38,9 @@ import 'package:retrofit/retrofit.dart';
 /// `dart:io` native platforms or [BrowserHttpClientAdapter] on `dart:html`
 /// web platforms.
 /// [errorLogger] is a logger for errors that occur during parsing of response data.
+/// [headers] allows adding global HTTP headers for all requests.
+/// [cancelToken] enables programmatically cancelling in-flight requests.
+/// [interceptors] enables advanced customization like logging, retries and rate limiting.
 class PlacesAPINew extends RestAPIService<Place> {
   late final PlacesServiceNew _service;
   PlacesAPINew({
