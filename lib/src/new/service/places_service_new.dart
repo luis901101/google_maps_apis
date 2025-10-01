@@ -26,23 +26,27 @@ abstract class PlacesServiceNew {
     // @Header(RestAPIService.googleFieldMaskKey) required List<String> fields,
     @Query('fields') required List<String> fields,
     @Queries() PlaceDetailsFilter? filter,
+    @CancelRequest() CancelToken? cancelToken,
   });
 
   @POST(':searchNearby')
   Future<HttpResponse<PlacesResponse?>> searchNearby({
     @Query('fields') required List<String> fields,
     @Body(nullToAbsent: true) required NearbySearchFilter filter,
+    @CancelRequest() CancelToken? cancelToken,
   });
 
   @POST(':searchText')
   Future<HttpResponse<PlacesResponse?>> searchText({
     @Query('fields') required List<String> fields,
     @Body(nullToAbsent: true) required TextSearchFilter filter,
+    @CancelRequest() CancelToken? cancelToken,
   });
 
   @POST(':autocomplete')
   Future<HttpResponse<PlacesSuggestions?>> searchAutocomplete({
     @Query('fields') required List<String>? fields,
     @Body(nullToAbsent: true) required AutocompleteSearchFilter filter,
+    @CancelRequest() CancelToken? cancelToken,
   });
 }

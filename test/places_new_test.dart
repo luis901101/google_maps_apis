@@ -163,6 +163,47 @@ Future<void> main() async {
     });
   });
 
+  group('Cancel requests using cancel token ', () {
+    final placeId = Platform.environment['GOOGLE_PLACE_ID'];
+    test('Get Place Details and cancel request with cancel token param',
+        () async {
+      final cancelToken = CancelToken();
+      final request = placesAPI.getDetails(
+          id: placeId ?? '', allFields: true, cancelToken: cancelToken);
+
+      final cancellationReason = 'Cancelled by user using cancel token param';
+      cancelToken.cancel(cancellationReason);
+      final response = await request;
+
+      expect(response.isSuccessful, false);
+      expect(response.extraData is DioException, true);
+      print(
+          'Cancellation reason from response: ${(response.extraData as DioException).error}');
+      expect((response.extraData as DioException).error, cancellationReason);
+    });
+
+    test('Get Place Details and cancel request with default api cancel token',
+        () async {
+      final cancellationReason =
+          'Cancelled by user using cancel token from api';
+      final cancelToken = CancelToken();
+      placesAPI.restAPI.cancelTokenCallback = () => cancelToken;
+      cancelToken.cancel(cancellationReason);
+      final response = await placesAPI.getDetails(
+        id: placeId ?? '',
+        allFields: true,
+      );
+      placesAPI.restAPI.cancelTokenCallback =
+          null; // Reset cancel token callback for future requests
+
+      expect(response.isSuccessful, false);
+      expect(response.extraData is DioException, true);
+      print(
+          'Cancellation reason from response: ${(response.extraData as DioException).error}');
+      expect((response.extraData as DioException).error, cancellationReason);
+    });
+  });
+
   group('Get Place Details by ID', () {
     final placeId = Platform.environment['GOOGLE_PLACE_ID'];
     test('Get Place Details with all fields', () async {
@@ -344,7 +385,7 @@ Future<void> main() async {
       expect(response.isSuccessful, true);
       expect(response.body, isNotNull);
       expect(response.body,
-          startsWith('https://lh3.googleusercontent.com/places/'));
+          startsWith('https://lh3.googleusercontent.com/place-photos/'));
     });
     test('Get Place plain Photo url from placeId and photoId', () async {
       final response = await placesAPI.getPlainPhotoUrl(
@@ -356,7 +397,7 @@ Future<void> main() async {
       expect(response.isSuccessful, true);
       expect(response.body, isNotNull);
       expect(response.body,
-          startsWith('https://lh3.googleusercontent.com/places/'));
+          startsWith('https://lh3.googleusercontent.com/place-photos/'));
     });
     test('Get Place Photo binary from resource name', () async {
       final response = await placesAPI.getPhotoBinary(

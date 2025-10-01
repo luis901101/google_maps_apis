@@ -14,87 +14,46 @@ import 'package:retrofit/retrofit.dart';
 abstract class RestAPIService<DataType extends Jsonable> {
   static String bearer(String token) => 'Bearer $token';
 
-  /// Base api url
-  final String baseUrl;
-
-  final void Function()? onInit;
-
   /// Generic Jsonable DataType to allow for parsing of JSON data
   final DataType? dataType;
 
   /// RestAPI instance to be used by the service
   final RestAPI restAPI;
 
-  /// API Authorization Bearer token
-  final String? token;
-
-  /// Callback to asynchronously get API Authorization Bearer token
-  final TokenCallback? tokenCallback;
-
-  /// Timeout for requests.
-  final Duration? connectTimeout;
-
-  /// Timeout for receiving data.
-  final Duration? receiveTimeout;
-
-  /// Timeout for sending data, like when using stream upload or Tus protocol.
-  final Duration? sendTimeout;
-
-  /// API key to be used on requests
-  final String? apiKey;
-
-  /// Set this adapter if you need control over http requests
-  final dio.HttpClientAdapter? httpClientAdapter;
-
-  /// Custom HTTP headers to be added to every request
-  final Map<String, dynamic>? headers;
-
-  /// Cancel token for cancelling requests
-  final dio.CancelToken? cancelToken;
-
-  /// Custom interceptors for debugging, logging, retries or other purposes.
-  final List<dio.Interceptor>? interceptors;
-
   RestAPIService({
     RestAPI? restAPI,
-    this.onInit,
-    required this.baseUrl,
     this.dataType,
-    this.token,
+    String? token,
+    String? apiKey,
+    required String baseUrl,
+    Duration? connectTimeout,
+    Duration? receiveTimeout,
+    Duration? sendTimeout,
+    dio.HttpClientAdapter? httpClientAdapter,
+    Map<String, dynamic>? headers,
     TokenCallback? tokenCallback,
-    this.apiKey,
-    this.connectTimeout,
-    this.receiveTimeout,
-    this.sendTimeout,
-    this.httpClientAdapter,
-    this.headers,
-    this.cancelToken,
-    this.interceptors,
+    CancelTokenCallback? cancelTokenCallback,
+    List<dio.Interceptor>? interceptors,
   })  : assert(
             (((token?.isNotEmpty ?? false) && tokenCallback == null) ||
                     ((token?.isEmpty ?? true) && tokenCallback != null)) ||
                 (apiKey?.isNotEmpty ?? false),
             '\n\nA token or tokenCallback must be specified, only one of both.'
             '\nOtherwise an apiKey must be specified.'),
-        tokenCallback =
-            tokenCallback ??= (token == null ? null : (() async => token)),
         restAPI = restAPI ?? RestAPI() {
-    _init();
-  }
-
-  void _init() {
-    restAPI.init(
-      httpClientAdapter: httpClientAdapter,
-      apiUrl: baseUrl,
-      connectTimeout: connectTimeout,
-      receiveTimeout: receiveTimeout,
-      sendTimeout: sendTimeout,
-      headers: headers,
-      cancelToken: cancelToken,
-      interceptors: interceptors,
-      apiKey: apiKey,
-      tokenCallback: tokenCallback,
-    );
+    this.restAPI.init(
+          apiKey: apiKey,
+          baseUrl: baseUrl,
+          connectTimeout: connectTimeout,
+          receiveTimeout: receiveTimeout,
+          sendTimeout: sendTimeout,
+          httpClientAdapter: httpClientAdapter,
+          headers: headers,
+          tokenCallback:
+              tokenCallback ?? (token == null ? null : (() async => token)),
+          cancelTokenCallback: cancelTokenCallback,
+          interceptors: interceptors,
+        );
   }
 
   GoogleHTTPResponse httpResponseToCustomHttpResponse(HttpResponse response) {

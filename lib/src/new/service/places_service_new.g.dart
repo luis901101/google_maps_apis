@@ -6,7 +6,7 @@ part of 'places_service_new.dart';
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter
 
 class _PlacesServiceNew implements PlacesServiceNew {
   _PlacesServiceNew(this._dio, {this.baseUrl, this.errorLogger});
@@ -22,6 +22,7 @@ class _PlacesServiceNew implements PlacesServiceNew {
     required String id,
     required List<String> fields,
     PlaceDetailsFilter? filter,
+    CancelToken? cancelToken,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'fields': fields};
@@ -36,6 +37,7 @@ class _PlacesServiceNew implements PlacesServiceNew {
             '/${id}',
             queryParameters: queryParameters,
             data: _data,
+            cancelToken: cancelToken,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
@@ -55,9 +57,11 @@ class _PlacesServiceNew implements PlacesServiceNew {
   Future<HttpResponse<PlacesResponse?>> searchNearby({
     required List<String> fields,
     required NearbySearchFilter filter,
+    CancelToken? cancelToken,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'fields': fields};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(filter.toJson());
@@ -69,6 +73,7 @@ class _PlacesServiceNew implements PlacesServiceNew {
             ':searchNearby',
             queryParameters: queryParameters,
             data: _data,
+            cancelToken: cancelToken,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
@@ -89,9 +94,11 @@ class _PlacesServiceNew implements PlacesServiceNew {
   Future<HttpResponse<PlacesResponse?>> searchText({
     required List<String> fields,
     required TextSearchFilter filter,
+    CancelToken? cancelToken,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'fields': fields};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(filter.toJson());
@@ -103,6 +110,7 @@ class _PlacesServiceNew implements PlacesServiceNew {
             ':searchText',
             queryParameters: queryParameters,
             data: _data,
+            cancelToken: cancelToken,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
@@ -121,8 +129,9 @@ class _PlacesServiceNew implements PlacesServiceNew {
 
   @override
   Future<HttpResponse<PlacesSuggestions?>> searchAutocomplete({
-    List<String>? fields,
+    required List<String>? fields,
     required AutocompleteSearchFilter filter,
+    CancelToken? cancelToken,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'fields': fields};
@@ -138,6 +147,7 @@ class _PlacesServiceNew implements PlacesServiceNew {
             ':autocomplete',
             queryParameters: queryParameters,
             data: _data,
+            cancelToken: cancelToken,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );

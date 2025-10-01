@@ -4,12 +4,12 @@ import 'package:test/test.dart';
 
 void main() {
   group('RestAPI', () {
-    test('applies headers and apiKey via interceptor', () async {
+    test('Applies headers and apiKey via interceptor', () async {
       final rest = RestAPI();
       final captured = <RequestOptions>[];
 
       rest.init(
-        apiUrl: 'https://example.com',
+        baseUrl: 'https://example.com',
         headers: {'X-Test': '1'},
         apiKey: 'abc',
         interceptors: [
@@ -33,12 +33,12 @@ void main() {
       expect(req.headers[RestAPI.googleApiKeyKey], 'abc');
     });
 
-    test('custom interceptors run after auth interceptor', () async {
+    test('Custom interceptors run after auth interceptor', () async {
       final rest = RestAPI();
       String? authHeaderSeen;
 
       rest.init(
-        apiUrl: 'https://example.com',
+        baseUrl: 'https://example.com',
         headers: {'Authorization': 'Bearer override'},
         interceptors: [
           InterceptorsWrapper(onRequest: (options, handler) {

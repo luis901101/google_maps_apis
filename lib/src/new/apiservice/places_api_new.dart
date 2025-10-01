@@ -39,21 +39,24 @@ import 'package:retrofit/retrofit.dart';
 /// web platforms.
 /// [errorLogger] is a logger for errors that occur during parsing of response data.
 /// [headers] allows adding global HTTP headers for all requests.
-/// [cancelToken] enables programmatically cancelling in-flight requests.
+/// [cancelTokenCallback] enables programmatically cancelling in-flight requests for this API.
+/// When cancelling a cancel token all current and future requests using the token
+/// will be cancelled. So make sure you reset the token returned by the [CancelTokenCallback]
+/// if you want to continue using the API.
 /// [interceptors] enables advanced customization like logging, retries and rate limiting.
 class PlacesAPINew extends RestAPIService<Place> {
   late final PlacesServiceNew _service;
   PlacesAPINew({
-    String? baseUrl,
     super.token,
-    super.tokenCallback,
     super.apiKey,
+    String? baseUrl,
     super.connectTimeout,
     super.receiveTimeout,
     super.sendTimeout,
     super.httpClientAdapter,
     super.headers,
-    super.cancelToken,
+    super.tokenCallback,
+    super.cancelTokenCallback,
     super.interceptors,
     ParseErrorLogger? errorLogger,
   }) : super(
@@ -115,6 +118,9 @@ class PlacesAPINew extends RestAPIService<Place> {
 
     /// Basic filters for specifying [languageCode], [regionCode] and [sessionToken]
     PlaceDetailsFilter? filter,
+
+    /// Used to cancel the request, if not specified, the default [cancelToken] of the [PlacesAPINew] will be used.
+    CancelToken? cancelToken,
   }) async {
     fields = _checkFields(
       allFields: allFields,
@@ -125,6 +131,7 @@ class PlacesAPINew extends RestAPIService<Place> {
       id: id,
       fields: fields,
       filter: filter,
+      cancelToken: cancelToken ?? restAPI.cancelTokenCallback?.call(),
     ));
   }
 
@@ -176,7 +183,7 @@ class PlacesAPINew extends RestAPIService<Place> {
     Uri uri = Uri.parse(restAPI.dio.options.baseUrl).replace(
       path: '/v1/places/$placeId/photos/$photoId/media',
       queryParameters: {
-        'key': apiKey ?? this.apiKey,
+        'key': apiKey ?? restAPI.apiKey,
         if (maxWidthPx != null) 'maxWidthPx': maxWidthPx.toString(),
         if (maxHeightPx != null) 'maxHeightPx': maxHeightPx.toString(),
         'skipHttpRedirect': skipHttpRedirect.toString(),
@@ -246,6 +253,9 @@ class PlacesAPINew extends RestAPIService<Place> {
 
     /// Maximum desired height of the image in pixels: https://developers.google.com/maps/documentation/places/web-service/place-photos#maxheightpx-and-maxwidthpx
     int? maxHeightPx,
+
+    /// Used to cancel the request, if not specified, the default [cancelToken] of the [PlacesAPINew] will be used.
+    CancelToken? cancelToken,
   }) async {
     final requestOptions = RequestOptions(
       method: 'GET',
@@ -261,7 +271,7 @@ class PlacesAPINew extends RestAPIService<Place> {
       receiveTimeout: restAPI.receiveTimeout,
       connectTimeout: restAPI.connectTimeout,
       sendTimeout: restAPI.sendTimeout,
-      cancelToken: restAPI.cancelToken,
+      cancelToken: cancelToken ?? restAPI.cancelTokenCallback?.call(),
     );
     final response =
         await restAPI.dio.fetch<Map<String, dynamic>>(requestOptions);
@@ -310,6 +320,9 @@ class PlacesAPINew extends RestAPIService<Place> {
 
     /// Maximum desired height of the image in pixels: https://developers.google.com/maps/documentation/places/web-service/place-photos#maxheightpx-and-maxwidthpx
     int? maxHeightPx,
+
+    /// Used to cancel the request, if not specified, the default [cancelToken] of the [PlacesAPINew] will be used.
+    CancelToken? cancelToken,
   }) async {
     final requestOptions = RequestOptions(
       method: 'GET',
@@ -325,7 +338,7 @@ class PlacesAPINew extends RestAPIService<Place> {
       receiveTimeout: restAPI.receiveTimeout,
       connectTimeout: restAPI.connectTimeout,
       sendTimeout: restAPI.sendTimeout,
-      cancelToken: restAPI.cancelToken,
+      cancelToken: cancelToken ?? restAPI.cancelTokenCallback?.call(),
     );
     final response = await restAPI.dio.fetch<List<int>>(requestOptions);
     return GoogleHTTPResponse(
@@ -373,6 +386,9 @@ class PlacesAPINew extends RestAPIService<Place> {
 
     /// Filters for the search
     required NearbySearchFilter filter,
+
+    /// Used to cancel the request, if not specified, the default [cancelToken] of the [PlacesAPINew] will be used.
+    CancelToken? cancelToken,
   }) async {
     fields = _checkFields(
       allFields: allFields,
@@ -383,6 +399,7 @@ class PlacesAPINew extends RestAPIService<Place> {
       _service.searchNearby(
         fields: fields,
         filter: filter,
+        cancelToken: cancelToken ?? restAPI.cancelTokenCallback?.call(),
       ),
       dataType: PlacesResponse(places: []),
     );
@@ -413,6 +430,9 @@ class PlacesAPINew extends RestAPIService<Place> {
 
     /// Filters for the search
     required TextSearchFilter filter,
+
+    /// Used to cancel the request, if not specified, the default [cancelToken] of the [PlacesAPINew] will be used.
+    CancelToken? cancelToken,
   }) async {
     fields = _checkFields(
       allFields: allFields,
@@ -423,6 +443,7 @@ class PlacesAPINew extends RestAPIService<Place> {
       _service.searchText(
         fields: fields,
         filter: filter,
+        cancelToken: cancelToken ?? restAPI.cancelTokenCallback?.call(),
       ),
       dataType: PlacesResponse(),
     );
@@ -456,6 +477,9 @@ class PlacesAPINew extends RestAPIService<Place> {
 
     /// Filters for the search
     required AutocompleteSearchFilter filter,
+
+    /// Used to cancel the request, if not specified, the default [cancelToken] of the [PlacesAPINew] will be used.
+    CancelToken? cancelToken,
   }) async {
     if (allFields || fields != null || instanceFields != null) {
       fields = _checkFields(
@@ -468,6 +492,7 @@ class PlacesAPINew extends RestAPIService<Place> {
       _service.searchAutocomplete(
         fields: fields,
         filter: filter,
+        cancelToken: cancelToken ?? restAPI.cancelTokenCallback?.call(),
       ),
       dataType: PlacesSuggestions(),
     );

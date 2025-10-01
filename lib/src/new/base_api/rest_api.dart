@@ -8,17 +8,32 @@ class RestAPI {
   /// Underlying Dio client used by all new APIs.
   Dio dio = Dio();
 
+  /// Set this adapter if you need control over http requests
   HttpClientAdapter? httpClientAdapter;
+
+  /// Timeout for requests.
   Duration? connectTimeout;
+
+  /// Timeout for receiving data.
   Duration? receiveTimeout;
+
+  /// Timeout for sending data, like when using stream upload or Tus protocol.
   Duration? sendTimeout;
-  String apiUrl = '';
+
+  /// Base api url
+  String baseUrl = '';
 
   /// Custom HTTP headers to add on every request. Useful for proxies, tracing, etc.
   Map<String, dynamic>? headers;
+
+  /// API key to be used on requests
   String? apiKey;
+
+  /// Callback to asynchronously get API Authorization Bearer token
   TokenCallback? tokenCallback;
-  CancelToken? cancelToken;
+
+  /// Cancel token for cancelling requests
+  CancelTokenCallback? cancelTokenCallback;
 
   /// Additional Dio interceptors appended after auth/header interceptor.
   /// Enables advanced customization like logging, retries, rate-limiting.
@@ -26,18 +41,18 @@ class RestAPI {
 
   /// Initialize the Dio client and register interceptors.
   void init({
-    String? apiUrl,
+    String? apiKey,
+    String? baseUrl,
     Duration? connectTimeout,
     Duration? receiveTimeout,
     Duration? sendTimeout,
     HttpClientAdapter? httpClientAdapter,
     Map<String, dynamic>? headers,
-    String? apiKey,
     TokenCallback? tokenCallback,
-    CancelToken? cancelToken,
+    CancelTokenCallback? cancelTokenCallback,
     List<Interceptor>? interceptors,
   }) {
-    if ((apiUrl?.isNotEmpty ?? true)) this.apiUrl = apiUrl!;
+    if ((baseUrl?.isNotEmpty ?? true)) this.baseUrl = baseUrl!;
     if (connectTimeout != null) this.connectTimeout = connectTimeout;
     if (receiveTimeout != null) this.receiveTimeout = receiveTimeout;
     if (sendTimeout != null) this.sendTimeout = sendTimeout;
@@ -45,7 +60,8 @@ class RestAPI {
     if (headers != null) this.headers = headers;
     if (apiKey != null) this.apiKey = apiKey;
     if (tokenCallback != null) this.tokenCallback = tokenCallback;
-    if (cancelToken != null) this.cancelToken = cancelToken;
+    if (cancelTokenCallback != null)
+      this.cancelTokenCallback = cancelTokenCallback;
     if (interceptors != null) this.interceptors = interceptors;
     _initDio();
   }
@@ -57,7 +73,7 @@ class RestAPI {
     dispose();
 
     dio = Dio(BaseOptions(
-      baseUrl: apiUrl,
+      baseUrl: baseUrl,
       connectTimeout: connectTimeout,
       receiveTimeout: receiveTimeout,
       sendTimeout: sendTimeout,
