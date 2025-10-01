@@ -7,32 +7,41 @@ part of 'string_range.dart';
 // **************************************************************************
 
 abstract class _$StringRangeCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  StringRange startOffset(int? startOffset);
+
+  StringRange endOffset(int? endOffset);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StringRange(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// StringRange(...).copyWith(id: 12, name: "My name")
-  /// ````
-  StringRange call({
-    int? startOffset,
-    int? endOffset,
-  });
+  /// ```
+  StringRange call({int? startOffset, int? endOffset});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfStringRange.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfStringRange.copyWith(...)` or call `instanceOfStringRange.copyWith.fieldName(value)` for a single field.
 class _$StringRangeCWProxyImpl implements _$StringRangeCWProxy {
   const _$StringRangeCWProxyImpl(this._value);
 
   final StringRange _value;
 
   @override
+  StringRange startOffset(int? startOffset) => call(startOffset: startOffset);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  StringRange endOffset(int? endOffset) => call(endOffset: endOffset);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StringRange(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// StringRange(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   StringRange call({
     Object? startOffset = const $CopyWithPlaceholder(),
     Object? endOffset = const $CopyWithPlaceholder(),
@@ -51,7 +60,8 @@ class _$StringRangeCWProxyImpl implements _$StringRangeCWProxy {
 }
 
 extension $StringRangeCopyWith on StringRange {
-  /// Returns a callable class that can be used as follows: `instanceOfStringRange.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfStringRange.copyWith(...)` or `instanceOfStringRange.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$StringRangeCWProxy get copyWith => _$StringRangeCWProxyImpl(this);
 }
@@ -61,12 +71,12 @@ extension $StringRangeCopyWith on StringRange {
 // **************************************************************************
 
 StringRange _$StringRangeFromJson(Map<String, dynamic> json) => StringRange(
-      startOffset: (json['startOffset'] as num?)?.toInt(),
-      endOffset: (json['endOffset'] as num?)?.toInt(),
-    );
+  startOffset: (json['startOffset'] as num?)?.toInt(),
+  endOffset: (json['endOffset'] as num?)?.toInt(),
+);
 
 Map<String, dynamic> _$StringRangeToJson(StringRange instance) =>
     <String, dynamic>{
-      if (instance.startOffset case final value?) 'startOffset': value,
-      if (instance.endOffset case final value?) 'endOffset': value,
+      'startOffset': ?instance.startOffset,
+      'endOffset': ?instance.endOffset,
     };

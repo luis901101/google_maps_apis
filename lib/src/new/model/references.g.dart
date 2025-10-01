@@ -7,32 +7,41 @@ part of 'references.dart';
 // **************************************************************************
 
 abstract class _$ReferencesCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  References reviews(List<Review>? reviews);
+
+  References places(List<String>? places);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `References(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// References(...).copyWith(id: 12, name: "My name")
-  /// ````
-  References call({
-    List<Review>? reviews,
-    List<String>? places,
-  });
+  /// ```
+  References call({List<Review>? reviews, List<String>? places});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfReferences.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfReferences.copyWith(...)` or call `instanceOfReferences.copyWith.fieldName(value)` for a single field.
 class _$ReferencesCWProxyImpl implements _$ReferencesCWProxy {
   const _$ReferencesCWProxyImpl(this._value);
 
   final References _value;
 
   @override
+  References reviews(List<Review>? reviews) => call(reviews: reviews);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  References places(List<String>? places) => call(places: places);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `References(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// References(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   References call({
     Object? reviews = const $CopyWithPlaceholder(),
     Object? places = const $CopyWithPlaceholder(),
@@ -51,7 +60,8 @@ class _$ReferencesCWProxyImpl implements _$ReferencesCWProxy {
 }
 
 extension $ReferencesCopyWith on References {
-  /// Returns a callable class that can be used as follows: `instanceOfReferences.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfReferences.copyWith(...)` or `instanceOfReferences.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ReferencesCWProxy get copyWith => _$ReferencesCWProxyImpl(this);
 }
@@ -61,15 +71,11 @@ extension $ReferencesCopyWith on References {
 // **************************************************************************
 
 References _$ReferencesFromJson(Map<String, dynamic> json) => References(
-      reviews: (json['reviews'] as List<dynamic>?)
-          ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      places:
-          (json['places'] as List<dynamic>?)?.map((e) => e as String).toList(),
-    );
+  reviews: (json['reviews'] as List<dynamic>?)
+      ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  places: (json['places'] as List<dynamic>?)?.map((e) => e as String).toList(),
+);
 
 Map<String, dynamic> _$ReferencesToJson(References instance) =>
-    <String, dynamic>{
-      if (instance.reviews case final value?) 'reviews': value,
-      if (instance.places case final value?) 'places': value,
-    };
+    <String, dynamic>{'reviews': ?instance.reviews, 'places': ?instance.places};

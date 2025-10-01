@@ -7,12 +7,27 @@ part of 'parking_options.dart';
 // **************************************************************************
 
 abstract class _$ParkingOptionsCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  ParkingOptions freeParkingLot(bool? freeParkingLot);
+
+  ParkingOptions paidParkingLot(bool? paidParkingLot);
+
+  ParkingOptions freeStreetParking(bool? freeStreetParking);
+
+  ParkingOptions paidStreetParking(bool? paidStreetParking);
+
+  ParkingOptions valetParking(bool? valetParking);
+
+  ParkingOptions freeGarageParking(bool? freeGarageParking);
+
+  ParkingOptions paidGarageParking(bool? paidGarageParking);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ParkingOptions(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ParkingOptions(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ParkingOptions call({
     bool? freeParkingLot,
     bool? paidParkingLot,
@@ -24,20 +39,49 @@ abstract class _$ParkingOptionsCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfParkingOptions.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfParkingOptions.copyWith(...)` or call `instanceOfParkingOptions.copyWith.fieldName(value)` for a single field.
 class _$ParkingOptionsCWProxyImpl implements _$ParkingOptionsCWProxy {
   const _$ParkingOptionsCWProxyImpl(this._value);
 
   final ParkingOptions _value;
 
   @override
+  ParkingOptions freeParkingLot(bool? freeParkingLot) =>
+      call(freeParkingLot: freeParkingLot);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  ParkingOptions paidParkingLot(bool? paidParkingLot) =>
+      call(paidParkingLot: paidParkingLot);
+
+  @override
+  ParkingOptions freeStreetParking(bool? freeStreetParking) =>
+      call(freeStreetParking: freeStreetParking);
+
+  @override
+  ParkingOptions paidStreetParking(bool? paidStreetParking) =>
+      call(paidStreetParking: paidStreetParking);
+
+  @override
+  ParkingOptions valetParking(bool? valetParking) =>
+      call(valetParking: valetParking);
+
+  @override
+  ParkingOptions freeGarageParking(bool? freeGarageParking) =>
+      call(freeGarageParking: freeGarageParking);
+
+  @override
+  ParkingOptions paidGarageParking(bool? paidGarageParking) =>
+      call(paidGarageParking: paidGarageParking);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ParkingOptions(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ParkingOptions(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ParkingOptions call({
     Object? freeParkingLot = const $CopyWithPlaceholder(),
     Object? paidParkingLot = const $CopyWithPlaceholder(),
@@ -81,7 +125,8 @@ class _$ParkingOptionsCWProxyImpl implements _$ParkingOptionsCWProxy {
 }
 
 extension $ParkingOptionsCopyWith on ParkingOptions {
-  /// Returns a callable class that can be used as follows: `instanceOfParkingOptions.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfParkingOptions.copyWith(...)` or `instanceOfParkingOptions.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ParkingOptionsCWProxy get copyWith => _$ParkingOptionsCWProxyImpl(this);
 }
@@ -103,15 +148,11 @@ ParkingOptions _$ParkingOptionsFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ParkingOptionsToJson(ParkingOptions instance) =>
     <String, dynamic>{
-      if (instance.freeParkingLot case final value?) 'freeParkingLot': value,
-      if (instance.paidParkingLot case final value?) 'paidParkingLot': value,
-      if (instance.freeStreetParking case final value?)
-        'freeStreetParking': value,
-      if (instance.paidStreetParking case final value?)
-        'paidStreetParking': value,
-      if (instance.valetParking case final value?) 'valetParking': value,
-      if (instance.freeGarageParking case final value?)
-        'freeGarageParking': value,
-      if (instance.paidGarageParking case final value?)
-        'paidGarageParking': value,
+      'freeParkingLot': ?instance.freeParkingLot,
+      'paidParkingLot': ?instance.paidParkingLot,
+      'freeStreetParking': ?instance.freeStreetParking,
+      'paidStreetParking': ?instance.paidStreetParking,
+      'valetParking': ?instance.valetParking,
+      'freeGarageParking': ?instance.freeGarageParking,
+      'paidGarageParking': ?instance.paidGarageParking,
     };

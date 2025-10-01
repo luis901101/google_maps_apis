@@ -7,33 +7,46 @@ part of 'fuel_price.dart';
 // **************************************************************************
 
 abstract class _$FuelPriceCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  FuelPrice type(FuelType? type);
+
+  FuelPrice price(Money? price);
+
+  FuelPrice updateTime(DateTime? updateTime);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `FuelPrice(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// FuelPrice(...).copyWith(id: 12, name: "My name")
-  /// ````
-  FuelPrice call({
-    FuelType? type,
-    Money? price,
-    DateTime? updateTime,
-  });
+  /// ```
+  FuelPrice call({FuelType? type, Money? price, DateTime? updateTime});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfFuelPrice.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfFuelPrice.copyWith(...)` or call `instanceOfFuelPrice.copyWith.fieldName(value)` for a single field.
 class _$FuelPriceCWProxyImpl implements _$FuelPriceCWProxy {
   const _$FuelPriceCWProxyImpl(this._value);
 
   final FuelPrice _value;
 
   @override
+  FuelPrice type(FuelType? type) => call(type: type);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  FuelPrice price(Money? price) => call(price: price);
+
+  @override
+  FuelPrice updateTime(DateTime? updateTime) => call(updateTime: updateTime);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `FuelPrice(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// FuelPrice(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   FuelPrice call({
     Object? type = const $CopyWithPlaceholder(),
     Object? price = const $CopyWithPlaceholder(),
@@ -57,7 +70,8 @@ class _$FuelPriceCWProxyImpl implements _$FuelPriceCWProxy {
 }
 
 extension $FuelPriceCopyWith on FuelPrice {
-  /// Returns a callable class that can be used as follows: `instanceOfFuelPrice.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfFuelPrice.copyWith(...)` or `instanceOfFuelPrice.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$FuelPriceCWProxy get copyWith => _$FuelPriceCWProxyImpl(this);
 }
@@ -67,22 +81,24 @@ extension $FuelPriceCopyWith on FuelPrice {
 // **************************************************************************
 
 FuelPrice _$FuelPriceFromJson(Map<String, dynamic> json) => FuelPrice(
-      type: $enumDecodeNullable(_$FuelTypeEnumMap, json['type'],
-          unknownValue: JsonKey.nullForUndefinedEnumValue),
-      price: json['price'] == null
-          ? null
-          : Money.fromJson(json['price'] as Map<String, dynamic>),
-      updateTime: json['updateTime'] == null
-          ? null
-          : DateTime.parse(json['updateTime'] as String),
-    );
+  type: $enumDecodeNullable(
+    _$FuelTypeEnumMap,
+    json['type'],
+    unknownValue: JsonKey.nullForUndefinedEnumValue,
+  ),
+  price: json['price'] == null
+      ? null
+      : Money.fromJson(json['price'] as Map<String, dynamic>),
+  updateTime: json['updateTime'] == null
+      ? null
+      : DateTime.parse(json['updateTime'] as String),
+);
 
 Map<String, dynamic> _$FuelPriceToJson(FuelPrice instance) => <String, dynamic>{
-      if (_$FuelTypeEnumMap[instance.type] case final value?) 'type': value,
-      if (instance.price case final value?) 'price': value,
-      if (instance.updateTime?.toIso8601String() case final value?)
-        'updateTime': value,
-    };
+  'type': ?_$FuelTypeEnumMap[instance.type],
+  'price': ?instance.price,
+  'updateTime': ?instance.updateTime?.toIso8601String(),
+};
 
 const _$FuelTypeEnumMap = {
   FuelType.fuelTypeUnspecified: 'FUEL_TYPE_UNSPECIFIED',

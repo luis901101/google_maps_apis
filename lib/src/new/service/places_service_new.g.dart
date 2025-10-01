@@ -2,6 +2,8 @@
 
 part of 'places_service_new.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
@@ -80,8 +82,9 @@ class _PlacesServiceNew implements PlacesServiceNew {
     final _result = await _dio.fetch<Map<String, dynamic>?>(_options);
     late PlacesResponse? _value;
     try {
-      _value =
-          _result.data == null ? null : PlacesResponse.fromJson(_result.data!);
+      _value = _result.data == null
+          ? null
+          : PlacesResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -117,8 +120,9 @@ class _PlacesServiceNew implements PlacesServiceNew {
     final _result = await _dio.fetch<Map<String, dynamic>?>(_options);
     late PlacesResponse? _value;
     try {
-      _value =
-          _result.data == null ? null : PlacesResponse.fromJson(_result.data!);
+      _value = _result.data == null
+          ? null
+          : PlacesResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -192,3 +196,5 @@ class _PlacesServiceNew implements PlacesServiceNew {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

@@ -7,12 +7,21 @@ part of 'payment_options.dart';
 // **************************************************************************
 
 abstract class _$PaymentOptionsCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  PaymentOptions acceptsCreditCards(bool? acceptsCreditCards);
+
+  PaymentOptions acceptsDebitCards(bool? acceptsDebitCards);
+
+  PaymentOptions acceptsCashOnly(bool? acceptsCashOnly);
+
+  PaymentOptions acceptsNfc(bool? acceptsNfc);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PaymentOptions(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PaymentOptions(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PaymentOptions call({
     bool? acceptsCreditCards,
     bool? acceptsDebitCards,
@@ -21,20 +30,36 @@ abstract class _$PaymentOptionsCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPaymentOptions.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfPaymentOptions.copyWith(...)` or call `instanceOfPaymentOptions.copyWith.fieldName(value)` for a single field.
 class _$PaymentOptionsCWProxyImpl implements _$PaymentOptionsCWProxy {
   const _$PaymentOptionsCWProxyImpl(this._value);
 
   final PaymentOptions _value;
 
   @override
+  PaymentOptions acceptsCreditCards(bool? acceptsCreditCards) =>
+      call(acceptsCreditCards: acceptsCreditCards);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  PaymentOptions acceptsDebitCards(bool? acceptsDebitCards) =>
+      call(acceptsDebitCards: acceptsDebitCards);
+
+  @override
+  PaymentOptions acceptsCashOnly(bool? acceptsCashOnly) =>
+      call(acceptsCashOnly: acceptsCashOnly);
+
+  @override
+  PaymentOptions acceptsNfc(bool? acceptsNfc) => call(acceptsNfc: acceptsNfc);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PaymentOptions(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PaymentOptions(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PaymentOptions call({
     Object? acceptsCreditCards = const $CopyWithPlaceholder(),
     Object? acceptsDebitCards = const $CopyWithPlaceholder(),
@@ -63,7 +88,8 @@ class _$PaymentOptionsCWProxyImpl implements _$PaymentOptionsCWProxy {
 }
 
 extension $PaymentOptionsCopyWith on PaymentOptions {
-  /// Returns a callable class that can be used as follows: `instanceOfPaymentOptions.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfPaymentOptions.copyWith(...)` or `instanceOfPaymentOptions.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$PaymentOptionsCWProxy get copyWith => _$PaymentOptionsCWProxyImpl(this);
 }
@@ -82,10 +108,8 @@ PaymentOptions _$PaymentOptionsFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$PaymentOptionsToJson(PaymentOptions instance) =>
     <String, dynamic>{
-      if (instance.acceptsCreditCards case final value?)
-        'acceptsCreditCards': value,
-      if (instance.acceptsDebitCards case final value?)
-        'acceptsDebitCards': value,
-      if (instance.acceptsCashOnly case final value?) 'acceptsCashOnly': value,
-      if (instance.acceptsNfc case final value?) 'acceptsNfc': value,
+      'acceptsCreditCards': ?instance.acceptsCreditCards,
+      'acceptsDebitCards': ?instance.acceptsDebitCards,
+      'acceptsCashOnly': ?instance.acceptsCashOnly,
+      'acceptsNfc': ?instance.acceptsNfc,
     };

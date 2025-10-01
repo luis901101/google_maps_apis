@@ -7,32 +7,42 @@ part of 'routing_summary.dart';
 // **************************************************************************
 
 abstract class _$RoutingSummaryCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  RoutingSummary legs(List<Leg>? legs);
+
+  RoutingSummary directionsUri(String? directionsUri);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RoutingSummary(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// RoutingSummary(...).copyWith(id: 12, name: "My name")
-  /// ````
-  RoutingSummary call({
-    List<Leg>? legs,
-    String? directionsUri,
-  });
+  /// ```
+  RoutingSummary call({List<Leg>? legs, String? directionsUri});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfRoutingSummary.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfRoutingSummary.copyWith(...)` or call `instanceOfRoutingSummary.copyWith.fieldName(value)` for a single field.
 class _$RoutingSummaryCWProxyImpl implements _$RoutingSummaryCWProxy {
   const _$RoutingSummaryCWProxyImpl(this._value);
 
   final RoutingSummary _value;
 
   @override
+  RoutingSummary legs(List<Leg>? legs) => call(legs: legs);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  RoutingSummary directionsUri(String? directionsUri) =>
+      call(directionsUri: directionsUri);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RoutingSummary(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// RoutingSummary(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   RoutingSummary call({
     Object? legs = const $CopyWithPlaceholder(),
     Object? directionsUri = const $CopyWithPlaceholder(),
@@ -51,7 +61,8 @@ class _$RoutingSummaryCWProxyImpl implements _$RoutingSummaryCWProxy {
 }
 
 extension $RoutingSummaryCopyWith on RoutingSummary {
-  /// Returns a callable class that can be used as follows: `instanceOfRoutingSummary.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfRoutingSummary.copyWith(...)` or `instanceOfRoutingSummary.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$RoutingSummaryCWProxy get copyWith => _$RoutingSummaryCWProxyImpl(this);
 }
@@ -70,6 +81,6 @@ RoutingSummary _$RoutingSummaryFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$RoutingSummaryToJson(RoutingSummary instance) =>
     <String, dynamic>{
-      if (instance.legs case final value?) 'legs': value,
-      if (instance.directionsUri case final value?) 'directionsUri': value,
+      'legs': ?instance.legs,
+      'directionsUri': ?instance.directionsUri,
     };

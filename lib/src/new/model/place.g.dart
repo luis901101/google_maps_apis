@@ -7,12 +7,153 @@ part of 'place.dart';
 // **************************************************************************
 
 abstract class _$PlaceCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  Place name(String? name);
+
+  Place id(String? id);
+
+  Place displayName(LocalizedText? displayName);
+
+  Place types(List<PlaceType>? types);
+
+  Place primaryType(PlaceType? primaryType);
+
+  Place primaryTypeDisplayName(LocalizedText? primaryTypeDisplayName);
+
+  Place nationalPhoneNumber(String? nationalPhoneNumber);
+
+  Place internationalPhoneNumber(String? internationalPhoneNumber);
+
+  Place formattedAddress(String? formattedAddress);
+
+  Place shortFormattedAddress(String? shortFormattedAddress);
+
+  Place addressComponents(List<AddressComponent>? addressComponents);
+
+  Place plusCode(PlusCode? plusCode);
+
+  Place location(LatLng? location);
+
+  Place viewport(Viewport? viewport);
+
+  Place rating(double? rating);
+
+  Place googleMapsUri(String? googleMapsUri);
+
+  Place websiteUri(String? websiteUri);
+
+  Place reviews(List<Review>? reviews);
+
+  Place regularOpeningHours(OpeningHours? regularOpeningHours);
+
+  Place photos(List<Photo>? photos);
+
+  Place adrFormatAddress(String? adrFormatAddress);
+
+  Place businessStatus(BusinessStatus? businessStatus);
+
+  Place priceLevel(PriceLevel? priceLevel);
+
+  Place attributions(List<Attribution>? attributions);
+
+  Place iconMaskBaseUri(String? iconMaskBaseUri);
+
+  Place iconBackgroundColor(String? iconBackgroundColor);
+
+  Place currentOpeningHours(OpeningHours? currentOpeningHours);
+
+  Place currentSecondaryOpeningHours(
+    List<OpeningHours>? currentSecondaryOpeningHours,
+  );
+
+  Place regularSecondaryOpeningHours(
+    List<OpeningHours>? regularSecondaryOpeningHours,
+  );
+
+  Place editorialSummary(LocalizedText? editorialSummary);
+
+  Place paymentOptions(PaymentOptions? paymentOptions);
+
+  Place parkingOptions(ParkingOptions? parkingOptions);
+
+  Place subDestinations(List<SubDestination>? subDestinations);
+
+  Place fuelOptions(FuelOptions? fuelOptions);
+
+  Place evChargeOptions(EVChargeOptions? evChargeOptions);
+
+  Place generativeSummary(GenerativeSummary? generativeSummary);
+
+  Place areaSummary(AreaSummary? areaSummary);
+
+  Place containingPlaces(List<ContainingPlace>? containingPlaces);
+
+  Place addressDescriptor(AddressDescriptor? addressDescriptor);
+
+  Place googleMapsLinks(GoogleMapsLinks? googleMapsLinks);
+
+  Place priceRange(PriceRange? priceRange);
+
+  Place utcOffsetMinutes(int? utcOffsetMinutes);
+
+  Place userRatingCount(int? userRatingCount);
+
+  Place takeout(bool? takeout);
+
+  Place delivery(bool? delivery);
+
+  Place dineIn(bool? dineIn);
+
+  Place curbsidePickup(bool? curbsidePickup);
+
+  Place reservable(bool? reservable);
+
+  Place servesBreakfast(bool? servesBreakfast);
+
+  Place servesLunch(bool? servesLunch);
+
+  Place servesDinner(bool? servesDinner);
+
+  Place servesBeer(bool? servesBeer);
+
+  Place servesWine(bool? servesWine);
+
+  Place servesBrunch(bool? servesBrunch);
+
+  Place servesVegetarianFood(bool? servesVegetarianFood);
+
+  Place outdoorSeating(bool? outdoorSeating);
+
+  Place liveMusic(bool? liveMusic);
+
+  Place menuForChildren(bool? menuForChildren);
+
+  Place servesCocktails(bool? servesCocktails);
+
+  Place servesDessert(bool? servesDessert);
+
+  Place servesCoffee(bool? servesCoffee);
+
+  Place goodForChildren(bool? goodForChildren);
+
+  Place allowsDogs(bool? allowsDogs);
+
+  Place restroom(bool? restroom);
+
+  Place goodForGroups(bool? goodForGroups);
+
+  Place goodForWatchingSports(bool? goodForWatchingSports);
+
+  Place accessibilityOptions(AccessibilityOptions? accessibilityOptions);
+
+  Place pureServiceAreaBusiness(bool? pureServiceAreaBusiness);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Place(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// Place(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   Place call({
     String? name,
     String? id,
@@ -85,20 +226,267 @@ abstract class _$PlaceCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPlace.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfPlace.copyWith(...)` or call `instanceOfPlace.copyWith.fieldName(value)` for a single field.
 class _$PlaceCWProxyImpl implements _$PlaceCWProxy {
   const _$PlaceCWProxyImpl(this._value);
 
   final Place _value;
 
   @override
+  Place name(String? name) => call(name: name);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  Place id(String? id) => call(id: id);
+
+  @override
+  Place displayName(LocalizedText? displayName) =>
+      call(displayName: displayName);
+
+  @override
+  Place types(List<PlaceType>? types) => call(types: types);
+
+  @override
+  Place primaryType(PlaceType? primaryType) => call(primaryType: primaryType);
+
+  @override
+  Place primaryTypeDisplayName(LocalizedText? primaryTypeDisplayName) =>
+      call(primaryTypeDisplayName: primaryTypeDisplayName);
+
+  @override
+  Place nationalPhoneNumber(String? nationalPhoneNumber) =>
+      call(nationalPhoneNumber: nationalPhoneNumber);
+
+  @override
+  Place internationalPhoneNumber(String? internationalPhoneNumber) =>
+      call(internationalPhoneNumber: internationalPhoneNumber);
+
+  @override
+  Place formattedAddress(String? formattedAddress) =>
+      call(formattedAddress: formattedAddress);
+
+  @override
+  Place shortFormattedAddress(String? shortFormattedAddress) =>
+      call(shortFormattedAddress: shortFormattedAddress);
+
+  @override
+  Place addressComponents(List<AddressComponent>? addressComponents) =>
+      call(addressComponents: addressComponents);
+
+  @override
+  Place plusCode(PlusCode? plusCode) => call(plusCode: plusCode);
+
+  @override
+  Place location(LatLng? location) => call(location: location);
+
+  @override
+  Place viewport(Viewport? viewport) => call(viewport: viewport);
+
+  @override
+  Place rating(double? rating) => call(rating: rating);
+
+  @override
+  Place googleMapsUri(String? googleMapsUri) =>
+      call(googleMapsUri: googleMapsUri);
+
+  @override
+  Place websiteUri(String? websiteUri) => call(websiteUri: websiteUri);
+
+  @override
+  Place reviews(List<Review>? reviews) => call(reviews: reviews);
+
+  @override
+  Place regularOpeningHours(OpeningHours? regularOpeningHours) =>
+      call(regularOpeningHours: regularOpeningHours);
+
+  @override
+  Place photos(List<Photo>? photos) => call(photos: photos);
+
+  @override
+  Place adrFormatAddress(String? adrFormatAddress) =>
+      call(adrFormatAddress: adrFormatAddress);
+
+  @override
+  Place businessStatus(BusinessStatus? businessStatus) =>
+      call(businessStatus: businessStatus);
+
+  @override
+  Place priceLevel(PriceLevel? priceLevel) => call(priceLevel: priceLevel);
+
+  @override
+  Place attributions(List<Attribution>? attributions) =>
+      call(attributions: attributions);
+
+  @override
+  Place iconMaskBaseUri(String? iconMaskBaseUri) =>
+      call(iconMaskBaseUri: iconMaskBaseUri);
+
+  @override
+  Place iconBackgroundColor(String? iconBackgroundColor) =>
+      call(iconBackgroundColor: iconBackgroundColor);
+
+  @override
+  Place currentOpeningHours(OpeningHours? currentOpeningHours) =>
+      call(currentOpeningHours: currentOpeningHours);
+
+  @override
+  Place currentSecondaryOpeningHours(
+    List<OpeningHours>? currentSecondaryOpeningHours,
+  ) => call(currentSecondaryOpeningHours: currentSecondaryOpeningHours);
+
+  @override
+  Place regularSecondaryOpeningHours(
+    List<OpeningHours>? regularSecondaryOpeningHours,
+  ) => call(regularSecondaryOpeningHours: regularSecondaryOpeningHours);
+
+  @override
+  Place editorialSummary(LocalizedText? editorialSummary) =>
+      call(editorialSummary: editorialSummary);
+
+  @override
+  Place paymentOptions(PaymentOptions? paymentOptions) =>
+      call(paymentOptions: paymentOptions);
+
+  @override
+  Place parkingOptions(ParkingOptions? parkingOptions) =>
+      call(parkingOptions: parkingOptions);
+
+  @override
+  Place subDestinations(List<SubDestination>? subDestinations) =>
+      call(subDestinations: subDestinations);
+
+  @override
+  Place fuelOptions(FuelOptions? fuelOptions) => call(fuelOptions: fuelOptions);
+
+  @override
+  Place evChargeOptions(EVChargeOptions? evChargeOptions) =>
+      call(evChargeOptions: evChargeOptions);
+
+  @override
+  Place generativeSummary(GenerativeSummary? generativeSummary) =>
+      call(generativeSummary: generativeSummary);
+
+  @override
+  Place areaSummary(AreaSummary? areaSummary) => call(areaSummary: areaSummary);
+
+  @override
+  Place containingPlaces(List<ContainingPlace>? containingPlaces) =>
+      call(containingPlaces: containingPlaces);
+
+  @override
+  Place addressDescriptor(AddressDescriptor? addressDescriptor) =>
+      call(addressDescriptor: addressDescriptor);
+
+  @override
+  Place googleMapsLinks(GoogleMapsLinks? googleMapsLinks) =>
+      call(googleMapsLinks: googleMapsLinks);
+
+  @override
+  Place priceRange(PriceRange? priceRange) => call(priceRange: priceRange);
+
+  @override
+  Place utcOffsetMinutes(int? utcOffsetMinutes) =>
+      call(utcOffsetMinutes: utcOffsetMinutes);
+
+  @override
+  Place userRatingCount(int? userRatingCount) =>
+      call(userRatingCount: userRatingCount);
+
+  @override
+  Place takeout(bool? takeout) => call(takeout: takeout);
+
+  @override
+  Place delivery(bool? delivery) => call(delivery: delivery);
+
+  @override
+  Place dineIn(bool? dineIn) => call(dineIn: dineIn);
+
+  @override
+  Place curbsidePickup(bool? curbsidePickup) =>
+      call(curbsidePickup: curbsidePickup);
+
+  @override
+  Place reservable(bool? reservable) => call(reservable: reservable);
+
+  @override
+  Place servesBreakfast(bool? servesBreakfast) =>
+      call(servesBreakfast: servesBreakfast);
+
+  @override
+  Place servesLunch(bool? servesLunch) => call(servesLunch: servesLunch);
+
+  @override
+  Place servesDinner(bool? servesDinner) => call(servesDinner: servesDinner);
+
+  @override
+  Place servesBeer(bool? servesBeer) => call(servesBeer: servesBeer);
+
+  @override
+  Place servesWine(bool? servesWine) => call(servesWine: servesWine);
+
+  @override
+  Place servesBrunch(bool? servesBrunch) => call(servesBrunch: servesBrunch);
+
+  @override
+  Place servesVegetarianFood(bool? servesVegetarianFood) =>
+      call(servesVegetarianFood: servesVegetarianFood);
+
+  @override
+  Place outdoorSeating(bool? outdoorSeating) =>
+      call(outdoorSeating: outdoorSeating);
+
+  @override
+  Place liveMusic(bool? liveMusic) => call(liveMusic: liveMusic);
+
+  @override
+  Place menuForChildren(bool? menuForChildren) =>
+      call(menuForChildren: menuForChildren);
+
+  @override
+  Place servesCocktails(bool? servesCocktails) =>
+      call(servesCocktails: servesCocktails);
+
+  @override
+  Place servesDessert(bool? servesDessert) =>
+      call(servesDessert: servesDessert);
+
+  @override
+  Place servesCoffee(bool? servesCoffee) => call(servesCoffee: servesCoffee);
+
+  @override
+  Place goodForChildren(bool? goodForChildren) =>
+      call(goodForChildren: goodForChildren);
+
+  @override
+  Place allowsDogs(bool? allowsDogs) => call(allowsDogs: allowsDogs);
+
+  @override
+  Place restroom(bool? restroom) => call(restroom: restroom);
+
+  @override
+  Place goodForGroups(bool? goodForGroups) =>
+      call(goodForGroups: goodForGroups);
+
+  @override
+  Place goodForWatchingSports(bool? goodForWatchingSports) =>
+      call(goodForWatchingSports: goodForWatchingSports);
+
+  @override
+  Place accessibilityOptions(AccessibilityOptions? accessibilityOptions) =>
+      call(accessibilityOptions: accessibilityOptions);
+
+  @override
+  Place pureServiceAreaBusiness(bool? pureServiceAreaBusiness) =>
+      call(pureServiceAreaBusiness: pureServiceAreaBusiness);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Place(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// Place(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   Place call({
     Object? name = const $CopyWithPlaceholder(),
     Object? id = const $CopyWithPlaceholder(),
@@ -192,27 +580,27 @@ class _$PlaceCWProxyImpl implements _$PlaceCWProxy {
           : primaryType as PlaceType?,
       primaryTypeDisplayName:
           primaryTypeDisplayName == const $CopyWithPlaceholder()
-              ? _value.primaryTypeDisplayName
-              // ignore: cast_nullable_to_non_nullable
-              : primaryTypeDisplayName as LocalizedText?,
+          ? _value.primaryTypeDisplayName
+          // ignore: cast_nullable_to_non_nullable
+          : primaryTypeDisplayName as LocalizedText?,
       nationalPhoneNumber: nationalPhoneNumber == const $CopyWithPlaceholder()
           ? _value.nationalPhoneNumber
           // ignore: cast_nullable_to_non_nullable
           : nationalPhoneNumber as String?,
       internationalPhoneNumber:
           internationalPhoneNumber == const $CopyWithPlaceholder()
-              ? _value.internationalPhoneNumber
-              // ignore: cast_nullable_to_non_nullable
-              : internationalPhoneNumber as String?,
+          ? _value.internationalPhoneNumber
+          // ignore: cast_nullable_to_non_nullable
+          : internationalPhoneNumber as String?,
       formattedAddress: formattedAddress == const $CopyWithPlaceholder()
           ? _value.formattedAddress
           // ignore: cast_nullable_to_non_nullable
           : formattedAddress as String?,
       shortFormattedAddress:
           shortFormattedAddress == const $CopyWithPlaceholder()
-              ? _value.shortFormattedAddress
-              // ignore: cast_nullable_to_non_nullable
-              : shortFormattedAddress as String?,
+          ? _value.shortFormattedAddress
+          // ignore: cast_nullable_to_non_nullable
+          : shortFormattedAddress as String?,
       addressComponents: addressComponents == const $CopyWithPlaceholder()
           ? _value.addressComponents
           // ignore: cast_nullable_to_non_nullable
@@ -283,14 +671,14 @@ class _$PlaceCWProxyImpl implements _$PlaceCWProxy {
           : currentOpeningHours as OpeningHours?,
       currentSecondaryOpeningHours:
           currentSecondaryOpeningHours == const $CopyWithPlaceholder()
-              ? _value.currentSecondaryOpeningHours
-              // ignore: cast_nullable_to_non_nullable
-              : currentSecondaryOpeningHours as List<OpeningHours>?,
+          ? _value.currentSecondaryOpeningHours
+          // ignore: cast_nullable_to_non_nullable
+          : currentSecondaryOpeningHours as List<OpeningHours>?,
       regularSecondaryOpeningHours:
           regularSecondaryOpeningHours == const $CopyWithPlaceholder()
-              ? _value.regularSecondaryOpeningHours
-              // ignore: cast_nullable_to_non_nullable
-              : regularSecondaryOpeningHours as List<OpeningHours>?,
+          ? _value.regularSecondaryOpeningHours
+          // ignore: cast_nullable_to_non_nullable
+          : regularSecondaryOpeningHours as List<OpeningHours>?,
       editorialSummary: editorialSummary == const $CopyWithPlaceholder()
           ? _value.editorialSummary
           // ignore: cast_nullable_to_non_nullable
@@ -437,24 +825,25 @@ class _$PlaceCWProxyImpl implements _$PlaceCWProxy {
           : goodForGroups as bool?,
       goodForWatchingSports:
           goodForWatchingSports == const $CopyWithPlaceholder()
-              ? _value.goodForWatchingSports
-              // ignore: cast_nullable_to_non_nullable
-              : goodForWatchingSports as bool?,
+          ? _value.goodForWatchingSports
+          // ignore: cast_nullable_to_non_nullable
+          : goodForWatchingSports as bool?,
       accessibilityOptions: accessibilityOptions == const $CopyWithPlaceholder()
           ? _value.accessibilityOptions
           // ignore: cast_nullable_to_non_nullable
           : accessibilityOptions as AccessibilityOptions?,
       pureServiceAreaBusiness:
           pureServiceAreaBusiness == const $CopyWithPlaceholder()
-              ? _value.pureServiceAreaBusiness
-              // ignore: cast_nullable_to_non_nullable
-              : pureServiceAreaBusiness as bool?,
+          ? _value.pureServiceAreaBusiness
+          // ignore: cast_nullable_to_non_nullable
+          : pureServiceAreaBusiness as bool?,
     );
   }
 }
 
 extension $PlaceCopyWith on Place {
-  /// Returns a callable class that can be used as follows: `instanceOfPlace.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfPlace.copyWith(...)` or `instanceOfPlace.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$PlaceCWProxy get copyWith => _$PlaceCWProxyImpl(this);
 }
@@ -464,241 +853,230 @@ extension $PlaceCopyWith on Place {
 // **************************************************************************
 
 Place _$PlaceFromJson(Map<String, dynamic> json) => Place(
-      name: json['name'] as String?,
-      id: json['id'] as String?,
-      displayName: json['displayName'] == null
-          ? null
-          : LocalizedText.fromJson(json['displayName'] as Map<String, dynamic>),
-      types: PlaceType.fromJsonList(json['types'] as List?),
-      primaryType: $enumDecodeNullable(_$PlaceTypeEnumMap, json['primaryType'],
-          unknownValue: JsonKey.nullForUndefinedEnumValue),
-      primaryTypeDisplayName: json['primaryTypeDisplayName'] == null
-          ? null
-          : LocalizedText.fromJson(
-              json['primaryTypeDisplayName'] as Map<String, dynamic>),
-      nationalPhoneNumber: json['nationalPhoneNumber'] as String?,
-      internationalPhoneNumber: json['internationalPhoneNumber'] as String?,
-      formattedAddress: json['formattedAddress'] as String?,
-      shortFormattedAddress: json['shortFormattedAddress'] as String?,
-      addressComponents: (json['addressComponents'] as List<dynamic>?)
-          ?.map((e) => AddressComponent.fromJson(e as Map<String, dynamic>))
+  name: json['name'] as String?,
+  id: json['id'] as String?,
+  displayName: json['displayName'] == null
+      ? null
+      : LocalizedText.fromJson(json['displayName'] as Map<String, dynamic>),
+  types: PlaceType.fromJsonList(json['types'] as List?),
+  primaryType: $enumDecodeNullable(
+    _$PlaceTypeEnumMap,
+    json['primaryType'],
+    unknownValue: JsonKey.nullForUndefinedEnumValue,
+  ),
+  primaryTypeDisplayName: json['primaryTypeDisplayName'] == null
+      ? null
+      : LocalizedText.fromJson(
+          json['primaryTypeDisplayName'] as Map<String, dynamic>,
+        ),
+  nationalPhoneNumber: json['nationalPhoneNumber'] as String?,
+  internationalPhoneNumber: json['internationalPhoneNumber'] as String?,
+  formattedAddress: json['formattedAddress'] as String?,
+  shortFormattedAddress: json['shortFormattedAddress'] as String?,
+  addressComponents: (json['addressComponents'] as List<dynamic>?)
+      ?.map((e) => AddressComponent.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  plusCode: json['plusCode'] == null
+      ? null
+      : PlusCode.fromJson(json['plusCode'] as Map<String, dynamic>),
+  location: json['location'] == null
+      ? null
+      : LatLng.fromJson(json['location'] as Map<String, dynamic>),
+  viewport: json['viewport'] == null
+      ? null
+      : Viewport.fromJson(json['viewport'] as Map<String, dynamic>),
+  rating: (json['rating'] as num?)?.toDouble(),
+  googleMapsUri: json['googleMapsUri'] as String?,
+  websiteUri: json['websiteUri'] as String?,
+  reviews: (json['reviews'] as List<dynamic>?)
+      ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  regularOpeningHours: json['regularOpeningHours'] == null
+      ? null
+      : OpeningHours.fromJson(
+          json['regularOpeningHours'] as Map<String, dynamic>,
+        ),
+  photos: (json['photos'] as List<dynamic>?)
+      ?.map((e) => Photo.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  adrFormatAddress: json['adrFormatAddress'] as String?,
+  businessStatus: $enumDecodeNullable(
+    _$BusinessStatusEnumMap,
+    json['businessStatus'],
+    unknownValue: JsonKey.nullForUndefinedEnumValue,
+  ),
+  priceLevel: $enumDecodeNullable(
+    _$PriceLevelEnumMap,
+    json['priceLevel'],
+    unknownValue: JsonKey.nullForUndefinedEnumValue,
+  ),
+  attributions: (json['attributions'] as List<dynamic>?)
+      ?.map((e) => Attribution.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  iconMaskBaseUri: json['iconMaskBaseUri'] as String?,
+  iconBackgroundColor: json['iconBackgroundColor'] as String?,
+  currentOpeningHours: json['currentOpeningHours'] == null
+      ? null
+      : OpeningHours.fromJson(
+          json['currentOpeningHours'] as Map<String, dynamic>,
+        ),
+  currentSecondaryOpeningHours:
+      (json['currentSecondaryOpeningHours'] as List<dynamic>?)
+          ?.map((e) => OpeningHours.fromJson(e as Map<String, dynamic>))
           .toList(),
-      plusCode: json['plusCode'] == null
-          ? null
-          : PlusCode.fromJson(json['plusCode'] as Map<String, dynamic>),
-      location: json['location'] == null
-          ? null
-          : LatLng.fromJson(json['location'] as Map<String, dynamic>),
-      viewport: json['viewport'] == null
-          ? null
-          : Viewport.fromJson(json['viewport'] as Map<String, dynamic>),
-      rating: (json['rating'] as num?)?.toDouble(),
-      googleMapsUri: json['googleMapsUri'] as String?,
-      websiteUri: json['websiteUri'] as String?,
-      reviews: (json['reviews'] as List<dynamic>?)
-          ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
+  regularSecondaryOpeningHours:
+      (json['regularSecondaryOpeningHours'] as List<dynamic>?)
+          ?.map((e) => OpeningHours.fromJson(e as Map<String, dynamic>))
           .toList(),
-      regularOpeningHours: json['regularOpeningHours'] == null
-          ? null
-          : OpeningHours.fromJson(
-              json['regularOpeningHours'] as Map<String, dynamic>),
-      photos: (json['photos'] as List<dynamic>?)
-          ?.map((e) => Photo.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      adrFormatAddress: json['adrFormatAddress'] as String?,
-      businessStatus: $enumDecodeNullable(
-          _$BusinessStatusEnumMap, json['businessStatus'],
-          unknownValue: JsonKey.nullForUndefinedEnumValue),
-      priceLevel: $enumDecodeNullable(_$PriceLevelEnumMap, json['priceLevel'],
-          unknownValue: JsonKey.nullForUndefinedEnumValue),
-      attributions: (json['attributions'] as List<dynamic>?)
-          ?.map((e) => Attribution.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      iconMaskBaseUri: json['iconMaskBaseUri'] as String?,
-      iconBackgroundColor: json['iconBackgroundColor'] as String?,
-      currentOpeningHours: json['currentOpeningHours'] == null
-          ? null
-          : OpeningHours.fromJson(
-              json['currentOpeningHours'] as Map<String, dynamic>),
-      currentSecondaryOpeningHours:
-          (json['currentSecondaryOpeningHours'] as List<dynamic>?)
-              ?.map((e) => OpeningHours.fromJson(e as Map<String, dynamic>))
-              .toList(),
-      regularSecondaryOpeningHours:
-          (json['regularSecondaryOpeningHours'] as List<dynamic>?)
-              ?.map((e) => OpeningHours.fromJson(e as Map<String, dynamic>))
-              .toList(),
-      editorialSummary: json['editorialSummary'] == null
-          ? null
-          : LocalizedText.fromJson(
-              json['editorialSummary'] as Map<String, dynamic>),
-      paymentOptions: json['paymentOptions'] == null
-          ? null
-          : PaymentOptions.fromJson(
-              json['paymentOptions'] as Map<String, dynamic>),
-      parkingOptions: json['parkingOptions'] == null
-          ? null
-          : ParkingOptions.fromJson(
-              json['parkingOptions'] as Map<String, dynamic>),
-      subDestinations: (json['subDestinations'] as List<dynamic>?)
-          ?.map((e) => SubDestination.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      fuelOptions: json['fuelOptions'] == null
-          ? null
-          : FuelOptions.fromJson(json['fuelOptions'] as Map<String, dynamic>),
-      evChargeOptions: json['evChargeOptions'] == null
-          ? null
-          : EVChargeOptions.fromJson(
-              json['evChargeOptions'] as Map<String, dynamic>),
-      generativeSummary: json['generativeSummary'] == null
-          ? null
-          : GenerativeSummary.fromJson(
-              json['generativeSummary'] as Map<String, dynamic>),
-      areaSummary: json['areaSummary'] == null
-          ? null
-          : AreaSummary.fromJson(json['areaSummary'] as Map<String, dynamic>),
-      containingPlaces: (json['containingPlaces'] as List<dynamic>?)
-          ?.map((e) => ContainingPlace.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      addressDescriptor: json['addressDescriptor'] == null
-          ? null
-          : AddressDescriptor.fromJson(
-              json['addressDescriptor'] as Map<String, dynamic>),
-      googleMapsLinks: json['googleMapsLinks'] == null
-          ? null
-          : GoogleMapsLinks.fromJson(
-              json['googleMapsLinks'] as Map<String, dynamic>),
-      priceRange: json['priceRange'] == null
-          ? null
-          : PriceRange.fromJson(json['priceRange'] as Map<String, dynamic>),
-      utcOffsetMinutes: (json['utcOffsetMinutes'] as num?)?.toInt(),
-      userRatingCount: (json['userRatingCount'] as num?)?.toInt(),
-      takeout: json['takeout'] as bool?,
-      delivery: json['delivery'] as bool?,
-      dineIn: json['dineIn'] as bool?,
-      curbsidePickup: json['curbsidePickup'] as bool?,
-      reservable: json['reservable'] as bool?,
-      servesBreakfast: json['servesBreakfast'] as bool?,
-      servesLunch: json['servesLunch'] as bool?,
-      servesDinner: json['servesDinner'] as bool?,
-      servesBeer: json['servesBeer'] as bool?,
-      servesWine: json['servesWine'] as bool?,
-      servesBrunch: json['servesBrunch'] as bool?,
-      servesVegetarianFood: json['servesVegetarianFood'] as bool?,
-      outdoorSeating: json['outdoorSeating'] as bool?,
-      liveMusic: json['liveMusic'] as bool?,
-      menuForChildren: json['menuForChildren'] as bool?,
-      servesCocktails: json['servesCocktails'] as bool?,
-      servesDessert: json['servesDessert'] as bool?,
-      servesCoffee: json['servesCoffee'] as bool?,
-      goodForChildren: json['goodForChildren'] as bool?,
-      allowsDogs: json['allowsDogs'] as bool?,
-      restroom: json['restroom'] as bool?,
-      goodForGroups: json['goodForGroups'] as bool?,
-      goodForWatchingSports: json['goodForWatchingSports'] as bool?,
-      accessibilityOptions: json['accessibilityOptions'] == null
-          ? null
-          : AccessibilityOptions.fromJson(
-              json['accessibilityOptions'] as Map<String, dynamic>),
-      pureServiceAreaBusiness: json['pureServiceAreaBusiness'] as bool?,
-    );
+  editorialSummary: json['editorialSummary'] == null
+      ? null
+      : LocalizedText.fromJson(
+          json['editorialSummary'] as Map<String, dynamic>,
+        ),
+  paymentOptions: json['paymentOptions'] == null
+      ? null
+      : PaymentOptions.fromJson(json['paymentOptions'] as Map<String, dynamic>),
+  parkingOptions: json['parkingOptions'] == null
+      ? null
+      : ParkingOptions.fromJson(json['parkingOptions'] as Map<String, dynamic>),
+  subDestinations: (json['subDestinations'] as List<dynamic>?)
+      ?.map((e) => SubDestination.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  fuelOptions: json['fuelOptions'] == null
+      ? null
+      : FuelOptions.fromJson(json['fuelOptions'] as Map<String, dynamic>),
+  evChargeOptions: json['evChargeOptions'] == null
+      ? null
+      : EVChargeOptions.fromJson(
+          json['evChargeOptions'] as Map<String, dynamic>,
+        ),
+  generativeSummary: json['generativeSummary'] == null
+      ? null
+      : GenerativeSummary.fromJson(
+          json['generativeSummary'] as Map<String, dynamic>,
+        ),
+  areaSummary: json['areaSummary'] == null
+      ? null
+      : AreaSummary.fromJson(json['areaSummary'] as Map<String, dynamic>),
+  containingPlaces: (json['containingPlaces'] as List<dynamic>?)
+      ?.map((e) => ContainingPlace.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  addressDescriptor: json['addressDescriptor'] == null
+      ? null
+      : AddressDescriptor.fromJson(
+          json['addressDescriptor'] as Map<String, dynamic>,
+        ),
+  googleMapsLinks: json['googleMapsLinks'] == null
+      ? null
+      : GoogleMapsLinks.fromJson(
+          json['googleMapsLinks'] as Map<String, dynamic>,
+        ),
+  priceRange: json['priceRange'] == null
+      ? null
+      : PriceRange.fromJson(json['priceRange'] as Map<String, dynamic>),
+  utcOffsetMinutes: (json['utcOffsetMinutes'] as num?)?.toInt(),
+  userRatingCount: (json['userRatingCount'] as num?)?.toInt(),
+  takeout: json['takeout'] as bool?,
+  delivery: json['delivery'] as bool?,
+  dineIn: json['dineIn'] as bool?,
+  curbsidePickup: json['curbsidePickup'] as bool?,
+  reservable: json['reservable'] as bool?,
+  servesBreakfast: json['servesBreakfast'] as bool?,
+  servesLunch: json['servesLunch'] as bool?,
+  servesDinner: json['servesDinner'] as bool?,
+  servesBeer: json['servesBeer'] as bool?,
+  servesWine: json['servesWine'] as bool?,
+  servesBrunch: json['servesBrunch'] as bool?,
+  servesVegetarianFood: json['servesVegetarianFood'] as bool?,
+  outdoorSeating: json['outdoorSeating'] as bool?,
+  liveMusic: json['liveMusic'] as bool?,
+  menuForChildren: json['menuForChildren'] as bool?,
+  servesCocktails: json['servesCocktails'] as bool?,
+  servesDessert: json['servesDessert'] as bool?,
+  servesCoffee: json['servesCoffee'] as bool?,
+  goodForChildren: json['goodForChildren'] as bool?,
+  allowsDogs: json['allowsDogs'] as bool?,
+  restroom: json['restroom'] as bool?,
+  goodForGroups: json['goodForGroups'] as bool?,
+  goodForWatchingSports: json['goodForWatchingSports'] as bool?,
+  accessibilityOptions: json['accessibilityOptions'] == null
+      ? null
+      : AccessibilityOptions.fromJson(
+          json['accessibilityOptions'] as Map<String, dynamic>,
+        ),
+  pureServiceAreaBusiness: json['pureServiceAreaBusiness'] as bool?,
+);
 
 Map<String, dynamic> _$PlaceToJson(Place instance) => <String, dynamic>{
-      if (instance.name case final value?) 'name': value,
-      if (instance.id case final value?) 'id': value,
-      if (instance.displayName case final value?) 'displayName': value,
-      if (instance.types?.map((e) => _$PlaceTypeEnumMap[e]!).toList()
-          case final value?)
-        'types': value,
-      if (_$PlaceTypeEnumMap[instance.primaryType] case final value?)
-        'primaryType': value,
-      if (instance.primaryTypeDisplayName case final value?)
-        'primaryTypeDisplayName': value,
-      if (instance.nationalPhoneNumber case final value?)
-        'nationalPhoneNumber': value,
-      if (instance.internationalPhoneNumber case final value?)
-        'internationalPhoneNumber': value,
-      if (instance.formattedAddress case final value?)
-        'formattedAddress': value,
-      if (instance.shortFormattedAddress case final value?)
-        'shortFormattedAddress': value,
-      if (instance.addressComponents case final value?)
-        'addressComponents': value,
-      if (instance.plusCode case final value?) 'plusCode': value,
-      if (instance.location case final value?) 'location': value,
-      if (instance.viewport case final value?) 'viewport': value,
-      if (instance.rating case final value?) 'rating': value,
-      if (instance.googleMapsUri case final value?) 'googleMapsUri': value,
-      if (instance.websiteUri case final value?) 'websiteUri': value,
-      if (instance.reviews case final value?) 'reviews': value,
-      if (instance.regularOpeningHours case final value?)
-        'regularOpeningHours': value,
-      if (instance.photos case final value?) 'photos': value,
-      if (instance.adrFormatAddress case final value?)
-        'adrFormatAddress': value,
-      if (_$BusinessStatusEnumMap[instance.businessStatus] case final value?)
-        'businessStatus': value,
-      if (_$PriceLevelEnumMap[instance.priceLevel] case final value?)
-        'priceLevel': value,
-      if (instance.attributions case final value?) 'attributions': value,
-      if (instance.iconMaskBaseUri case final value?) 'iconMaskBaseUri': value,
-      if (instance.iconBackgroundColor case final value?)
-        'iconBackgroundColor': value,
-      if (instance.currentOpeningHours case final value?)
-        'currentOpeningHours': value,
-      if (instance.currentSecondaryOpeningHours case final value?)
-        'currentSecondaryOpeningHours': value,
-      if (instance.regularSecondaryOpeningHours case final value?)
-        'regularSecondaryOpeningHours': value,
-      if (instance.editorialSummary case final value?)
-        'editorialSummary': value,
-      if (instance.paymentOptions case final value?) 'paymentOptions': value,
-      if (instance.parkingOptions case final value?) 'parkingOptions': value,
-      if (instance.subDestinations case final value?) 'subDestinations': value,
-      if (instance.fuelOptions case final value?) 'fuelOptions': value,
-      if (instance.evChargeOptions case final value?) 'evChargeOptions': value,
-      if (instance.generativeSummary case final value?)
-        'generativeSummary': value,
-      if (instance.areaSummary case final value?) 'areaSummary': value,
-      if (instance.containingPlaces case final value?)
-        'containingPlaces': value,
-      if (instance.addressDescriptor case final value?)
-        'addressDescriptor': value,
-      if (instance.googleMapsLinks case final value?) 'googleMapsLinks': value,
-      if (instance.priceRange case final value?) 'priceRange': value,
-      if (instance.utcOffsetMinutes case final value?)
-        'utcOffsetMinutes': value,
-      if (instance.userRatingCount case final value?) 'userRatingCount': value,
-      if (instance.takeout case final value?) 'takeout': value,
-      if (instance.delivery case final value?) 'delivery': value,
-      if (instance.dineIn case final value?) 'dineIn': value,
-      if (instance.curbsidePickup case final value?) 'curbsidePickup': value,
-      if (instance.reservable case final value?) 'reservable': value,
-      if (instance.servesBreakfast case final value?) 'servesBreakfast': value,
-      if (instance.servesLunch case final value?) 'servesLunch': value,
-      if (instance.servesDinner case final value?) 'servesDinner': value,
-      if (instance.servesBeer case final value?) 'servesBeer': value,
-      if (instance.servesWine case final value?) 'servesWine': value,
-      if (instance.servesBrunch case final value?) 'servesBrunch': value,
-      if (instance.servesVegetarianFood case final value?)
-        'servesVegetarianFood': value,
-      if (instance.outdoorSeating case final value?) 'outdoorSeating': value,
-      if (instance.liveMusic case final value?) 'liveMusic': value,
-      if (instance.menuForChildren case final value?) 'menuForChildren': value,
-      if (instance.servesCocktails case final value?) 'servesCocktails': value,
-      if (instance.servesDessert case final value?) 'servesDessert': value,
-      if (instance.servesCoffee case final value?) 'servesCoffee': value,
-      if (instance.goodForChildren case final value?) 'goodForChildren': value,
-      if (instance.allowsDogs case final value?) 'allowsDogs': value,
-      if (instance.restroom case final value?) 'restroom': value,
-      if (instance.goodForGroups case final value?) 'goodForGroups': value,
-      if (instance.goodForWatchingSports case final value?)
-        'goodForWatchingSports': value,
-      if (instance.accessibilityOptions case final value?)
-        'accessibilityOptions': value,
-      if (instance.pureServiceAreaBusiness case final value?)
-        'pureServiceAreaBusiness': value,
-    };
+  'name': ?instance.name,
+  'id': ?instance.id,
+  'displayName': ?instance.displayName,
+  'types': ?instance.types?.map((e) => _$PlaceTypeEnumMap[e]!).toList(),
+  'primaryType': ?_$PlaceTypeEnumMap[instance.primaryType],
+  'primaryTypeDisplayName': ?instance.primaryTypeDisplayName,
+  'nationalPhoneNumber': ?instance.nationalPhoneNumber,
+  'internationalPhoneNumber': ?instance.internationalPhoneNumber,
+  'formattedAddress': ?instance.formattedAddress,
+  'shortFormattedAddress': ?instance.shortFormattedAddress,
+  'addressComponents': ?instance.addressComponents,
+  'plusCode': ?instance.plusCode,
+  'location': ?instance.location,
+  'viewport': ?instance.viewport,
+  'rating': ?instance.rating,
+  'googleMapsUri': ?instance.googleMapsUri,
+  'websiteUri': ?instance.websiteUri,
+  'reviews': ?instance.reviews,
+  'regularOpeningHours': ?instance.regularOpeningHours,
+  'photos': ?instance.photos,
+  'adrFormatAddress': ?instance.adrFormatAddress,
+  'businessStatus': ?_$BusinessStatusEnumMap[instance.businessStatus],
+  'priceLevel': ?_$PriceLevelEnumMap[instance.priceLevel],
+  'attributions': ?instance.attributions,
+  'iconMaskBaseUri': ?instance.iconMaskBaseUri,
+  'iconBackgroundColor': ?instance.iconBackgroundColor,
+  'currentOpeningHours': ?instance.currentOpeningHours,
+  'currentSecondaryOpeningHours': ?instance.currentSecondaryOpeningHours,
+  'regularSecondaryOpeningHours': ?instance.regularSecondaryOpeningHours,
+  'editorialSummary': ?instance.editorialSummary,
+  'paymentOptions': ?instance.paymentOptions,
+  'parkingOptions': ?instance.parkingOptions,
+  'subDestinations': ?instance.subDestinations,
+  'fuelOptions': ?instance.fuelOptions,
+  'evChargeOptions': ?instance.evChargeOptions,
+  'generativeSummary': ?instance.generativeSummary,
+  'areaSummary': ?instance.areaSummary,
+  'containingPlaces': ?instance.containingPlaces,
+  'addressDescriptor': ?instance.addressDescriptor,
+  'googleMapsLinks': ?instance.googleMapsLinks,
+  'priceRange': ?instance.priceRange,
+  'utcOffsetMinutes': ?instance.utcOffsetMinutes,
+  'userRatingCount': ?instance.userRatingCount,
+  'takeout': ?instance.takeout,
+  'delivery': ?instance.delivery,
+  'dineIn': ?instance.dineIn,
+  'curbsidePickup': ?instance.curbsidePickup,
+  'reservable': ?instance.reservable,
+  'servesBreakfast': ?instance.servesBreakfast,
+  'servesLunch': ?instance.servesLunch,
+  'servesDinner': ?instance.servesDinner,
+  'servesBeer': ?instance.servesBeer,
+  'servesWine': ?instance.servesWine,
+  'servesBrunch': ?instance.servesBrunch,
+  'servesVegetarianFood': ?instance.servesVegetarianFood,
+  'outdoorSeating': ?instance.outdoorSeating,
+  'liveMusic': ?instance.liveMusic,
+  'menuForChildren': ?instance.menuForChildren,
+  'servesCocktails': ?instance.servesCocktails,
+  'servesDessert': ?instance.servesDessert,
+  'servesCoffee': ?instance.servesCoffee,
+  'goodForChildren': ?instance.goodForChildren,
+  'allowsDogs': ?instance.allowsDogs,
+  'restroom': ?instance.restroom,
+  'goodForGroups': ?instance.goodForGroups,
+  'goodForWatchingSports': ?instance.goodForWatchingSports,
+  'accessibilityOptions': ?instance.accessibilityOptions,
+  'pureServiceAreaBusiness': ?instance.pureServiceAreaBusiness,
+};
 
 const _$PlaceTypeEnumMap = {
   PlaceType.carDealer: 'car_dealer',

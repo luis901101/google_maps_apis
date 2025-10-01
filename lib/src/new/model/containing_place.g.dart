@@ -7,32 +7,41 @@ part of 'containing_place.dart';
 // **************************************************************************
 
 abstract class _$ContainingPlaceCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  ContainingPlace name(String? name);
+
+  ContainingPlace id(String? id);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ContainingPlace(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ContainingPlace(...).copyWith(id: 12, name: "My name")
-  /// ````
-  ContainingPlace call({
-    String? name,
-    String? id,
-  });
+  /// ```
+  ContainingPlace call({String? name, String? id});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfContainingPlace.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfContainingPlace.copyWith(...)` or call `instanceOfContainingPlace.copyWith.fieldName(value)` for a single field.
 class _$ContainingPlaceCWProxyImpl implements _$ContainingPlaceCWProxy {
   const _$ContainingPlaceCWProxyImpl(this._value);
 
   final ContainingPlace _value;
 
   @override
+  ContainingPlace name(String? name) => call(name: name);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  ContainingPlace id(String? id) => call(id: id);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ContainingPlace(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ContainingPlace(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ContainingPlace call({
     Object? name = const $CopyWithPlaceholder(),
     Object? id = const $CopyWithPlaceholder(),
@@ -51,7 +60,8 @@ class _$ContainingPlaceCWProxyImpl implements _$ContainingPlaceCWProxy {
 }
 
 extension $ContainingPlaceCopyWith on ContainingPlace {
-  /// Returns a callable class that can be used as follows: `instanceOfContainingPlace.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfContainingPlace.copyWith(...)` or `instanceOfContainingPlace.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ContainingPlaceCWProxy get copyWith => _$ContainingPlaceCWProxyImpl(this);
 }
@@ -61,13 +71,7 @@ extension $ContainingPlaceCopyWith on ContainingPlace {
 // **************************************************************************
 
 ContainingPlace _$ContainingPlaceFromJson(Map<String, dynamic> json) =>
-    ContainingPlace(
-      name: json['name'] as String?,
-      id: json['id'] as String?,
-    );
+    ContainingPlace(name: json['name'] as String?, id: json['id'] as String?);
 
 Map<String, dynamic> _$ContainingPlaceToJson(ContainingPlace instance) =>
-    <String, dynamic>{
-      if (instance.name case final value?) 'name': value,
-      if (instance.id case final value?) 'id': value,
-    };
+    <String, dynamic>{'name': ?instance.name, 'id': ?instance.id};

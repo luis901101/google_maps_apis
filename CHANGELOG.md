@@ -9,6 +9,14 @@ Types of changes
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## 4.0.0
+### Added
+- Added support for custom interceptors, headers and cancelToken on `PlacesAPINew`. Thanks [itsarvinddev](https://github.com/itsarvinddev) for [PR-4](https://github.com/luis901101/google_maps_apis/pull/4), 
+
+### Changed
+- Sdk constraint updated to: `sdk: '>=3.8.0 <4.0.0'`
+- Updated dependencies to latest versions.
+
 ## 3.0.1
 ### Fixed
 - Fixed bug in JSON parsing for enums that was causing wrong snake_case parsing.

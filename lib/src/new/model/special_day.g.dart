@@ -7,34 +7,37 @@ part of 'special_day.dart';
 // **************************************************************************
 
 abstract class _$SpecialDayCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  SpecialDay date(Date? date);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `SpecialDay(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// SpecialDay(...).copyWith(id: 12, name: "My name")
-  /// ````
-  SpecialDay call({
-    Date? date,
-  });
+  /// ```
+  SpecialDay call({Date? date});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfSpecialDay.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfSpecialDay.copyWith(...)` or call `instanceOfSpecialDay.copyWith.fieldName(value)` for a single field.
 class _$SpecialDayCWProxyImpl implements _$SpecialDayCWProxy {
   const _$SpecialDayCWProxyImpl(this._value);
 
   final SpecialDay _value;
 
   @override
+  SpecialDay date(Date? date) => call(date: date);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `SpecialDay(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// SpecialDay(...).copyWith(id: 12, name: "My name")
-  /// ````
-  SpecialDay call({
-    Object? date = const $CopyWithPlaceholder(),
-  }) {
+  /// ```
+  SpecialDay call({Object? date = const $CopyWithPlaceholder()}) {
     return SpecialDay(
       date: date == const $CopyWithPlaceholder()
           ? _value.date
@@ -45,7 +48,8 @@ class _$SpecialDayCWProxyImpl implements _$SpecialDayCWProxy {
 }
 
 extension $SpecialDayCopyWith on SpecialDay {
-  /// Returns a callable class that can be used as follows: `instanceOfSpecialDay.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfSpecialDay.copyWith(...)` or `instanceOfSpecialDay.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$SpecialDayCWProxy get copyWith => _$SpecialDayCWProxyImpl(this);
 }
@@ -55,12 +59,10 @@ extension $SpecialDayCopyWith on SpecialDay {
 // **************************************************************************
 
 SpecialDay _$SpecialDayFromJson(Map<String, dynamic> json) => SpecialDay(
-      date: json['date'] == null
-          ? null
-          : Date.fromJson(json['date'] as Map<String, dynamic>),
-    );
+  date: json['date'] == null
+      ? null
+      : Date.fromJson(json['date'] as Map<String, dynamic>),
+);
 
 Map<String, dynamic> _$SpecialDayToJson(SpecialDay instance) =>
-    <String, dynamic>{
-      if (instance.date case final value?) 'date': value,
-    };
+    <String, dynamic>{'date': ?instance.date};

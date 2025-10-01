@@ -7,12 +7,31 @@ part of 'review.dart';
 // **************************************************************************
 
 abstract class _$ReviewCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  Review name(String? name);
+
+  Review relativePublishTimeDescription(String? relativePublishTimeDescription);
+
+  Review text(LocalizedText? text);
+
+  Review originalText(LocalizedText? originalText);
+
+  Review rating(int? rating);
+
+  Review authorAttribution(AuthorAttribution? authorAttribution);
+
+  Review publishTime(DateTime? publishTime);
+
+  Review flagContentUri(String? flagContentUri);
+
+  Review googleMapsUri(String? googleMapsUri);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Review(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// Review(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   Review call({
     String? name,
     String? relativePublishTimeDescription,
@@ -26,20 +45,54 @@ abstract class _$ReviewCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfReview.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfReview.copyWith(...)` or call `instanceOfReview.copyWith.fieldName(value)` for a single field.
 class _$ReviewCWProxyImpl implements _$ReviewCWProxy {
   const _$ReviewCWProxyImpl(this._value);
 
   final Review _value;
 
   @override
+  Review name(String? name) => call(name: name);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  Review relativePublishTimeDescription(
+    String? relativePublishTimeDescription,
+  ) => call(relativePublishTimeDescription: relativePublishTimeDescription);
+
+  @override
+  Review text(LocalizedText? text) => call(text: text);
+
+  @override
+  Review originalText(LocalizedText? originalText) =>
+      call(originalText: originalText);
+
+  @override
+  Review rating(int? rating) => call(rating: rating);
+
+  @override
+  Review authorAttribution(AuthorAttribution? authorAttribution) =>
+      call(authorAttribution: authorAttribution);
+
+  @override
+  Review publishTime(DateTime? publishTime) => call(publishTime: publishTime);
+
+  @override
+  Review flagContentUri(String? flagContentUri) =>
+      call(flagContentUri: flagContentUri);
+
+  @override
+  Review googleMapsUri(String? googleMapsUri) =>
+      call(googleMapsUri: googleMapsUri);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Review(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// Review(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   Review call({
     Object? name = const $CopyWithPlaceholder(),
     Object? relativePublishTimeDescription = const $CopyWithPlaceholder(),
@@ -58,9 +111,9 @@ class _$ReviewCWProxyImpl implements _$ReviewCWProxy {
           : name as String?,
       relativePublishTimeDescription:
           relativePublishTimeDescription == const $CopyWithPlaceholder()
-              ? _value.relativePublishTimeDescription
-              // ignore: cast_nullable_to_non_nullable
-              : relativePublishTimeDescription as String?,
+          ? _value.relativePublishTimeDescription
+          // ignore: cast_nullable_to_non_nullable
+          : relativePublishTimeDescription as String?,
       text: text == const $CopyWithPlaceholder()
           ? _value.text
           // ignore: cast_nullable_to_non_nullable
@@ -94,7 +147,8 @@ class _$ReviewCWProxyImpl implements _$ReviewCWProxy {
 }
 
 extension $ReviewCopyWith on Review {
-  /// Returns a callable class that can be used as follows: `instanceOfReview.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfReview.copyWith(...)` or `instanceOfReview.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ReviewCWProxy get copyWith => _$ReviewCWProxyImpl(this);
 }
@@ -104,39 +158,36 @@ extension $ReviewCopyWith on Review {
 // **************************************************************************
 
 Review _$ReviewFromJson(Map<String, dynamic> json) => Review(
-      name: json['name'] as String?,
-      relativePublishTimeDescription:
-          json['relativePublishTimeDescription'] as String?,
-      text: json['text'] == null
-          ? null
-          : LocalizedText.fromJson(json['text'] as Map<String, dynamic>),
-      originalText: json['originalText'] == null
-          ? null
-          : LocalizedText.fromJson(
-              json['originalText'] as Map<String, dynamic>),
-      rating: (json['rating'] as num?)?.toInt(),
-      authorAttribution: json['authorAttribution'] == null
-          ? null
-          : AuthorAttribution.fromJson(
-              json['authorAttribution'] as Map<String, dynamic>),
-      publishTime: json['publishTime'] == null
-          ? null
-          : DateTime.parse(json['publishTime'] as String),
-      flagContentUri: json['flagContentUri'] as String?,
-      googleMapsUri: json['googleMapsUri'] as String?,
-    );
+  name: json['name'] as String?,
+  relativePublishTimeDescription:
+      json['relativePublishTimeDescription'] as String?,
+  text: json['text'] == null
+      ? null
+      : LocalizedText.fromJson(json['text'] as Map<String, dynamic>),
+  originalText: json['originalText'] == null
+      ? null
+      : LocalizedText.fromJson(json['originalText'] as Map<String, dynamic>),
+  rating: (json['rating'] as num?)?.toInt(),
+  authorAttribution: json['authorAttribution'] == null
+      ? null
+      : AuthorAttribution.fromJson(
+          json['authorAttribution'] as Map<String, dynamic>,
+        ),
+  publishTime: json['publishTime'] == null
+      ? null
+      : DateTime.parse(json['publishTime'] as String),
+  flagContentUri: json['flagContentUri'] as String?,
+  googleMapsUri: json['googleMapsUri'] as String?,
+);
 
 Map<String, dynamic> _$ReviewToJson(Review instance) => <String, dynamic>{
-      if (instance.name case final value?) 'name': value,
-      if (instance.relativePublishTimeDescription case final value?)
-        'relativePublishTimeDescription': value,
-      if (instance.text case final value?) 'text': value,
-      if (instance.originalText case final value?) 'originalText': value,
-      if (instance.rating case final value?) 'rating': value,
-      if (instance.authorAttribution case final value?)
-        'authorAttribution': value,
-      if (instance.publishTime?.toIso8601String() case final value?)
-        'publishTime': value,
-      if (instance.flagContentUri case final value?) 'flagContentUri': value,
-      if (instance.googleMapsUri case final value?) 'googleMapsUri': value,
-    };
+  'name': ?instance.name,
+  'relativePublishTimeDescription': ?instance.relativePublishTimeDescription,
+  'text': ?instance.text,
+  'originalText': ?instance.originalText,
+  'rating': ?instance.rating,
+  'authorAttribution': ?instance.authorAttribution,
+  'publishTime': ?instance.publishTime?.toIso8601String(),
+  'flagContentUri': ?instance.flagContentUri,
+  'googleMapsUri': ?instance.googleMapsUri,
+};

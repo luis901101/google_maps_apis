@@ -7,34 +7,37 @@ part of 'google_error_response.dart';
 // **************************************************************************
 
 abstract class _$GoogleErrorResponseCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  GoogleErrorResponse error(ErrorInfo? error);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GoogleErrorResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// GoogleErrorResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
-  GoogleErrorResponse call({
-    ErrorInfo? error,
-  });
+  /// ```
+  GoogleErrorResponse call({ErrorInfo? error});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfGoogleErrorResponse.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfGoogleErrorResponse.copyWith(...)` or call `instanceOfGoogleErrorResponse.copyWith.fieldName(value)` for a single field.
 class _$GoogleErrorResponseCWProxyImpl implements _$GoogleErrorResponseCWProxy {
   const _$GoogleErrorResponseCWProxyImpl(this._value);
 
   final GoogleErrorResponse _value;
 
   @override
+  GoogleErrorResponse error(ErrorInfo? error) => call(error: error);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GoogleErrorResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// GoogleErrorResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
-  GoogleErrorResponse call({
-    Object? error = const $CopyWithPlaceholder(),
-  }) {
+  /// ```
+  GoogleErrorResponse call({Object? error = const $CopyWithPlaceholder()}) {
     return GoogleErrorResponse(
       error: error == const $CopyWithPlaceholder()
           ? _value.error
@@ -45,7 +48,8 @@ class _$GoogleErrorResponseCWProxyImpl implements _$GoogleErrorResponseCWProxy {
 }
 
 extension $GoogleErrorResponseCopyWith on GoogleErrorResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfGoogleErrorResponse.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfGoogleErrorResponse.copyWith(...)` or `instanceOfGoogleErrorResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$GoogleErrorResponseCWProxy get copyWith =>
       _$GoogleErrorResponseCWProxyImpl(this);
@@ -63,7 +67,5 @@ GoogleErrorResponse _$GoogleErrorResponseFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$GoogleErrorResponseToJson(
-        GoogleErrorResponse instance) =>
-    <String, dynamic>{
-      if (instance.error case final value?) 'error': value,
-    };
+  GoogleErrorResponse instance,
+) => <String, dynamic>{'error': ?instance.error};

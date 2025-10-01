@@ -7,32 +7,46 @@ part of 'structured_format.dart';
 // **************************************************************************
 
 abstract class _$StructuredFormatCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  StructuredFormat mainText(FormattableText? mainText);
+
+  StructuredFormat secondaryText(FormattableText? secondaryText);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StructuredFormat(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// StructuredFormat(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   StructuredFormat call({
     FormattableText? mainText,
     FormattableText? secondaryText,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfStructuredFormat.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfStructuredFormat.copyWith(...)` or call `instanceOfStructuredFormat.copyWith.fieldName(value)` for a single field.
 class _$StructuredFormatCWProxyImpl implements _$StructuredFormatCWProxy {
   const _$StructuredFormatCWProxyImpl(this._value);
 
   final StructuredFormat _value;
 
   @override
+  StructuredFormat mainText(FormattableText? mainText) =>
+      call(mainText: mainText);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  StructuredFormat secondaryText(FormattableText? secondaryText) =>
+      call(secondaryText: secondaryText);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `StructuredFormat(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// StructuredFormat(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   StructuredFormat call({
     Object? mainText = const $CopyWithPlaceholder(),
     Object? secondaryText = const $CopyWithPlaceholder(),
@@ -51,7 +65,8 @@ class _$StructuredFormatCWProxyImpl implements _$StructuredFormatCWProxy {
 }
 
 extension $StructuredFormatCopyWith on StructuredFormat {
-  /// Returns a callable class that can be used as follows: `instanceOfStructuredFormat.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfStructuredFormat.copyWith(...)` or `instanceOfStructuredFormat.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$StructuredFormatCWProxy get copyWith => _$StructuredFormatCWProxyImpl(this);
 }
@@ -68,11 +83,12 @@ StructuredFormat _$StructuredFormatFromJson(Map<String, dynamic> json) =>
       secondaryText: json['secondaryText'] == null
           ? null
           : FormattableText.fromJson(
-              json['secondaryText'] as Map<String, dynamic>),
+              json['secondaryText'] as Map<String, dynamic>,
+            ),
     );
 
 Map<String, dynamic> _$StructuredFormatToJson(StructuredFormat instance) =>
     <String, dynamic>{
-      if (instance.mainText case final value?) 'mainText': value,
-      if (instance.secondaryText case final value?) 'secondaryText': value,
+      'mainText': ?instance.mainText,
+      'secondaryText': ?instance.secondaryText,
     };

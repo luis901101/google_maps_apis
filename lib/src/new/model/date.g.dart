@@ -7,33 +7,46 @@ part of 'date.dart';
 // **************************************************************************
 
 abstract class _$DateCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  Date year(int? year);
+
+  Date month(int? month);
+
+  Date day(int? day);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Date(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// Date(...).copyWith(id: 12, name: "My name")
-  /// ````
-  Date call({
-    int? year,
-    int? month,
-    int? day,
-  });
+  /// ```
+  Date call({int? year, int? month, int? day});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfDate.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfDate.copyWith(...)` or call `instanceOfDate.copyWith.fieldName(value)` for a single field.
 class _$DateCWProxyImpl implements _$DateCWProxy {
   const _$DateCWProxyImpl(this._value);
 
   final Date _value;
 
   @override
+  Date year(int? year) => call(year: year);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  Date month(int? month) => call(month: month);
+
+  @override
+  Date day(int? day) => call(day: day);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Date(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// Date(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   Date call({
     Object? year = const $CopyWithPlaceholder(),
     Object? month = const $CopyWithPlaceholder(),
@@ -57,7 +70,8 @@ class _$DateCWProxyImpl implements _$DateCWProxy {
 }
 
 extension $DateCopyWith on Date {
-  /// Returns a callable class that can be used as follows: `instanceOfDate.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfDate.copyWith(...)` or `instanceOfDate.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$DateCWProxy get copyWith => _$DateCWProxyImpl(this);
 }
@@ -67,13 +81,13 @@ extension $DateCopyWith on Date {
 // **************************************************************************
 
 Date _$DateFromJson(Map<String, dynamic> json) => Date(
-      year: (json['year'] as num?)?.toInt(),
-      month: (json['month'] as num?)?.toInt(),
-      day: (json['day'] as num?)?.toInt(),
-    );
+  year: (json['year'] as num?)?.toInt(),
+  month: (json['month'] as num?)?.toInt(),
+  day: (json['day'] as num?)?.toInt(),
+);
 
 Map<String, dynamic> _$DateToJson(Date instance) => <String, dynamic>{
-      if (instance.year case final value?) 'year': value,
-      if (instance.month case final value?) 'month': value,
-      if (instance.day case final value?) 'day': value,
-    };
+  'year': ?instance.year,
+  'month': ?instance.month,
+  'day': ?instance.day,
+};

@@ -14,12 +14,12 @@ targets:
         generate_for:
           - '**/filter/*.dart'
           - '**/model/*.dart'
-      copy_with_extension_gen|copy_with_extension_gen:
-        options:
-          skip_fields: true
-        generate_for:
-          - '**/filter/*.dart'
-          - '**/model/*.dart'
+#      copy_with_extension_gen|copy_with_extension_gen:
+#        options:
+#          skip_fields: true
+#        generate_for:
+#          - '**/filter/*.dart'
+#          - '**/model/*.dart'
       retrofit_generator|retrofit_generator:
         generate_for:
           - '**/service/*.dart'

@@ -7,34 +7,38 @@ part of 'places_suggestions.dart';
 // **************************************************************************
 
 abstract class _$PlacesSuggestionsCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  PlacesSuggestions suggestions(List<Suggestion>? suggestions);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PlacesSuggestions(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PlacesSuggestions(...).copyWith(id: 12, name: "My name")
-  /// ````
-  PlacesSuggestions call({
-    List<Suggestion>? suggestions,
-  });
+  /// ```
+  PlacesSuggestions call({List<Suggestion>? suggestions});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPlacesSuggestions.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfPlacesSuggestions.copyWith(...)` or call `instanceOfPlacesSuggestions.copyWith.fieldName(value)` for a single field.
 class _$PlacesSuggestionsCWProxyImpl implements _$PlacesSuggestionsCWProxy {
   const _$PlacesSuggestionsCWProxyImpl(this._value);
 
   final PlacesSuggestions _value;
 
   @override
+  PlacesSuggestions suggestions(List<Suggestion>? suggestions) =>
+      call(suggestions: suggestions);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PlacesSuggestions(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PlacesSuggestions(...).copyWith(id: 12, name: "My name")
-  /// ````
-  PlacesSuggestions call({
-    Object? suggestions = const $CopyWithPlaceholder(),
-  }) {
+  /// ```
+  PlacesSuggestions call({Object? suggestions = const $CopyWithPlaceholder()}) {
     return PlacesSuggestions(
       suggestions: suggestions == const $CopyWithPlaceholder()
           ? _value.suggestions
@@ -45,7 +49,8 @@ class _$PlacesSuggestionsCWProxyImpl implements _$PlacesSuggestionsCWProxy {
 }
 
 extension $PlacesSuggestionsCopyWith on PlacesSuggestions {
-  /// Returns a callable class that can be used as follows: `instanceOfPlacesSuggestions.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfPlacesSuggestions.copyWith(...)` or `instanceOfPlacesSuggestions.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$PlacesSuggestionsCWProxy get copyWith =>
       _$PlacesSuggestionsCWProxyImpl(this);
@@ -63,6 +68,4 @@ PlacesSuggestions _$PlacesSuggestionsFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$PlacesSuggestionsToJson(PlacesSuggestions instance) =>
-    <String, dynamic>{
-      'suggestions': instance.suggestions,
-    };
+    <String, dynamic>{'suggestions': instance.suggestions};

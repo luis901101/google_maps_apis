@@ -7,12 +7,45 @@ part of 'text_search_filter.dart';
 // **************************************************************************
 
 abstract class _$TextSearchFilterCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  TextSearchFilter languageCode(String? languageCode);
+
+  TextSearchFilter regionCode(String? regionCode);
+
+  TextSearchFilter textQuery(String textQuery);
+
+  TextSearchFilter includedType(PlaceType? includedType);
+
+  TextSearchFilter includePureServiceAreaBusinesses(
+    bool? includePureServiceAreaBusinesses,
+  );
+
+  TextSearchFilter locationBias(LocationMultiArea? locationBias);
+
+  TextSearchFilter locationRestriction(LocationMultiArea? locationRestriction);
+
+  TextSearchFilter evOptions(EvOptions? evOptions);
+
+  TextSearchFilter minRating(double? minRating);
+
+  TextSearchFilter openNow(bool? openNow);
+
+  TextSearchFilter pageSize(int? pageSize);
+
+  TextSearchFilter pageToken(String? pageToken);
+
+  TextSearchFilter priceLevels(List<PriceLevel>? priceLevels);
+
+  TextSearchFilter rankPreference(RankPreferenceType? rankPreference);
+
+  TextSearchFilter strictTypeFiltering(bool? strictTypeFiltering);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `TextSearchFilter(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// TextSearchFilter(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   TextSearchFilter call({
     String? languageCode,
     String? regionCode,
@@ -32,20 +65,78 @@ abstract class _$TextSearchFilterCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfTextSearchFilter.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfTextSearchFilter.copyWith(...)` or call `instanceOfTextSearchFilter.copyWith.fieldName(value)` for a single field.
 class _$TextSearchFilterCWProxyImpl implements _$TextSearchFilterCWProxy {
   const _$TextSearchFilterCWProxyImpl(this._value);
 
   final TextSearchFilter _value;
 
   @override
+  TextSearchFilter languageCode(String? languageCode) =>
+      call(languageCode: languageCode);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  TextSearchFilter regionCode(String? regionCode) =>
+      call(regionCode: regionCode);
+
+  @override
+  TextSearchFilter textQuery(String textQuery) => call(textQuery: textQuery);
+
+  @override
+  TextSearchFilter includedType(PlaceType? includedType) =>
+      call(includedType: includedType);
+
+  @override
+  TextSearchFilter includePureServiceAreaBusinesses(
+    bool? includePureServiceAreaBusinesses,
+  ) => call(includePureServiceAreaBusinesses: includePureServiceAreaBusinesses);
+
+  @override
+  TextSearchFilter locationBias(LocationMultiArea? locationBias) =>
+      call(locationBias: locationBias);
+
+  @override
+  TextSearchFilter locationRestriction(
+    LocationMultiArea? locationRestriction,
+  ) => call(locationRestriction: locationRestriction);
+
+  @override
+  TextSearchFilter evOptions(EvOptions? evOptions) =>
+      call(evOptions: evOptions);
+
+  @override
+  TextSearchFilter minRating(double? minRating) => call(minRating: minRating);
+
+  @override
+  TextSearchFilter openNow(bool? openNow) => call(openNow: openNow);
+
+  @override
+  TextSearchFilter pageSize(int? pageSize) => call(pageSize: pageSize);
+
+  @override
+  TextSearchFilter pageToken(String? pageToken) => call(pageToken: pageToken);
+
+  @override
+  TextSearchFilter priceLevels(List<PriceLevel>? priceLevels) =>
+      call(priceLevels: priceLevels);
+
+  @override
+  TextSearchFilter rankPreference(RankPreferenceType? rankPreference) =>
+      call(rankPreference: rankPreference);
+
+  @override
+  TextSearchFilter strictTypeFiltering(bool? strictTypeFiltering) =>
+      call(strictTypeFiltering: strictTypeFiltering);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `TextSearchFilter(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// TextSearchFilter(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   TextSearchFilter call({
     Object? languageCode = const $CopyWithPlaceholder(),
     Object? regionCode = const $CopyWithPlaceholder(),
@@ -72,7 +163,7 @@ class _$TextSearchFilterCWProxyImpl implements _$TextSearchFilterCWProxy {
           ? _value.regionCode
           // ignore: cast_nullable_to_non_nullable
           : regionCode as String?,
-      textQuery: textQuery == const $CopyWithPlaceholder()
+      textQuery: textQuery == const $CopyWithPlaceholder() || textQuery == null
           ? _value.textQuery
           // ignore: cast_nullable_to_non_nullable
           : textQuery as String,
@@ -82,9 +173,9 @@ class _$TextSearchFilterCWProxyImpl implements _$TextSearchFilterCWProxy {
           : includedType as PlaceType?,
       includePureServiceAreaBusinesses:
           includePureServiceAreaBusinesses == const $CopyWithPlaceholder()
-              ? _value.includePureServiceAreaBusinesses
-              // ignore: cast_nullable_to_non_nullable
-              : includePureServiceAreaBusinesses as bool?,
+          ? _value.includePureServiceAreaBusinesses
+          // ignore: cast_nullable_to_non_nullable
+          : includePureServiceAreaBusinesses as bool?,
       locationBias: locationBias == const $CopyWithPlaceholder()
           ? _value.locationBias
           // ignore: cast_nullable_to_non_nullable
@@ -130,7 +221,8 @@ class _$TextSearchFilterCWProxyImpl implements _$TextSearchFilterCWProxy {
 }
 
 extension $TextSearchFilterCopyWith on TextSearchFilter {
-  /// Returns a callable class that can be used as follows: `instanceOfTextSearchFilter.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfTextSearchFilter.copyWith(...)` or `instanceOfTextSearchFilter.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$TextSearchFilterCWProxy get copyWith => _$TextSearchFilterCWProxyImpl(this);
 }
@@ -144,18 +236,22 @@ TextSearchFilter _$TextSearchFilterFromJson(Map<String, dynamic> json) =>
       languageCode: json['languageCode'] as String?,
       regionCode: json['regionCode'] as String?,
       textQuery: json['textQuery'] as String,
-      includedType:
-          $enumDecodeNullable(_$PlaceTypeEnumMap, json['includedType']),
+      includedType: $enumDecodeNullable(
+        _$PlaceTypeEnumMap,
+        json['includedType'],
+      ),
       includePureServiceAreaBusinesses:
           json['includePureServiceAreaBusinesses'] as bool?,
       locationBias: json['locationBias'] == null
           ? null
           : LocationMultiArea.fromJson(
-              json['locationBias'] as Map<String, dynamic>),
+              json['locationBias'] as Map<String, dynamic>,
+            ),
       locationRestriction: json['locationRestriction'] == null
           ? null
           : LocationMultiArea.fromJson(
-              json['locationRestriction'] as Map<String, dynamic>),
+              json['locationRestriction'] as Map<String, dynamic>,
+            ),
       evOptions: json['evOptions'] == null
           ? null
           : EvOptions.fromJson(json['evOptions'] as Map<String, dynamic>),
@@ -167,35 +263,32 @@ TextSearchFilter _$TextSearchFilterFromJson(Map<String, dynamic> json) =>
           ?.map((e) => $enumDecode(_$PriceLevelEnumMap, e))
           .toList(),
       rankPreference: $enumDecodeNullable(
-          _$RankPreferenceTypeEnumMap, json['rankPreference']),
+        _$RankPreferenceTypeEnumMap,
+        json['rankPreference'],
+      ),
       strictTypeFiltering: json['strictTypeFiltering'] as bool?,
     );
 
 Map<String, dynamic> _$TextSearchFilterToJson(TextSearchFilter instance) =>
     <String, dynamic>{
-      if (instance.languageCode case final value?) 'languageCode': value,
-      if (instance.regionCode case final value?) 'regionCode': value,
+      'languageCode': ?instance.languageCode,
+      'regionCode': ?instance.regionCode,
       'textQuery': instance.textQuery,
-      if (_$PlaceTypeEnumMap[instance.includedType] case final value?)
-        'includedType': value,
-      if (instance.includePureServiceAreaBusinesses case final value?)
-        'includePureServiceAreaBusinesses': value,
-      if (instance.locationBias case final value?) 'locationBias': value,
-      if (instance.locationRestriction case final value?)
-        'locationRestriction': value,
-      if (instance.evOptions case final value?) 'evOptions': value,
-      if (instance.minRating case final value?) 'minRating': value,
-      if (instance.openNow case final value?) 'openNow': value,
-      if (instance.pageSize case final value?) 'pageSize': value,
-      if (instance.pageToken case final value?) 'pageToken': value,
-      if (instance.priceLevels?.map((e) => _$PriceLevelEnumMap[e]!).toList()
-          case final value?)
-        'priceLevels': value,
-      if (_$RankPreferenceTypeEnumMap[instance.rankPreference]
-          case final value?)
-        'rankPreference': value,
-      if (instance.strictTypeFiltering case final value?)
-        'strictTypeFiltering': value,
+      'includedType': ?_$PlaceTypeEnumMap[instance.includedType],
+      'includePureServiceAreaBusinesses':
+          ?instance.includePureServiceAreaBusinesses,
+      'locationBias': ?instance.locationBias,
+      'locationRestriction': ?instance.locationRestriction,
+      'evOptions': ?instance.evOptions,
+      'minRating': ?instance.minRating,
+      'openNow': ?instance.openNow,
+      'pageSize': ?instance.pageSize,
+      'pageToken': ?instance.pageToken,
+      'priceLevels': ?instance.priceLevels
+          ?.map((e) => _$PriceLevelEnumMap[e]!)
+          .toList(),
+      'rankPreference': ?_$RankPreferenceTypeEnumMap[instance.rankPreference],
+      'strictTypeFiltering': ?instance.strictTypeFiltering,
     };
 
 const _$PlaceTypeEnumMap = {

@@ -53,16 +53,15 @@ class RestAPI {
     List<Interceptor>? interceptors,
   }) {
     if ((baseUrl?.isNotEmpty ?? true)) this.baseUrl = baseUrl!;
-    if (connectTimeout != null) this.connectTimeout = connectTimeout;
-    if (receiveTimeout != null) this.receiveTimeout = receiveTimeout;
-    if (sendTimeout != null) this.sendTimeout = sendTimeout;
-    if (httpClientAdapter != null) this.httpClientAdapter = httpClientAdapter;
-    if (headers != null) this.headers = headers;
-    if (apiKey != null) this.apiKey = apiKey;
-    if (tokenCallback != null) this.tokenCallback = tokenCallback;
-    if (cancelTokenCallback != null)
-      this.cancelTokenCallback = cancelTokenCallback;
-    if (interceptors != null) this.interceptors = interceptors;
+    this.connectTimeout = connectTimeout;
+    this.receiveTimeout = receiveTimeout;
+    this.sendTimeout = sendTimeout;
+    this.httpClientAdapter = httpClientAdapter;
+    this.headers = headers;
+    this.apiKey = apiKey;
+    this.tokenCallback = tokenCallback;
+    this.cancelTokenCallback = cancelTokenCallback;
+    this.interceptors = interceptors;
     _initDio();
   }
 
@@ -83,24 +82,23 @@ class RestAPI {
     )).clone(httpClientAdapter: httpClientAdapter);
     // Base interceptor: add configured headers, API key and Authorization bearer
     dio.interceptors
-        .add(InterceptorsWrapper(onRequest: (options, handler) async {
-      final tempHeaders = headers ?? <String, dynamic>{};
-      if (apiKey != null) {
-        tempHeaders[googleApiKeyKey] = apiKey;
-      }
-      if (tokenCallback != null) {
-        String? token = await tokenCallback!();
-        if (token != null) {
-          tempHeaders[authorizationHeaderKey] = 'Bearer $token';
+        .addAll([
+      InterceptorsWrapper(onRequest: (options, handler) async {
+        final tempHeaders = headers ?? <String, dynamic>{};
+        if (apiKey != null) {
+          tempHeaders[googleApiKeyKey] = apiKey;
         }
-      }
-      options.headers.addAll(tempHeaders);
-      return handler.next(options);
-    }));
-
-    // Adding custom interceptors (e.g., debug logging, retries, etc.)
-    final interceptors = this.interceptors ?? <Interceptor>[];
-    dio.interceptors.addAll(interceptors);
+        if (tokenCallback != null) {
+          String? token = await tokenCallback!();
+          if (token != null) {
+            tempHeaders[authorizationHeaderKey] = 'Bearer $token';
+          }
+        }
+        options.headers.addAll(tempHeaders);
+        return handler.next(options);
+      }),
+      ...?interceptors
+    ]);
   }
 
   void dispose() {

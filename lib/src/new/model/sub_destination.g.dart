@@ -7,32 +7,41 @@ part of 'sub_destination.dart';
 // **************************************************************************
 
 abstract class _$SubDestinationCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  SubDestination name(String? name);
+
+  SubDestination id(String? id);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `SubDestination(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// SubDestination(...).copyWith(id: 12, name: "My name")
-  /// ````
-  SubDestination call({
-    String? name,
-    String? id,
-  });
+  /// ```
+  SubDestination call({String? name, String? id});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfSubDestination.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfSubDestination.copyWith(...)` or call `instanceOfSubDestination.copyWith.fieldName(value)` for a single field.
 class _$SubDestinationCWProxyImpl implements _$SubDestinationCWProxy {
   const _$SubDestinationCWProxyImpl(this._value);
 
   final SubDestination _value;
 
   @override
+  SubDestination name(String? name) => call(name: name);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  SubDestination id(String? id) => call(id: id);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `SubDestination(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// SubDestination(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   SubDestination call({
     Object? name = const $CopyWithPlaceholder(),
     Object? id = const $CopyWithPlaceholder(),
@@ -51,7 +60,8 @@ class _$SubDestinationCWProxyImpl implements _$SubDestinationCWProxy {
 }
 
 extension $SubDestinationCopyWith on SubDestination {
-  /// Returns a callable class that can be used as follows: `instanceOfSubDestination.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfSubDestination.copyWith(...)` or `instanceOfSubDestination.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$SubDestinationCWProxy get copyWith => _$SubDestinationCWProxyImpl(this);
 }
@@ -61,13 +71,7 @@ extension $SubDestinationCopyWith on SubDestination {
 // **************************************************************************
 
 SubDestination _$SubDestinationFromJson(Map<String, dynamic> json) =>
-    SubDestination(
-      name: json['name'] as String?,
-      id: json['id'] as String?,
-    );
+    SubDestination(name: json['name'] as String?, id: json['id'] as String?);
 
 Map<String, dynamic> _$SubDestinationToJson(SubDestination instance) =>
-    <String, dynamic>{
-      if (instance.name case final value?) 'name': value,
-      if (instance.id case final value?) 'id': value,
-    };
+    <String, dynamic>{'name': ?instance.name, 'id': ?instance.id};

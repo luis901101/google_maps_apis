@@ -7,35 +7,56 @@ part of 'point.dart';
 // **************************************************************************
 
 abstract class _$PointCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  Point date(Date? date);
+
+  Point truncated(bool? truncated);
+
+  Point day(int? day);
+
+  Point hour(int? hour);
+
+  Point minute(int? minute);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Point(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// Point(...).copyWith(id: 12, name: "My name")
-  /// ````
-  Point call({
-    Date? date,
-    bool? truncated,
-    int? day,
-    int? hour,
-    int? minute,
-  });
+  /// ```
+  Point call({Date? date, bool? truncated, int? day, int? hour, int? minute});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPoint.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfPoint.copyWith(...)` or call `instanceOfPoint.copyWith.fieldName(value)` for a single field.
 class _$PointCWProxyImpl implements _$PointCWProxy {
   const _$PointCWProxyImpl(this._value);
 
   final Point _value;
 
   @override
+  Point date(Date? date) => call(date: date);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  Point truncated(bool? truncated) => call(truncated: truncated);
+
+  @override
+  Point day(int? day) => call(day: day);
+
+  @override
+  Point hour(int? hour) => call(hour: hour);
+
+  @override
+  Point minute(int? minute) => call(minute: minute);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Point(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// Point(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   Point call({
     Object? date = const $CopyWithPlaceholder(),
     Object? truncated = const $CopyWithPlaceholder(),
@@ -69,7 +90,8 @@ class _$PointCWProxyImpl implements _$PointCWProxy {
 }
 
 extension $PointCopyWith on Point {
-  /// Returns a callable class that can be used as follows: `instanceOfPoint.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfPoint.copyWith(...)` or `instanceOfPoint.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$PointCWProxy get copyWith => _$PointCWProxyImpl(this);
 }
@@ -79,19 +101,19 @@ extension $PointCopyWith on Point {
 // **************************************************************************
 
 Point _$PointFromJson(Map<String, dynamic> json) => Point(
-      date: json['date'] == null
-          ? null
-          : Date.fromJson(json['date'] as Map<String, dynamic>),
-      truncated: json['truncated'] as bool?,
-      day: (json['day'] as num?)?.toInt(),
-      hour: (json['hour'] as num?)?.toInt(),
-      minute: (json['minute'] as num?)?.toInt(),
-    );
+  date: json['date'] == null
+      ? null
+      : Date.fromJson(json['date'] as Map<String, dynamic>),
+  truncated: json['truncated'] as bool?,
+  day: (json['day'] as num?)?.toInt(),
+  hour: (json['hour'] as num?)?.toInt(),
+  minute: (json['minute'] as num?)?.toInt(),
+);
 
 Map<String, dynamic> _$PointToJson(Point instance) => <String, dynamic>{
-      if (instance.date case final value?) 'date': value,
-      if (instance.truncated case final value?) 'truncated': value,
-      if (instance.day case final value?) 'day': value,
-      if (instance.hour case final value?) 'hour': value,
-      if (instance.minute case final value?) 'minute': value,
-    };
+  'date': ?instance.date,
+  'truncated': ?instance.truncated,
+  'day': ?instance.day,
+  'hour': ?instance.hour,
+  'minute': ?instance.minute,
+};

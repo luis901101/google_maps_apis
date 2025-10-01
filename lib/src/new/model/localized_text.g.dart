@@ -7,32 +7,42 @@ part of 'localized_text.dart';
 // **************************************************************************
 
 abstract class _$LocalizedTextCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  LocalizedText text(String? text);
+
+  LocalizedText languageCode(String? languageCode);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LocalizedText(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// LocalizedText(...).copyWith(id: 12, name: "My name")
-  /// ````
-  LocalizedText call({
-    String? text,
-    String? languageCode,
-  });
+  /// ```
+  LocalizedText call({String? text, String? languageCode});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfLocalizedText.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfLocalizedText.copyWith(...)` or call `instanceOfLocalizedText.copyWith.fieldName(value)` for a single field.
 class _$LocalizedTextCWProxyImpl implements _$LocalizedTextCWProxy {
   const _$LocalizedTextCWProxyImpl(this._value);
 
   final LocalizedText _value;
 
   @override
+  LocalizedText text(String? text) => call(text: text);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  LocalizedText languageCode(String? languageCode) =>
+      call(languageCode: languageCode);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LocalizedText(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// LocalizedText(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   LocalizedText call({
     Object? text = const $CopyWithPlaceholder(),
     Object? languageCode = const $CopyWithPlaceholder(),
@@ -51,7 +61,8 @@ class _$LocalizedTextCWProxyImpl implements _$LocalizedTextCWProxy {
 }
 
 extension $LocalizedTextCopyWith on LocalizedText {
-  /// Returns a callable class that can be used as follows: `instanceOfLocalizedText.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfLocalizedText.copyWith(...)` or `instanceOfLocalizedText.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$LocalizedTextCWProxy get copyWith => _$LocalizedTextCWProxyImpl(this);
 }
@@ -68,6 +79,6 @@ LocalizedText _$LocalizedTextFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$LocalizedTextToJson(LocalizedText instance) =>
     <String, dynamic>{
-      if (instance.text case final value?) 'text': value,
-      if (instance.languageCode case final value?) 'languageCode': value,
+      'text': ?instance.text,
+      'languageCode': ?instance.languageCode,
     };

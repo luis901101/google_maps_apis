@@ -7,12 +7,47 @@ part of 'autocomplete_search_filter.dart';
 // **************************************************************************
 
 abstract class _$AutocompleteSearchFilterCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  AutocompleteSearchFilter sessionToken(String? sessionToken);
+
+  AutocompleteSearchFilter languageCode(String? languageCode);
+
+  AutocompleteSearchFilter regionCode(String? regionCode);
+
+  AutocompleteSearchFilter input(String? input);
+
+  AutocompleteSearchFilter locationBias(LocationBias? locationBias);
+
+  AutocompleteSearchFilter locationRestriction(
+    LocationRestriction? locationRestriction,
+  );
+
+  AutocompleteSearchFilter includedPrimaryTypes(
+    List<PlaceType>? includedPrimaryTypes,
+  );
+
+  AutocompleteSearchFilter includedRegionCodes(
+    List<String>? includedRegionCodes,
+  );
+
+  AutocompleteSearchFilter origin(LatLng? origin);
+
+  AutocompleteSearchFilter inputOffset(int? inputOffset);
+
+  AutocompleteSearchFilter includeQueryPredictions(
+    bool? includeQueryPredictions,
+  );
+
+  AutocompleteSearchFilter includePureServiceAreaBusinesses(
+    bool? includePureServiceAreaBusinesses,
+  );
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AutocompleteSearchFilter(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// AutocompleteSearchFilter(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   AutocompleteSearchFilter call({
     String? sessionToken,
     String? languageCode,
@@ -29,7 +64,8 @@ abstract class _$AutocompleteSearchFilterCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAutocompleteSearchFilter.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfAutocompleteSearchFilter.copyWith(...)` or call `instanceOfAutocompleteSearchFilter.copyWith.fieldName(value)` for a single field.
 class _$AutocompleteSearchFilterCWProxyImpl
     implements _$AutocompleteSearchFilterCWProxy {
   const _$AutocompleteSearchFilterCWProxyImpl(this._value);
@@ -37,13 +73,64 @@ class _$AutocompleteSearchFilterCWProxyImpl
   final AutocompleteSearchFilter _value;
 
   @override
+  AutocompleteSearchFilter sessionToken(String? sessionToken) =>
+      call(sessionToken: sessionToken);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  AutocompleteSearchFilter languageCode(String? languageCode) =>
+      call(languageCode: languageCode);
+
+  @override
+  AutocompleteSearchFilter regionCode(String? regionCode) =>
+      call(regionCode: regionCode);
+
+  @override
+  AutocompleteSearchFilter input(String? input) => call(input: input);
+
+  @override
+  AutocompleteSearchFilter locationBias(LocationBias? locationBias) =>
+      call(locationBias: locationBias);
+
+  @override
+  AutocompleteSearchFilter locationRestriction(
+    LocationRestriction? locationRestriction,
+  ) => call(locationRestriction: locationRestriction);
+
+  @override
+  AutocompleteSearchFilter includedPrimaryTypes(
+    List<PlaceType>? includedPrimaryTypes,
+  ) => call(includedPrimaryTypes: includedPrimaryTypes);
+
+  @override
+  AutocompleteSearchFilter includedRegionCodes(
+    List<String>? includedRegionCodes,
+  ) => call(includedRegionCodes: includedRegionCodes);
+
+  @override
+  AutocompleteSearchFilter origin(LatLng? origin) => call(origin: origin);
+
+  @override
+  AutocompleteSearchFilter inputOffset(int? inputOffset) =>
+      call(inputOffset: inputOffset);
+
+  @override
+  AutocompleteSearchFilter includeQueryPredictions(
+    bool? includeQueryPredictions,
+  ) => call(includeQueryPredictions: includeQueryPredictions);
+
+  @override
+  AutocompleteSearchFilter includePureServiceAreaBusinesses(
+    bool? includePureServiceAreaBusinesses,
+  ) => call(includePureServiceAreaBusinesses: includePureServiceAreaBusinesses);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AutocompleteSearchFilter(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// AutocompleteSearchFilter(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   AutocompleteSearchFilter call({
     Object? sessionToken = const $CopyWithPlaceholder(),
     Object? languageCode = const $CopyWithPlaceholder(),
@@ -101,20 +188,21 @@ class _$AutocompleteSearchFilterCWProxyImpl
           : inputOffset as int?,
       includeQueryPredictions:
           includeQueryPredictions == const $CopyWithPlaceholder()
-              ? _value.includeQueryPredictions
-              // ignore: cast_nullable_to_non_nullable
-              : includeQueryPredictions as bool?,
+          ? _value.includeQueryPredictions
+          // ignore: cast_nullable_to_non_nullable
+          : includeQueryPredictions as bool?,
       includePureServiceAreaBusinesses:
           includePureServiceAreaBusinesses == const $CopyWithPlaceholder()
-              ? _value.includePureServiceAreaBusinesses
-              // ignore: cast_nullable_to_non_nullable
-              : includePureServiceAreaBusinesses as bool?,
+          ? _value.includePureServiceAreaBusinesses
+          // ignore: cast_nullable_to_non_nullable
+          : includePureServiceAreaBusinesses as bool?,
     );
   }
 }
 
 extension $AutocompleteSearchFilterCopyWith on AutocompleteSearchFilter {
-  /// Returns a callable class that can be used as follows: `instanceOfAutocompleteSearchFilter.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfAutocompleteSearchFilter.copyWith(...)` or `instanceOfAutocompleteSearchFilter.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$AutocompleteSearchFilterCWProxy get copyWith =>
       _$AutocompleteSearchFilterCWProxyImpl(this);
@@ -125,57 +213,54 @@ extension $AutocompleteSearchFilterCopyWith on AutocompleteSearchFilter {
 // **************************************************************************
 
 AutocompleteSearchFilter _$AutocompleteSearchFilterFromJson(
-        Map<String, dynamic> json) =>
-    AutocompleteSearchFilter(
-      sessionToken: json['sessionToken'] as String?,
-      languageCode: json['languageCode'] as String?,
-      regionCode: json['regionCode'] as String?,
-      input: json['input'] as String?,
-      locationBias: json['locationBias'] == null
-          ? null
-          : LocationBias.fromJson(json['locationBias'] as Map<String, dynamic>),
-      locationRestriction: json['locationRestriction'] == null
-          ? null
-          : LocationRestriction.fromJson(
-              json['locationRestriction'] as Map<String, dynamic>),
-      includedPrimaryTypes:
-          PlaceType.fromJsonList(json['includedPrimaryTypes'] as List?),
-      includedRegionCodes: (json['includedRegionCodes'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      origin: json['origin'] == null
-          ? null
-          : LatLng.fromJson(json['origin'] as Map<String, dynamic>),
-      inputOffset: (json['inputOffset'] as num?)?.toInt(),
-      includeQueryPredictions: json['includeQueryPredictions'] as bool?,
-      includePureServiceAreaBusinesses:
-          json['includePureServiceAreaBusinesses'] as bool?,
-    );
+  Map<String, dynamic> json,
+) => AutocompleteSearchFilter(
+  sessionToken: json['sessionToken'] as String?,
+  languageCode: json['languageCode'] as String?,
+  regionCode: json['regionCode'] as String?,
+  input: json['input'] as String?,
+  locationBias: json['locationBias'] == null
+      ? null
+      : LocationBias.fromJson(json['locationBias'] as Map<String, dynamic>),
+  locationRestriction: json['locationRestriction'] == null
+      ? null
+      : LocationRestriction.fromJson(
+          json['locationRestriction'] as Map<String, dynamic>,
+        ),
+  includedPrimaryTypes: PlaceType.fromJsonList(
+    json['includedPrimaryTypes'] as List?,
+  ),
+  includedRegionCodes: (json['includedRegionCodes'] as List<dynamic>?)
+      ?.map((e) => e as String)
+      .toList(),
+  origin: json['origin'] == null
+      ? null
+      : LatLng.fromJson(json['origin'] as Map<String, dynamic>),
+  inputOffset: (json['inputOffset'] as num?)?.toInt(),
+  includeQueryPredictions: json['includeQueryPredictions'] as bool?,
+  includePureServiceAreaBusinesses:
+      json['includePureServiceAreaBusinesses'] as bool?,
+);
 
 Map<String, dynamic> _$AutocompleteSearchFilterToJson(
-        AutocompleteSearchFilter instance) =>
-    <String, dynamic>{
-      if (instance.languageCode case final value?) 'languageCode': value,
-      if (instance.regionCode case final value?) 'regionCode': value,
-      if (instance.sessionToken case final value?) 'sessionToken': value,
-      if (instance.input case final value?) 'input': value,
-      if (instance.locationBias case final value?) 'locationBias': value,
-      if (instance.locationRestriction case final value?)
-        'locationRestriction': value,
-      if (instance.includedPrimaryTypes
-              ?.map((e) => _$PlaceTypeEnumMap[e]!)
-              .toList()
-          case final value?)
-        'includedPrimaryTypes': value,
-      if (instance.includedRegionCodes case final value?)
-        'includedRegionCodes': value,
-      if (instance.origin case final value?) 'origin': value,
-      if (instance.inputOffset case final value?) 'inputOffset': value,
-      if (instance.includeQueryPredictions case final value?)
-        'includeQueryPredictions': value,
-      if (instance.includePureServiceAreaBusinesses case final value?)
-        'includePureServiceAreaBusinesses': value,
-    };
+  AutocompleteSearchFilter instance,
+) => <String, dynamic>{
+  'languageCode': ?instance.languageCode,
+  'regionCode': ?instance.regionCode,
+  'sessionToken': ?instance.sessionToken,
+  'input': ?instance.input,
+  'locationBias': ?instance.locationBias,
+  'locationRestriction': ?instance.locationRestriction,
+  'includedPrimaryTypes': ?instance.includedPrimaryTypes
+      ?.map((e) => _$PlaceTypeEnumMap[e]!)
+      .toList(),
+  'includedRegionCodes': ?instance.includedRegionCodes,
+  'origin': ?instance.origin,
+  'inputOffset': ?instance.inputOffset,
+  'includeQueryPredictions': ?instance.includeQueryPredictions,
+  'includePureServiceAreaBusinesses':
+      ?instance.includePureServiceAreaBusinesses,
+};
 
 const _$PlaceTypeEnumMap = {
   PlaceType.carDealer: 'car_dealer',

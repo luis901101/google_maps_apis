@@ -24,11 +24,10 @@ DistanceResponse _$DistanceResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$DistanceResponseToJson(DistanceResponse instance) =>
     <String, dynamic>{
       'status': _$ResponseStatusEnumMap[instance.status]!,
-      if (instance.errorMessage case final value?) 'error_message': value,
-      if (instance.originAddresses case final value?) 'origin_addresses': value,
-      if (instance.destinationAddresses case final value?)
-        'destination_addresses': value,
-      if (instance.rows case final value?) 'rows': value,
+      'error_message': ?instance.errorMessage,
+      'origin_addresses': ?instance.originAddresses,
+      'destination_addresses': ?instance.destinationAddresses,
+      'rows': ?instance.rows,
     };
 
 const _$ResponseStatusEnumMap = {
@@ -44,33 +43,31 @@ const _$ResponseStatusEnumMap = {
 };
 
 Row _$RowFromJson(Map<String, dynamic> json) => Row(
-      elements: (json['elements'] as List<dynamic>?)
-          ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+  elements: (json['elements'] as List<dynamic>?)
+      ?.map((e) => Element.fromJson(e as Map<String, dynamic>))
+      .toList(),
+);
 
 Map<String, dynamic> _$RowToJson(Row instance) => <String, dynamic>{
-      if (instance.elements case final value?) 'elements': value,
-    };
+  'elements': ?instance.elements,
+};
 
 Element _$ElementFromJson(Map<String, dynamic> json) => Element(
-      distance: Value.fromJson(json['distance'] as Map<String, dynamic>),
-      duration: Value.fromJson(json['duration'] as Map<String, dynamic>),
-      elementStatus: json['element_status'] as String?,
-    );
+  distance: Value.fromJson(json['distance'] as Map<String, dynamic>),
+  duration: Value.fromJson(json['duration'] as Map<String, dynamic>),
+  elementStatus: json['element_status'] as String?,
+);
 
 Map<String, dynamic> _$ElementToJson(Element instance) => <String, dynamic>{
-      'distance': instance.distance,
-      'duration': instance.duration,
-      if (instance.elementStatus case final value?) 'element_status': value,
-    };
+  'distance': instance.distance,
+  'duration': instance.duration,
+  'element_status': ?instance.elementStatus,
+};
 
-Value _$ValueFromJson(Map<String, dynamic> json) => Value(
-      value: json['value'] as num,
-      text: json['text'] as String,
-    );
+Value _$ValueFromJson(Map<String, dynamic> json) =>
+    Value(value: json['value'] as num, text: json['text'] as String);
 
 Map<String, dynamic> _$ValueToJson(Value instance) => <String, dynamic>{
-      'value': instance.value,
-      'text': instance.text,
-    };
+  'value': instance.value,
+  'text': instance.text,
+};

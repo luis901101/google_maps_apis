@@ -7,32 +7,45 @@ part of 'query_prediction.dart';
 // **************************************************************************
 
 abstract class _$QueryPredictionCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  QueryPrediction text(FormattableText? text);
+
+  QueryPrediction structuredFormat(StructuredFormat? structuredFormat);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `QueryPrediction(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// QueryPrediction(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   QueryPrediction call({
     FormattableText? text,
     StructuredFormat? structuredFormat,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfQueryPrediction.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfQueryPrediction.copyWith(...)` or call `instanceOfQueryPrediction.copyWith.fieldName(value)` for a single field.
 class _$QueryPredictionCWProxyImpl implements _$QueryPredictionCWProxy {
   const _$QueryPredictionCWProxyImpl(this._value);
 
   final QueryPrediction _value;
 
   @override
+  QueryPrediction text(FormattableText? text) => call(text: text);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  QueryPrediction structuredFormat(StructuredFormat? structuredFormat) =>
+      call(structuredFormat: structuredFormat);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `QueryPrediction(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// QueryPrediction(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   QueryPrediction call({
     Object? text = const $CopyWithPlaceholder(),
     Object? structuredFormat = const $CopyWithPlaceholder(),
@@ -51,7 +64,8 @@ class _$QueryPredictionCWProxyImpl implements _$QueryPredictionCWProxy {
 }
 
 extension $QueryPredictionCopyWith on QueryPrediction {
-  /// Returns a callable class that can be used as follows: `instanceOfQueryPrediction.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfQueryPrediction.copyWith(...)` or `instanceOfQueryPrediction.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$QueryPredictionCWProxy get copyWith => _$QueryPredictionCWProxyImpl(this);
 }
@@ -68,12 +82,12 @@ QueryPrediction _$QueryPredictionFromJson(Map<String, dynamic> json) =>
       structuredFormat: json['structuredFormat'] == null
           ? null
           : StructuredFormat.fromJson(
-              json['structuredFormat'] as Map<String, dynamic>),
+              json['structuredFormat'] as Map<String, dynamic>,
+            ),
     );
 
 Map<String, dynamic> _$QueryPredictionToJson(QueryPrediction instance) =>
     <String, dynamic>{
-      if (instance.text case final value?) 'text': value,
-      if (instance.structuredFormat case final value?)
-        'structuredFormat': value,
+      'text': ?instance.text,
+      'structuredFormat': ?instance.structuredFormat,
     };

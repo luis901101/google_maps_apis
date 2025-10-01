@@ -7,12 +7,25 @@ part of 'places_response.dart';
 // **************************************************************************
 
 abstract class _$PlacesResponseCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  PlacesResponse places(List<Place>? places);
+
+  PlacesResponse routingSummaries(List<RoutingSummary>? routingSummaries);
+
+  PlacesResponse contextualContents(
+    List<ContextualContent>? contextualContents,
+  );
+
+  PlacesResponse nextPageToken(String? nextPageToken);
+
+  PlacesResponse searchUri(String? searchUri);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PlacesResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PlacesResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PlacesResponse call({
     List<Place>? places,
     List<RoutingSummary>? routingSummaries,
@@ -22,20 +35,40 @@ abstract class _$PlacesResponseCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPlacesResponse.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfPlacesResponse.copyWith(...)` or call `instanceOfPlacesResponse.copyWith.fieldName(value)` for a single field.
 class _$PlacesResponseCWProxyImpl implements _$PlacesResponseCWProxy {
   const _$PlacesResponseCWProxyImpl(this._value);
 
   final PlacesResponse _value;
 
   @override
+  PlacesResponse places(List<Place>? places) => call(places: places);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  PlacesResponse routingSummaries(List<RoutingSummary>? routingSummaries) =>
+      call(routingSummaries: routingSummaries);
+
+  @override
+  PlacesResponse contextualContents(
+    List<ContextualContent>? contextualContents,
+  ) => call(contextualContents: contextualContents);
+
+  @override
+  PlacesResponse nextPageToken(String? nextPageToken) =>
+      call(nextPageToken: nextPageToken);
+
+  @override
+  PlacesResponse searchUri(String? searchUri) => call(searchUri: searchUri);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PlacesResponse(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PlacesResponse(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PlacesResponse call({
     Object? places = const $CopyWithPlaceholder(),
     Object? routingSummaries = const $CopyWithPlaceholder(),
@@ -69,7 +102,8 @@ class _$PlacesResponseCWProxyImpl implements _$PlacesResponseCWProxy {
 }
 
 extension $PlacesResponseCopyWith on PlacesResponse {
-  /// Returns a callable class that can be used as follows: `instanceOfPlacesResponse.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfPlacesResponse.copyWith(...)` or `instanceOfPlacesResponse.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$PlacesResponseCWProxy get copyWith => _$PlacesResponseCWProxyImpl(this);
 }
@@ -96,10 +130,8 @@ PlacesResponse _$PlacesResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$PlacesResponseToJson(PlacesResponse instance) =>
     <String, dynamic>{
       'places': instance.places,
-      if (instance.routingSummaries case final value?)
-        'routingSummaries': value,
-      if (instance.contextualContents case final value?)
-        'contextualContents': value,
-      if (instance.nextPageToken case final value?) 'nextPageToken': value,
-      if (instance.searchUri case final value?) 'searchUri': value,
+      'routingSummaries': ?instance.routingSummaries,
+      'contextualContents': ?instance.contextualContents,
+      'nextPageToken': ?instance.nextPageToken,
+      'searchUri': ?instance.searchUri,
     };

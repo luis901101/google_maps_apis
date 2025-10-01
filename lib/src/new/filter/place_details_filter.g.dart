@@ -7,12 +7,19 @@ part of 'place_details_filter.dart';
 // **************************************************************************
 
 abstract class _$PlaceDetailsFilterCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  PlaceDetailsFilter languageCode(String? languageCode);
+
+  PlaceDetailsFilter regionCode(String? regionCode);
+
+  PlaceDetailsFilter sessionToken(String? sessionToken);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PlaceDetailsFilter(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PlaceDetailsFilter(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PlaceDetailsFilter call({
     String? languageCode,
     String? regionCode,
@@ -20,20 +27,33 @@ abstract class _$PlaceDetailsFilterCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPlaceDetailsFilter.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfPlaceDetailsFilter.copyWith(...)` or call `instanceOfPlaceDetailsFilter.copyWith.fieldName(value)` for a single field.
 class _$PlaceDetailsFilterCWProxyImpl implements _$PlaceDetailsFilterCWProxy {
   const _$PlaceDetailsFilterCWProxyImpl(this._value);
 
   final PlaceDetailsFilter _value;
 
   @override
+  PlaceDetailsFilter languageCode(String? languageCode) =>
+      call(languageCode: languageCode);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  PlaceDetailsFilter regionCode(String? regionCode) =>
+      call(regionCode: regionCode);
+
+  @override
+  PlaceDetailsFilter sessionToken(String? sessionToken) =>
+      call(sessionToken: sessionToken);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PlaceDetailsFilter(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PlaceDetailsFilter(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PlaceDetailsFilter call({
     Object? languageCode = const $CopyWithPlaceholder(),
     Object? regionCode = const $CopyWithPlaceholder(),
@@ -57,7 +77,8 @@ class _$PlaceDetailsFilterCWProxyImpl implements _$PlaceDetailsFilterCWProxy {
 }
 
 extension $PlaceDetailsFilterCopyWith on PlaceDetailsFilter {
-  /// Returns a callable class that can be used as follows: `instanceOfPlaceDetailsFilter.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfPlaceDetailsFilter.copyWith(...)` or `instanceOfPlaceDetailsFilter.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$PlaceDetailsFilterCWProxy get copyWith =>
       _$PlaceDetailsFilterCWProxyImpl(this);
@@ -76,7 +97,7 @@ PlaceDetailsFilter _$PlaceDetailsFilterFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$PlaceDetailsFilterToJson(PlaceDetailsFilter instance) =>
     <String, dynamic>{
-      if (instance.languageCode case final value?) 'languageCode': value,
-      if (instance.regionCode case final value?) 'regionCode': value,
-      if (instance.sessionToken case final value?) 'sessionToken': value,
+      'languageCode': ?instance.languageCode,
+      'regionCode': ?instance.regionCode,
+      'sessionToken': ?instance.sessionToken,
     };

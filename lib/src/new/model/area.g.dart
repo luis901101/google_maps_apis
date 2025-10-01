@@ -7,12 +7,21 @@ part of 'area.dart';
 // **************************************************************************
 
 abstract class _$AreaCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  Area name(String? name);
+
+  Area placeId(String? placeId);
+
+  Area displayName(LocalizedText? displayName);
+
+  Area containment(Containment? containment);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Area(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// Area(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   Area call({
     String? name,
     String? placeId,
@@ -21,20 +30,34 @@ abstract class _$AreaCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfArea.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfArea.copyWith(...)` or call `instanceOfArea.copyWith.fieldName(value)` for a single field.
 class _$AreaCWProxyImpl implements _$AreaCWProxy {
   const _$AreaCWProxyImpl(this._value);
 
   final Area _value;
 
   @override
+  Area name(String? name) => call(name: name);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  Area placeId(String? placeId) => call(placeId: placeId);
+
+  @override
+  Area displayName(LocalizedText? displayName) =>
+      call(displayName: displayName);
+
+  @override
+  Area containment(Containment? containment) => call(containment: containment);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Area(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// Area(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   Area call({
     Object? name = const $CopyWithPlaceholder(),
     Object? placeId = const $CopyWithPlaceholder(),
@@ -63,7 +86,8 @@ class _$AreaCWProxyImpl implements _$AreaCWProxy {
 }
 
 extension $AreaCopyWith on Area {
-  /// Returns a callable class that can be used as follows: `instanceOfArea.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfArea.copyWith(...)` or `instanceOfArea.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$AreaCWProxy get copyWith => _$AreaCWProxyImpl(this);
 }
@@ -73,22 +97,20 @@ extension $AreaCopyWith on Area {
 // **************************************************************************
 
 Area _$AreaFromJson(Map<String, dynamic> json) => Area(
-      name: json['name'] as String?,
-      placeId: json['placeId'] as String?,
-      displayName: json['displayName'] == null
-          ? null
-          : LocalizedText.fromJson(json['displayName'] as Map<String, dynamic>),
-      containment:
-          $enumDecodeNullable(_$ContainmentEnumMap, json['containment']),
-    );
+  name: json['name'] as String?,
+  placeId: json['placeId'] as String?,
+  displayName: json['displayName'] == null
+      ? null
+      : LocalizedText.fromJson(json['displayName'] as Map<String, dynamic>),
+  containment: $enumDecodeNullable(_$ContainmentEnumMap, json['containment']),
+);
 
 Map<String, dynamic> _$AreaToJson(Area instance) => <String, dynamic>{
-      if (instance.name case final value?) 'name': value,
-      if (instance.placeId case final value?) 'placeId': value,
-      if (instance.displayName case final value?) 'displayName': value,
-      if (_$ContainmentEnumMap[instance.containment] case final value?)
-        'containment': value,
-    };
+  'name': ?instance.name,
+  'placeId': ?instance.placeId,
+  'displayName': ?instance.displayName,
+  'containment': ?_$ContainmentEnumMap[instance.containment],
+};
 
 const _$ContainmentEnumMap = {
   Containment.containmentUnspecified: 'CONTAINMENT_UNSPECIFIED',

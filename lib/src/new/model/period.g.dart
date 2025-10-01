@@ -7,32 +7,41 @@ part of 'period.dart';
 // **************************************************************************
 
 abstract class _$PeriodCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  Period open(Point? open);
+
+  Period close(Point? close);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Period(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// Period(...).copyWith(id: 12, name: "My name")
-  /// ````
-  Period call({
-    Point? open,
-    Point? close,
-  });
+  /// ```
+  Period call({Point? open, Point? close});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPeriod.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfPeriod.copyWith(...)` or call `instanceOfPeriod.copyWith.fieldName(value)` for a single field.
 class _$PeriodCWProxyImpl implements _$PeriodCWProxy {
   const _$PeriodCWProxyImpl(this._value);
 
   final Period _value;
 
   @override
+  Period open(Point? open) => call(open: open);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  Period close(Point? close) => call(close: close);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Period(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// Period(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   Period call({
     Object? open = const $CopyWithPlaceholder(),
     Object? close = const $CopyWithPlaceholder(),
@@ -51,7 +60,8 @@ class _$PeriodCWProxyImpl implements _$PeriodCWProxy {
 }
 
 extension $PeriodCopyWith on Period {
-  /// Returns a callable class that can be used as follows: `instanceOfPeriod.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfPeriod.copyWith(...)` or `instanceOfPeriod.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$PeriodCWProxy get copyWith => _$PeriodCWProxyImpl(this);
 }
@@ -61,15 +71,15 @@ extension $PeriodCopyWith on Period {
 // **************************************************************************
 
 Period _$PeriodFromJson(Map<String, dynamic> json) => Period(
-      open: json['open'] == null
-          ? null
-          : Point.fromJson(json['open'] as Map<String, dynamic>),
-      close: json['close'] == null
-          ? null
-          : Point.fromJson(json['close'] as Map<String, dynamic>),
-    );
+  open: json['open'] == null
+      ? null
+      : Point.fromJson(json['open'] as Map<String, dynamic>),
+  close: json['close'] == null
+      ? null
+      : Point.fromJson(json['close'] as Map<String, dynamic>),
+);
 
 Map<String, dynamic> _$PeriodToJson(Period instance) => <String, dynamic>{
-      if (instance.open case final value?) 'open': value,
-      if (instance.close case final value?) 'close': value,
-    };
+  'open': ?instance.open,
+  'close': ?instance.close,
+};

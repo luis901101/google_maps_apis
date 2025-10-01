@@ -7,12 +7,21 @@ part of 'address_component.dart';
 // **************************************************************************
 
 abstract class _$AddressComponentCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  AddressComponent longText(String? longText);
+
+  AddressComponent shortText(String? shortText);
+
+  AddressComponent types(List<PlaceType>? types);
+
+  AddressComponent languageCode(String? languageCode);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AddressComponent(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// AddressComponent(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   AddressComponent call({
     String? longText,
     String? shortText,
@@ -21,20 +30,34 @@ abstract class _$AddressComponentCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAddressComponent.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfAddressComponent.copyWith(...)` or call `instanceOfAddressComponent.copyWith.fieldName(value)` for a single field.
 class _$AddressComponentCWProxyImpl implements _$AddressComponentCWProxy {
   const _$AddressComponentCWProxyImpl(this._value);
 
   final AddressComponent _value;
 
   @override
+  AddressComponent longText(String? longText) => call(longText: longText);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  AddressComponent shortText(String? shortText) => call(shortText: shortText);
+
+  @override
+  AddressComponent types(List<PlaceType>? types) => call(types: types);
+
+  @override
+  AddressComponent languageCode(String? languageCode) =>
+      call(languageCode: languageCode);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AddressComponent(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// AddressComponent(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   AddressComponent call({
     Object? longText = const $CopyWithPlaceholder(),
     Object? shortText = const $CopyWithPlaceholder(),
@@ -63,7 +86,8 @@ class _$AddressComponentCWProxyImpl implements _$AddressComponentCWProxy {
 }
 
 extension $AddressComponentCopyWith on AddressComponent {
-  /// Returns a callable class that can be used as follows: `instanceOfAddressComponent.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfAddressComponent.copyWith(...)` or `instanceOfAddressComponent.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$AddressComponentCWProxy get copyWith => _$AddressComponentCWProxyImpl(this);
 }
@@ -82,12 +106,10 @@ AddressComponent _$AddressComponentFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$AddressComponentToJson(AddressComponent instance) =>
     <String, dynamic>{
-      if (instance.longText case final value?) 'longText': value,
-      if (instance.shortText case final value?) 'shortText': value,
-      if (instance.types?.map((e) => _$PlaceTypeEnumMap[e]!).toList()
-          case final value?)
-        'types': value,
-      if (instance.languageCode case final value?) 'languageCode': value,
+      'longText': ?instance.longText,
+      'shortText': ?instance.shortText,
+      'types': ?instance.types?.map((e) => _$PlaceTypeEnumMap[e]!).toList(),
+      'languageCode': ?instance.languageCode,
     };
 
 const _$PlaceTypeEnumMap = {

@@ -7,32 +7,42 @@ part of 'address_descriptor.dart';
 // **************************************************************************
 
 abstract class _$AddressDescriptorCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  AddressDescriptor landmarks(List<Landmark>? landmarks);
+
+  AddressDescriptor areas(List<Area>? areas);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AddressDescriptor(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// AddressDescriptor(...).copyWith(id: 12, name: "My name")
-  /// ````
-  AddressDescriptor call({
-    List<Landmark>? landmarks,
-    List<Area>? areas,
-  });
+  /// ```
+  AddressDescriptor call({List<Landmark>? landmarks, List<Area>? areas});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAddressDescriptor.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfAddressDescriptor.copyWith(...)` or call `instanceOfAddressDescriptor.copyWith.fieldName(value)` for a single field.
 class _$AddressDescriptorCWProxyImpl implements _$AddressDescriptorCWProxy {
   const _$AddressDescriptorCWProxyImpl(this._value);
 
   final AddressDescriptor _value;
 
   @override
+  AddressDescriptor landmarks(List<Landmark>? landmarks) =>
+      call(landmarks: landmarks);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  AddressDescriptor areas(List<Area>? areas) => call(areas: areas);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AddressDescriptor(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// AddressDescriptor(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   AddressDescriptor call({
     Object? landmarks = const $CopyWithPlaceholder(),
     Object? areas = const $CopyWithPlaceholder(),
@@ -51,7 +61,8 @@ class _$AddressDescriptorCWProxyImpl implements _$AddressDescriptorCWProxy {
 }
 
 extension $AddressDescriptorCopyWith on AddressDescriptor {
-  /// Returns a callable class that can be used as follows: `instanceOfAddressDescriptor.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfAddressDescriptor.copyWith(...)` or `instanceOfAddressDescriptor.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$AddressDescriptorCWProxy get copyWith =>
       _$AddressDescriptorCWProxyImpl(this);
@@ -73,6 +84,6 @@ AddressDescriptor _$AddressDescriptorFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$AddressDescriptorToJson(AddressDescriptor instance) =>
     <String, dynamic>{
-      if (instance.landmarks case final value?) 'landmarks': value,
-      if (instance.areas case final value?) 'areas': value,
+      'landmarks': ?instance.landmarks,
+      'areas': ?instance.areas,
     };

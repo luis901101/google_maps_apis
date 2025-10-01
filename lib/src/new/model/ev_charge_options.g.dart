@@ -7,32 +7,49 @@ part of 'ev_charge_options.dart';
 // **************************************************************************
 
 abstract class _$EVChargeOptionsCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  EVChargeOptions connectorCount(int? connectorCount);
+
+  EVChargeOptions connectorAggregation(
+    List<ConnectorAggregation>? connectorAggregation,
+  );
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `EVChargeOptions(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// EVChargeOptions(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   EVChargeOptions call({
     int? connectorCount,
     List<ConnectorAggregation>? connectorAggregation,
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfEVChargeOptions.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfEVChargeOptions.copyWith(...)` or call `instanceOfEVChargeOptions.copyWith.fieldName(value)` for a single field.
 class _$EVChargeOptionsCWProxyImpl implements _$EVChargeOptionsCWProxy {
   const _$EVChargeOptionsCWProxyImpl(this._value);
 
   final EVChargeOptions _value;
 
   @override
+  EVChargeOptions connectorCount(int? connectorCount) =>
+      call(connectorCount: connectorCount);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  EVChargeOptions connectorAggregation(
+    List<ConnectorAggregation>? connectorAggregation,
+  ) => call(connectorAggregation: connectorAggregation);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `EVChargeOptions(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// EVChargeOptions(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   EVChargeOptions call({
     Object? connectorCount = const $CopyWithPlaceholder(),
     Object? connectorAggregation = const $CopyWithPlaceholder(),
@@ -51,7 +68,8 @@ class _$EVChargeOptionsCWProxyImpl implements _$EVChargeOptionsCWProxy {
 }
 
 extension $EVChargeOptionsCopyWith on EVChargeOptions {
-  /// Returns a callable class that can be used as follows: `instanceOfEVChargeOptions.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfEVChargeOptions.copyWith(...)` or `instanceOfEVChargeOptions.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$EVChargeOptionsCWProxy get copyWith => _$EVChargeOptionsCWProxyImpl(this);
 }
@@ -70,7 +88,6 @@ EVChargeOptions _$EVChargeOptionsFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$EVChargeOptionsToJson(EVChargeOptions instance) =>
     <String, dynamic>{
-      if (instance.connectorCount case final value?) 'connectorCount': value,
-      if (instance.connectorAggregation case final value?)
-        'connectorAggregation': value,
+      'connectorCount': ?instance.connectorCount,
+      'connectorAggregation': ?instance.connectorAggregation,
     };

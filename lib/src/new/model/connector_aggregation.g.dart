@@ -7,12 +7,27 @@ part of 'connector_aggregation.dart';
 // **************************************************************************
 
 abstract class _$ConnectorAggregationCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  ConnectorAggregation type(EvConnectorType? type);
+
+  ConnectorAggregation maxChargeRateKw(double? maxChargeRateKw);
+
+  ConnectorAggregation count(int? count);
+
+  ConnectorAggregation availabilityLastUpdateTime(
+    DateTime? availabilityLastUpdateTime,
+  );
+
+  ConnectorAggregation availableCount(int? availableCount);
+
+  ConnectorAggregation outOfServiceCount(int? outOfServiceCount);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ConnectorAggregation(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ConnectorAggregation(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ConnectorAggregation call({
     EvConnectorType? type,
     double? maxChargeRateKw,
@@ -23,7 +38,8 @@ abstract class _$ConnectorAggregationCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfConnectorAggregation.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfConnectorAggregation.copyWith(...)` or call `instanceOfConnectorAggregation.copyWith.fieldName(value)` for a single field.
 class _$ConnectorAggregationCWProxyImpl
     implements _$ConnectorAggregationCWProxy {
   const _$ConnectorAggregationCWProxyImpl(this._value);
@@ -31,13 +47,36 @@ class _$ConnectorAggregationCWProxyImpl
   final ConnectorAggregation _value;
 
   @override
+  ConnectorAggregation type(EvConnectorType? type) => call(type: type);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  ConnectorAggregation maxChargeRateKw(double? maxChargeRateKw) =>
+      call(maxChargeRateKw: maxChargeRateKw);
+
+  @override
+  ConnectorAggregation count(int? count) => call(count: count);
+
+  @override
+  ConnectorAggregation availabilityLastUpdateTime(
+    DateTime? availabilityLastUpdateTime,
+  ) => call(availabilityLastUpdateTime: availabilityLastUpdateTime);
+
+  @override
+  ConnectorAggregation availableCount(int? availableCount) =>
+      call(availableCount: availableCount);
+
+  @override
+  ConnectorAggregation outOfServiceCount(int? outOfServiceCount) =>
+      call(outOfServiceCount: outOfServiceCount);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ConnectorAggregation(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ConnectorAggregation(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ConnectorAggregation call({
     Object? type = const $CopyWithPlaceholder(),
     Object? maxChargeRateKw = const $CopyWithPlaceholder(),
@@ -61,9 +100,9 @@ class _$ConnectorAggregationCWProxyImpl
           : count as int?,
       availabilityLastUpdateTime:
           availabilityLastUpdateTime == const $CopyWithPlaceholder()
-              ? _value.availabilityLastUpdateTime
-              // ignore: cast_nullable_to_non_nullable
-              : availabilityLastUpdateTime as DateTime?,
+          ? _value.availabilityLastUpdateTime
+          // ignore: cast_nullable_to_non_nullable
+          : availabilityLastUpdateTime as DateTime?,
       availableCount: availableCount == const $CopyWithPlaceholder()
           ? _value.availableCount
           // ignore: cast_nullable_to_non_nullable
@@ -77,7 +116,8 @@ class _$ConnectorAggregationCWProxyImpl
 }
 
 extension $ConnectorAggregationCopyWith on ConnectorAggregation {
-  /// Returns a callable class that can be used as follows: `instanceOfConnectorAggregation.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfConnectorAggregation.copyWith(...)` or `instanceOfConnectorAggregation.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ConnectorAggregationCWProxy get copyWith =>
       _$ConnectorAggregationCWProxyImpl(this);
@@ -88,33 +128,33 @@ extension $ConnectorAggregationCopyWith on ConnectorAggregation {
 // **************************************************************************
 
 ConnectorAggregation _$ConnectorAggregationFromJson(
-        Map<String, dynamic> json) =>
-    ConnectorAggregation(
-      type: $enumDecodeNullable(_$EvConnectorTypeEnumMap, json['type'],
-          unknownValue: JsonKey.nullForUndefinedEnumValue),
-      maxChargeRateKw: (json['maxChargeRateKw'] as num?)?.toDouble(),
-      count: (json['count'] as num?)?.toInt(),
-      availabilityLastUpdateTime: json['availabilityLastUpdateTime'] == null
-          ? null
-          : DateTime.parse(json['availabilityLastUpdateTime'] as String),
-      availableCount: (json['availableCount'] as num?)?.toInt(),
-      outOfServiceCount: (json['outOfServiceCount'] as num?)?.toInt(),
-    );
+  Map<String, dynamic> json,
+) => ConnectorAggregation(
+  type: $enumDecodeNullable(
+    _$EvConnectorTypeEnumMap,
+    json['type'],
+    unknownValue: JsonKey.nullForUndefinedEnumValue,
+  ),
+  maxChargeRateKw: (json['maxChargeRateKw'] as num?)?.toDouble(),
+  count: (json['count'] as num?)?.toInt(),
+  availabilityLastUpdateTime: json['availabilityLastUpdateTime'] == null
+      ? null
+      : DateTime.parse(json['availabilityLastUpdateTime'] as String),
+  availableCount: (json['availableCount'] as num?)?.toInt(),
+  outOfServiceCount: (json['outOfServiceCount'] as num?)?.toInt(),
+);
 
 Map<String, dynamic> _$ConnectorAggregationToJson(
-        ConnectorAggregation instance) =>
-    <String, dynamic>{
-      if (_$EvConnectorTypeEnumMap[instance.type] case final value?)
-        'type': value,
-      if (instance.maxChargeRateKw case final value?) 'maxChargeRateKw': value,
-      if (instance.count case final value?) 'count': value,
-      if (instance.availabilityLastUpdateTime?.toIso8601String()
-          case final value?)
-        'availabilityLastUpdateTime': value,
-      if (instance.availableCount case final value?) 'availableCount': value,
-      if (instance.outOfServiceCount case final value?)
-        'outOfServiceCount': value,
-    };
+  ConnectorAggregation instance,
+) => <String, dynamic>{
+  'type': ?_$EvConnectorTypeEnumMap[instance.type],
+  'maxChargeRateKw': ?instance.maxChargeRateKw,
+  'count': ?instance.count,
+  'availabilityLastUpdateTime': ?instance.availabilityLastUpdateTime
+      ?.toIso8601String(),
+  'availableCount': ?instance.availableCount,
+  'outOfServiceCount': ?instance.outOfServiceCount,
+};
 
 const _$EvConnectorTypeEnumMap = {
   EvConnectorType.unspecified: 'EV_CONNECTOR_TYPE_UNSPECIFIED',

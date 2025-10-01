@@ -7,12 +7,27 @@ part of 'landmark.dart';
 // **************************************************************************
 
 abstract class _$LandmarkCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  Landmark name(String? name);
+
+  Landmark placeId(String? placeId);
+
+  Landmark displayName(LocalizedText? displayName);
+
+  Landmark types(List<PlaceType>? types);
+
+  Landmark spatialRelationship(SpatialRelationship? spatialRelationship);
+
+  Landmark straightLineDistanceMeters(double? straightLineDistanceMeters);
+
+  Landmark travelDistanceMeters(double? travelDistanceMeters);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Landmark(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// Landmark(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   Landmark call({
     String? name,
     String? placeId,
@@ -24,20 +39,46 @@ abstract class _$LandmarkCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfLandmark.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfLandmark.copyWith(...)` or call `instanceOfLandmark.copyWith.fieldName(value)` for a single field.
 class _$LandmarkCWProxyImpl implements _$LandmarkCWProxy {
   const _$LandmarkCWProxyImpl(this._value);
 
   final Landmark _value;
 
   @override
+  Landmark name(String? name) => call(name: name);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  Landmark placeId(String? placeId) => call(placeId: placeId);
+
+  @override
+  Landmark displayName(LocalizedText? displayName) =>
+      call(displayName: displayName);
+
+  @override
+  Landmark types(List<PlaceType>? types) => call(types: types);
+
+  @override
+  Landmark spatialRelationship(SpatialRelationship? spatialRelationship) =>
+      call(spatialRelationship: spatialRelationship);
+
+  @override
+  Landmark straightLineDistanceMeters(double? straightLineDistanceMeters) =>
+      call(straightLineDistanceMeters: straightLineDistanceMeters);
+
+  @override
+  Landmark travelDistanceMeters(double? travelDistanceMeters) =>
+      call(travelDistanceMeters: travelDistanceMeters);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Landmark(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// Landmark(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   Landmark call({
     Object? name = const $CopyWithPlaceholder(),
     Object? placeId = const $CopyWithPlaceholder(),
@@ -70,9 +111,9 @@ class _$LandmarkCWProxyImpl implements _$LandmarkCWProxy {
           : spatialRelationship as SpatialRelationship?,
       straightLineDistanceMeters:
           straightLineDistanceMeters == const $CopyWithPlaceholder()
-              ? _value.straightLineDistanceMeters
-              // ignore: cast_nullable_to_non_nullable
-              : straightLineDistanceMeters as double?,
+          ? _value.straightLineDistanceMeters
+          // ignore: cast_nullable_to_non_nullable
+          : straightLineDistanceMeters as double?,
       travelDistanceMeters: travelDistanceMeters == const $CopyWithPlaceholder()
           ? _value.travelDistanceMeters
           // ignore: cast_nullable_to_non_nullable
@@ -82,7 +123,8 @@ class _$LandmarkCWProxyImpl implements _$LandmarkCWProxy {
 }
 
 extension $LandmarkCopyWith on Landmark {
-  /// Returns a callable class that can be used as follows: `instanceOfLandmark.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfLandmark.copyWith(...)` or `instanceOfLandmark.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$LandmarkCWProxy get copyWith => _$LandmarkCWProxyImpl(this);
 }
@@ -92,35 +134,32 @@ extension $LandmarkCopyWith on Landmark {
 // **************************************************************************
 
 Landmark _$LandmarkFromJson(Map<String, dynamic> json) => Landmark(
-      name: json['name'] as String?,
-      placeId: json['placeId'] as String?,
-      displayName: json['displayName'] == null
-          ? null
-          : LocalizedText.fromJson(json['displayName'] as Map<String, dynamic>),
-      types: PlaceType.fromJsonList(json['types'] as List?),
-      spatialRelationship: $enumDecodeNullable(
-          _$SpatialRelationshipEnumMap, json['spatialRelationship'],
-          unknownValue: JsonKey.nullForUndefinedEnumValue),
-      straightLineDistanceMeters:
-          (json['straightLineDistanceMeters'] as num?)?.toDouble(),
-      travelDistanceMeters: (json['travelDistanceMeters'] as num?)?.toDouble(),
-    );
+  name: json['name'] as String?,
+  placeId: json['placeId'] as String?,
+  displayName: json['displayName'] == null
+      ? null
+      : LocalizedText.fromJson(json['displayName'] as Map<String, dynamic>),
+  types: PlaceType.fromJsonList(json['types'] as List?),
+  spatialRelationship: $enumDecodeNullable(
+    _$SpatialRelationshipEnumMap,
+    json['spatialRelationship'],
+    unknownValue: JsonKey.nullForUndefinedEnumValue,
+  ),
+  straightLineDistanceMeters: (json['straightLineDistanceMeters'] as num?)
+      ?.toDouble(),
+  travelDistanceMeters: (json['travelDistanceMeters'] as num?)?.toDouble(),
+);
 
 Map<String, dynamic> _$LandmarkToJson(Landmark instance) => <String, dynamic>{
-      if (instance.name case final value?) 'name': value,
-      if (instance.placeId case final value?) 'placeId': value,
-      if (instance.displayName case final value?) 'displayName': value,
-      if (instance.types?.map((e) => _$PlaceTypeEnumMap[e]!).toList()
-          case final value?)
-        'types': value,
-      if (_$SpatialRelationshipEnumMap[instance.spatialRelationship]
-          case final value?)
-        'spatialRelationship': value,
-      if (instance.straightLineDistanceMeters case final value?)
-        'straightLineDistanceMeters': value,
-      if (instance.travelDistanceMeters case final value?)
-        'travelDistanceMeters': value,
-    };
+  'name': ?instance.name,
+  'placeId': ?instance.placeId,
+  'displayName': ?instance.displayName,
+  'types': ?instance.types?.map((e) => _$PlaceTypeEnumMap[e]!).toList(),
+  'spatialRelationship':
+      ?_$SpatialRelationshipEnumMap[instance.spatialRelationship],
+  'straightLineDistanceMeters': ?instance.straightLineDistanceMeters,
+  'travelDistanceMeters': ?instance.travelDistanceMeters,
+};
 
 const _$SpatialRelationshipEnumMap = {
   SpatialRelationship.near: 'NEAR',

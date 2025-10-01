@@ -7,12 +7,23 @@ part of 'google_maps_links.dart';
 // **************************************************************************
 
 abstract class _$GoogleMapsLinksCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  GoogleMapsLinks directionsUri(String? directionsUri);
+
+  GoogleMapsLinks placeUri(String? placeUri);
+
+  GoogleMapsLinks writeAReviewUri(String? writeAReviewUri);
+
+  GoogleMapsLinks reviewsUri(String? reviewsUri);
+
+  GoogleMapsLinks photosUri(String? photosUri);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GoogleMapsLinks(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// GoogleMapsLinks(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   GoogleMapsLinks call({
     String? directionsUri,
     String? placeUri,
@@ -22,20 +33,39 @@ abstract class _$GoogleMapsLinksCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfGoogleMapsLinks.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfGoogleMapsLinks.copyWith(...)` or call `instanceOfGoogleMapsLinks.copyWith.fieldName(value)` for a single field.
 class _$GoogleMapsLinksCWProxyImpl implements _$GoogleMapsLinksCWProxy {
   const _$GoogleMapsLinksCWProxyImpl(this._value);
 
   final GoogleMapsLinks _value;
 
   @override
+  GoogleMapsLinks directionsUri(String? directionsUri) =>
+      call(directionsUri: directionsUri);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  GoogleMapsLinks placeUri(String? placeUri) => call(placeUri: placeUri);
+
+  @override
+  GoogleMapsLinks writeAReviewUri(String? writeAReviewUri) =>
+      call(writeAReviewUri: writeAReviewUri);
+
+  @override
+  GoogleMapsLinks reviewsUri(String? reviewsUri) =>
+      call(reviewsUri: reviewsUri);
+
+  @override
+  GoogleMapsLinks photosUri(String? photosUri) => call(photosUri: photosUri);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GoogleMapsLinks(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// GoogleMapsLinks(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   GoogleMapsLinks call({
     Object? directionsUri = const $CopyWithPlaceholder(),
     Object? placeUri = const $CopyWithPlaceholder(),
@@ -69,7 +99,8 @@ class _$GoogleMapsLinksCWProxyImpl implements _$GoogleMapsLinksCWProxy {
 }
 
 extension $GoogleMapsLinksCopyWith on GoogleMapsLinks {
-  /// Returns a callable class that can be used as follows: `instanceOfGoogleMapsLinks.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfGoogleMapsLinks.copyWith(...)` or `instanceOfGoogleMapsLinks.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$GoogleMapsLinksCWProxy get copyWith => _$GoogleMapsLinksCWProxyImpl(this);
 }
@@ -89,9 +120,9 @@ GoogleMapsLinks _$GoogleMapsLinksFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$GoogleMapsLinksToJson(GoogleMapsLinks instance) =>
     <String, dynamic>{
-      if (instance.directionsUri case final value?) 'directionsUri': value,
-      if (instance.placeUri case final value?) 'placeUri': value,
-      if (instance.writeAReviewUri case final value?) 'writeAReviewUri': value,
-      if (instance.reviewsUri case final value?) 'reviewsUri': value,
-      if (instance.photosUri case final value?) 'photosUri': value,
+      'directionsUri': ?instance.directionsUri,
+      'placeUri': ?instance.placeUri,
+      'writeAReviewUri': ?instance.writeAReviewUri,
+      'reviewsUri': ?instance.reviewsUri,
+      'photosUri': ?instance.photosUri,
     };

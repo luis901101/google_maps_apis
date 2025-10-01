@@ -7,12 +7,39 @@ part of 'nearby_search_filter.dart';
 // **************************************************************************
 
 abstract class _$NearbySearchFilterCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  NearbySearchFilter languageCode(String? languageCode);
+
+  NearbySearchFilter regionCode(String? regionCode);
+
+  NearbySearchFilter includedTypes(List<PlaceType>? includedTypes);
+
+  NearbySearchFilter excludedTypes(List<PlaceType>? excludedTypes);
+
+  NearbySearchFilter includedPrimaryTypes(
+    List<PlaceType>? includedPrimaryTypes,
+  );
+
+  NearbySearchFilter excludedPrimaryTypes(
+    List<PlaceType>? excludedPrimaryTypes,
+  );
+
+  NearbySearchFilter maxResultCount(int? maxResultCount);
+
+  NearbySearchFilter locationRestriction(
+    LocationRestrictionCircle locationRestriction,
+  );
+
+  NearbySearchFilter rankPreference(RankPreferenceType? rankPreference);
+
+  NearbySearchFilter routingParameters(RoutingParameters? routingParameters);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `NearbySearchFilter(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// NearbySearchFilter(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   NearbySearchFilter call({
     String? languageCode,
     String? regionCode,
@@ -27,20 +54,64 @@ abstract class _$NearbySearchFilterCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfNearbySearchFilter.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfNearbySearchFilter.copyWith(...)` or call `instanceOfNearbySearchFilter.copyWith.fieldName(value)` for a single field.
 class _$NearbySearchFilterCWProxyImpl implements _$NearbySearchFilterCWProxy {
   const _$NearbySearchFilterCWProxyImpl(this._value);
 
   final NearbySearchFilter _value;
 
   @override
+  NearbySearchFilter languageCode(String? languageCode) =>
+      call(languageCode: languageCode);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  NearbySearchFilter regionCode(String? regionCode) =>
+      call(regionCode: regionCode);
+
+  @override
+  NearbySearchFilter includedTypes(List<PlaceType>? includedTypes) =>
+      call(includedTypes: includedTypes);
+
+  @override
+  NearbySearchFilter excludedTypes(List<PlaceType>? excludedTypes) =>
+      call(excludedTypes: excludedTypes);
+
+  @override
+  NearbySearchFilter includedPrimaryTypes(
+    List<PlaceType>? includedPrimaryTypes,
+  ) => call(includedPrimaryTypes: includedPrimaryTypes);
+
+  @override
+  NearbySearchFilter excludedPrimaryTypes(
+    List<PlaceType>? excludedPrimaryTypes,
+  ) => call(excludedPrimaryTypes: excludedPrimaryTypes);
+
+  @override
+  NearbySearchFilter maxResultCount(int? maxResultCount) =>
+      call(maxResultCount: maxResultCount);
+
+  @override
+  NearbySearchFilter locationRestriction(
+    LocationRestrictionCircle locationRestriction,
+  ) => call(locationRestriction: locationRestriction);
+
+  @override
+  NearbySearchFilter rankPreference(RankPreferenceType? rankPreference) =>
+      call(rankPreference: rankPreference);
+
+  @override
+  NearbySearchFilter routingParameters(RoutingParameters? routingParameters) =>
+      call(routingParameters: routingParameters);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `NearbySearchFilter(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// NearbySearchFilter(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   NearbySearchFilter call({
     Object? languageCode = const $CopyWithPlaceholder(),
     Object? regionCode = const $CopyWithPlaceholder(),
@@ -82,7 +153,9 @@ class _$NearbySearchFilterCWProxyImpl implements _$NearbySearchFilterCWProxy {
           ? _value.maxResultCount
           // ignore: cast_nullable_to_non_nullable
           : maxResultCount as int?,
-      locationRestriction: locationRestriction == const $CopyWithPlaceholder()
+      locationRestriction:
+          locationRestriction == const $CopyWithPlaceholder() ||
+              locationRestriction == null
           ? _value.locationRestriction
           // ignore: cast_nullable_to_non_nullable
           : locationRestriction as LocationRestrictionCircle,
@@ -99,7 +172,8 @@ class _$NearbySearchFilterCWProxyImpl implements _$NearbySearchFilterCWProxy {
 }
 
 extension $NearbySearchFilterCopyWith on NearbySearchFilter {
-  /// Returns a callable class that can be used as follows: `instanceOfNearbySearchFilter.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfNearbySearchFilter.copyWith(...)` or `instanceOfNearbySearchFilter.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$NearbySearchFilterCWProxy get copyWith =>
       _$NearbySearchFilterCWProxyImpl(this);
@@ -115,48 +189,47 @@ NearbySearchFilter _$NearbySearchFilterFromJson(Map<String, dynamic> json) =>
       regionCode: json['regionCode'] as String?,
       includedTypes: PlaceType.fromJsonList(json['includedTypes'] as List?),
       excludedTypes: PlaceType.fromJsonList(json['excludedTypes'] as List?),
-      includedPrimaryTypes:
-          PlaceType.fromJsonList(json['includedPrimaryTypes'] as List?),
-      excludedPrimaryTypes:
-          PlaceType.fromJsonList(json['excludedPrimaryTypes'] as List?),
+      includedPrimaryTypes: PlaceType.fromJsonList(
+        json['includedPrimaryTypes'] as List?,
+      ),
+      excludedPrimaryTypes: PlaceType.fromJsonList(
+        json['excludedPrimaryTypes'] as List?,
+      ),
       maxResultCount: (json['maxResultCount'] as num?)?.toInt(),
       locationRestriction: LocationRestrictionCircle.fromJson(
-          json['locationRestriction'] as Map<String, dynamic>),
+        json['locationRestriction'] as Map<String, dynamic>,
+      ),
       rankPreference: $enumDecodeNullable(
-          _$RankPreferenceTypeEnumMap, json['rankPreference']),
+        _$RankPreferenceTypeEnumMap,
+        json['rankPreference'],
+      ),
       routingParameters: json['routingParameters'] == null
           ? null
           : RoutingParameters.fromJson(
-              json['routingParameters'] as Map<String, dynamic>),
+              json['routingParameters'] as Map<String, dynamic>,
+            ),
     );
 
 Map<String, dynamic> _$NearbySearchFilterToJson(NearbySearchFilter instance) =>
     <String, dynamic>{
-      if (instance.languageCode case final value?) 'languageCode': value,
-      if (instance.regionCode case final value?) 'regionCode': value,
-      if (instance.includedTypes?.map((e) => _$PlaceTypeEnumMap[e]!).toList()
-          case final value?)
-        'includedTypes': value,
-      if (instance.excludedTypes?.map((e) => _$PlaceTypeEnumMap[e]!).toList()
-          case final value?)
-        'excludedTypes': value,
-      if (instance.includedPrimaryTypes
-              ?.map((e) => _$PlaceTypeEnumMap[e]!)
-              .toList()
-          case final value?)
-        'includedPrimaryTypes': value,
-      if (instance.excludedPrimaryTypes
-              ?.map((e) => _$PlaceTypeEnumMap[e]!)
-              .toList()
-          case final value?)
-        'excludedPrimaryTypes': value,
-      if (instance.maxResultCount case final value?) 'maxResultCount': value,
+      'languageCode': ?instance.languageCode,
+      'regionCode': ?instance.regionCode,
+      'includedTypes': ?instance.includedTypes
+          ?.map((e) => _$PlaceTypeEnumMap[e]!)
+          .toList(),
+      'excludedTypes': ?instance.excludedTypes
+          ?.map((e) => _$PlaceTypeEnumMap[e]!)
+          .toList(),
+      'includedPrimaryTypes': ?instance.includedPrimaryTypes
+          ?.map((e) => _$PlaceTypeEnumMap[e]!)
+          .toList(),
+      'excludedPrimaryTypes': ?instance.excludedPrimaryTypes
+          ?.map((e) => _$PlaceTypeEnumMap[e]!)
+          .toList(),
+      'maxResultCount': ?instance.maxResultCount,
       'locationRestriction': instance.locationRestriction,
-      if (_$RankPreferenceTypeEnumMap[instance.rankPreference]
-          case final value?)
-        'rankPreference': value,
-      if (instance.routingParameters case final value?)
-        'routingParameters': value,
+      'rankPreference': ?_$RankPreferenceTypeEnumMap[instance.rankPreference],
+      'routingParameters': ?instance.routingParameters,
     };
 
 const _$RankPreferenceTypeEnumMap = {

@@ -7,12 +7,19 @@ part of 'contextual_content.dart';
 // **************************************************************************
 
 abstract class _$ContextualContentCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  ContextualContent reviews(List<Review>? reviews);
+
+  ContextualContent photos(List<Photo>? photos);
+
+  ContextualContent justifications(List<Justification>? justifications);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ContextualContent(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ContextualContent(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ContextualContent call({
     List<Review>? reviews,
     List<Photo>? photos,
@@ -20,20 +27,31 @@ abstract class _$ContextualContentCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfContextualContent.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfContextualContent.copyWith(...)` or call `instanceOfContextualContent.copyWith.fieldName(value)` for a single field.
 class _$ContextualContentCWProxyImpl implements _$ContextualContentCWProxy {
   const _$ContextualContentCWProxyImpl(this._value);
 
   final ContextualContent _value;
 
   @override
+  ContextualContent reviews(List<Review>? reviews) => call(reviews: reviews);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  ContextualContent photos(List<Photo>? photos) => call(photos: photos);
+
+  @override
+  ContextualContent justifications(List<Justification>? justifications) =>
+      call(justifications: justifications);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ContextualContent(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// ContextualContent(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   ContextualContent call({
     Object? reviews = const $CopyWithPlaceholder(),
     Object? photos = const $CopyWithPlaceholder(),
@@ -57,7 +75,8 @@ class _$ContextualContentCWProxyImpl implements _$ContextualContentCWProxy {
 }
 
 extension $ContextualContentCopyWith on ContextualContent {
-  /// Returns a callable class that can be used as follows: `instanceOfContextualContent.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfContextualContent.copyWith(...)` or `instanceOfContextualContent.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ContextualContentCWProxy get copyWith =>
       _$ContextualContentCWProxyImpl(this);
@@ -82,7 +101,7 @@ ContextualContent _$ContextualContentFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ContextualContentToJson(ContextualContent instance) =>
     <String, dynamic>{
-      if (instance.reviews case final value?) 'reviews': value,
-      if (instance.photos case final value?) 'photos': value,
-      if (instance.justifications case final value?) 'justifications': value,
+      'reviews': ?instance.reviews,
+      'photos': ?instance.photos,
+      'justifications': ?instance.justifications,
     };

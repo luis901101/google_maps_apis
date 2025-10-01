@@ -7,12 +7,21 @@ part of 'route_modifiers.dart';
 // **************************************************************************
 
 abstract class _$RouteModifiersCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  RouteModifiers avoidTolls(bool? avoidTolls);
+
+  RouteModifiers avoidHighways(bool? avoidHighways);
+
+  RouteModifiers avoidFerries(bool? avoidFerries);
+
+  RouteModifiers avoidIndoor(bool? avoidIndoor);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RouteModifiers(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// RouteModifiers(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   RouteModifiers call({
     bool? avoidTolls,
     bool? avoidHighways,
@@ -21,20 +30,36 @@ abstract class _$RouteModifiersCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfRouteModifiers.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfRouteModifiers.copyWith(...)` or call `instanceOfRouteModifiers.copyWith.fieldName(value)` for a single field.
 class _$RouteModifiersCWProxyImpl implements _$RouteModifiersCWProxy {
   const _$RouteModifiersCWProxyImpl(this._value);
 
   final RouteModifiers _value;
 
   @override
+  RouteModifiers avoidTolls(bool? avoidTolls) => call(avoidTolls: avoidTolls);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  RouteModifiers avoidHighways(bool? avoidHighways) =>
+      call(avoidHighways: avoidHighways);
+
+  @override
+  RouteModifiers avoidFerries(bool? avoidFerries) =>
+      call(avoidFerries: avoidFerries);
+
+  @override
+  RouteModifiers avoidIndoor(bool? avoidIndoor) =>
+      call(avoidIndoor: avoidIndoor);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RouteModifiers(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// RouteModifiers(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   RouteModifiers call({
     Object? avoidTolls = const $CopyWithPlaceholder(),
     Object? avoidHighways = const $CopyWithPlaceholder(),
@@ -63,7 +88,8 @@ class _$RouteModifiersCWProxyImpl implements _$RouteModifiersCWProxy {
 }
 
 extension $RouteModifiersCopyWith on RouteModifiers {
-  /// Returns a callable class that can be used as follows: `instanceOfRouteModifiers.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfRouteModifiers.copyWith(...)` or `instanceOfRouteModifiers.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$RouteModifiersCWProxy get copyWith => _$RouteModifiersCWProxyImpl(this);
 }
@@ -82,8 +108,8 @@ RouteModifiers _$RouteModifiersFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$RouteModifiersToJson(RouteModifiers instance) =>
     <String, dynamic>{
-      if (instance.avoidTolls case final value?) 'avoidTolls': value,
-      if (instance.avoidHighways case final value?) 'avoidHighways': value,
-      if (instance.avoidFerries case final value?) 'avoidFerries': value,
-      if (instance.avoidIndoor case final value?) 'avoidIndoor': value,
+      'avoidTolls': ?instance.avoidTolls,
+      'avoidHighways': ?instance.avoidHighways,
+      'avoidFerries': ?instance.avoidFerries,
+      'avoidIndoor': ?instance.avoidIndoor,
     };

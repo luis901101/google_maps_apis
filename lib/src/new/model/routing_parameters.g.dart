@@ -7,12 +7,21 @@ part of 'routing_parameters.dart';
 // **************************************************************************
 
 abstract class _$RoutingParametersCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  RoutingParameters origin(LatLng? origin);
+
+  RoutingParameters travelMode(TravelMode? travelMode);
+
+  RoutingParameters routeModifiers(RouteModifiers? routeModifiers);
+
+  RoutingParameters routingPreference(RoutingPreference? routingPreference);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RoutingParameters(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// RoutingParameters(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   RoutingParameters call({
     LatLng? origin,
     TravelMode? travelMode,
@@ -21,20 +30,36 @@ abstract class _$RoutingParametersCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfRoutingParameters.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfRoutingParameters.copyWith(...)` or call `instanceOfRoutingParameters.copyWith.fieldName(value)` for a single field.
 class _$RoutingParametersCWProxyImpl implements _$RoutingParametersCWProxy {
   const _$RoutingParametersCWProxyImpl(this._value);
 
   final RoutingParameters _value;
 
   @override
+  RoutingParameters origin(LatLng? origin) => call(origin: origin);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  RoutingParameters travelMode(TravelMode? travelMode) =>
+      call(travelMode: travelMode);
+
+  @override
+  RoutingParameters routeModifiers(RouteModifiers? routeModifiers) =>
+      call(routeModifiers: routeModifiers);
+
+  @override
+  RoutingParameters routingPreference(RoutingPreference? routingPreference) =>
+      call(routingPreference: routingPreference);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `RoutingParameters(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// RoutingParameters(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   RoutingParameters call({
     Object? origin = const $CopyWithPlaceholder(),
     Object? travelMode = const $CopyWithPlaceholder(),
@@ -63,7 +88,8 @@ class _$RoutingParametersCWProxyImpl implements _$RoutingParametersCWProxy {
 }
 
 extension $RoutingParametersCopyWith on RoutingParameters {
-  /// Returns a callable class that can be used as follows: `instanceOfRoutingParameters.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfRoutingParameters.copyWith(...)` or `instanceOfRoutingParameters.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$RoutingParametersCWProxy get copyWith =>
       _$RoutingParametersCWProxyImpl(this);
@@ -82,21 +108,22 @@ RoutingParameters _$RoutingParametersFromJson(Map<String, dynamic> json) =>
       routeModifiers: json['routeModifiers'] == null
           ? null
           : RouteModifiers.fromJson(
-              json['routeModifiers'] as Map<String, dynamic>),
+              json['routeModifiers'] as Map<String, dynamic>,
+            ),
       routingPreference: $enumDecodeNullable(
-          _$RoutingPreferenceEnumMap, json['routingPreference']),
+        _$RoutingPreferenceEnumMap,
+        json['routingPreference'],
+      ),
     );
 
-Map<String, dynamic> _$RoutingParametersToJson(RoutingParameters instance) =>
-    <String, dynamic>{
-      if (instance.origin case final value?) 'origin': value,
-      if (_$TravelModeEnumMap[instance.travelMode] case final value?)
-        'travelMode': value,
-      if (instance.routeModifiers case final value?) 'routeModifiers': value,
-      if (_$RoutingPreferenceEnumMap[instance.routingPreference]
-          case final value?)
-        'routingPreference': value,
-    };
+Map<String, dynamic> _$RoutingParametersToJson(
+  RoutingParameters instance,
+) => <String, dynamic>{
+  'origin': ?instance.origin,
+  'travelMode': ?_$TravelModeEnumMap[instance.travelMode],
+  'routeModifiers': ?instance.routeModifiers,
+  'routingPreference': ?_$RoutingPreferenceEnumMap[instance.routingPreference],
+};
 
 const _$TravelModeEnumMap = {
   TravelMode.travelModeUnspecified: 'TRAVEL_MODE_UNSPECIFIED',

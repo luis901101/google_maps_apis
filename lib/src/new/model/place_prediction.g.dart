@@ -7,12 +7,25 @@ part of 'place_prediction.dart';
 // **************************************************************************
 
 abstract class _$PlacePredictionCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  PlacePrediction place(String? place);
+
+  PlacePrediction placeId(String? placeId);
+
+  PlacePrediction text(FormattableText? text);
+
+  PlacePrediction structuredFormat(StructuredFormat? structuredFormat);
+
+  PlacePrediction types(List<PlaceType>? types);
+
+  PlacePrediction distanceMeters(int? distanceMeters);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PlacePrediction(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PlacePrediction(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PlacePrediction call({
     String? place,
     String? placeId,
@@ -23,20 +36,41 @@ abstract class _$PlacePredictionCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfPlacePrediction.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfPlacePrediction.copyWith(...)` or call `instanceOfPlacePrediction.copyWith.fieldName(value)` for a single field.
 class _$PlacePredictionCWProxyImpl implements _$PlacePredictionCWProxy {
   const _$PlacePredictionCWProxyImpl(this._value);
 
   final PlacePrediction _value;
 
   @override
+  PlacePrediction place(String? place) => call(place: place);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  PlacePrediction placeId(String? placeId) => call(placeId: placeId);
+
+  @override
+  PlacePrediction text(FormattableText? text) => call(text: text);
+
+  @override
+  PlacePrediction structuredFormat(StructuredFormat? structuredFormat) =>
+      call(structuredFormat: structuredFormat);
+
+  @override
+  PlacePrediction types(List<PlaceType>? types) => call(types: types);
+
+  @override
+  PlacePrediction distanceMeters(int? distanceMeters) =>
+      call(distanceMeters: distanceMeters);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PlacePrediction(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// PlacePrediction(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   PlacePrediction call({
     Object? place = const $CopyWithPlaceholder(),
     Object? placeId = const $CopyWithPlaceholder(),
@@ -75,7 +109,8 @@ class _$PlacePredictionCWProxyImpl implements _$PlacePredictionCWProxy {
 }
 
 extension $PlacePredictionCopyWith on PlacePrediction {
-  /// Returns a callable class that can be used as follows: `instanceOfPlacePrediction.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfPlacePrediction.copyWith(...)` or `instanceOfPlacePrediction.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$PlacePredictionCWProxy get copyWith => _$PlacePredictionCWProxyImpl(this);
 }
@@ -94,22 +129,20 @@ PlacePrediction _$PlacePredictionFromJson(Map<String, dynamic> json) =>
       structuredFormat: json['structuredFormat'] == null
           ? null
           : StructuredFormat.fromJson(
-              json['structuredFormat'] as Map<String, dynamic>),
+              json['structuredFormat'] as Map<String, dynamic>,
+            ),
       types: PlaceType.fromJsonList(json['types'] as List?),
       distanceMeters: (json['distanceMeters'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$PlacePredictionToJson(PlacePrediction instance) =>
     <String, dynamic>{
-      if (instance.place case final value?) 'place': value,
-      if (instance.placeId case final value?) 'placeId': value,
-      if (instance.text case final value?) 'text': value,
-      if (instance.structuredFormat case final value?)
-        'structuredFormat': value,
-      if (instance.types?.map((e) => _$PlaceTypeEnumMap[e]!).toList()
-          case final value?)
-        'types': value,
-      if (instance.distanceMeters case final value?) 'distanceMeters': value,
+      'place': ?instance.place,
+      'placeId': ?instance.placeId,
+      'text': ?instance.text,
+      'structuredFormat': ?instance.structuredFormat,
+      'types': ?instance.types?.map((e) => _$PlaceTypeEnumMap[e]!).toList(),
+      'distanceMeters': ?instance.distanceMeters,
     };
 
 const _$PlaceTypeEnumMap = {

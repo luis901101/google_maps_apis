@@ -7,33 +7,47 @@ part of 'author_attribution.dart';
 // **************************************************************************
 
 abstract class _$AuthorAttributionCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  AuthorAttribution displayName(String? displayName);
+
+  AuthorAttribution uri(String? uri);
+
+  AuthorAttribution photoUri(String? photoUri);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AuthorAttribution(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// AuthorAttribution(...).copyWith(id: 12, name: "My name")
-  /// ````
-  AuthorAttribution call({
-    String? displayName,
-    String? uri,
-    String? photoUri,
-  });
+  /// ```
+  AuthorAttribution call({String? displayName, String? uri, String? photoUri});
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAuthorAttribution.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfAuthorAttribution.copyWith(...)` or call `instanceOfAuthorAttribution.copyWith.fieldName(value)` for a single field.
 class _$AuthorAttributionCWProxyImpl implements _$AuthorAttributionCWProxy {
   const _$AuthorAttributionCWProxyImpl(this._value);
 
   final AuthorAttribution _value;
 
   @override
+  AuthorAttribution displayName(String? displayName) =>
+      call(displayName: displayName);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  AuthorAttribution uri(String? uri) => call(uri: uri);
+
+  @override
+  AuthorAttribution photoUri(String? photoUri) => call(photoUri: photoUri);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AuthorAttribution(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// AuthorAttribution(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   AuthorAttribution call({
     Object? displayName = const $CopyWithPlaceholder(),
     Object? uri = const $CopyWithPlaceholder(),
@@ -57,7 +71,8 @@ class _$AuthorAttributionCWProxyImpl implements _$AuthorAttributionCWProxy {
 }
 
 extension $AuthorAttributionCopyWith on AuthorAttribution {
-  /// Returns a callable class that can be used as follows: `instanceOfAuthorAttribution.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfAuthorAttribution.copyWith(...)` or `instanceOfAuthorAttribution.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$AuthorAttributionCWProxy get copyWith =>
       _$AuthorAttributionCWProxyImpl(this);
@@ -76,7 +91,7 @@ AuthorAttribution _$AuthorAttributionFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$AuthorAttributionToJson(AuthorAttribution instance) =>
     <String, dynamic>{
-      if (instance.displayName case final value?) 'displayName': value,
-      if (instance.uri case final value?) 'uri': value,
-      if (instance.photoUri case final value?) 'photoUri': value,
+      'displayName': ?instance.displayName,
+      'uri': ?instance.uri,
+      'photoUri': ?instance.photoUri,
     };

@@ -7,12 +7,25 @@ part of 'generative_summary.dart';
 // **************************************************************************
 
 abstract class _$GenerativeSummaryCWProxy {
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  GenerativeSummary overview(LocalizedText? overview);
+
+  GenerativeSummary overviewFlagContentUri(String? overviewFlagContentUri);
+
+  GenerativeSummary description(LocalizedText? description);
+
+  GenerativeSummary descriptionFlagContentUri(
+    String? descriptionFlagContentUri,
+  );
+
+  GenerativeSummary references(References? references);
+
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GenerativeSummary(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// GenerativeSummary(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   GenerativeSummary call({
     LocalizedText? overview,
     String? overviewFlagContentUri,
@@ -22,20 +35,42 @@ abstract class _$GenerativeSummaryCWProxy {
   });
 }
 
-/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfGenerativeSummary.copyWith(...)`.
+/// Callable proxy for `copyWith` functionality.
+/// Use as `instanceOfGenerativeSummary.copyWith(...)` or call `instanceOfGenerativeSummary.copyWith.fieldName(value)` for a single field.
 class _$GenerativeSummaryCWProxyImpl implements _$GenerativeSummaryCWProxy {
   const _$GenerativeSummaryCWProxyImpl(this._value);
 
   final GenerativeSummary _value;
 
   @override
+  GenerativeSummary overview(LocalizedText? overview) =>
+      call(overview: overview);
 
-  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored.
+  @override
+  GenerativeSummary overviewFlagContentUri(String? overviewFlagContentUri) =>
+      call(overviewFlagContentUri: overviewFlagContentUri);
+
+  @override
+  GenerativeSummary description(LocalizedText? description) =>
+      call(description: description);
+
+  @override
+  GenerativeSummary descriptionFlagContentUri(
+    String? descriptionFlagContentUri,
+  ) => call(descriptionFlagContentUri: descriptionFlagContentUri);
+
+  @override
+  GenerativeSummary references(References? references) =>
+      call(references: references);
+
+  @override
+  /// Creates a new instance with the provided field values.
+  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `GenerativeSummary(...).copyWith.fieldName(value)`.
   ///
-  /// Usage
+  /// Example:
   /// ```dart
   /// GenerativeSummary(...).copyWith(id: 12, name: "My name")
-  /// ````
+  /// ```
   GenerativeSummary call({
     Object? overview = const $CopyWithPlaceholder(),
     Object? overviewFlagContentUri = const $CopyWithPlaceholder(),
@@ -50,18 +85,18 @@ class _$GenerativeSummaryCWProxyImpl implements _$GenerativeSummaryCWProxy {
           : overview as LocalizedText?,
       overviewFlagContentUri:
           overviewFlagContentUri == const $CopyWithPlaceholder()
-              ? _value.overviewFlagContentUri
-              // ignore: cast_nullable_to_non_nullable
-              : overviewFlagContentUri as String?,
+          ? _value.overviewFlagContentUri
+          // ignore: cast_nullable_to_non_nullable
+          : overviewFlagContentUri as String?,
       description: description == const $CopyWithPlaceholder()
           ? _value.description
           // ignore: cast_nullable_to_non_nullable
           : description as LocalizedText?,
       descriptionFlagContentUri:
           descriptionFlagContentUri == const $CopyWithPlaceholder()
-              ? _value.descriptionFlagContentUri
-              // ignore: cast_nullable_to_non_nullable
-              : descriptionFlagContentUri as String?,
+          ? _value.descriptionFlagContentUri
+          // ignore: cast_nullable_to_non_nullable
+          : descriptionFlagContentUri as String?,
       references: references == const $CopyWithPlaceholder()
           ? _value.references
           // ignore: cast_nullable_to_non_nullable
@@ -71,7 +106,8 @@ class _$GenerativeSummaryCWProxyImpl implements _$GenerativeSummaryCWProxy {
 }
 
 extension $GenerativeSummaryCopyWith on GenerativeSummary {
-  /// Returns a callable class that can be used as follows: `instanceOfGenerativeSummary.copyWith(...)`.
+  /// Returns a callable class used to build a new instance with modified fields.
+  /// Example: `instanceOfGenerativeSummary.copyWith(...)` or `instanceOfGenerativeSummary.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$GenerativeSummaryCWProxy get copyWith =>
       _$GenerativeSummaryCWProxyImpl(this);
@@ -98,11 +134,9 @@ GenerativeSummary _$GenerativeSummaryFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$GenerativeSummaryToJson(GenerativeSummary instance) =>
     <String, dynamic>{
-      if (instance.overview case final value?) 'overview': value,
-      if (instance.overviewFlagContentUri case final value?)
-        'overviewFlagContentUri': value,
-      if (instance.description case final value?) 'description': value,
-      if (instance.descriptionFlagContentUri case final value?)
-        'descriptionFlagContentUri': value,
-      if (instance.references case final value?) 'references': value,
+      'overview': ?instance.overview,
+      'overviewFlagContentUri': ?instance.overviewFlagContentUri,
+      'description': ?instance.description,
+      'descriptionFlagContentUri': ?instance.descriptionFlagContentUri,
+      'references': ?instance.references,
     };
