@@ -3,7 +3,7 @@ import 'package:google_maps_apis/src/new/utils/callbacks.dart';
 
 class RestAPI {
   static const googleApiKeyKey = 'x-goog-api-key';
-  static const authorizationHeaderKey = 'authorization';
+  static const authorizationHeaderKey = 'Authorization';
 
   /// Underlying Dio client used by all new APIs.
   Dio dio = Dio();
@@ -65,9 +65,6 @@ class RestAPI {
     _initDio();
   }
 
-  String? get authorizationHeader =>
-      headers?[authorizationHeaderKey] ?? headers?['Authorization'];
-
   void _initDio() {
     dispose();
 
@@ -82,6 +79,7 @@ class RestAPI {
         listFormat: ListFormat.csv,
       ),
     ).clone(httpClientAdapter: httpClientAdapter);
+
     // Base interceptor: add configured headers, API key and Authorization bearer
     dio.interceptors.addAll([
       InterceptorsWrapper(

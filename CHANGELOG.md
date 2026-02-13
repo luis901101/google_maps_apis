@@ -9,6 +9,11 @@ Types of changes
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## 5.0.0
+### Changed
+- Updated `CustomParseErrorLogger` with optional `Response` parameter as per new Retrofit version.
+- Updated dependencies to latest breaking change versions.
+
 ## 4.0.0
 ### Added
 - Added support for custom interceptors, headers and cancelToken on `PlacesAPINew`. Thanks [itsarvinddev](https://github.com/itsarvinddev) for [PR-4](https://github.com/luis901101/google_maps_apis/pull/4), 
