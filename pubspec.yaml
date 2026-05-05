@@ -1,6 +1,6 @@
 name: google_maps_apis
 description: Google Maps Web Services [API](https://developers.google.com/maps/web-services)
-version: 5.0.0
+version: 5.1.0
 repository: https://github.com/luis901101/google_maps_apis
 issue_tracker: https://github.com/luis901101/google_maps_apis/issues
 topics:
@@ -16,7 +16,7 @@ environment:
 dependencies:
   http: '>=0.13.0 <2.0.0'
   json_annotation: ^4.10.0
-  copy_with_extension: ^12.0.0
+  adeptannotations: ^7.0.0
   collection: ^1.19.1
   retrofit: ^4.9.2
   dio: ^5.9.1
@@ -29,5 +29,5 @@ dev_dependencies:
   build_runner: ^2.11.1
   retrofit_generator: ^10.2.3
   json_serializable: ^6.12.0
-  copy_with_extension_gen: ^12.0.0
+  adeptgenerator: ^14.0.0
   coverage: ^1.15.0

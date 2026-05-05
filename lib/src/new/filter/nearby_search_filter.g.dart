@@ -6,41 +6,9 @@ part of 'nearby_search_filter.dart';
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$NearbySearchFilterCWProxy {
-  NearbySearchFilter languageCode(String? languageCode);
-
-  NearbySearchFilter regionCode(String? regionCode);
-
-  NearbySearchFilter includedTypes(List<PlaceType>? includedTypes);
-
-  NearbySearchFilter excludedTypes(List<PlaceType>? excludedTypes);
-
-  NearbySearchFilter includedPrimaryTypes(
-    List<PlaceType>? includedPrimaryTypes,
-  );
-
-  NearbySearchFilter excludedPrimaryTypes(
-    List<PlaceType>? excludedPrimaryTypes,
-  );
-
-  NearbySearchFilter maxResultCount(int? maxResultCount);
-
-  NearbySearchFilter locationRestriction(
-    LocationRestrictionCircle locationRestriction,
-  );
-
-  NearbySearchFilter rankPreference(RankPreferenceType? rankPreference);
-
-  NearbySearchFilter routingParameters(RoutingParameters? routingParameters);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `NearbySearchFilter(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// NearbySearchFilter(...).copyWith(id: 12, name: "My name")
-  /// ```
-  NearbySearchFilter call({
+/// This Extension on [NearbySearchFilter] is to generate the code for a copyWith(...) function.
+extension $NearbySearchFilterCopyWithExtension on NearbySearchFilter {
+  NearbySearchFilter copyWith({
     String? languageCode,
     String? regionCode,
     List<PlaceType>? includedTypes,
@@ -48,135 +16,35 @@ abstract class _$NearbySearchFilterCWProxy {
     List<PlaceType>? includedPrimaryTypes,
     List<PlaceType>? excludedPrimaryTypes,
     int? maxResultCount,
-    LocationRestrictionCircle locationRestriction,
+    LocationRestrictionCircle? locationRestriction,
     RankPreferenceType? rankPreference,
     RoutingParameters? routingParameters,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfNearbySearchFilter.copyWith(...)` or call `instanceOfNearbySearchFilter.copyWith.fieldName(value)` for a single field.
-class _$NearbySearchFilterCWProxyImpl implements _$NearbySearchFilterCWProxy {
-  const _$NearbySearchFilterCWProxyImpl(this._value);
-
-  final NearbySearchFilter _value;
-
-  @override
-  NearbySearchFilter languageCode(String? languageCode) =>
-      call(languageCode: languageCode);
-
-  @override
-  NearbySearchFilter regionCode(String? regionCode) =>
-      call(regionCode: regionCode);
-
-  @override
-  NearbySearchFilter includedTypes(List<PlaceType>? includedTypes) =>
-      call(includedTypes: includedTypes);
-
-  @override
-  NearbySearchFilter excludedTypes(List<PlaceType>? excludedTypes) =>
-      call(excludedTypes: excludedTypes);
-
-  @override
-  NearbySearchFilter includedPrimaryTypes(
-    List<PlaceType>? includedPrimaryTypes,
-  ) => call(includedPrimaryTypes: includedPrimaryTypes);
-
-  @override
-  NearbySearchFilter excludedPrimaryTypes(
-    List<PlaceType>? excludedPrimaryTypes,
-  ) => call(excludedPrimaryTypes: excludedPrimaryTypes);
-
-  @override
-  NearbySearchFilter maxResultCount(int? maxResultCount) =>
-      call(maxResultCount: maxResultCount);
-
-  @override
-  NearbySearchFilter locationRestriction(
-    LocationRestrictionCircle locationRestriction,
-  ) => call(locationRestriction: locationRestriction);
-
-  @override
-  NearbySearchFilter rankPreference(RankPreferenceType? rankPreference) =>
-      call(rankPreference: rankPreference);
-
-  @override
-  NearbySearchFilter routingParameters(RoutingParameters? routingParameters) =>
-      call(routingParameters: routingParameters);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `NearbySearchFilter(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// NearbySearchFilter(...).copyWith(id: 12, name: "My name")
-  /// ```
-  NearbySearchFilter call({
-    Object? languageCode = const $CopyWithPlaceholder(),
-    Object? regionCode = const $CopyWithPlaceholder(),
-    Object? includedTypes = const $CopyWithPlaceholder(),
-    Object? excludedTypes = const $CopyWithPlaceholder(),
-    Object? includedPrimaryTypes = const $CopyWithPlaceholder(),
-    Object? excludedPrimaryTypes = const $CopyWithPlaceholder(),
-    Object? maxResultCount = const $CopyWithPlaceholder(),
-    Object? locationRestriction = const $CopyWithPlaceholder(),
-    Object? rankPreference = const $CopyWithPlaceholder(),
-    Object? routingParameters = const $CopyWithPlaceholder(),
   }) {
     return NearbySearchFilter(
-      languageCode: languageCode == const $CopyWithPlaceholder()
-          ? _value.languageCode
-          // ignore: cast_nullable_to_non_nullable
-          : languageCode as String?,
-      regionCode: regionCode == const $CopyWithPlaceholder()
-          ? _value.regionCode
-          // ignore: cast_nullable_to_non_nullable
-          : regionCode as String?,
-      includedTypes: includedTypes == const $CopyWithPlaceholder()
-          ? _value.includedTypes
-          // ignore: cast_nullable_to_non_nullable
-          : includedTypes as List<PlaceType>?,
-      excludedTypes: excludedTypes == const $CopyWithPlaceholder()
-          ? _value.excludedTypes
-          // ignore: cast_nullable_to_non_nullable
-          : excludedTypes as List<PlaceType>?,
-      includedPrimaryTypes: includedPrimaryTypes == const $CopyWithPlaceholder()
-          ? _value.includedPrimaryTypes
-          // ignore: cast_nullable_to_non_nullable
-          : includedPrimaryTypes as List<PlaceType>?,
-      excludedPrimaryTypes: excludedPrimaryTypes == const $CopyWithPlaceholder()
-          ? _value.excludedPrimaryTypes
-          // ignore: cast_nullable_to_non_nullable
-          : excludedPrimaryTypes as List<PlaceType>?,
-      maxResultCount: maxResultCount == const $CopyWithPlaceholder()
-          ? _value.maxResultCount
-          // ignore: cast_nullable_to_non_nullable
-          : maxResultCount as int?,
-      locationRestriction:
-          locationRestriction == const $CopyWithPlaceholder() ||
-              locationRestriction == null
-          ? _value.locationRestriction
-          // ignore: cast_nullable_to_non_nullable
-          : locationRestriction as LocationRestrictionCircle,
-      rankPreference: rankPreference == const $CopyWithPlaceholder()
-          ? _value.rankPreference
-          // ignore: cast_nullable_to_non_nullable
-          : rankPreference as RankPreferenceType?,
-      routingParameters: routingParameters == const $CopyWithPlaceholder()
-          ? _value.routingParameters
-          // ignore: cast_nullable_to_non_nullable
-          : routingParameters as RoutingParameters?,
+      languageCode: languageCode ?? this.languageCode,
+      regionCode: regionCode ?? this.regionCode,
+      includedTypes:
+          ((includedTypes?.isNotEmpty ?? false) ? includedTypes : null) ??
+          this.includedTypes,
+      excludedTypes:
+          ((excludedTypes?.isNotEmpty ?? false) ? excludedTypes : null) ??
+          this.excludedTypes,
+      includedPrimaryTypes:
+          ((includedPrimaryTypes?.isNotEmpty ?? false)
+              ? includedPrimaryTypes
+              : null) ??
+          this.includedPrimaryTypes,
+      excludedPrimaryTypes:
+          ((excludedPrimaryTypes?.isNotEmpty ?? false)
+              ? excludedPrimaryTypes
+              : null) ??
+          this.excludedPrimaryTypes,
+      maxResultCount: maxResultCount ?? this.maxResultCount,
+      locationRestriction: locationRestriction ?? this.locationRestriction,
+      rankPreference: rankPreference ?? this.rankPreference,
+      routingParameters: routingParameters ?? this.routingParameters,
     );
   }
-}
-
-extension $NearbySearchFilterCopyWith on NearbySearchFilter {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfNearbySearchFilter.copyWith(...)` or `instanceOfNearbySearchFilter.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$NearbySearchFilterCWProxy get copyWith =>
-      _$NearbySearchFilterCWProxyImpl(this);
 }
 
 // **************************************************************************

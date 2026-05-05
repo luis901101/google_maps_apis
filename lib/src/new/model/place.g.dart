@@ -6,155 +6,9 @@ part of 'place.dart';
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$PlaceCWProxy {
-  Place name(String? name);
-
-  Place id(String? id);
-
-  Place displayName(LocalizedText? displayName);
-
-  Place types(List<PlaceType>? types);
-
-  Place primaryType(PlaceType? primaryType);
-
-  Place primaryTypeDisplayName(LocalizedText? primaryTypeDisplayName);
-
-  Place nationalPhoneNumber(String? nationalPhoneNumber);
-
-  Place internationalPhoneNumber(String? internationalPhoneNumber);
-
-  Place formattedAddress(String? formattedAddress);
-
-  Place shortFormattedAddress(String? shortFormattedAddress);
-
-  Place addressComponents(List<AddressComponent>? addressComponents);
-
-  Place plusCode(PlusCode? plusCode);
-
-  Place location(LatLng? location);
-
-  Place viewport(Viewport? viewport);
-
-  Place rating(double? rating);
-
-  Place googleMapsUri(String? googleMapsUri);
-
-  Place websiteUri(String? websiteUri);
-
-  Place reviews(List<Review>? reviews);
-
-  Place regularOpeningHours(OpeningHours? regularOpeningHours);
-
-  Place photos(List<Photo>? photos);
-
-  Place adrFormatAddress(String? adrFormatAddress);
-
-  Place businessStatus(BusinessStatus? businessStatus);
-
-  Place priceLevel(PriceLevel? priceLevel);
-
-  Place attributions(List<Attribution>? attributions);
-
-  Place iconMaskBaseUri(String? iconMaskBaseUri);
-
-  Place iconBackgroundColor(String? iconBackgroundColor);
-
-  Place currentOpeningHours(OpeningHours? currentOpeningHours);
-
-  Place currentSecondaryOpeningHours(
-    List<OpeningHours>? currentSecondaryOpeningHours,
-  );
-
-  Place regularSecondaryOpeningHours(
-    List<OpeningHours>? regularSecondaryOpeningHours,
-  );
-
-  Place editorialSummary(LocalizedText? editorialSummary);
-
-  Place paymentOptions(PaymentOptions? paymentOptions);
-
-  Place parkingOptions(ParkingOptions? parkingOptions);
-
-  Place subDestinations(List<SubDestination>? subDestinations);
-
-  Place fuelOptions(FuelOptions? fuelOptions);
-
-  Place evChargeOptions(EVChargeOptions? evChargeOptions);
-
-  Place generativeSummary(GenerativeSummary? generativeSummary);
-
-  Place areaSummary(AreaSummary? areaSummary);
-
-  Place containingPlaces(List<ContainingPlace>? containingPlaces);
-
-  Place addressDescriptor(AddressDescriptor? addressDescriptor);
-
-  Place googleMapsLinks(GoogleMapsLinks? googleMapsLinks);
-
-  Place priceRange(PriceRange? priceRange);
-
-  Place utcOffsetMinutes(int? utcOffsetMinutes);
-
-  Place userRatingCount(int? userRatingCount);
-
-  Place takeout(bool? takeout);
-
-  Place delivery(bool? delivery);
-
-  Place dineIn(bool? dineIn);
-
-  Place curbsidePickup(bool? curbsidePickup);
-
-  Place reservable(bool? reservable);
-
-  Place servesBreakfast(bool? servesBreakfast);
-
-  Place servesLunch(bool? servesLunch);
-
-  Place servesDinner(bool? servesDinner);
-
-  Place servesBeer(bool? servesBeer);
-
-  Place servesWine(bool? servesWine);
-
-  Place servesBrunch(bool? servesBrunch);
-
-  Place servesVegetarianFood(bool? servesVegetarianFood);
-
-  Place outdoorSeating(bool? outdoorSeating);
-
-  Place liveMusic(bool? liveMusic);
-
-  Place menuForChildren(bool? menuForChildren);
-
-  Place servesCocktails(bool? servesCocktails);
-
-  Place servesDessert(bool? servesDessert);
-
-  Place servesCoffee(bool? servesCoffee);
-
-  Place goodForChildren(bool? goodForChildren);
-
-  Place allowsDogs(bool? allowsDogs);
-
-  Place restroom(bool? restroom);
-
-  Place goodForGroups(bool? goodForGroups);
-
-  Place goodForWatchingSports(bool? goodForWatchingSports);
-
-  Place accessibilityOptions(AccessibilityOptions? accessibilityOptions);
-
-  Place pureServiceAreaBusiness(bool? pureServiceAreaBusiness);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Place(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// Place(...).copyWith(id: 12, name: "My name")
-  /// ```
-  Place call({
+/// This Extension on [Place] is to generate the code for a copyWith(...) function.
+extension $PlaceCopyWithExtension on Place {
+  Place copyWith({
     String? name,
     String? id,
     LocalizedText? displayName,
@@ -223,629 +77,102 @@ abstract class _$PlaceCWProxy {
     bool? goodForWatchingSports,
     AccessibilityOptions? accessibilityOptions,
     bool? pureServiceAreaBusiness,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfPlace.copyWith(...)` or call `instanceOfPlace.copyWith.fieldName(value)` for a single field.
-class _$PlaceCWProxyImpl implements _$PlaceCWProxy {
-  const _$PlaceCWProxyImpl(this._value);
-
-  final Place _value;
-
-  @override
-  Place name(String? name) => call(name: name);
-
-  @override
-  Place id(String? id) => call(id: id);
-
-  @override
-  Place displayName(LocalizedText? displayName) =>
-      call(displayName: displayName);
-
-  @override
-  Place types(List<PlaceType>? types) => call(types: types);
-
-  @override
-  Place primaryType(PlaceType? primaryType) => call(primaryType: primaryType);
-
-  @override
-  Place primaryTypeDisplayName(LocalizedText? primaryTypeDisplayName) =>
-      call(primaryTypeDisplayName: primaryTypeDisplayName);
-
-  @override
-  Place nationalPhoneNumber(String? nationalPhoneNumber) =>
-      call(nationalPhoneNumber: nationalPhoneNumber);
-
-  @override
-  Place internationalPhoneNumber(String? internationalPhoneNumber) =>
-      call(internationalPhoneNumber: internationalPhoneNumber);
-
-  @override
-  Place formattedAddress(String? formattedAddress) =>
-      call(formattedAddress: formattedAddress);
-
-  @override
-  Place shortFormattedAddress(String? shortFormattedAddress) =>
-      call(shortFormattedAddress: shortFormattedAddress);
-
-  @override
-  Place addressComponents(List<AddressComponent>? addressComponents) =>
-      call(addressComponents: addressComponents);
-
-  @override
-  Place plusCode(PlusCode? plusCode) => call(plusCode: plusCode);
-
-  @override
-  Place location(LatLng? location) => call(location: location);
-
-  @override
-  Place viewport(Viewport? viewport) => call(viewport: viewport);
-
-  @override
-  Place rating(double? rating) => call(rating: rating);
-
-  @override
-  Place googleMapsUri(String? googleMapsUri) =>
-      call(googleMapsUri: googleMapsUri);
-
-  @override
-  Place websiteUri(String? websiteUri) => call(websiteUri: websiteUri);
-
-  @override
-  Place reviews(List<Review>? reviews) => call(reviews: reviews);
-
-  @override
-  Place regularOpeningHours(OpeningHours? regularOpeningHours) =>
-      call(regularOpeningHours: regularOpeningHours);
-
-  @override
-  Place photos(List<Photo>? photos) => call(photos: photos);
-
-  @override
-  Place adrFormatAddress(String? adrFormatAddress) =>
-      call(adrFormatAddress: adrFormatAddress);
-
-  @override
-  Place businessStatus(BusinessStatus? businessStatus) =>
-      call(businessStatus: businessStatus);
-
-  @override
-  Place priceLevel(PriceLevel? priceLevel) => call(priceLevel: priceLevel);
-
-  @override
-  Place attributions(List<Attribution>? attributions) =>
-      call(attributions: attributions);
-
-  @override
-  Place iconMaskBaseUri(String? iconMaskBaseUri) =>
-      call(iconMaskBaseUri: iconMaskBaseUri);
-
-  @override
-  Place iconBackgroundColor(String? iconBackgroundColor) =>
-      call(iconBackgroundColor: iconBackgroundColor);
-
-  @override
-  Place currentOpeningHours(OpeningHours? currentOpeningHours) =>
-      call(currentOpeningHours: currentOpeningHours);
-
-  @override
-  Place currentSecondaryOpeningHours(
-    List<OpeningHours>? currentSecondaryOpeningHours,
-  ) => call(currentSecondaryOpeningHours: currentSecondaryOpeningHours);
-
-  @override
-  Place regularSecondaryOpeningHours(
-    List<OpeningHours>? regularSecondaryOpeningHours,
-  ) => call(regularSecondaryOpeningHours: regularSecondaryOpeningHours);
-
-  @override
-  Place editorialSummary(LocalizedText? editorialSummary) =>
-      call(editorialSummary: editorialSummary);
-
-  @override
-  Place paymentOptions(PaymentOptions? paymentOptions) =>
-      call(paymentOptions: paymentOptions);
-
-  @override
-  Place parkingOptions(ParkingOptions? parkingOptions) =>
-      call(parkingOptions: parkingOptions);
-
-  @override
-  Place subDestinations(List<SubDestination>? subDestinations) =>
-      call(subDestinations: subDestinations);
-
-  @override
-  Place fuelOptions(FuelOptions? fuelOptions) => call(fuelOptions: fuelOptions);
-
-  @override
-  Place evChargeOptions(EVChargeOptions? evChargeOptions) =>
-      call(evChargeOptions: evChargeOptions);
-
-  @override
-  Place generativeSummary(GenerativeSummary? generativeSummary) =>
-      call(generativeSummary: generativeSummary);
-
-  @override
-  Place areaSummary(AreaSummary? areaSummary) => call(areaSummary: areaSummary);
-
-  @override
-  Place containingPlaces(List<ContainingPlace>? containingPlaces) =>
-      call(containingPlaces: containingPlaces);
-
-  @override
-  Place addressDescriptor(AddressDescriptor? addressDescriptor) =>
-      call(addressDescriptor: addressDescriptor);
-
-  @override
-  Place googleMapsLinks(GoogleMapsLinks? googleMapsLinks) =>
-      call(googleMapsLinks: googleMapsLinks);
-
-  @override
-  Place priceRange(PriceRange? priceRange) => call(priceRange: priceRange);
-
-  @override
-  Place utcOffsetMinutes(int? utcOffsetMinutes) =>
-      call(utcOffsetMinutes: utcOffsetMinutes);
-
-  @override
-  Place userRatingCount(int? userRatingCount) =>
-      call(userRatingCount: userRatingCount);
-
-  @override
-  Place takeout(bool? takeout) => call(takeout: takeout);
-
-  @override
-  Place delivery(bool? delivery) => call(delivery: delivery);
-
-  @override
-  Place dineIn(bool? dineIn) => call(dineIn: dineIn);
-
-  @override
-  Place curbsidePickup(bool? curbsidePickup) =>
-      call(curbsidePickup: curbsidePickup);
-
-  @override
-  Place reservable(bool? reservable) => call(reservable: reservable);
-
-  @override
-  Place servesBreakfast(bool? servesBreakfast) =>
-      call(servesBreakfast: servesBreakfast);
-
-  @override
-  Place servesLunch(bool? servesLunch) => call(servesLunch: servesLunch);
-
-  @override
-  Place servesDinner(bool? servesDinner) => call(servesDinner: servesDinner);
-
-  @override
-  Place servesBeer(bool? servesBeer) => call(servesBeer: servesBeer);
-
-  @override
-  Place servesWine(bool? servesWine) => call(servesWine: servesWine);
-
-  @override
-  Place servesBrunch(bool? servesBrunch) => call(servesBrunch: servesBrunch);
-
-  @override
-  Place servesVegetarianFood(bool? servesVegetarianFood) =>
-      call(servesVegetarianFood: servesVegetarianFood);
-
-  @override
-  Place outdoorSeating(bool? outdoorSeating) =>
-      call(outdoorSeating: outdoorSeating);
-
-  @override
-  Place liveMusic(bool? liveMusic) => call(liveMusic: liveMusic);
-
-  @override
-  Place menuForChildren(bool? menuForChildren) =>
-      call(menuForChildren: menuForChildren);
-
-  @override
-  Place servesCocktails(bool? servesCocktails) =>
-      call(servesCocktails: servesCocktails);
-
-  @override
-  Place servesDessert(bool? servesDessert) =>
-      call(servesDessert: servesDessert);
-
-  @override
-  Place servesCoffee(bool? servesCoffee) => call(servesCoffee: servesCoffee);
-
-  @override
-  Place goodForChildren(bool? goodForChildren) =>
-      call(goodForChildren: goodForChildren);
-
-  @override
-  Place allowsDogs(bool? allowsDogs) => call(allowsDogs: allowsDogs);
-
-  @override
-  Place restroom(bool? restroom) => call(restroom: restroom);
-
-  @override
-  Place goodForGroups(bool? goodForGroups) =>
-      call(goodForGroups: goodForGroups);
-
-  @override
-  Place goodForWatchingSports(bool? goodForWatchingSports) =>
-      call(goodForWatchingSports: goodForWatchingSports);
-
-  @override
-  Place accessibilityOptions(AccessibilityOptions? accessibilityOptions) =>
-      call(accessibilityOptions: accessibilityOptions);
-
-  @override
-  Place pureServiceAreaBusiness(bool? pureServiceAreaBusiness) =>
-      call(pureServiceAreaBusiness: pureServiceAreaBusiness);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Place(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// Place(...).copyWith(id: 12, name: "My name")
-  /// ```
-  Place call({
-    Object? name = const $CopyWithPlaceholder(),
-    Object? id = const $CopyWithPlaceholder(),
-    Object? displayName = const $CopyWithPlaceholder(),
-    Object? types = const $CopyWithPlaceholder(),
-    Object? primaryType = const $CopyWithPlaceholder(),
-    Object? primaryTypeDisplayName = const $CopyWithPlaceholder(),
-    Object? nationalPhoneNumber = const $CopyWithPlaceholder(),
-    Object? internationalPhoneNumber = const $CopyWithPlaceholder(),
-    Object? formattedAddress = const $CopyWithPlaceholder(),
-    Object? shortFormattedAddress = const $CopyWithPlaceholder(),
-    Object? addressComponents = const $CopyWithPlaceholder(),
-    Object? plusCode = const $CopyWithPlaceholder(),
-    Object? location = const $CopyWithPlaceholder(),
-    Object? viewport = const $CopyWithPlaceholder(),
-    Object? rating = const $CopyWithPlaceholder(),
-    Object? googleMapsUri = const $CopyWithPlaceholder(),
-    Object? websiteUri = const $CopyWithPlaceholder(),
-    Object? reviews = const $CopyWithPlaceholder(),
-    Object? regularOpeningHours = const $CopyWithPlaceholder(),
-    Object? photos = const $CopyWithPlaceholder(),
-    Object? adrFormatAddress = const $CopyWithPlaceholder(),
-    Object? businessStatus = const $CopyWithPlaceholder(),
-    Object? priceLevel = const $CopyWithPlaceholder(),
-    Object? attributions = const $CopyWithPlaceholder(),
-    Object? iconMaskBaseUri = const $CopyWithPlaceholder(),
-    Object? iconBackgroundColor = const $CopyWithPlaceholder(),
-    Object? currentOpeningHours = const $CopyWithPlaceholder(),
-    Object? currentSecondaryOpeningHours = const $CopyWithPlaceholder(),
-    Object? regularSecondaryOpeningHours = const $CopyWithPlaceholder(),
-    Object? editorialSummary = const $CopyWithPlaceholder(),
-    Object? paymentOptions = const $CopyWithPlaceholder(),
-    Object? parkingOptions = const $CopyWithPlaceholder(),
-    Object? subDestinations = const $CopyWithPlaceholder(),
-    Object? fuelOptions = const $CopyWithPlaceholder(),
-    Object? evChargeOptions = const $CopyWithPlaceholder(),
-    Object? generativeSummary = const $CopyWithPlaceholder(),
-    Object? areaSummary = const $CopyWithPlaceholder(),
-    Object? containingPlaces = const $CopyWithPlaceholder(),
-    Object? addressDescriptor = const $CopyWithPlaceholder(),
-    Object? googleMapsLinks = const $CopyWithPlaceholder(),
-    Object? priceRange = const $CopyWithPlaceholder(),
-    Object? utcOffsetMinutes = const $CopyWithPlaceholder(),
-    Object? userRatingCount = const $CopyWithPlaceholder(),
-    Object? takeout = const $CopyWithPlaceholder(),
-    Object? delivery = const $CopyWithPlaceholder(),
-    Object? dineIn = const $CopyWithPlaceholder(),
-    Object? curbsidePickup = const $CopyWithPlaceholder(),
-    Object? reservable = const $CopyWithPlaceholder(),
-    Object? servesBreakfast = const $CopyWithPlaceholder(),
-    Object? servesLunch = const $CopyWithPlaceholder(),
-    Object? servesDinner = const $CopyWithPlaceholder(),
-    Object? servesBeer = const $CopyWithPlaceholder(),
-    Object? servesWine = const $CopyWithPlaceholder(),
-    Object? servesBrunch = const $CopyWithPlaceholder(),
-    Object? servesVegetarianFood = const $CopyWithPlaceholder(),
-    Object? outdoorSeating = const $CopyWithPlaceholder(),
-    Object? liveMusic = const $CopyWithPlaceholder(),
-    Object? menuForChildren = const $CopyWithPlaceholder(),
-    Object? servesCocktails = const $CopyWithPlaceholder(),
-    Object? servesDessert = const $CopyWithPlaceholder(),
-    Object? servesCoffee = const $CopyWithPlaceholder(),
-    Object? goodForChildren = const $CopyWithPlaceholder(),
-    Object? allowsDogs = const $CopyWithPlaceholder(),
-    Object? restroom = const $CopyWithPlaceholder(),
-    Object? goodForGroups = const $CopyWithPlaceholder(),
-    Object? goodForWatchingSports = const $CopyWithPlaceholder(),
-    Object? accessibilityOptions = const $CopyWithPlaceholder(),
-    Object? pureServiceAreaBusiness = const $CopyWithPlaceholder(),
   }) {
     return Place(
-      name: name == const $CopyWithPlaceholder()
-          ? _value.name
-          // ignore: cast_nullable_to_non_nullable
-          : name as String?,
-      id: id == const $CopyWithPlaceholder()
-          ? _value.id
-          // ignore: cast_nullable_to_non_nullable
-          : id as String?,
-      displayName: displayName == const $CopyWithPlaceholder()
-          ? _value.displayName
-          // ignore: cast_nullable_to_non_nullable
-          : displayName as LocalizedText?,
-      types: types == const $CopyWithPlaceholder()
-          ? _value.types
-          // ignore: cast_nullable_to_non_nullable
-          : types as List<PlaceType>?,
-      primaryType: primaryType == const $CopyWithPlaceholder()
-          ? _value.primaryType
-          // ignore: cast_nullable_to_non_nullable
-          : primaryType as PlaceType?,
+      name: name ?? this.name,
+      id: id ?? this.id,
+      displayName: displayName ?? this.displayName,
+      types: ((types?.isNotEmpty ?? false) ? types : null) ?? this.types,
+      primaryType: primaryType ?? this.primaryType,
       primaryTypeDisplayName:
-          primaryTypeDisplayName == const $CopyWithPlaceholder()
-          ? _value.primaryTypeDisplayName
-          // ignore: cast_nullable_to_non_nullable
-          : primaryTypeDisplayName as LocalizedText?,
-      nationalPhoneNumber: nationalPhoneNumber == const $CopyWithPlaceholder()
-          ? _value.nationalPhoneNumber
-          // ignore: cast_nullable_to_non_nullable
-          : nationalPhoneNumber as String?,
+          primaryTypeDisplayName ?? this.primaryTypeDisplayName,
+      nationalPhoneNumber: nationalPhoneNumber ?? this.nationalPhoneNumber,
       internationalPhoneNumber:
-          internationalPhoneNumber == const $CopyWithPlaceholder()
-          ? _value.internationalPhoneNumber
-          // ignore: cast_nullable_to_non_nullable
-          : internationalPhoneNumber as String?,
-      formattedAddress: formattedAddress == const $CopyWithPlaceholder()
-          ? _value.formattedAddress
-          // ignore: cast_nullable_to_non_nullable
-          : formattedAddress as String?,
+          internationalPhoneNumber ?? this.internationalPhoneNumber,
+      formattedAddress: formattedAddress ?? this.formattedAddress,
       shortFormattedAddress:
-          shortFormattedAddress == const $CopyWithPlaceholder()
-          ? _value.shortFormattedAddress
-          // ignore: cast_nullable_to_non_nullable
-          : shortFormattedAddress as String?,
-      addressComponents: addressComponents == const $CopyWithPlaceholder()
-          ? _value.addressComponents
-          // ignore: cast_nullable_to_non_nullable
-          : addressComponents as List<AddressComponent>?,
-      plusCode: plusCode == const $CopyWithPlaceholder()
-          ? _value.plusCode
-          // ignore: cast_nullable_to_non_nullable
-          : plusCode as PlusCode?,
-      location: location == const $CopyWithPlaceholder()
-          ? _value.location
-          // ignore: cast_nullable_to_non_nullable
-          : location as LatLng?,
-      viewport: viewport == const $CopyWithPlaceholder()
-          ? _value.viewport
-          // ignore: cast_nullable_to_non_nullable
-          : viewport as Viewport?,
-      rating: rating == const $CopyWithPlaceholder()
-          ? _value.rating
-          // ignore: cast_nullable_to_non_nullable
-          : rating as double?,
-      googleMapsUri: googleMapsUri == const $CopyWithPlaceholder()
-          ? _value.googleMapsUri
-          // ignore: cast_nullable_to_non_nullable
-          : googleMapsUri as String?,
-      websiteUri: websiteUri == const $CopyWithPlaceholder()
-          ? _value.websiteUri
-          // ignore: cast_nullable_to_non_nullable
-          : websiteUri as String?,
-      reviews: reviews == const $CopyWithPlaceholder()
-          ? _value.reviews
-          // ignore: cast_nullable_to_non_nullable
-          : reviews as List<Review>?,
-      regularOpeningHours: regularOpeningHours == const $CopyWithPlaceholder()
-          ? _value.regularOpeningHours
-          // ignore: cast_nullable_to_non_nullable
-          : regularOpeningHours as OpeningHours?,
-      photos: photos == const $CopyWithPlaceholder()
-          ? _value.photos
-          // ignore: cast_nullable_to_non_nullable
-          : photos as List<Photo>?,
-      adrFormatAddress: adrFormatAddress == const $CopyWithPlaceholder()
-          ? _value.adrFormatAddress
-          // ignore: cast_nullable_to_non_nullable
-          : adrFormatAddress as String?,
-      businessStatus: businessStatus == const $CopyWithPlaceholder()
-          ? _value.businessStatus
-          // ignore: cast_nullable_to_non_nullable
-          : businessStatus as BusinessStatus?,
-      priceLevel: priceLevel == const $CopyWithPlaceholder()
-          ? _value.priceLevel
-          // ignore: cast_nullable_to_non_nullable
-          : priceLevel as PriceLevel?,
-      attributions: attributions == const $CopyWithPlaceholder()
-          ? _value.attributions
-          // ignore: cast_nullable_to_non_nullable
-          : attributions as List<Attribution>?,
-      iconMaskBaseUri: iconMaskBaseUri == const $CopyWithPlaceholder()
-          ? _value.iconMaskBaseUri
-          // ignore: cast_nullable_to_non_nullable
-          : iconMaskBaseUri as String?,
-      iconBackgroundColor: iconBackgroundColor == const $CopyWithPlaceholder()
-          ? _value.iconBackgroundColor
-          // ignore: cast_nullable_to_non_nullable
-          : iconBackgroundColor as String?,
-      currentOpeningHours: currentOpeningHours == const $CopyWithPlaceholder()
-          ? _value.currentOpeningHours
-          // ignore: cast_nullable_to_non_nullable
-          : currentOpeningHours as OpeningHours?,
+          shortFormattedAddress ?? this.shortFormattedAddress,
+      addressComponents:
+          ((addressComponents?.isNotEmpty ?? false)
+              ? addressComponents
+              : null) ??
+          this.addressComponents,
+      plusCode: plusCode ?? this.plusCode,
+      location: location ?? this.location,
+      viewport: viewport ?? this.viewport,
+      rating: rating ?? this.rating,
+      googleMapsUri: googleMapsUri ?? this.googleMapsUri,
+      websiteUri: websiteUri ?? this.websiteUri,
+      reviews:
+          ((reviews?.isNotEmpty ?? false) ? reviews : null) ?? this.reviews,
+      regularOpeningHours: regularOpeningHours ?? this.regularOpeningHours,
+      photos: ((photos?.isNotEmpty ?? false) ? photos : null) ?? this.photos,
+      adrFormatAddress: adrFormatAddress ?? this.adrFormatAddress,
+      businessStatus: businessStatus ?? this.businessStatus,
+      priceLevel: priceLevel ?? this.priceLevel,
+      attributions:
+          ((attributions?.isNotEmpty ?? false) ? attributions : null) ??
+          this.attributions,
+      iconMaskBaseUri: iconMaskBaseUri ?? this.iconMaskBaseUri,
+      iconBackgroundColor: iconBackgroundColor ?? this.iconBackgroundColor,
+      currentOpeningHours: currentOpeningHours ?? this.currentOpeningHours,
       currentSecondaryOpeningHours:
-          currentSecondaryOpeningHours == const $CopyWithPlaceholder()
-          ? _value.currentSecondaryOpeningHours
-          // ignore: cast_nullable_to_non_nullable
-          : currentSecondaryOpeningHours as List<OpeningHours>?,
+          ((currentSecondaryOpeningHours?.isNotEmpty ?? false)
+              ? currentSecondaryOpeningHours
+              : null) ??
+          this.currentSecondaryOpeningHours,
       regularSecondaryOpeningHours:
-          regularSecondaryOpeningHours == const $CopyWithPlaceholder()
-          ? _value.regularSecondaryOpeningHours
-          // ignore: cast_nullable_to_non_nullable
-          : regularSecondaryOpeningHours as List<OpeningHours>?,
-      editorialSummary: editorialSummary == const $CopyWithPlaceholder()
-          ? _value.editorialSummary
-          // ignore: cast_nullable_to_non_nullable
-          : editorialSummary as LocalizedText?,
-      paymentOptions: paymentOptions == const $CopyWithPlaceholder()
-          ? _value.paymentOptions
-          // ignore: cast_nullable_to_non_nullable
-          : paymentOptions as PaymentOptions?,
-      parkingOptions: parkingOptions == const $CopyWithPlaceholder()
-          ? _value.parkingOptions
-          // ignore: cast_nullable_to_non_nullable
-          : parkingOptions as ParkingOptions?,
-      subDestinations: subDestinations == const $CopyWithPlaceholder()
-          ? _value.subDestinations
-          // ignore: cast_nullable_to_non_nullable
-          : subDestinations as List<SubDestination>?,
-      fuelOptions: fuelOptions == const $CopyWithPlaceholder()
-          ? _value.fuelOptions
-          // ignore: cast_nullable_to_non_nullable
-          : fuelOptions as FuelOptions?,
-      evChargeOptions: evChargeOptions == const $CopyWithPlaceholder()
-          ? _value.evChargeOptions
-          // ignore: cast_nullable_to_non_nullable
-          : evChargeOptions as EVChargeOptions?,
-      generativeSummary: generativeSummary == const $CopyWithPlaceholder()
-          ? _value.generativeSummary
-          // ignore: cast_nullable_to_non_nullable
-          : generativeSummary as GenerativeSummary?,
-      areaSummary: areaSummary == const $CopyWithPlaceholder()
-          ? _value.areaSummary
-          // ignore: cast_nullable_to_non_nullable
-          : areaSummary as AreaSummary?,
-      containingPlaces: containingPlaces == const $CopyWithPlaceholder()
-          ? _value.containingPlaces
-          // ignore: cast_nullable_to_non_nullable
-          : containingPlaces as List<ContainingPlace>?,
-      addressDescriptor: addressDescriptor == const $CopyWithPlaceholder()
-          ? _value.addressDescriptor
-          // ignore: cast_nullable_to_non_nullable
-          : addressDescriptor as AddressDescriptor?,
-      googleMapsLinks: googleMapsLinks == const $CopyWithPlaceholder()
-          ? _value.googleMapsLinks
-          // ignore: cast_nullable_to_non_nullable
-          : googleMapsLinks as GoogleMapsLinks?,
-      priceRange: priceRange == const $CopyWithPlaceholder()
-          ? _value.priceRange
-          // ignore: cast_nullable_to_non_nullable
-          : priceRange as PriceRange?,
-      utcOffsetMinutes: utcOffsetMinutes == const $CopyWithPlaceholder()
-          ? _value.utcOffsetMinutes
-          // ignore: cast_nullable_to_non_nullable
-          : utcOffsetMinutes as int?,
-      userRatingCount: userRatingCount == const $CopyWithPlaceholder()
-          ? _value.userRatingCount
-          // ignore: cast_nullable_to_non_nullable
-          : userRatingCount as int?,
-      takeout: takeout == const $CopyWithPlaceholder()
-          ? _value.takeout
-          // ignore: cast_nullable_to_non_nullable
-          : takeout as bool?,
-      delivery: delivery == const $CopyWithPlaceholder()
-          ? _value.delivery
-          // ignore: cast_nullable_to_non_nullable
-          : delivery as bool?,
-      dineIn: dineIn == const $CopyWithPlaceholder()
-          ? _value.dineIn
-          // ignore: cast_nullable_to_non_nullable
-          : dineIn as bool?,
-      curbsidePickup: curbsidePickup == const $CopyWithPlaceholder()
-          ? _value.curbsidePickup
-          // ignore: cast_nullable_to_non_nullable
-          : curbsidePickup as bool?,
-      reservable: reservable == const $CopyWithPlaceholder()
-          ? _value.reservable
-          // ignore: cast_nullable_to_non_nullable
-          : reservable as bool?,
-      servesBreakfast: servesBreakfast == const $CopyWithPlaceholder()
-          ? _value.servesBreakfast
-          // ignore: cast_nullable_to_non_nullable
-          : servesBreakfast as bool?,
-      servesLunch: servesLunch == const $CopyWithPlaceholder()
-          ? _value.servesLunch
-          // ignore: cast_nullable_to_non_nullable
-          : servesLunch as bool?,
-      servesDinner: servesDinner == const $CopyWithPlaceholder()
-          ? _value.servesDinner
-          // ignore: cast_nullable_to_non_nullable
-          : servesDinner as bool?,
-      servesBeer: servesBeer == const $CopyWithPlaceholder()
-          ? _value.servesBeer
-          // ignore: cast_nullable_to_non_nullable
-          : servesBeer as bool?,
-      servesWine: servesWine == const $CopyWithPlaceholder()
-          ? _value.servesWine
-          // ignore: cast_nullable_to_non_nullable
-          : servesWine as bool?,
-      servesBrunch: servesBrunch == const $CopyWithPlaceholder()
-          ? _value.servesBrunch
-          // ignore: cast_nullable_to_non_nullable
-          : servesBrunch as bool?,
-      servesVegetarianFood: servesVegetarianFood == const $CopyWithPlaceholder()
-          ? _value.servesVegetarianFood
-          // ignore: cast_nullable_to_non_nullable
-          : servesVegetarianFood as bool?,
-      outdoorSeating: outdoorSeating == const $CopyWithPlaceholder()
-          ? _value.outdoorSeating
-          // ignore: cast_nullable_to_non_nullable
-          : outdoorSeating as bool?,
-      liveMusic: liveMusic == const $CopyWithPlaceholder()
-          ? _value.liveMusic
-          // ignore: cast_nullable_to_non_nullable
-          : liveMusic as bool?,
-      menuForChildren: menuForChildren == const $CopyWithPlaceholder()
-          ? _value.menuForChildren
-          // ignore: cast_nullable_to_non_nullable
-          : menuForChildren as bool?,
-      servesCocktails: servesCocktails == const $CopyWithPlaceholder()
-          ? _value.servesCocktails
-          // ignore: cast_nullable_to_non_nullable
-          : servesCocktails as bool?,
-      servesDessert: servesDessert == const $CopyWithPlaceholder()
-          ? _value.servesDessert
-          // ignore: cast_nullable_to_non_nullable
-          : servesDessert as bool?,
-      servesCoffee: servesCoffee == const $CopyWithPlaceholder()
-          ? _value.servesCoffee
-          // ignore: cast_nullable_to_non_nullable
-          : servesCoffee as bool?,
-      goodForChildren: goodForChildren == const $CopyWithPlaceholder()
-          ? _value.goodForChildren
-          // ignore: cast_nullable_to_non_nullable
-          : goodForChildren as bool?,
-      allowsDogs: allowsDogs == const $CopyWithPlaceholder()
-          ? _value.allowsDogs
-          // ignore: cast_nullable_to_non_nullable
-          : allowsDogs as bool?,
-      restroom: restroom == const $CopyWithPlaceholder()
-          ? _value.restroom
-          // ignore: cast_nullable_to_non_nullable
-          : restroom as bool?,
-      goodForGroups: goodForGroups == const $CopyWithPlaceholder()
-          ? _value.goodForGroups
-          // ignore: cast_nullable_to_non_nullable
-          : goodForGroups as bool?,
+          ((regularSecondaryOpeningHours?.isNotEmpty ?? false)
+              ? regularSecondaryOpeningHours
+              : null) ??
+          this.regularSecondaryOpeningHours,
+      editorialSummary: editorialSummary ?? this.editorialSummary,
+      paymentOptions: paymentOptions ?? this.paymentOptions,
+      parkingOptions: parkingOptions ?? this.parkingOptions,
+      subDestinations:
+          ((subDestinations?.isNotEmpty ?? false) ? subDestinations : null) ??
+          this.subDestinations,
+      fuelOptions: fuelOptions ?? this.fuelOptions,
+      evChargeOptions: evChargeOptions ?? this.evChargeOptions,
+      generativeSummary: generativeSummary ?? this.generativeSummary,
+      areaSummary: areaSummary ?? this.areaSummary,
+      containingPlaces:
+          ((containingPlaces?.isNotEmpty ?? false) ? containingPlaces : null) ??
+          this.containingPlaces,
+      addressDescriptor: addressDescriptor ?? this.addressDescriptor,
+      googleMapsLinks: googleMapsLinks ?? this.googleMapsLinks,
+      priceRange: priceRange ?? this.priceRange,
+      utcOffsetMinutes: utcOffsetMinutes ?? this.utcOffsetMinutes,
+      userRatingCount: userRatingCount ?? this.userRatingCount,
+      takeout: takeout ?? this.takeout,
+      delivery: delivery ?? this.delivery,
+      dineIn: dineIn ?? this.dineIn,
+      curbsidePickup: curbsidePickup ?? this.curbsidePickup,
+      reservable: reservable ?? this.reservable,
+      servesBreakfast: servesBreakfast ?? this.servesBreakfast,
+      servesLunch: servesLunch ?? this.servesLunch,
+      servesDinner: servesDinner ?? this.servesDinner,
+      servesBeer: servesBeer ?? this.servesBeer,
+      servesWine: servesWine ?? this.servesWine,
+      servesBrunch: servesBrunch ?? this.servesBrunch,
+      servesVegetarianFood: servesVegetarianFood ?? this.servesVegetarianFood,
+      outdoorSeating: outdoorSeating ?? this.outdoorSeating,
+      liveMusic: liveMusic ?? this.liveMusic,
+      menuForChildren: menuForChildren ?? this.menuForChildren,
+      servesCocktails: servesCocktails ?? this.servesCocktails,
+      servesDessert: servesDessert ?? this.servesDessert,
+      servesCoffee: servesCoffee ?? this.servesCoffee,
+      goodForChildren: goodForChildren ?? this.goodForChildren,
+      allowsDogs: allowsDogs ?? this.allowsDogs,
+      restroom: restroom ?? this.restroom,
+      goodForGroups: goodForGroups ?? this.goodForGroups,
       goodForWatchingSports:
-          goodForWatchingSports == const $CopyWithPlaceholder()
-          ? _value.goodForWatchingSports
-          // ignore: cast_nullable_to_non_nullable
-          : goodForWatchingSports as bool?,
-      accessibilityOptions: accessibilityOptions == const $CopyWithPlaceholder()
-          ? _value.accessibilityOptions
-          // ignore: cast_nullable_to_non_nullable
-          : accessibilityOptions as AccessibilityOptions?,
+          goodForWatchingSports ?? this.goodForWatchingSports,
+      accessibilityOptions: accessibilityOptions ?? this.accessibilityOptions,
       pureServiceAreaBusiness:
-          pureServiceAreaBusiness == const $CopyWithPlaceholder()
-          ? _value.pureServiceAreaBusiness
-          // ignore: cast_nullable_to_non_nullable
-          : pureServiceAreaBusiness as bool?,
+          pureServiceAreaBusiness ?? this.pureServiceAreaBusiness,
     );
   }
-}
-
-extension $PlaceCopyWith on Place {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfPlace.copyWith(...)` or `instanceOfPlace.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$PlaceCWProxy get copyWith => _$PlaceCWProxyImpl(this);
 }
 
 // **************************************************************************

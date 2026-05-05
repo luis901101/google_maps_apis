@@ -1,4 +1,4 @@
-import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:adeptannotations/adeptannotations.dart';
 import 'package:google_maps_apis/src/new/model/accessibility_options.dart';
 import 'package:google_maps_apis/src/new/model/address_component.dart';
 import 'package:google_maps_apis/src/new/model/address_descriptor.dart';

@@ -6,29 +6,9 @@ part of 'photo.dart';
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$PhotoCWProxy {
-  Photo name(String? name);
-
-  Photo widthPx(int? widthPx);
-
-  Photo heightPx(int? heightPx);
-
-  Photo authorAttributions(List<AuthorAttribution>? authorAttributions);
-
-  Photo flagContentUri(String? flagContentUri);
-
-  Photo googleMapsUri(String? googleMapsUri);
-
-  Photo photoUri(String? photoUri);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Photo(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// Photo(...).copyWith(id: 12, name: "My name")
-  /// ```
-  Photo call({
+/// This Extension on [Photo] is to generate the code for a copyWith(...) function.
+extension $PhotoCopyWithExtension on Photo {
+  Photo copyWith({
     String? name,
     int? widthPx,
     int? heightPx,
@@ -36,95 +16,21 @@ abstract class _$PhotoCWProxy {
     String? flagContentUri,
     String? googleMapsUri,
     String? photoUri,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfPhoto.copyWith(...)` or call `instanceOfPhoto.copyWith.fieldName(value)` for a single field.
-class _$PhotoCWProxyImpl implements _$PhotoCWProxy {
-  const _$PhotoCWProxyImpl(this._value);
-
-  final Photo _value;
-
-  @override
-  Photo name(String? name) => call(name: name);
-
-  @override
-  Photo widthPx(int? widthPx) => call(widthPx: widthPx);
-
-  @override
-  Photo heightPx(int? heightPx) => call(heightPx: heightPx);
-
-  @override
-  Photo authorAttributions(List<AuthorAttribution>? authorAttributions) =>
-      call(authorAttributions: authorAttributions);
-
-  @override
-  Photo flagContentUri(String? flagContentUri) =>
-      call(flagContentUri: flagContentUri);
-
-  @override
-  Photo googleMapsUri(String? googleMapsUri) =>
-      call(googleMapsUri: googleMapsUri);
-
-  @override
-  Photo photoUri(String? photoUri) => call(photoUri: photoUri);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Photo(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// Photo(...).copyWith(id: 12, name: "My name")
-  /// ```
-  Photo call({
-    Object? name = const $CopyWithPlaceholder(),
-    Object? widthPx = const $CopyWithPlaceholder(),
-    Object? heightPx = const $CopyWithPlaceholder(),
-    Object? authorAttributions = const $CopyWithPlaceholder(),
-    Object? flagContentUri = const $CopyWithPlaceholder(),
-    Object? googleMapsUri = const $CopyWithPlaceholder(),
-    Object? photoUri = const $CopyWithPlaceholder(),
   }) {
     return Photo(
-      name: name == const $CopyWithPlaceholder()
-          ? _value.name
-          // ignore: cast_nullable_to_non_nullable
-          : name as String?,
-      widthPx: widthPx == const $CopyWithPlaceholder()
-          ? _value.widthPx
-          // ignore: cast_nullable_to_non_nullable
-          : widthPx as int?,
-      heightPx: heightPx == const $CopyWithPlaceholder()
-          ? _value.heightPx
-          // ignore: cast_nullable_to_non_nullable
-          : heightPx as int?,
-      authorAttributions: authorAttributions == const $CopyWithPlaceholder()
-          ? _value.authorAttributions
-          // ignore: cast_nullable_to_non_nullable
-          : authorAttributions as List<AuthorAttribution>?,
-      flagContentUri: flagContentUri == const $CopyWithPlaceholder()
-          ? _value.flagContentUri
-          // ignore: cast_nullable_to_non_nullable
-          : flagContentUri as String?,
-      googleMapsUri: googleMapsUri == const $CopyWithPlaceholder()
-          ? _value.googleMapsUri
-          // ignore: cast_nullable_to_non_nullable
-          : googleMapsUri as String?,
-      photoUri: photoUri == const $CopyWithPlaceholder()
-          ? _value.photoUri
-          // ignore: cast_nullable_to_non_nullable
-          : photoUri as String?,
+      name: name ?? this.name,
+      widthPx: widthPx ?? this.widthPx,
+      heightPx: heightPx ?? this.heightPx,
+      authorAttributions:
+          ((authorAttributions?.isNotEmpty ?? false)
+              ? authorAttributions
+              : null) ??
+          this.authorAttributions,
+      flagContentUri: flagContentUri ?? this.flagContentUri,
+      googleMapsUri: googleMapsUri ?? this.googleMapsUri,
+      photoUri: photoUri ?? this.photoUri,
     );
   }
-}
-
-extension $PhotoCopyWith on Photo {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfPhoto.copyWith(...)` or `instanceOfPhoto.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$PhotoCWProxy get copyWith => _$PhotoCWProxyImpl(this);
 }
 
 // **************************************************************************

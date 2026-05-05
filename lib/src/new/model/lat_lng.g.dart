@@ -6,64 +6,14 @@ part of 'lat_lng.dart';
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$LatLngCWProxy {
-  LatLng latitude(double? latitude);
-
-  LatLng longitude(double? longitude);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LatLng(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// LatLng(...).copyWith(id: 12, name: "My name")
-  /// ```
-  LatLng call({double? latitude, double? longitude});
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfLatLng.copyWith(...)` or call `instanceOfLatLng.copyWith.fieldName(value)` for a single field.
-class _$LatLngCWProxyImpl implements _$LatLngCWProxy {
-  const _$LatLngCWProxyImpl(this._value);
-
-  final LatLng _value;
-
-  @override
-  LatLng latitude(double? latitude) => call(latitude: latitude);
-
-  @override
-  LatLng longitude(double? longitude) => call(longitude: longitude);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `LatLng(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// LatLng(...).copyWith(id: 12, name: "My name")
-  /// ```
-  LatLng call({
-    Object? latitude = const $CopyWithPlaceholder(),
-    Object? longitude = const $CopyWithPlaceholder(),
-  }) {
+/// This Extension on [LatLng] is to generate the code for a copyWith(...) function.
+extension $LatLngCopyWithExtension on LatLng {
+  LatLng copyWith({double? latitude, double? longitude}) {
     return LatLng(
-      latitude: latitude == const $CopyWithPlaceholder()
-          ? _value.latitude
-          // ignore: cast_nullable_to_non_nullable
-          : latitude as double?,
-      longitude: longitude == const $CopyWithPlaceholder()
-          ? _value.longitude
-          // ignore: cast_nullable_to_non_nullable
-          : longitude as double?,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
     );
   }
-}
-
-extension $LatLngCopyWith on LatLng {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfLatLng.copyWith(...)` or `instanceOfLatLng.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$LatLngCWProxy get copyWith => _$LatLngCWProxyImpl(this);
 }
 
 // **************************************************************************

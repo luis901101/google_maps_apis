@@ -6,70 +6,20 @@ part of 'ev_options.dart';
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$EvOptionsCWProxy {
-  EvOptions minimumChargingRateKw(double? minimumChargingRateKw);
-
-  EvOptions connectorTypes(List<EvConnectorType>? connectorTypes);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `EvOptions(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// EvOptions(...).copyWith(id: 12, name: "My name")
-  /// ```
-  EvOptions call({
-    double? minimumChargingRateKw,
+/// This Extension on [EvOptions] is to generate the code for a copyWith(...) function.
+extension $EvOptionsCopyWithExtension on EvOptions {
+  EvOptions copyWith({
     List<EvConnectorType>? connectorTypes,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfEvOptions.copyWith(...)` or call `instanceOfEvOptions.copyWith.fieldName(value)` for a single field.
-class _$EvOptionsCWProxyImpl implements _$EvOptionsCWProxy {
-  const _$EvOptionsCWProxyImpl(this._value);
-
-  final EvOptions _value;
-
-  @override
-  EvOptions minimumChargingRateKw(double? minimumChargingRateKw) =>
-      call(minimumChargingRateKw: minimumChargingRateKw);
-
-  @override
-  EvOptions connectorTypes(List<EvConnectorType>? connectorTypes) =>
-      call(connectorTypes: connectorTypes);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `EvOptions(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// EvOptions(...).copyWith(id: 12, name: "My name")
-  /// ```
-  EvOptions call({
-    Object? minimumChargingRateKw = const $CopyWithPlaceholder(),
-    Object? connectorTypes = const $CopyWithPlaceholder(),
+    double? minimumChargingRateKw,
   }) {
     return EvOptions(
+      connectorTypes:
+          ((connectorTypes?.isNotEmpty ?? false) ? connectorTypes : null) ??
+          this.connectorTypes,
       minimumChargingRateKw:
-          minimumChargingRateKw == const $CopyWithPlaceholder()
-          ? _value.minimumChargingRateKw
-          // ignore: cast_nullable_to_non_nullable
-          : minimumChargingRateKw as double?,
-      connectorTypes: connectorTypes == const $CopyWithPlaceholder()
-          ? _value.connectorTypes
-          // ignore: cast_nullable_to_non_nullable
-          : connectorTypes as List<EvConnectorType>?,
+          minimumChargingRateKw ?? this.minimumChargingRateKw,
     );
   }
-}
-
-extension $EvOptionsCopyWith on EvOptions {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfEvOptions.copyWith(...)` or `instanceOfEvOptions.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$EvOptionsCWProxy get copyWith => _$EvOptionsCWProxyImpl(this);
 }
 
 // **************************************************************************

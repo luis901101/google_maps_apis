@@ -8,7 +8,11 @@ part of 'distance.dart';
 
 DistanceResponse _$DistanceResponseFromJson(Map<String, dynamic> json) =>
     DistanceResponse(
-      status: $enumDecodeNullable(_$ResponseStatusEnumMap, json['status']),
+      status: $enumDecodeNullable(
+        _$ResponseStatusEnumMap,
+        json['status'],
+        unknownValue: JsonKey.nullForUndefinedEnumValue,
+      ),
       errorMessage: json['error_message'] as String?,
       originAddresses: (json['origin_addresses'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -40,6 +44,7 @@ const _$ResponseStatusEnumMap = {
   ResponseStatus.notFound: 'NOT_FOUND',
   ResponseStatus.maxWaypointsExceeded: 'MAX_WAYPOINTS_EXCEEDED',
   ResponseStatus.maxRouteLengthExceeded: 'MAX_ROUTE_LENGTH_EXCEEDED',
+  ResponseStatus.deadlineExceeded: 'DEADLINE_EXCEEDED',
 };
 
 Row _$RowFromJson(Map<String, dynamic> json) => Row(

@@ -1,4 +1,4 @@
-import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:adeptannotations/adeptannotations.dart';
 import 'package:google_maps_apis/src/new/filter/base_session_filter.dart';
 import 'package:json_annotation/json_annotation.dart';
 

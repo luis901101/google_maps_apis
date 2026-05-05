@@ -6,50 +6,12 @@ part of 'text_search_filter.dart';
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$TextSearchFilterCWProxy {
-  TextSearchFilter languageCode(String? languageCode);
-
-  TextSearchFilter regionCode(String? regionCode);
-
-  TextSearchFilter textQuery(String textQuery);
-
-  TextSearchFilter includedType(PlaceType? includedType);
-
-  TextSearchFilter includePureServiceAreaBusinesses(
-    bool? includePureServiceAreaBusinesses,
-  );
-
-  TextSearchFilter locationBias(LocationMultiArea? locationBias);
-
-  TextSearchFilter locationRestriction(LocationMultiArea? locationRestriction);
-
-  TextSearchFilter evOptions(EvOptions? evOptions);
-
-  TextSearchFilter minRating(double? minRating);
-
-  TextSearchFilter openNow(bool? openNow);
-
-  TextSearchFilter pageSize(int? pageSize);
-
-  TextSearchFilter pageToken(String? pageToken);
-
-  TextSearchFilter priceLevels(List<PriceLevel>? priceLevels);
-
-  TextSearchFilter rankPreference(RankPreferenceType? rankPreference);
-
-  TextSearchFilter strictTypeFiltering(bool? strictTypeFiltering);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `TextSearchFilter(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// TextSearchFilter(...).copyWith(id: 12, name: "My name")
-  /// ```
-  TextSearchFilter call({
+/// This Extension on [TextSearchFilter] is to generate the code for a copyWith(...) function.
+extension $TextSearchFilterCopyWithExtension on TextSearchFilter {
+  TextSearchFilter copyWith({
     String? languageCode,
     String? regionCode,
-    String textQuery,
+    String? textQuery,
     PlaceType? includedType,
     bool? includePureServiceAreaBusinesses,
     LocationMultiArea? locationBias,
@@ -62,169 +24,29 @@ abstract class _$TextSearchFilterCWProxy {
     List<PriceLevel>? priceLevels,
     RankPreferenceType? rankPreference,
     bool? strictTypeFiltering,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfTextSearchFilter.copyWith(...)` or call `instanceOfTextSearchFilter.copyWith.fieldName(value)` for a single field.
-class _$TextSearchFilterCWProxyImpl implements _$TextSearchFilterCWProxy {
-  const _$TextSearchFilterCWProxyImpl(this._value);
-
-  final TextSearchFilter _value;
-
-  @override
-  TextSearchFilter languageCode(String? languageCode) =>
-      call(languageCode: languageCode);
-
-  @override
-  TextSearchFilter regionCode(String? regionCode) =>
-      call(regionCode: regionCode);
-
-  @override
-  TextSearchFilter textQuery(String textQuery) => call(textQuery: textQuery);
-
-  @override
-  TextSearchFilter includedType(PlaceType? includedType) =>
-      call(includedType: includedType);
-
-  @override
-  TextSearchFilter includePureServiceAreaBusinesses(
-    bool? includePureServiceAreaBusinesses,
-  ) => call(includePureServiceAreaBusinesses: includePureServiceAreaBusinesses);
-
-  @override
-  TextSearchFilter locationBias(LocationMultiArea? locationBias) =>
-      call(locationBias: locationBias);
-
-  @override
-  TextSearchFilter locationRestriction(
-    LocationMultiArea? locationRestriction,
-  ) => call(locationRestriction: locationRestriction);
-
-  @override
-  TextSearchFilter evOptions(EvOptions? evOptions) =>
-      call(evOptions: evOptions);
-
-  @override
-  TextSearchFilter minRating(double? minRating) => call(minRating: minRating);
-
-  @override
-  TextSearchFilter openNow(bool? openNow) => call(openNow: openNow);
-
-  @override
-  TextSearchFilter pageSize(int? pageSize) => call(pageSize: pageSize);
-
-  @override
-  TextSearchFilter pageToken(String? pageToken) => call(pageToken: pageToken);
-
-  @override
-  TextSearchFilter priceLevels(List<PriceLevel>? priceLevels) =>
-      call(priceLevels: priceLevels);
-
-  @override
-  TextSearchFilter rankPreference(RankPreferenceType? rankPreference) =>
-      call(rankPreference: rankPreference);
-
-  @override
-  TextSearchFilter strictTypeFiltering(bool? strictTypeFiltering) =>
-      call(strictTypeFiltering: strictTypeFiltering);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `TextSearchFilter(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// TextSearchFilter(...).copyWith(id: 12, name: "My name")
-  /// ```
-  TextSearchFilter call({
-    Object? languageCode = const $CopyWithPlaceholder(),
-    Object? regionCode = const $CopyWithPlaceholder(),
-    Object? textQuery = const $CopyWithPlaceholder(),
-    Object? includedType = const $CopyWithPlaceholder(),
-    Object? includePureServiceAreaBusinesses = const $CopyWithPlaceholder(),
-    Object? locationBias = const $CopyWithPlaceholder(),
-    Object? locationRestriction = const $CopyWithPlaceholder(),
-    Object? evOptions = const $CopyWithPlaceholder(),
-    Object? minRating = const $CopyWithPlaceholder(),
-    Object? openNow = const $CopyWithPlaceholder(),
-    Object? pageSize = const $CopyWithPlaceholder(),
-    Object? pageToken = const $CopyWithPlaceholder(),
-    Object? priceLevels = const $CopyWithPlaceholder(),
-    Object? rankPreference = const $CopyWithPlaceholder(),
-    Object? strictTypeFiltering = const $CopyWithPlaceholder(),
   }) {
     return TextSearchFilter(
-      languageCode: languageCode == const $CopyWithPlaceholder()
-          ? _value.languageCode
-          // ignore: cast_nullable_to_non_nullable
-          : languageCode as String?,
-      regionCode: regionCode == const $CopyWithPlaceholder()
-          ? _value.regionCode
-          // ignore: cast_nullable_to_non_nullable
-          : regionCode as String?,
-      textQuery: textQuery == const $CopyWithPlaceholder() || textQuery == null
-          ? _value.textQuery
-          // ignore: cast_nullable_to_non_nullable
-          : textQuery as String,
-      includedType: includedType == const $CopyWithPlaceholder()
-          ? _value.includedType
-          // ignore: cast_nullable_to_non_nullable
-          : includedType as PlaceType?,
+      languageCode: languageCode ?? this.languageCode,
+      regionCode: regionCode ?? this.regionCode,
+      textQuery: textQuery ?? this.textQuery,
+      includedType: includedType ?? this.includedType,
       includePureServiceAreaBusinesses:
-          includePureServiceAreaBusinesses == const $CopyWithPlaceholder()
-          ? _value.includePureServiceAreaBusinesses
-          // ignore: cast_nullable_to_non_nullable
-          : includePureServiceAreaBusinesses as bool?,
-      locationBias: locationBias == const $CopyWithPlaceholder()
-          ? _value.locationBias
-          // ignore: cast_nullable_to_non_nullable
-          : locationBias as LocationMultiArea?,
-      locationRestriction: locationRestriction == const $CopyWithPlaceholder()
-          ? _value.locationRestriction
-          // ignore: cast_nullable_to_non_nullable
-          : locationRestriction as LocationMultiArea?,
-      evOptions: evOptions == const $CopyWithPlaceholder()
-          ? _value.evOptions
-          // ignore: cast_nullable_to_non_nullable
-          : evOptions as EvOptions?,
-      minRating: minRating == const $CopyWithPlaceholder()
-          ? _value.minRating
-          // ignore: cast_nullable_to_non_nullable
-          : minRating as double?,
-      openNow: openNow == const $CopyWithPlaceholder()
-          ? _value.openNow
-          // ignore: cast_nullable_to_non_nullable
-          : openNow as bool?,
-      pageSize: pageSize == const $CopyWithPlaceholder()
-          ? _value.pageSize
-          // ignore: cast_nullable_to_non_nullable
-          : pageSize as int?,
-      pageToken: pageToken == const $CopyWithPlaceholder()
-          ? _value.pageToken
-          // ignore: cast_nullable_to_non_nullable
-          : pageToken as String?,
-      priceLevels: priceLevels == const $CopyWithPlaceholder()
-          ? _value.priceLevels
-          // ignore: cast_nullable_to_non_nullable
-          : priceLevels as List<PriceLevel>?,
-      rankPreference: rankPreference == const $CopyWithPlaceholder()
-          ? _value.rankPreference
-          // ignore: cast_nullable_to_non_nullable
-          : rankPreference as RankPreferenceType?,
-      strictTypeFiltering: strictTypeFiltering == const $CopyWithPlaceholder()
-          ? _value.strictTypeFiltering
-          // ignore: cast_nullable_to_non_nullable
-          : strictTypeFiltering as bool?,
+          includePureServiceAreaBusinesses ??
+          this.includePureServiceAreaBusinesses,
+      locationBias: locationBias ?? this.locationBias,
+      locationRestriction: locationRestriction ?? this.locationRestriction,
+      evOptions: evOptions ?? this.evOptions,
+      minRating: minRating ?? this.minRating,
+      openNow: openNow ?? this.openNow,
+      pageSize: pageSize ?? this.pageSize,
+      pageToken: pageToken ?? this.pageToken,
+      priceLevels:
+          ((priceLevels?.isNotEmpty ?? false) ? priceLevels : null) ??
+          this.priceLevels,
+      rankPreference: rankPreference ?? this.rankPreference,
+      strictTypeFiltering: strictTypeFiltering ?? this.strictTypeFiltering,
     );
   }
-}
-
-extension $TextSearchFilterCopyWith on TextSearchFilter {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfTextSearchFilter.copyWith(...)` or `instanceOfTextSearchFilter.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$TextSearchFilterCWProxy get copyWith => _$TextSearchFilterCWProxyImpl(this);
 }
 
 // **************************************************************************

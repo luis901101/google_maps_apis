@@ -20,6 +20,21 @@ targets:
 #        generate_for:
 #          - '**/filter/*.dart'
 #          - '**/model/*.dart'
+      adeptgenerator:
+        enabled: true
+        options:
+          clone_ignore_synthetic: false
+          clone_consider_empty_collection_as_null: true
+          clone_generate_clone_extension: true
+          copy_with_ignore_synthetic: false
+          copy_with_allow_nullable: false
+          copy_with_consider_empty_collection_as_null: true
+          copy_with_include_private_fields: false
+          copy_with_avoid_constructor: false
+          diff_ignore_synthetic: false
+          diff_generate_diff_extension: true
+          is_empty_ignore_synthetic: false
+          is_empty_include_private_fields: false
       retrofit_generator|retrofit_generator:
         generate_for:
           - '**/service/*.dart'

@@ -8,7 +8,11 @@ part of 'directions.dart';
 
 DirectionsResponse _$DirectionsResponseFromJson(Map<String, dynamic> json) =>
     DirectionsResponse(
-      status: $enumDecodeNullable(_$ResponseStatusEnumMap, json['status']),
+      status: $enumDecodeNullable(
+        _$ResponseStatusEnumMap,
+        json['status'],
+        unknownValue: JsonKey.nullForUndefinedEnumValue,
+      ),
       errorMessage: json['error_message'] as String?,
       geocodedWaypoints: (json['geocoded_waypoints'] as List<dynamic>?)
           ?.map((e) => GeocodedWaypoint.fromJson(e as Map<String, dynamic>))
@@ -36,6 +40,7 @@ const _$ResponseStatusEnumMap = {
   ResponseStatus.notFound: 'NOT_FOUND',
   ResponseStatus.maxWaypointsExceeded: 'MAX_WAYPOINTS_EXCEEDED',
   ResponseStatus.maxRouteLengthExceeded: 'MAX_ROUTE_LENGTH_EXCEEDED',
+  ResponseStatus.deadlineExceeded: 'DEADLINE_EXCEEDED',
 };
 
 Waypoint _$WaypointFromJson(Map<String, dynamic> json) =>

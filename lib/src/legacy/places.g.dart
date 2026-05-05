@@ -9,7 +9,11 @@ part of 'places.dart';
 PlacesSearchResponse _$PlacesSearchResponseFromJson(
   Map<String, dynamic> json,
 ) => PlacesSearchResponse(
-  status: $enumDecodeNullable(_$ResponseStatusEnumMap, json['status']),
+  status: $enumDecodeNullable(
+    _$ResponseStatusEnumMap,
+    json['status'],
+    unknownValue: JsonKey.nullForUndefinedEnumValue,
+  ),
   errorMessage: json['error_message'] as String?,
   results: (json['results'] as List<dynamic>?)
       ?.map((e) => PlacesSearchResult.fromJson(e as Map<String, dynamic>))
@@ -40,6 +44,7 @@ const _$ResponseStatusEnumMap = {
   ResponseStatus.notFound: 'NOT_FOUND',
   ResponseStatus.maxWaypointsExceeded: 'MAX_WAYPOINTS_EXCEEDED',
   ResponseStatus.maxRouteLengthExceeded: 'MAX_ROUTE_LENGTH_EXCEEDED',
+  ResponseStatus.deadlineExceeded: 'DEADLINE_EXCEEDED',
 };
 
 PlacesSearchResult _$PlacesSearchResultFromJson(Map<String, dynamic> json) =>
@@ -354,7 +359,11 @@ Map<String, dynamic> _$PlusCodeToJson(PlusCode instance) => <String, dynamic>{
 PlacesDetailsResponse _$PlacesDetailsResponseFromJson(
   Map<String, dynamic> json,
 ) => PlacesDetailsResponse(
-  status: $enumDecodeNullable(_$ResponseStatusEnumMap, json['status']),
+  status: $enumDecodeNullable(
+    _$ResponseStatusEnumMap,
+    json['status'],
+    unknownValue: JsonKey.nullForUndefinedEnumValue,
+  ),
   errorMessage: json['error_message'] as String?,
   result: json['result'] == null
       ? null
@@ -402,7 +411,11 @@ Map<String, dynamic> _$ReviewToJson(Review instance) => <String, dynamic>{
 PlacesAutocompleteResponse _$PlacesAutocompleteResponseFromJson(
   Map<String, dynamic> json,
 ) => PlacesAutocompleteResponse(
-  status: $enumDecodeNullable(_$ResponseStatusEnumMap, json['status']),
+  status: $enumDecodeNullable(
+    _$ResponseStatusEnumMap,
+    json['status'],
+    unknownValue: JsonKey.nullForUndefinedEnumValue,
+  ),
   errorMessage: json['error_message'] as String?,
   predictions: (json['predictions'] as List<dynamic>?)
       ?.map((e) => Prediction.fromJson(e as Map<String, dynamic>))

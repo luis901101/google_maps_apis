@@ -6,29 +6,9 @@ part of 'landmark.dart';
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$LandmarkCWProxy {
-  Landmark name(String? name);
-
-  Landmark placeId(String? placeId);
-
-  Landmark displayName(LocalizedText? displayName);
-
-  Landmark types(List<PlaceType>? types);
-
-  Landmark spatialRelationship(SpatialRelationship? spatialRelationship);
-
-  Landmark straightLineDistanceMeters(double? straightLineDistanceMeters);
-
-  Landmark travelDistanceMeters(double? travelDistanceMeters);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Landmark(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// Landmark(...).copyWith(id: 12, name: "My name")
-  /// ```
-  Landmark call({
+/// This Extension on [Landmark] is to generate the code for a copyWith(...) function.
+extension $LandmarkCopyWithExtension on Landmark {
+  Landmark copyWith({
     String? name,
     String? placeId,
     LocalizedText? displayName,
@@ -36,97 +16,18 @@ abstract class _$LandmarkCWProxy {
     SpatialRelationship? spatialRelationship,
     double? straightLineDistanceMeters,
     double? travelDistanceMeters,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfLandmark.copyWith(...)` or call `instanceOfLandmark.copyWith.fieldName(value)` for a single field.
-class _$LandmarkCWProxyImpl implements _$LandmarkCWProxy {
-  const _$LandmarkCWProxyImpl(this._value);
-
-  final Landmark _value;
-
-  @override
-  Landmark name(String? name) => call(name: name);
-
-  @override
-  Landmark placeId(String? placeId) => call(placeId: placeId);
-
-  @override
-  Landmark displayName(LocalizedText? displayName) =>
-      call(displayName: displayName);
-
-  @override
-  Landmark types(List<PlaceType>? types) => call(types: types);
-
-  @override
-  Landmark spatialRelationship(SpatialRelationship? spatialRelationship) =>
-      call(spatialRelationship: spatialRelationship);
-
-  @override
-  Landmark straightLineDistanceMeters(double? straightLineDistanceMeters) =>
-      call(straightLineDistanceMeters: straightLineDistanceMeters);
-
-  @override
-  Landmark travelDistanceMeters(double? travelDistanceMeters) =>
-      call(travelDistanceMeters: travelDistanceMeters);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `Landmark(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// Landmark(...).copyWith(id: 12, name: "My name")
-  /// ```
-  Landmark call({
-    Object? name = const $CopyWithPlaceholder(),
-    Object? placeId = const $CopyWithPlaceholder(),
-    Object? displayName = const $CopyWithPlaceholder(),
-    Object? types = const $CopyWithPlaceholder(),
-    Object? spatialRelationship = const $CopyWithPlaceholder(),
-    Object? straightLineDistanceMeters = const $CopyWithPlaceholder(),
-    Object? travelDistanceMeters = const $CopyWithPlaceholder(),
   }) {
     return Landmark(
-      name: name == const $CopyWithPlaceholder()
-          ? _value.name
-          // ignore: cast_nullable_to_non_nullable
-          : name as String?,
-      placeId: placeId == const $CopyWithPlaceholder()
-          ? _value.placeId
-          // ignore: cast_nullable_to_non_nullable
-          : placeId as String?,
-      displayName: displayName == const $CopyWithPlaceholder()
-          ? _value.displayName
-          // ignore: cast_nullable_to_non_nullable
-          : displayName as LocalizedText?,
-      types: types == const $CopyWithPlaceholder()
-          ? _value.types
-          // ignore: cast_nullable_to_non_nullable
-          : types as List<PlaceType>?,
-      spatialRelationship: spatialRelationship == const $CopyWithPlaceholder()
-          ? _value.spatialRelationship
-          // ignore: cast_nullable_to_non_nullable
-          : spatialRelationship as SpatialRelationship?,
+      name: name ?? this.name,
+      placeId: placeId ?? this.placeId,
+      displayName: displayName ?? this.displayName,
+      types: ((types?.isNotEmpty ?? false) ? types : null) ?? this.types,
+      spatialRelationship: spatialRelationship ?? this.spatialRelationship,
       straightLineDistanceMeters:
-          straightLineDistanceMeters == const $CopyWithPlaceholder()
-          ? _value.straightLineDistanceMeters
-          // ignore: cast_nullable_to_non_nullable
-          : straightLineDistanceMeters as double?,
-      travelDistanceMeters: travelDistanceMeters == const $CopyWithPlaceholder()
-          ? _value.travelDistanceMeters
-          // ignore: cast_nullable_to_non_nullable
-          : travelDistanceMeters as double?,
+          straightLineDistanceMeters ?? this.straightLineDistanceMeters,
+      travelDistanceMeters: travelDistanceMeters ?? this.travelDistanceMeters,
     );
   }
-}
-
-extension $LandmarkCopyWith on Landmark {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfLandmark.copyWith(...)` or `instanceOfLandmark.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$LandmarkCWProxy get copyWith => _$LandmarkCWProxyImpl(this);
 }
 
 // **************************************************************************

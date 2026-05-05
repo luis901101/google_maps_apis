@@ -9,6 +9,13 @@ Types of changes
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## 5.1.0
+### Changed
+- Changed `CopyWith` dependency.
+
+### Fixed
+- Fixed issue with `ResponseStatus` json parsing. [ISSUE-6](https://github.com/luis901101/google_maps_apis/issues/6)
+
 ## 5.0.0
 ### Changed
 - Updated `CustomParseErrorLogger` with optional `Response` parameter as per new Retrofit version.

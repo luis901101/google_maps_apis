@@ -4,7 +4,7 @@ import 'package:google_maps_apis/src/new/enums/rank_preference_type.dart';
 import 'package:google_maps_apis/src/new/filter/base_filter.dart';
 import 'package:google_maps_apis/src/new/model/location_area.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:adeptannotations/adeptannotations.dart';
 
 part 'nearby_search_filter.g.dart';
 

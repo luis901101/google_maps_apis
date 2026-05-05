@@ -6,52 +6,13 @@ part of 'autocomplete_search_filter.dart';
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$AutocompleteSearchFilterCWProxy {
-  AutocompleteSearchFilter sessionToken(String? sessionToken);
-
-  AutocompleteSearchFilter languageCode(String? languageCode);
-
-  AutocompleteSearchFilter regionCode(String? regionCode);
-
-  AutocompleteSearchFilter input(String? input);
-
-  AutocompleteSearchFilter locationBias(LocationBias? locationBias);
-
-  AutocompleteSearchFilter locationRestriction(
-    LocationRestriction? locationRestriction,
-  );
-
-  AutocompleteSearchFilter includedPrimaryTypes(
-    List<PlaceType>? includedPrimaryTypes,
-  );
-
-  AutocompleteSearchFilter includedRegionCodes(
-    List<String>? includedRegionCodes,
-  );
-
-  AutocompleteSearchFilter origin(LatLng? origin);
-
-  AutocompleteSearchFilter inputOffset(int? inputOffset);
-
-  AutocompleteSearchFilter includeQueryPredictions(
-    bool? includeQueryPredictions,
-  );
-
-  AutocompleteSearchFilter includePureServiceAreaBusinesses(
-    bool? includePureServiceAreaBusinesses,
-  );
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AutocompleteSearchFilter(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// AutocompleteSearchFilter(...).copyWith(id: 12, name: "My name")
-  /// ```
-  AutocompleteSearchFilter call({
-    String? sessionToken,
+/// This Extension on [AutocompleteSearchFilter] is to generate the code for a copyWith(...) function.
+extension $AutocompleteSearchFilterCopyWithExtension
+    on AutocompleteSearchFilter {
+  AutocompleteSearchFilter copyWith({
     String? languageCode,
     String? regionCode,
+    String? sessionToken,
     String? input,
     LocationBias? locationBias,
     LocationRestriction? locationRestriction,
@@ -61,151 +22,33 @@ abstract class _$AutocompleteSearchFilterCWProxy {
     int? inputOffset,
     bool? includeQueryPredictions,
     bool? includePureServiceAreaBusinesses,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfAutocompleteSearchFilter.copyWith(...)` or call `instanceOfAutocompleteSearchFilter.copyWith.fieldName(value)` for a single field.
-class _$AutocompleteSearchFilterCWProxyImpl
-    implements _$AutocompleteSearchFilterCWProxy {
-  const _$AutocompleteSearchFilterCWProxyImpl(this._value);
-
-  final AutocompleteSearchFilter _value;
-
-  @override
-  AutocompleteSearchFilter sessionToken(String? sessionToken) =>
-      call(sessionToken: sessionToken);
-
-  @override
-  AutocompleteSearchFilter languageCode(String? languageCode) =>
-      call(languageCode: languageCode);
-
-  @override
-  AutocompleteSearchFilter regionCode(String? regionCode) =>
-      call(regionCode: regionCode);
-
-  @override
-  AutocompleteSearchFilter input(String? input) => call(input: input);
-
-  @override
-  AutocompleteSearchFilter locationBias(LocationBias? locationBias) =>
-      call(locationBias: locationBias);
-
-  @override
-  AutocompleteSearchFilter locationRestriction(
-    LocationRestriction? locationRestriction,
-  ) => call(locationRestriction: locationRestriction);
-
-  @override
-  AutocompleteSearchFilter includedPrimaryTypes(
-    List<PlaceType>? includedPrimaryTypes,
-  ) => call(includedPrimaryTypes: includedPrimaryTypes);
-
-  @override
-  AutocompleteSearchFilter includedRegionCodes(
-    List<String>? includedRegionCodes,
-  ) => call(includedRegionCodes: includedRegionCodes);
-
-  @override
-  AutocompleteSearchFilter origin(LatLng? origin) => call(origin: origin);
-
-  @override
-  AutocompleteSearchFilter inputOffset(int? inputOffset) =>
-      call(inputOffset: inputOffset);
-
-  @override
-  AutocompleteSearchFilter includeQueryPredictions(
-    bool? includeQueryPredictions,
-  ) => call(includeQueryPredictions: includeQueryPredictions);
-
-  @override
-  AutocompleteSearchFilter includePureServiceAreaBusinesses(
-    bool? includePureServiceAreaBusinesses,
-  ) => call(includePureServiceAreaBusinesses: includePureServiceAreaBusinesses);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AutocompleteSearchFilter(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// AutocompleteSearchFilter(...).copyWith(id: 12, name: "My name")
-  /// ```
-  AutocompleteSearchFilter call({
-    Object? sessionToken = const $CopyWithPlaceholder(),
-    Object? languageCode = const $CopyWithPlaceholder(),
-    Object? regionCode = const $CopyWithPlaceholder(),
-    Object? input = const $CopyWithPlaceholder(),
-    Object? locationBias = const $CopyWithPlaceholder(),
-    Object? locationRestriction = const $CopyWithPlaceholder(),
-    Object? includedPrimaryTypes = const $CopyWithPlaceholder(),
-    Object? includedRegionCodes = const $CopyWithPlaceholder(),
-    Object? origin = const $CopyWithPlaceholder(),
-    Object? inputOffset = const $CopyWithPlaceholder(),
-    Object? includeQueryPredictions = const $CopyWithPlaceholder(),
-    Object? includePureServiceAreaBusinesses = const $CopyWithPlaceholder(),
   }) {
     return AutocompleteSearchFilter(
-      sessionToken: sessionToken == const $CopyWithPlaceholder()
-          ? _value.sessionToken
-          // ignore: cast_nullable_to_non_nullable
-          : sessionToken as String?,
-      languageCode: languageCode == const $CopyWithPlaceholder()
-          ? _value.languageCode
-          // ignore: cast_nullable_to_non_nullable
-          : languageCode as String?,
-      regionCode: regionCode == const $CopyWithPlaceholder()
-          ? _value.regionCode
-          // ignore: cast_nullable_to_non_nullable
-          : regionCode as String?,
-      input: input == const $CopyWithPlaceholder()
-          ? _value.input
-          // ignore: cast_nullable_to_non_nullable
-          : input as String?,
-      locationBias: locationBias == const $CopyWithPlaceholder()
-          ? _value.locationBias
-          // ignore: cast_nullable_to_non_nullable
-          : locationBias as LocationBias?,
-      locationRestriction: locationRestriction == const $CopyWithPlaceholder()
-          ? _value.locationRestriction
-          // ignore: cast_nullable_to_non_nullable
-          : locationRestriction as LocationRestriction?,
-      includedPrimaryTypes: includedPrimaryTypes == const $CopyWithPlaceholder()
-          ? _value.includedPrimaryTypes
-          // ignore: cast_nullable_to_non_nullable
-          : includedPrimaryTypes as List<PlaceType>?,
-      includedRegionCodes: includedRegionCodes == const $CopyWithPlaceholder()
-          ? _value.includedRegionCodes
-          // ignore: cast_nullable_to_non_nullable
-          : includedRegionCodes as List<String>?,
-      origin: origin == const $CopyWithPlaceholder()
-          ? _value.origin
-          // ignore: cast_nullable_to_non_nullable
-          : origin as LatLng?,
-      inputOffset: inputOffset == const $CopyWithPlaceholder()
-          ? _value.inputOffset
-          // ignore: cast_nullable_to_non_nullable
-          : inputOffset as int?,
+      languageCode: languageCode ?? this.languageCode,
+      regionCode: regionCode ?? this.regionCode,
+      sessionToken: sessionToken ?? this.sessionToken,
+      input: input ?? this.input,
+      locationBias: locationBias ?? this.locationBias,
+      locationRestriction: locationRestriction ?? this.locationRestriction,
+      includedPrimaryTypes:
+          ((includedPrimaryTypes?.isNotEmpty ?? false)
+              ? includedPrimaryTypes
+              : null) ??
+          this.includedPrimaryTypes,
+      includedRegionCodes:
+          ((includedRegionCodes?.isNotEmpty ?? false)
+              ? includedRegionCodes
+              : null) ??
+          this.includedRegionCodes,
+      origin: origin ?? this.origin,
+      inputOffset: inputOffset ?? this.inputOffset,
       includeQueryPredictions:
-          includeQueryPredictions == const $CopyWithPlaceholder()
-          ? _value.includeQueryPredictions
-          // ignore: cast_nullable_to_non_nullable
-          : includeQueryPredictions as bool?,
+          includeQueryPredictions ?? this.includeQueryPredictions,
       includePureServiceAreaBusinesses:
-          includePureServiceAreaBusinesses == const $CopyWithPlaceholder()
-          ? _value.includePureServiceAreaBusinesses
-          // ignore: cast_nullable_to_non_nullable
-          : includePureServiceAreaBusinesses as bool?,
+          includePureServiceAreaBusinesses ??
+          this.includePureServiceAreaBusinesses,
     );
   }
-}
-
-extension $AutocompleteSearchFilterCopyWith on AutocompleteSearchFilter {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfAutocompleteSearchFilter.copyWith(...)` or `instanceOfAutocompleteSearchFilter.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$AutocompleteSearchFilterCWProxy get copyWith =>
-      _$AutocompleteSearchFilterCWProxyImpl(this);
 }
 
 // **************************************************************************

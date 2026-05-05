@@ -8,7 +8,11 @@ part of 'geocoding.dart';
 
 GeocodingResponse _$GeocodingResponseFromJson(Map<String, dynamic> json) =>
     GeocodingResponse(
-      status: $enumDecodeNullable(_$ResponseStatusEnumMap, json['status']),
+      status: $enumDecodeNullable(
+        _$ResponseStatusEnumMap,
+        json['status'],
+        unknownValue: JsonKey.nullForUndefinedEnumValue,
+      ),
       errorMessage: json['error_message'] as String?,
       results: (json['results'] as List<dynamic>?)
           ?.map((e) => GeocodingResult.fromJson(e as Map<String, dynamic>))
@@ -32,6 +36,7 @@ const _$ResponseStatusEnumMap = {
   ResponseStatus.notFound: 'NOT_FOUND',
   ResponseStatus.maxWaypointsExceeded: 'MAX_WAYPOINTS_EXCEEDED',
   ResponseStatus.maxRouteLengthExceeded: 'MAX_ROUTE_LENGTH_EXCEEDED',
+  ResponseStatus.deadlineExceeded: 'DEADLINE_EXCEEDED',
 };
 
 GeocodingResult _$GeocodingResultFromJson(Map<String, dynamic> json) =>

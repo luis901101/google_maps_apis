@@ -6,121 +6,26 @@ part of 'connector_aggregation.dart';
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$ConnectorAggregationCWProxy {
-  ConnectorAggregation type(EvConnectorType? type);
-
-  ConnectorAggregation maxChargeRateKw(double? maxChargeRateKw);
-
-  ConnectorAggregation count(int? count);
-
-  ConnectorAggregation availabilityLastUpdateTime(
-    DateTime? availabilityLastUpdateTime,
-  );
-
-  ConnectorAggregation availableCount(int? availableCount);
-
-  ConnectorAggregation outOfServiceCount(int? outOfServiceCount);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ConnectorAggregation(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// ConnectorAggregation(...).copyWith(id: 12, name: "My name")
-  /// ```
-  ConnectorAggregation call({
+/// This Extension on [ConnectorAggregation] is to generate the code for a copyWith(...) function.
+extension $ConnectorAggregationCopyWithExtension on ConnectorAggregation {
+  ConnectorAggregation copyWith({
     EvConnectorType? type,
     double? maxChargeRateKw,
     int? count,
     DateTime? availabilityLastUpdateTime,
     int? availableCount,
     int? outOfServiceCount,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfConnectorAggregation.copyWith(...)` or call `instanceOfConnectorAggregation.copyWith.fieldName(value)` for a single field.
-class _$ConnectorAggregationCWProxyImpl
-    implements _$ConnectorAggregationCWProxy {
-  const _$ConnectorAggregationCWProxyImpl(this._value);
-
-  final ConnectorAggregation _value;
-
-  @override
-  ConnectorAggregation type(EvConnectorType? type) => call(type: type);
-
-  @override
-  ConnectorAggregation maxChargeRateKw(double? maxChargeRateKw) =>
-      call(maxChargeRateKw: maxChargeRateKw);
-
-  @override
-  ConnectorAggregation count(int? count) => call(count: count);
-
-  @override
-  ConnectorAggregation availabilityLastUpdateTime(
-    DateTime? availabilityLastUpdateTime,
-  ) => call(availabilityLastUpdateTime: availabilityLastUpdateTime);
-
-  @override
-  ConnectorAggregation availableCount(int? availableCount) =>
-      call(availableCount: availableCount);
-
-  @override
-  ConnectorAggregation outOfServiceCount(int? outOfServiceCount) =>
-      call(outOfServiceCount: outOfServiceCount);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `ConnectorAggregation(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// ConnectorAggregation(...).copyWith(id: 12, name: "My name")
-  /// ```
-  ConnectorAggregation call({
-    Object? type = const $CopyWithPlaceholder(),
-    Object? maxChargeRateKw = const $CopyWithPlaceholder(),
-    Object? count = const $CopyWithPlaceholder(),
-    Object? availabilityLastUpdateTime = const $CopyWithPlaceholder(),
-    Object? availableCount = const $CopyWithPlaceholder(),
-    Object? outOfServiceCount = const $CopyWithPlaceholder(),
   }) {
     return ConnectorAggregation(
-      type: type == const $CopyWithPlaceholder()
-          ? _value.type
-          // ignore: cast_nullable_to_non_nullable
-          : type as EvConnectorType?,
-      maxChargeRateKw: maxChargeRateKw == const $CopyWithPlaceholder()
-          ? _value.maxChargeRateKw
-          // ignore: cast_nullable_to_non_nullable
-          : maxChargeRateKw as double?,
-      count: count == const $CopyWithPlaceholder()
-          ? _value.count
-          // ignore: cast_nullable_to_non_nullable
-          : count as int?,
+      type: type ?? this.type,
+      maxChargeRateKw: maxChargeRateKw ?? this.maxChargeRateKw,
+      count: count ?? this.count,
       availabilityLastUpdateTime:
-          availabilityLastUpdateTime == const $CopyWithPlaceholder()
-          ? _value.availabilityLastUpdateTime
-          // ignore: cast_nullable_to_non_nullable
-          : availabilityLastUpdateTime as DateTime?,
-      availableCount: availableCount == const $CopyWithPlaceholder()
-          ? _value.availableCount
-          // ignore: cast_nullable_to_non_nullable
-          : availableCount as int?,
-      outOfServiceCount: outOfServiceCount == const $CopyWithPlaceholder()
-          ? _value.outOfServiceCount
-          // ignore: cast_nullable_to_non_nullable
-          : outOfServiceCount as int?,
+          availabilityLastUpdateTime ?? this.availabilityLastUpdateTime,
+      availableCount: availableCount ?? this.availableCount,
+      outOfServiceCount: outOfServiceCount ?? this.outOfServiceCount,
     );
   }
-}
-
-extension $ConnectorAggregationCopyWith on ConnectorAggregation {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfConnectorAggregation.copyWith(...)` or `instanceOfConnectorAggregation.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$ConnectorAggregationCWProxy get copyWith =>
-      _$ConnectorAggregationCWProxyImpl(this);
 }
 
 // **************************************************************************

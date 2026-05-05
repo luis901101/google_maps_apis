@@ -1,4 +1,4 @@
-import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:adeptannotations/adeptannotations.dart';
 import 'package:google_maps_apis/src/new/model/period.dart';
 import 'package:google_maps_apis/src/new/model/special_day.dart';
 import 'package:google_maps_apis/src/new/enums/secondary_hours_type.dart';

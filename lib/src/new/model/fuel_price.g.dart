@@ -6,74 +6,15 @@ part of 'fuel_price.dart';
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$FuelPriceCWProxy {
-  FuelPrice type(FuelType? type);
-
-  FuelPrice price(Money? price);
-
-  FuelPrice updateTime(DateTime? updateTime);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `FuelPrice(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// FuelPrice(...).copyWith(id: 12, name: "My name")
-  /// ```
-  FuelPrice call({FuelType? type, Money? price, DateTime? updateTime});
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfFuelPrice.copyWith(...)` or call `instanceOfFuelPrice.copyWith.fieldName(value)` for a single field.
-class _$FuelPriceCWProxyImpl implements _$FuelPriceCWProxy {
-  const _$FuelPriceCWProxyImpl(this._value);
-
-  final FuelPrice _value;
-
-  @override
-  FuelPrice type(FuelType? type) => call(type: type);
-
-  @override
-  FuelPrice price(Money? price) => call(price: price);
-
-  @override
-  FuelPrice updateTime(DateTime? updateTime) => call(updateTime: updateTime);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `FuelPrice(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// FuelPrice(...).copyWith(id: 12, name: "My name")
-  /// ```
-  FuelPrice call({
-    Object? type = const $CopyWithPlaceholder(),
-    Object? price = const $CopyWithPlaceholder(),
-    Object? updateTime = const $CopyWithPlaceholder(),
-  }) {
+/// This Extension on [FuelPrice] is to generate the code for a copyWith(...) function.
+extension $FuelPriceCopyWithExtension on FuelPrice {
+  FuelPrice copyWith({FuelType? type, Money? price, DateTime? updateTime}) {
     return FuelPrice(
-      type: type == const $CopyWithPlaceholder()
-          ? _value.type
-          // ignore: cast_nullable_to_non_nullable
-          : type as FuelType?,
-      price: price == const $CopyWithPlaceholder()
-          ? _value.price
-          // ignore: cast_nullable_to_non_nullable
-          : price as Money?,
-      updateTime: updateTime == const $CopyWithPlaceholder()
-          ? _value.updateTime
-          // ignore: cast_nullable_to_non_nullable
-          : updateTime as DateTime?,
+      type: type ?? this.type,
+      price: price ?? this.price,
+      updateTime: updateTime ?? this.updateTime,
     );
   }
-}
-
-extension $FuelPriceCopyWith on FuelPrice {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfFuelPrice.copyWith(...)` or `instanceOfFuelPrice.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$FuelPriceCWProxy get copyWith => _$FuelPriceCWProxyImpl(this);
 }
 
 // **************************************************************************

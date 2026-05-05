@@ -6,113 +6,25 @@ part of 'place_prediction.dart';
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$PlacePredictionCWProxy {
-  PlacePrediction place(String? place);
-
-  PlacePrediction placeId(String? placeId);
-
-  PlacePrediction text(FormattableText? text);
-
-  PlacePrediction structuredFormat(StructuredFormat? structuredFormat);
-
-  PlacePrediction types(List<PlaceType>? types);
-
-  PlacePrediction distanceMeters(int? distanceMeters);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PlacePrediction(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// PlacePrediction(...).copyWith(id: 12, name: "My name")
-  /// ```
-  PlacePrediction call({
+/// This Extension on [PlacePrediction] is to generate the code for a copyWith(...) function.
+extension $PlacePredictionCopyWithExtension on PlacePrediction {
+  PlacePrediction copyWith({
     String? place,
     String? placeId,
     FormattableText? text,
     StructuredFormat? structuredFormat,
     List<PlaceType>? types,
     int? distanceMeters,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfPlacePrediction.copyWith(...)` or call `instanceOfPlacePrediction.copyWith.fieldName(value)` for a single field.
-class _$PlacePredictionCWProxyImpl implements _$PlacePredictionCWProxy {
-  const _$PlacePredictionCWProxyImpl(this._value);
-
-  final PlacePrediction _value;
-
-  @override
-  PlacePrediction place(String? place) => call(place: place);
-
-  @override
-  PlacePrediction placeId(String? placeId) => call(placeId: placeId);
-
-  @override
-  PlacePrediction text(FormattableText? text) => call(text: text);
-
-  @override
-  PlacePrediction structuredFormat(StructuredFormat? structuredFormat) =>
-      call(structuredFormat: structuredFormat);
-
-  @override
-  PlacePrediction types(List<PlaceType>? types) => call(types: types);
-
-  @override
-  PlacePrediction distanceMeters(int? distanceMeters) =>
-      call(distanceMeters: distanceMeters);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `PlacePrediction(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// PlacePrediction(...).copyWith(id: 12, name: "My name")
-  /// ```
-  PlacePrediction call({
-    Object? place = const $CopyWithPlaceholder(),
-    Object? placeId = const $CopyWithPlaceholder(),
-    Object? text = const $CopyWithPlaceholder(),
-    Object? structuredFormat = const $CopyWithPlaceholder(),
-    Object? types = const $CopyWithPlaceholder(),
-    Object? distanceMeters = const $CopyWithPlaceholder(),
   }) {
     return PlacePrediction(
-      place: place == const $CopyWithPlaceholder()
-          ? _value.place
-          // ignore: cast_nullable_to_non_nullable
-          : place as String?,
-      placeId: placeId == const $CopyWithPlaceholder()
-          ? _value.placeId
-          // ignore: cast_nullable_to_non_nullable
-          : placeId as String?,
-      text: text == const $CopyWithPlaceholder()
-          ? _value.text
-          // ignore: cast_nullable_to_non_nullable
-          : text as FormattableText?,
-      structuredFormat: structuredFormat == const $CopyWithPlaceholder()
-          ? _value.structuredFormat
-          // ignore: cast_nullable_to_non_nullable
-          : structuredFormat as StructuredFormat?,
-      types: types == const $CopyWithPlaceholder()
-          ? _value.types
-          // ignore: cast_nullable_to_non_nullable
-          : types as List<PlaceType>?,
-      distanceMeters: distanceMeters == const $CopyWithPlaceholder()
-          ? _value.distanceMeters
-          // ignore: cast_nullable_to_non_nullable
-          : distanceMeters as int?,
+      place: place ?? this.place,
+      placeId: placeId ?? this.placeId,
+      text: text ?? this.text,
+      structuredFormat: structuredFormat ?? this.structuredFormat,
+      types: ((types?.isNotEmpty ?? false) ? types : null) ?? this.types,
+      distanceMeters: distanceMeters ?? this.distanceMeters,
     );
   }
-}
-
-extension $PlacePredictionCopyWith on PlacePrediction {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfPlacePrediction.copyWith(...)` or `instanceOfPlacePrediction.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$PlacePredictionCWProxy get copyWith => _$PlacePredictionCWProxyImpl(this);
 }
 
 // **************************************************************************

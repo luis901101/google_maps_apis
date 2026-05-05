@@ -1,4 +1,4 @@
-import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:adeptannotations/adeptannotations.dart';
 import 'package:google_maps_apis/src/new/model/money.dart';
 import 'package:google_maps_apis/src/new/enums/fuel_type.dart';
 import 'package:google_maps_apis/src/new/utils/jsonable.dart';

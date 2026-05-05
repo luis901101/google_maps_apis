@@ -6,90 +6,21 @@ part of 'address_component.dart';
 // CopyWithGenerator
 // **************************************************************************
 
-abstract class _$AddressComponentCWProxy {
-  AddressComponent longText(String? longText);
-
-  AddressComponent shortText(String? shortText);
-
-  AddressComponent types(List<PlaceType>? types);
-
-  AddressComponent languageCode(String? languageCode);
-
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AddressComponent(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// AddressComponent(...).copyWith(id: 12, name: "My name")
-  /// ```
-  AddressComponent call({
+/// This Extension on [AddressComponent] is to generate the code for a copyWith(...) function.
+extension $AddressComponentCopyWithExtension on AddressComponent {
+  AddressComponent copyWith({
     String? longText,
     String? shortText,
     List<PlaceType>? types,
     String? languageCode,
-  });
-}
-
-/// Callable proxy for `copyWith` functionality.
-/// Use as `instanceOfAddressComponent.copyWith(...)` or call `instanceOfAddressComponent.copyWith.fieldName(value)` for a single field.
-class _$AddressComponentCWProxyImpl implements _$AddressComponentCWProxy {
-  const _$AddressComponentCWProxyImpl(this._value);
-
-  final AddressComponent _value;
-
-  @override
-  AddressComponent longText(String? longText) => call(longText: longText);
-
-  @override
-  AddressComponent shortText(String? shortText) => call(shortText: shortText);
-
-  @override
-  AddressComponent types(List<PlaceType>? types) => call(types: types);
-
-  @override
-  AddressComponent languageCode(String? languageCode) =>
-      call(languageCode: languageCode);
-
-  @override
-  /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `AddressComponent(...).copyWith.fieldName(value)`.
-  ///
-  /// Example:
-  /// ```dart
-  /// AddressComponent(...).copyWith(id: 12, name: "My name")
-  /// ```
-  AddressComponent call({
-    Object? longText = const $CopyWithPlaceholder(),
-    Object? shortText = const $CopyWithPlaceholder(),
-    Object? types = const $CopyWithPlaceholder(),
-    Object? languageCode = const $CopyWithPlaceholder(),
   }) {
     return AddressComponent(
-      longText: longText == const $CopyWithPlaceholder()
-          ? _value.longText
-          // ignore: cast_nullable_to_non_nullable
-          : longText as String?,
-      shortText: shortText == const $CopyWithPlaceholder()
-          ? _value.shortText
-          // ignore: cast_nullable_to_non_nullable
-          : shortText as String?,
-      types: types == const $CopyWithPlaceholder()
-          ? _value.types
-          // ignore: cast_nullable_to_non_nullable
-          : types as List<PlaceType>?,
-      languageCode: languageCode == const $CopyWithPlaceholder()
-          ? _value.languageCode
-          // ignore: cast_nullable_to_non_nullable
-          : languageCode as String?,
+      longText: longText ?? this.longText,
+      shortText: shortText ?? this.shortText,
+      types: ((types?.isNotEmpty ?? false) ? types : null) ?? this.types,
+      languageCode: languageCode ?? this.languageCode,
     );
   }
-}
-
-extension $AddressComponentCopyWith on AddressComponent {
-  /// Returns a callable class used to build a new instance with modified fields.
-  /// Example: `instanceOfAddressComponent.copyWith(...)` or `instanceOfAddressComponent.copyWith.fieldName(...)`.
-  // ignore: library_private_types_in_public_api
-  _$AddressComponentCWProxy get copyWith => _$AddressComponentCWProxyImpl(this);
 }
 
 // **************************************************************************

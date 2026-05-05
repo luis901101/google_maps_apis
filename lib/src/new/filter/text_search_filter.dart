@@ -1,4 +1,4 @@
-import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:adeptannotations/adeptannotations.dart';
 import 'package:google_maps_apis/src/new/enums/place_type.dart';
 import 'package:google_maps_apis/src/new/enums/price_level.dart';
 import 'package:google_maps_apis/src/new/enums/rank_preference_type.dart';

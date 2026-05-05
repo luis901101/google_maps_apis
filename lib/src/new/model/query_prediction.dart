@@ -1,4 +1,4 @@
-import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:adeptannotations/adeptannotations.dart';
 import 'package:google_maps_apis/src/new/model/formattable_text.dart';
 import 'package:google_maps_apis/src/new/model/structured_format.dart';
 import 'package:google_maps_apis/src/new/utils/jsonable.dart';

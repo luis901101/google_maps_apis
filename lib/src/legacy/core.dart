@@ -90,6 +90,7 @@ class Bounds {
 }
 
 abstract class GoogleResponseStatus {
+  @JsonKey(unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
   final ResponseStatus status;
 
   /// JSON error_message
@@ -102,6 +103,11 @@ abstract class GoogleResponseStatus {
   bool get isInvalid => status == ResponseStatus.invalidRequest;
   bool get unknownError => status == ResponseStatus.unknownError;
   bool get isNotFound => status == ResponseStatus.notFound;
+  bool get isMaxWaypointsExceeded =>
+      status == ResponseStatus.maxWaypointsExceeded;
+  bool get isMaxRouteLengthExceeded =>
+      status == ResponseStatus.maxRouteLengthExceeded;
+  bool get isDeadlineExceeded => status == ResponseStatus.deadlineExceeded;
 
   GoogleResponseStatus({ResponseStatus? status, this.errorMessage})
     : status = status ?? ResponseStatus.zeroResults;
@@ -163,6 +169,7 @@ enum ResponseStatus {
   notFound,
   maxWaypointsExceeded,
   maxRouteLengthExceeded,
+  deadlineExceeded,
 }
 
 /// Google requires the `mode` query param to be lower case but then when parsing `travel_mode` from json response it should be treated as upper case

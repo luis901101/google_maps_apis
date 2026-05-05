@@ -8,7 +8,11 @@ part of 'timezone.dart';
 
 TimezoneResponse _$TimezoneResponseFromJson(Map<String, dynamic> json) =>
     TimezoneResponse(
-      status: $enumDecodeNullable(_$ResponseStatusEnumMap, json['status']),
+      status: $enumDecodeNullable(
+        _$ResponseStatusEnumMap,
+        json['status'],
+        unknownValue: JsonKey.nullForUndefinedEnumValue,
+      ),
       errorMessage: json['errorMessage'] as String?,
       dstOffset: (json['dstOffset'] as num).toInt(),
       rawOffset: (json['rawOffset'] as num).toInt(),
@@ -36,4 +40,5 @@ const _$ResponseStatusEnumMap = {
   ResponseStatus.notFound: 'NOT_FOUND',
   ResponseStatus.maxWaypointsExceeded: 'MAX_WAYPOINTS_EXCEEDED',
   ResponseStatus.maxRouteLengthExceeded: 'MAX_ROUTE_LENGTH_EXCEEDED',
+  ResponseStatus.deadlineExceeded: 'DEADLINE_EXCEEDED',
 };
