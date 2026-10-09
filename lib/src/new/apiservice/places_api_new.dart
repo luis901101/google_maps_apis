@@ -187,10 +187,16 @@ class PlacesAPINew extends RestAPIService<Place> {
       throw Exception('Malformed Photo resource name');
     }
 
-    Uri uri = Uri.parse(restAPI.dio.options.baseUrl).replace(
-      path: '/v1/places/$placeId/photos/$photoId/media',
+    final baseUri = Uri.parse(restAPI.dio.options.baseUrl);
+    // Keep any path prefix of the base url (e.g. a proxy mounted under
+    // `/gmaps`), so the photo url goes through the same host and prefix as the
+    // rest of the requests.
+    final basePath = baseUri.path.replaceAll(RegExp(r'/+$'), '');
+    final key = apiKey ?? restAPI.apiKey;
+    Uri uri = baseUri.replace(
+      path: '$basePath/v1/places/$placeId/photos/$photoId/media',
       queryParameters: {
-        'key': apiKey ?? restAPI.apiKey,
+        if (key?.isNotEmpty ?? false) 'key': key,
         if (maxWidthPx != null) 'maxWidthPx': maxWidthPx.toString(),
         if (maxHeightPx != null) 'maxHeightPx': maxHeightPx.toString(),
         'skipHttpRedirect': skipHttpRedirect.toString(),

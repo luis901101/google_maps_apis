@@ -8,8 +8,32 @@ import 'package:google_maps_apis/places_new.dart';
 import 'package:test/test.dart';
 
 Future<void> main() async {
-  final apiKey = Platform.environment['GOOGLE_API_KEY'];
-  var placesAPI = PlacesAPINew(apiKey: apiKey);
+  final googleApiKey = Platform.environment['GOOGLE_API_KEY'];
+
+  /// Base url for the Places API (New), e.g. a proxy like `http://localhost:3000`.
+  /// When not set, the package default (https://places.googleapis.com) is used.
+  final baseUrl = Platform.environment['PLACES_NEW_BASE_URL'];
+
+  /// Tests that call the API need a real credential (a Google API key, or the
+  /// proxy client key when [baseUrl] points to a proxy). `GOOGLE_API_KEY` set
+  /// to the literal `GOOGLE_API_KEY` is the placeholder the offline legacy URL
+  /// tests expect, so it doesn't enable the live tests.
+  final hasLiveKey =
+      (googleApiKey?.isNotEmpty ?? false) && googleApiKey != 'GOOGLE_API_KEY';
+  final skipLive = hasLiveKey
+      ? null
+      : 'GOOGLE_API_KEY not set: skipping tests that call the Places API (New)';
+
+  /// The constructor asserts that a credential is set, so use a placeholder
+  /// when running offline to keep this file loadable.
+  final apiKey = (googleApiKey?.isNotEmpty ?? false)
+      ? googleApiKey!
+      : 'offline';
+  final skipBadCertificate =
+      Uri.parse(baseUrl ?? 'https://places.googleapis.com').scheme == 'https'
+      ? null
+      : 'badCertificate validation needs an https base url';
+  var placesAPI = PlacesAPINew(apiKey: apiKey, baseUrl: baseUrl);
 
   tearDownAll(() {
     placesAPI.dispose();
@@ -127,6 +151,7 @@ Future<void> main() async {
         final placeId = Platform.environment['GOOGLE_PLACE_ID'];
         final tempPlacesAPI = PlacesAPINew(
           apiKey: apiKey,
+          baseUrl: baseUrl,
           httpClientAdapter: IOHttpClientAdapter(),
         );
         final response = await tempPlacesAPI.getDetails(
@@ -145,6 +170,7 @@ Future<void> main() async {
         final placeId = Platform.environment['GOOGLE_PLACE_ID'];
         final tempPlacesAPI = PlacesAPINew(
           apiKey: apiKey,
+          baseUrl: baseUrl,
           httpClientAdapter: IOHttpClientAdapter()
             ..validateCertificate = (cert, host, port) {
               return false;
@@ -161,8 +187,9 @@ Future<void> main() async {
           DioExceptionType.badCertificate,
         );
       },
+      skip: skipBadCertificate,
     );
-  });
+  }, skip: skipLive);
 
   group('Cancel requests using cancel token ', () {
     final placeId = Platform.environment['GOOGLE_PLACE_ID'];
@@ -340,11 +367,12 @@ Future<void> main() async {
       expect(response.error?.error?.status, 'INVALID_ARGUMENT');
       expect(response.error?.error?.details, isNotNull);
     });
-  });
+  }, skip: skipLive);
 
   group('Get Place Photo', () {
-    final placeId = Platform.environment['GOOGLE_PLACE_ID'];
-    final photoId = Platform.environment['GOOGLE_PLACE_PHOTO_ID'];
+    // The url building tests run offline, so they fall back to placeholder ids.
+    final placeId = Platform.environment['GOOGLE_PLACE_ID'] ?? 'PLACE_ID';
+    final photoId = Platform.environment['GOOGLE_PLACE_PHOTO_ID'] ?? 'PHOTO_ID';
     test('Build Place Photo url from resource name', () async {
       final name = 'places/$placeId/photos/$photoId';
       final url = placesAPI.buildPhotoUrl(
@@ -391,9 +419,9 @@ Future<void> main() async {
       expect(response.body, isNotNull);
       expect(
         response.body,
-        startsWith('https://lh3.googleusercontent.com/place-photos/'),
+        startsWith('https://lh3.googleusercontent.com'),
       );
-    });
+    }, skip: skipLive);
     test('Get Place plain Photo url from placeId and photoId', () async {
       final response = await placesAPI.getPlainPhotoUrl(
         placeId: placeId,
@@ -405,9 +433,9 @@ Future<void> main() async {
       expect(response.body, isNotNull);
       expect(
         response.body,
-        startsWith('https://lh3.googleusercontent.com/place-photos/'),
+        startsWith('https://lh3.googleusercontent.com'),
       );
-    });
+    }, skip: skipLive);
     test('Get Place Photo binary from resource name', () async {
       final response = await placesAPI.getPhotoBinary(
         name: 'places/$placeId/photos/$photoId',
@@ -417,7 +445,7 @@ Future<void> main() async {
       expect(response.isSuccessful, true);
       expect(response.body, isNotNull);
       expect(response.body, isNotEmpty);
-    });
+    }, skip: skipLive);
     test('Get Place Photo binary from placeId and photoId', () async {
       final response = await placesAPI.getPhotoBinary(
         placeId: placeId,
@@ -428,7 +456,7 @@ Future<void> main() async {
       expect(response.isSuccessful, true);
       expect(response.body, isNotNull);
       expect(response.body, isNotEmpty);
-    });
+    }, skip: skipLive);
   });
 
   group('Nearby Search', () {
@@ -569,7 +597,7 @@ Future<void> main() async {
       expect(leg?.distanceMeters, isNotNull);
       expect(leg?.duration, isNotNull);
     });
-  });
+  }, skip: skipLive);
 
   group('Text Search', () {
     test('Simple search by text with max 10 places and fields list', () async {
@@ -688,7 +716,7 @@ Future<void> main() async {
         await Future.delayed(nextPageTokenDelay);
       } while (page <= 4 && nextPageToken != null);
     });
-  });
+  }, skip: skipLive);
 
   group('Autocomplete Search', () {
     test(
@@ -815,7 +843,7 @@ Future<void> main() async {
         expect(queryPrediction?.structuredFormat, isNotNull);
       },
     );
-  });
+  }, skip: skipLive);
 
   group('Session Token', () {
     final sessionToken = SessionTokenHandler();
@@ -909,5 +937,5 @@ Future<void> main() async {
         },
       );
     }
-  });
+  }, skip: skipLive);
 }

@@ -50,7 +50,7 @@ import "package:google_maps_apis/geocoding.dart";
 
 final geocoding = GoogleMapsGeocoding(apiKey: "<API_KEY>");
 final geocoding = GoogleMapsGeocoding(apiKey: "<API_KEY>", httpClient: BrowserClient());
-final geocoding = GoogleMapsGeocoding(baseUrl: "http://myProxy.com");
+final geocoding = GoogleMapsGeocoding(baseUrl: "https://my-proxy.com/maps/api");
 
 GeocodingResponse response = await geocoding.searchByAddress("1600 Amphitheatre Parkway, Mountain View, CA");
 ```
@@ -62,7 +62,7 @@ import "package:google_maps_apis/places.dart";
 
 final places = GoogleMapsPlaces(apiKey: "<API_KEY>");
 final places = GoogleMapsPlaces(apiKey: "<API_KEY>", httpClient: BrowserClient());
-final places = GoogleMapsPlaces(baseUrl: "http://myProxy.com");
+final places = GoogleMapsPlaces(baseUrl: "https://my-proxy.com/maps/api");
 
 PlacesSearchResponse response = await places.searchNearbyWithRadius(Location(lat: 31.0424, lng: 42.421), 500);
 PlacesSearchResponse response = await places.searchNearbyWithRankby(Location(lat: 31.0424, lng: 42.421), "distance");
@@ -314,7 +314,7 @@ import "package:google_maps_apis/timezone.dart";
 
 final timezone = GoogleMapsTimezone(apiKey: "<API_KEY>");
 final timezone = GoogleMapsTimezone(apiKey: "<API_KEY>", httpClient: BrowserClient());
-final timezone = GoogleMapsTimezone(baseUrl: "http://myProxy.com");
+final timezone = GoogleMapsTimezone(baseUrl: "https://my-proxy.com/maps/api");
 
 TimezoneResponse response = await timezone.getByLocation(Location(lat: 31.0424, lng: 42.421));
 TimezoneResponse response = await timezone.getByLocation(Location(lat: 31.0424, lng: 42.421), timestamp: DateTime.utc(2019, 4, 24));
@@ -347,8 +347,33 @@ TimezoneResponse response = await timezone.getByLocation(Location(lat: 31.0424, 
 
 ### Proxy
 
-In case of using a proxy the baseUrl can be set.
-The apiKey is not required in case the proxy sets it. (Not storing the apiKey in the app is good practice)
+You can send every request through your own proxy (for example a proxy that holds the real
+Google API key on the server), so the app never ships the Google key. Set `baseUrl` to the proxy:
+
+- **Legacy APIs** (Geocoding, Places Legacy, Directions, Distance Matrix, Timezone): `baseUrl` replaces
+  `https://maps.googleapis.com/maps/api`, so it must include the `/maps/api` path the proxy serves,
+  e.g. `https://my-proxy.com/maps/api`.
+- **Places API (New)**: `baseUrl` replaces `https://places.googleapis.com`, so it is the proxy origin,
+  optionally with a path prefix, e.g. `https://my-proxy.com` or `https://my-proxy.com/gmaps`.
+  Requests go to `{baseUrl}/v1/places...`, and photo urls built with `buildPhotoUrl` keep the same prefix.
+
+Use the key your proxy expects as `apiKey` (not the Google key). The package sends it as the
+`x-goog-api-key` header for the Places API (New) JSON endpoints, and as the `key` query parameter for
+the Legacy APIs and for Places API (New) photo urls. `PlacesAPINew` always needs a credential
+(`apiKey`, `token` or `tokenCallback`); the Legacy classes accept a null `apiKey` when the proxy adds
+the key itself.
+
+```dart
+final geocoding = GoogleMapsGeocoding(
+  apiKey: "<PROXY_CLIENT_KEY>",
+  baseUrl: "https://my-proxy.com/maps/api",
+);
+
+final placesAPI = PlacesAPINew(
+  apiKey: "<PROXY_CLIENT_KEY>",
+  baseUrl: "https://my-proxy.com",
+);
+```
 
 ### Feature Requests and Issues
 

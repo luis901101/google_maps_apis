@@ -19,7 +19,7 @@ class GoogleMapsGeolocation extends GoogleWebService {
     super.apiKey,
     String? baseUrl,
     super.httpClient,
-    Map<String, String>? apiHeaders,
+    super.apiHeaders,
   }) : super(baseUrl: baseUrl ?? _baseUrl, apiPath: _geolocationUrl);
 
   Future<GeolocationResponse> getGeolocation({

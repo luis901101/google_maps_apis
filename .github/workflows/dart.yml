@@ -2,9 +2,9 @@ name: Dart
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
-    branches: [master]
+    branches: [main]
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
         sdk: [stable, beta]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: ${{ matrix.sdk }}
@@ -30,10 +30,18 @@ jobs:
         run: dart analyze --fatal-infos
 
       - name: Run tests
-        run: dart test --coverage coverage
+        # The legacy url-building tests expect this literal placeholder as the key; it is not a
+        # real key. Tests that call the Places API (New) skip themselves with this value.
+        env:
+          GOOGLE_API_KEY: GOOGLE_API_KEY
+        run: dart test --coverage=coverage
 
       - name: Format coverage
-        run: dart run coverage:format_coverage --packages .packages --report-on lib -i coverage --lcov -o coverage/lcov.info 
+        run: dart run coverage:format_coverage --package . --report-on lib -i coverage --lcov -o coverage/lcov.info
 
       - name: Upload coverage to codecov
-        run: curl -s https://codecov.io/bash | bash
+        uses: codecov/codecov-action@v5
+        with:
+          files: coverage/lcov.info
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false

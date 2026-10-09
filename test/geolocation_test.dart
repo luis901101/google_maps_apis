@@ -23,6 +23,16 @@ Future<void> main() async {
       });
     });
 
+    test('keeps the api headers passed to the constructor', () {
+      final withHeaders = GoogleMapsGeolocation(
+        apiKey: 'key',
+        apiHeaders: {'X-Test': '1'},
+      );
+      addTearDown(withHeaders.dispose);
+
+      expect(withHeaders.apiHeaders, {'X-Test': '1'});
+    });
+
     test('Decode response', () {
       var response = GeolocationResponse.fromJson(_responseExample);
 
