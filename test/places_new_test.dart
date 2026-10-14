@@ -417,10 +417,7 @@ Future<void> main() async {
       );
       expect(response.isSuccessful, true);
       expect(response.body, isNotNull);
-      expect(
-        response.body,
-        startsWith('https://lh3.googleusercontent.com'),
-      );
+      expect(response.body, startsWith('https://lh3.googleusercontent.com'));
     }, skip: skipLive);
     test('Get Place plain Photo url from placeId and photoId', () async {
       final response = await placesAPI.getPlainPhotoUrl(
@@ -431,10 +428,7 @@ Future<void> main() async {
       );
       expect(response.isSuccessful, true);
       expect(response.body, isNotNull);
-      expect(
-        response.body,
-        startsWith('https://lh3.googleusercontent.com'),
-      );
+      expect(response.body, startsWith('https://lh3.googleusercontent.com'));
     }, skip: skipLive);
     test('Get Place Photo binary from resource name', () async {
       final response = await placesAPI.getPhotoBinary(
