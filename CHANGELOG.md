@@ -9,13 +9,14 @@ Types of changes
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## 5.2.0
+## 6.0.0
 ### Changed
-- Updated the README proxy guidance: Legacy APIs take a `baseUrl` ending in `/maps/api`, and `PlacesAPINew` takes the proxy origin.
+- Changed the Legacy APIs to take the proxy origin as `baseUrl`, like `PlacesAPINew`: drop `/maps/api` from a 5.x Legacy `baseUrl`.
 
 ### Fixed
 - Fixed `PlacesAPINew` photo urls dropping the path prefix of a custom `baseUrl` and adding an empty `key` when using a token.
 - Fixed `GoogleMapsGeolocation` ignoring the `apiHeaders` constructor parameter.
+- Fixed a trailing `/` in a Legacy APIs `baseUrl` producing a double `/` in request urls.
 
 ## 5.1.0
 ### Changed

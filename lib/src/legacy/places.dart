@@ -9,7 +9,7 @@ import 'utils.dart';
 
 part 'places.g.dart';
 
-const _placesUrl = '/place';
+const _placesUrl = '$kGMapsApiPath/place';
 const _nearbySearchUrl = '/nearbysearch/json';
 const _textSearchUrl = '/textsearch/json';
 const _detailsSearchUrl = '/details/json';

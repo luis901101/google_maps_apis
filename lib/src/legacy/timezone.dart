@@ -9,7 +9,7 @@ import 'utils.dart';
 
 part 'timezone.g.dart';
 
-const _timezoneUrl = '/timezone/json';
+const _timezoneUrl = '$kGMapsApiPath/timezone/json';
 
 /// https://developers.google.com/maps/documentation/timezone/start
 class GoogleMapsTimezone extends GoogleWebService {

@@ -9,7 +9,7 @@ import 'utils.dart';
 
 part 'directions.g.dart';
 
-const _directionsUrl = '/directions/json';
+const _directionsUrl = '$kGMapsApiPath/directions/json';
 
 /// https://developers.google.com/maps/documentation/directions/start
 class GoogleMapsDirections extends GoogleWebService {

@@ -9,7 +9,7 @@ import 'utils.dart';
 
 part 'distance.g.dart';
 
-const _distanceUrl = '/distancematrix/json';
+const _distanceUrl = '$kGMapsApiPath/distancematrix/json';
 
 ///https://developers.google.com/maps/documentation/distance-matrix/intro
 class GoogleDistanceMatrix extends GoogleWebService {

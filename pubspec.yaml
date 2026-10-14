@@ -1,6 +1,6 @@
 name: google_maps_apis
 description: Google Maps Web Services [API](https://developers.google.com/maps/web-services)
-version: 5.2.0
+version: 6.0.0
 repository: https://github.com/luis901101/google_maps_apis
 issue_tracker: https://github.com/luis901101/google_maps_apis/issues
 topics:
@@ -15,19 +15,19 @@ environment:
 
 dependencies:
   http: '>=0.13.0 <2.0.0'
-  json_annotation: ^4.10.0
+  json_annotation: ^4.12.0
   adeptannotations: ^7.0.0
   collection: ^1.19.1
-  retrofit: ^4.9.2
-  dio: ^5.9.1
-  meta: ^1.17.0 # meta is pinned to version 1.17.0 by flutter_test from the flutter SDK.
-  uuid: ^4.5.2
+  retrofit: ^4.10.0
+  dio: ^5.11.1
+  meta: ^1.19.0
+  uuid: ^4.6.0
 
 dev_dependencies:
-  test: ^1.29.0
+  test: ^1.33.0
   lints: ^6.1.0
-  build_runner: ^2.11.1
-  retrofit_generator: ^10.2.3
-  json_serializable: ^6.12.0
-  adeptgenerator: ^14.0.0
-  coverage: ^1.15.0
+  build_runner: ^2.16.2
+  retrofit_generator: ^10.2.12
+  json_serializable: ^6.14.1
+  adeptgenerator: ^15.0.0
+  coverage: ^1.16.0

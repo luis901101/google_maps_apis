@@ -9,7 +9,7 @@ import 'utils.dart';
 
 part 'geocoding.g.dart';
 
-const _geocodeUrl = '/geocode/json';
+const _geocodeUrl = '$kGMapsApiPath/geocode/json';
 
 /// https://developers.google.com/maps/documentation/geocoding/start
 class GoogleMapsGeocoding extends GoogleWebService {

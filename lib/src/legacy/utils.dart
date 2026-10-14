@@ -5,7 +5,9 @@ import 'dart:async';
 import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 
-final kGMapsUrl = Uri.parse('https://maps.googleapis.com/maps/api');
+final kGMapsUrl = Uri.parse('https://maps.googleapis.com');
+
+const kGMapsApiPath = '/maps/api';
 
 abstract class GoogleWebService {
   @protected
@@ -28,6 +30,9 @@ abstract class GoogleWebService {
 
   Map<String, String>? get apiHeaders => _apiHeaders;
 
+  /// [baseUrl] replaces the origin (`https://maps.googleapis.com` by default)
+  /// and may carry a path prefix, e.g. `https://my-proxy.com/gmaps`.
+  /// [apiPath] is the endpoint's full path from the origin.
   GoogleWebService({
     String? apiKey,
     required String apiPath,
@@ -43,7 +48,8 @@ abstract class GoogleWebService {
       uri = Uri.parse(baseUrl);
     }
 
-    _url = uri.replace(path: '${uri.path}$apiPath');
+    final basePath = uri.path.replaceAll(RegExp(r'/+$'), '');
+    _url = uri.replace(path: '$basePath$apiPath');
   }
 
   @protected
